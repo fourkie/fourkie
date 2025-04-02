@@ -23,7 +23,7 @@ const emotions: Record<string, string> = {
     "https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img/surprize.jpg",
 };
 
-export const getUserEmotions = async () => {
+export const getPostEmotionByUserId = async () => {
   // 유저 정보 가져와서 비교할 예정
   /* const { data: User, error: UserError } = await supabase.auth.getUser();
   if (UserError) {
@@ -32,14 +32,19 @@ export const getUserEmotions = async () => {
     console.log(User);
   }
  */
-  const { data, error } = await supabase.from("posts").select("*");
-  //.eq("user_id", a);
 
-  if (error) {
-    console.error("데이터 가져오기 실패:", error);
+  try {
+    const { data, error } = await supabase.from("posts").select("*");
+    //.eq("user_id", a);
+
+    if (error) {
+      throw error;
+    }
+    return data;
+  } catch (err) {
+    console.error("데이터 가져오기 실패:", err);
     return [];
   }
-  return data;
 };
 
 export const checkEmotion = (emotion: string) => {
