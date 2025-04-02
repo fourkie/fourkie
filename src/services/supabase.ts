@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+import { createBrowserClient } from "@supabase/ssr";
 
 const SUPABASE_URL =
   process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
@@ -9,6 +9,6 @@ if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
   throw new Error("환경 변수를 확인해주세요.");
 }
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabase = createBrowserClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 export default supabase;
