@@ -1,8 +1,8 @@
 import React from "react";
 import { checkEmotion } from "../../../utils/home-emotion.util";
 import { HomePost } from "../types/HomePost";
-import Image from "next/image";
 import { getPostEmotionByUserId } from "@/services/home-services";
+import { CommonEmotionImage } from "@/_components/common-emotion-image";
 
 const HomeDiary = async () => {
   const posts: HomePost[] = await getPostEmotionByUserId();
@@ -11,11 +11,9 @@ const HomeDiary = async () => {
       {posts.map((post) => {
         return (
           <div key={post.post_id}>
-            <Image
+            <CommonEmotionImage
               src={checkEmotion(post.post_emotion)}
-              alt={post.post_emotion}
-              width={200}
-              height={200}
+              size={"xl"}
             />
           </div>
         );
