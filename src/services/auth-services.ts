@@ -10,7 +10,7 @@ export const signUp = async (data: FieldValues) => {
       password,
       options: {
         data: {
-          nickname,
+          user_nickname: nickname,
         },
       },
     });
