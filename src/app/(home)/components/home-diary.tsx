@@ -2,8 +2,8 @@ import React from "react";
 import {
   checkEmotion,
   getPostEmotionByUserId,
-} from "../utils/home-emotion.util";
-import { HomePost } from "../types/home-types";
+} from "../../../utils/home-emotion.util";
+import { HomePost } from "../types/HomePost";
 import Image from "next/image";
 
 const HomeDiary = async () => {
