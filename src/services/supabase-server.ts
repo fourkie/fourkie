@@ -2,7 +2,7 @@ import ENV from "@/constants/env";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-function createServer() {
+function supabase() {
   const cookieStore = cookies();
 
   return createServerClient(
@@ -13,10 +13,14 @@ function createServer() {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll() {},
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => {
+            cookieStore.set(name, value, options);
+          });
+        },
       },
-    }
+    },
   );
 }
 
-export default createServer;
+export default supabase;
