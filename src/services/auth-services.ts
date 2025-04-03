@@ -8,11 +8,6 @@ export const signUp = async (data: FieldValues) => {
     const { data: signUpData } = await supabase.auth.signUp({
       email,
       password,
-      // options: {
-      //   data: {
-      //     user_nickname:{닉네임}
-      //   }
-      // }
     });
 
     return signUpData;
