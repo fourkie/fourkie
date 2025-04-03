@@ -13,7 +13,7 @@ const HomeDiary = async () => {
           <div key={post.post_id}>
             <Image
               src={checkEmotion(post.post_emotion)}
-              alt="Cookie Emotion"
+              alt={post.post_emotion}
               width={200}
               height={200}
             />
