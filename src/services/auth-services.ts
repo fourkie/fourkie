@@ -2,12 +2,17 @@ import { FieldValues } from "react-hook-form";
 import supabase from "./supabase";
 
 export const signUp = async (data: FieldValues) => {
-  const { email, password } = data;
+  const { email, password, nickname } = data;
 
   try {
     const { data: signUpData } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          nickname,
+        },
+      },
     });
 
     return signUpData;

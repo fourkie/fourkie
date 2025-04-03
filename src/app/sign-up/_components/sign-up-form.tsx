@@ -7,6 +7,7 @@ const SignUpForm = () => {
   const { register, handleSubmit, formState } = useForm<FormData>({
     mode: "onBlur",
   });
+
   const { mutate: signUp } = useSignupMutation();
 
   const onSubmit = (value: FieldValues) => {
@@ -28,7 +29,15 @@ const SignUpForm = () => {
           required: { value: true, message: "비밀번호를 작성해주세요" },
         })}
         type="password"
-        placeholder="비밀번호를 입력하세요F"
+        placeholder="비밀번호를 입력하세요"
+      />
+
+      <input
+        {...register("nickname", {
+          required: { value: true, message: "닉네임을 입력해주세요" },
+        })} // pattern: {value: ..., message: ...}로 정규식 추가하여 유효성 검사
+        type="text"
+        placeholder="닉네임을 입력하세요"
       />
       <button disabled={!formState.isValid}>회원가입</button>
     </form>
@@ -38,7 +47,7 @@ const SignUpForm = () => {
 export default SignUpForm;
 
 interface FormData {
-  username: string;
+  nickname: string;
   email: string;
   password: string;
 }
