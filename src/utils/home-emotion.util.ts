@@ -1,26 +1,17 @@
+import { EMOTION_URL } from "@/constants/emotions-url";
 import supabase from "@/services/supabase";
 
-// 쿠키 사진 url이 들어갈 예정
-// 이거 상수 쪽으로
-// cookieImg = { joy: "url" 이렇게 빼두는 게 좋겠죠?}
 const emotions: Record<string, string> = {
-  JOY: "https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img/joy.jpg",
-  EXCITED:
-    "https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img/joy.jpg",
-  BUTTERFLY:
-    "https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img/joy.jpg",
-  GRATEFUL:
-    "https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img/joy.jpg",
-  CALM: "https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img/joy.jpg",
-  LONELY:
-    "https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img/joy.jpg",
-  ANXIOUS:
-    "https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img/sad.jpg",
-  TIRED:
-    "https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img/sleepy.jpg",
-  SAD: "https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img/sad.jpg",
-  ANGRY:
-    "https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img/surprize.jpg",
+  JOY: EMOTION_URL.JOY,
+  EXCITED: EMOTION_URL.EXCITED,
+  BUTTERFLY: EMOTION_URL.BUTTERFLY,
+  GRATEFUL: EMOTION_URL.GRATEFUL,
+  CALM: EMOTION_URL.CALM,
+  LONELY: EMOTION_URL.LONELY,
+  ANXIOUS: EMOTION_URL.ANXIOUS,
+  TIRED: EMOTION_URL.TIRED,
+  SAD: EMOTION_URL.SAD,
+  ANGRY: EMOTION_URL.ANGRY,
 };
 
 export const getPostEmotionByUserId = async () => {

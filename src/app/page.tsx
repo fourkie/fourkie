@@ -1,4 +1,4 @@
-import HomeDiary from "./home/components/home-diary";
+import HomeDiary from "./(home)/components/home-diary";
 
 const HomePage = async () => {
   return (
