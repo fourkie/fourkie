@@ -1,5 +1,8 @@
 const ListCard = () => {
-  return <div>ListCard</div>;
+  return <div>
+    <div>nickname</div>
+    <div>title</div>
+  </div>;
 };
 
 export default ListCard;
