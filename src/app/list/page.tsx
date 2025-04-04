@@ -1,5 +1,11 @@
+import ListCardContainer from "./_components/list-card-container";
+
 const List = () => {
-  return <div>List</div>;
+  return (
+    <div>
+      <ListCardContainer />
+    </div>
+  );
 };
 
 export default List;
