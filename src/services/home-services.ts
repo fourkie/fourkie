@@ -1,5 +1,6 @@
 import supabase1 from "./supabase-server";
 import supabase from "./supabase";
+import supabase from "./supabase-client";
 
 export const getUserId = async () => {
   const supabase2 = await supabase1();
