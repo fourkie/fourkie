@@ -34,6 +34,7 @@ export const CommonEmotionImage = ({ src, size }: Img) => {
       className={`rounded object-cover`}
       width={imageSize}
       height={imageSize}
+      priority
     />
   );
 };
