@@ -1,9 +1,9 @@
-import supabase1 from "./supabase-server";
-import supabase from "./supabase";
+import supabaseServer from "./supabase-server";
 import supabase from "./supabase-client";
+import { TOAST_MESSAGE } from "@/constants/toast-message";
 
 export const getUserId = async () => {
-  const supabase2 = await supabase1();
+  const supabase2 = await supabaseServer();
   const {
     data: { user },
   } = await supabase2.auth.getUser();
@@ -25,7 +25,7 @@ export const getPostEmotionByUserId = async (userId: string | undefined) => {
       }
       return data;
     } catch (err) {
-      console.error("데이터 가져오기 실패:", err);
+      console.error(TOAST_MESSAGE.HOMEERROR, err);
       return [];
     }
   }
