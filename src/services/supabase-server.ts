@@ -2,9 +2,9 @@ import ENV from "@/constants/env";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-function createServer() {
+// 서버 전용 supabase
+const supabaseServer = () => {
   const cookieStore = cookies();
-
   return createServerClient(
     ENV.SUPABASE_URL_SERVER!,
     ENV.SUPABASE_ANON_KEY_SERVER!,
@@ -13,10 +13,14 @@ function createServer() {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll() {},
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => {
+            cookieStore.set(name, value, options);
+          });
+        },
       },
-    }
+    },
   );
-}
+};
 
-export default createServer;
+export default supabaseServer;
