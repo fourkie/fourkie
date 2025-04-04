@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "./supabase-client";
 
 export const getPostEmotionByUserId = async () => {
   // 유저 정보 가져와서 비교할 예정
