@@ -1,25 +1,31 @@
+import supabase1 from "./supabase-server";
 import supabase from "./supabase";
 
-export const getPostEmotionByUserId = async () => {
-  // 유저 정보 가져와서 비교할 예정
-  /* const { data: User, error: UserError } = await supabase.auth.getUser();
-    if (UserError) {
-      console.log("오류남" + UserError);
-    } else {
-      console.log(User);
-    }
-   */
+export const getUserId = async () => {
+  const supabase2 = await supabase1();
+  const {
+    data: { user },
+  } = await supabase2.auth.getUser();
+  return user?.id;
+};
 
-  try {
-    const { data, error } = await supabase.from("posts").select("*");
-    //.eq("user_id", a);
+export const getPostEmotionByUserId = async (userId: string | undefined) => {
+  if (userId === undefined) {
+    return false;
+  } else {
+    try {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("*")
+        .eq("user_id", userId);
 
-    if (error) {
-      throw error;
+      if (error) {
+        throw error;
+      }
+      return data;
+    } catch (err) {
+      console.error("데이터 가져오기 실패:", err);
+      return [];
     }
-    return data;
-  } catch (err) {
-    console.error("데이터 가져오기 실패:", err);
-    return [];
   }
 };
