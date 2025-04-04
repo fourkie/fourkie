@@ -1,5 +1,7 @@
 "use client";
 
+import { FormData } from "@/app/sign-up/type";
+import { FORM_MESSAGE } from "@/constants/form-message";
 import { useSignInMutation } from "@/hooks/mutations/auth-mutations";
 import { FieldValues, useForm } from "react-hook-form";
 
@@ -15,18 +17,18 @@ const SignInForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <input
         {...register("email", {
-          required: { value: true, message: "이메일을 작성해주세요" },
+          required: { value: true, message: FORM_MESSAGE.EMAIL },
         })} // pattern: {value: ..., message: ...}로 정규식 추가하여 유효성 검사
         type="email"
-        placeholder="이메일을 입력하세요"
+        placeholder={FORM_MESSAGE.EMAIL}
       />
       {formState.errors.email && <span>{formState.errors.email.message}</span>}
       <input
         {...register("password", {
-          required: { value: true, message: "비밀번호를 작성해주세요" },
+          required: { value: true, message: FORM_MESSAGE.PASSWORD },
         })}
         type="password"
-        placeholder="비밀번호를 입력하세요F"
+        placeholder={FORM_MESSAGE.PASSWORD}
       />
       <button disabled={!formState.isValid}>로그인</button>
     </form>
@@ -34,9 +36,3 @@ const SignInForm = () => {
 };
 
 export default SignInForm;
-
-interface FormData {
-  username: string;
-  email: string;
-  password: string;
-}
