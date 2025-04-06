@@ -5,6 +5,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import dayjs from "dayjs";
 
 // 공식에 공개되지 않은 MuiMonthCalendar, MuiYearCalendar을 사용하기 위해 타입을 지정합니다.
@@ -74,6 +75,7 @@ const HomeDate = () => {
       <ThemeProvider theme={customTheme}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
+            maxDate={dayjs()}
             label="월 별로 모아봐요!"
             views={["year", "month"]}
             openTo="month"
