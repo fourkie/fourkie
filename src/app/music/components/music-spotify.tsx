@@ -1,13 +1,8 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { PlaylistItem } from "../type";
 import { Emotion } from "@/constants/spotify";
+import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import Image from "next/image";
-import {
-  getSpotifyAccessToken,
-  getEmotionPlaylists,
-} from "@/services/music-services";
 
 const MusicSpotify = () => {
   const emotion: Emotion = Emotion.SAD;
@@ -16,19 +11,7 @@ const MusicSpotify = () => {
     data: playlists = [],
     isLoading,
     isError,
-  } = useQuery<PlaylistItem[], Error>({
-    queryKey: ["emotionPlaylists", emotion],
-    queryFn: async () => {
-      const accessToken = await getSpotifyAccessToken();
-
-      if (!accessToken) {
-        throw new Error("AccessToken을 가져오지 못했습니다.");
-      }
-
-      return await getEmotionPlaylists(emotion, accessToken);
-    },
-    staleTime: 1000 * 60 * 30, // 30분 동안 fresh
-  });
+  } = useGetAllPlaylistsByQueryQuery(emotion);
 
   if (isLoading) return <p>로딩 중...</p>;
   if (isError) return <p>에러 발생!</p>;
