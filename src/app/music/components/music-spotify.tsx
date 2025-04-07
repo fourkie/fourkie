@@ -1,37 +1,43 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { PlaylistItem } from "../type";
-import { getAccessToken, getEmotionPlaylists } from "./music-api";
 import { Emotion } from "@/constants/spotify";
 import Image from "next/image";
+import {
+  getSpotifyAccessToken,
+  getEmotionPlaylists,
+} from "@/services/music-services";
 
 const MusicSpotify = () => {
-  const [playlists, setPlaylists] = useState<PlaylistItem[]>([]);
   const emotion: Emotion = Emotion.SAD;
 
-  useEffect(() => {
-    const fetchPlaylists = async () => {
-      const accessToken = await getAccessToken();
+  const {
+    data: playlists = [],
+    isLoading,
+    isError,
+  } = useQuery<PlaylistItem[], Error>({
+    queryKey: ["emotionPlaylists", emotion],
+    queryFn: async () => {
+      const accessToken = await getSpotifyAccessToken();
 
-      if (!accessToken) return;
-
-      const playlistData = await getEmotionPlaylists(emotion, accessToken);
-
-      // playlistData가 배열인 경우에만 상태 업데이트
-      if (Array.isArray(playlistData)) {
-        setPlaylists(playlistData);
+      if (!accessToken) {
+        throw new Error("AccessToken을 가져오지 못했습니다.");
       }
-    };
 
-    fetchPlaylists();
-  }, [emotion]);
+      return await getEmotionPlaylists(emotion, accessToken);
+    },
+    staleTime: 1000 * 60 * 30, // 30분 동안 fresh
+  });
+
+  if (isLoading) return <p>로딩 중...</p>;
+  if (isError) return <p>에러 발생!</p>;
 
   return (
     <div>
       <h2>감정 기반 추천 플레이리스트 ({emotion})</h2>
       <ul>
-        {playlists.map((item) => {
+        {playlists?.map((item) => {
           if (!item || !item.id || !item.name) return null;
 
           return (
@@ -43,6 +49,7 @@ const MusicSpotify = () => {
                   alt={`Playlist cover: ${item.name}`}
                   width={200}
                   height={200}
+                  style={{ borderRadius: "12px", margin: "10px 0" }}
                 />
               )}
             </li>
