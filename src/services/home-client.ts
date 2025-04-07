@@ -9,18 +9,14 @@ export const getPostEmotionByUserId = async (
   if (userId === undefined) {
     return false;
   } else {
-    let dateBefore = "";
-    let dateAfter = "";
-    if (month < 10) {
-      dateBefore = year + "-0" + month;
-      if (month === 9) {
-        dateAfter = year + "-" + month + 1;
-      } else {
-        dateAfter = year + "-0" + month;
-      }
-    } else {
-      dateBefore = year + "-" + month;
+    const dateBefore = `${year}-${month.toString().padStart(2, "0")}`;
+    let nextMonth = month + 1;
+    let nextYear = year;
+    if (nextMonth > 12) {
+      nextMonth = 1;
+      nextYear += 1;
     }
+    const dateAfter = `${nextYear}-${nextMonth.toString().padStart(2, "0")}`;
     try {
       const start = new Date(`${dateBefore}-01T00:00:00.000Z`).toISOString();
       const end = new Date(`${dateAfter}-01T00:00:00.000Z`).toISOString();

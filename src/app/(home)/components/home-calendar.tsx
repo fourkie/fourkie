@@ -8,7 +8,7 @@ import { HomePost } from "../types/HomePost";
 import { getPostEmotionByUserId } from "@/services/home-client";
 import { useRouter } from "next/navigation";
 
-const HomeCalendar = ({ userId }) => {
+const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const route = useRouter();
   if (!userId) {
     route.push("/sign-in");
@@ -16,40 +16,40 @@ const HomeCalendar = ({ userId }) => {
 
   //달력에 표시된 날 바꾸기 위해 state로 관리 하위 컴포넌트로 전달해줄거임
   const [currentDate, setCurrentDate] = useState(dayjs());
+  const [images, setImages] = useState<{ [key: number]: string }>({});
 
   //시작 달, 시작 날 기록 끝 날짜는 daysInMonth 함수 사용해서 괜찮을 것 같음.
   //daysInMonth 함수가 뭐냐?
   //dayjs().daysInMonth() 형식으로 사용하는 것으로 현재 날짜가 속한 달의 일수를 알려줌
   //currentDate 가 dayjs()로 초기화 되어있으니 이렇게 사용함.
   const startOfMonth = currentDate.startOf("month");
-  //const endOfMonth = currentDate.endOf("month");
-  const startDay = startOfMonth.day(); // 요일 시작 (0: 일요일)
+  const startDay = startOfMonth.day();
   const daysInMonth = currentDate.daysInMonth();
 
   useEffect(() => {
     const fetchData = async () => {
-      const posts: HomePost[] | boolean = await getPostEmotionByUserId(
+      const userPosts: HomePost[] | boolean = await getPostEmotionByUserId(
         userId,
         currentDate.year(),
-        currentDate.month(),
+        currentDate.month() + 1,
       );
-      //post 잘 받아오나?
-      console.log(posts);
-      //console.log(currentDate.month());
-      //console.log(currentDate.year());
+
+      if (!userPosts) {
+        console.log("값 없음");
+        return;
+      }
+
+      const newImages: { [key: number]: string } = {};
+      userPosts.forEach((post) => {
+        const day = parseInt(post.post_created_at.slice(8, 10));
+        newImages[day] = post.post_emotion;
+      });
+
+      setImages(newImages);
     };
 
     fetchData();
   }, [currentDate]);
-
-  // 예시 이미지 데이터
-  // 여기서 데이터 날짜로 가져오고...
-  // 해당 기분을 기준으로 이미지 가져와서 집어넣는 거야...
-  const images: { [key: number]: string } = {
-    5: "/img/sample1.jpg",
-    12: "/img/sample2.jpg",
-    20: "/img/sample3.jpg",
-  };
 
   const prevMonth = () => setCurrentDate(currentDate.subtract(1, "month"));
   const nextMonth = () => setCurrentDate(currentDate.add(1, "month"));
@@ -81,7 +81,10 @@ const HomeCalendar = ({ userId }) => {
               <>
                 <span className="absolute top-1 left-1 text-sm">{day}</span>
                 {images[day] && (
-                  <CommonEmotionImage src={checkEmotion("JOY")} size={"xl"} />
+                  <CommonEmotionImage
+                    src={checkEmotion(images[day])}
+                    size={"xl"}
+                  />
                 )}
               </>
             )}
