@@ -1,9 +1,10 @@
+import HomeDate from "./(home)/components/home-date";
 import HomeDiary from "./(home)/components/home-diary";
 
 const HomePage = async () => {
   return (
     <div>
-      HomePage
+      <HomeDate />
       <HomeDiary />
     </div>
   );
