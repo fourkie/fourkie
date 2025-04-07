@@ -12,4 +12,10 @@ export const TOAST_MESSAGE = {
     REFRESH_TOKEN_ERROR:
       "Something went wrong while refreshing your access. Please try again shortly.",
   },
+  AI: {
+    HUGGINGFACE: {
+      ERROR: "HuggingFace API request failed",
+      SERVER_ERROR: "Server error occurred",
+    },
+  },
 };
