@@ -3,4 +3,5 @@ export const QUERY_KEY = {
   MUSICS: "musics",
   POSTS: "posts",
   FOLLOWS: "follows",
+  EMOTION_PLAYLISTS: "emotionPlaylists",
 };

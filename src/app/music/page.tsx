@@ -1,5 +1,11 @@
+import MusicSpotify from "./components/music-spotify";
+
 const Music = () => {
-  return <div>Music</div>;
+  return (
+    <div>
+      <MusicSpotify />
+    </div>
+  );
 };
 
 export default Music;
