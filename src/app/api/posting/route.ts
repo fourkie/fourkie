@@ -3,7 +3,7 @@ import { TOAST_MESSAGE } from "@/constants/toast-message";
 import { NextRequest, NextResponse } from "next/server";
 
 // AI의 감정 분석 API를 호출하는 함수
-export async function POST(req: NextRequest) {
+export const POST = async (req: NextRequest) => {
   const { inputText } = await req.json();
 
   try {
@@ -16,12 +16,14 @@ export async function POST(req: NextRequest) {
     });
 
     const data = await response.json();
+
     return NextResponse.json(data);
   } catch (error) {
     console.error("HuggingFace API 요청 실패", error);
+
     return NextResponse.json(
       { error: TOAST_MESSAGE.AI.HUGGINGFACE.SERVER_ERROR },
       { status: 500 },
     );
   }
-}
+};
