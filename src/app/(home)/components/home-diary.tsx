@@ -11,7 +11,7 @@ const HomeDiary = async () => {
   const posts: HomePost[] | boolean = await getPostEmotionByUserId(userId);
 
   if (!posts) {
-    redirect("/list");
+    redirect("/sign-in");
   }
 
   return (
