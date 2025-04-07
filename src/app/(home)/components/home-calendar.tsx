@@ -1,12 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { CommonEmotionImage } from "@/_components/common-emotion-image";
 import { checkEmotion } from "@/utils/home-emotion.util";
-import HomeDate from "./home-date";
+import { HomePost } from "../types/HomePost";
+import { getPostEmotionByUserId } from "@/services/home-client";
+import { useRouter } from "next/navigation";
 
-const HomeCalendar = () => {
+const HomeCalendar = ({ userId }) => {
+  const route = useRouter();
+  if (!userId) {
+    route.push("/sign-in");
+  }
+
   //달력에 표시된 날 바꾸기 위해 state로 관리 하위 컴포넌트로 전달해줄거임
   const [currentDate, setCurrentDate] = useState(dayjs());
 
@@ -19,8 +26,21 @@ const HomeCalendar = () => {
   const startDay = startOfMonth.day(); // 요일 시작 (0: 일요일)
   const daysInMonth = currentDate.daysInMonth();
 
-  // 예시 이미지 데이터
+  useEffect(() => {
+    const fetchData = async () => {
+      const posts: HomePost[] | boolean = await getPostEmotionByUserId(userId);
+      //post 잘 받아오나?
+      console.log(posts);
+      console.log(currentDate);
+      console.log("달", startOfMonth);
+    };
 
+    fetchData();
+  }, [currentDate]);
+
+  // 예시 이미지 데이터
+  // 여기서 데이터 날짜로 가져오고...
+  // 해당 기분을 기준으로 이미지 가져와서 집어넣는 거야...
   const images: { [key: number]: string } = {
     5: "/img/sample1.jpg",
     12: "/img/sample2.jpg",
@@ -51,7 +71,7 @@ const HomeCalendar = () => {
         {days.map((day, idx) => (
           <div
             key={idx}
-            className="h-12 border rounded-lg relative flex justify-center items-center"
+            className="h-16 border rounded-lg relative flex justify-center items-center"
           >
             {day && (
               <>
