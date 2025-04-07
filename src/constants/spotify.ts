@@ -8,3 +8,11 @@ export const SPOTIFY = {
   REFRESH_TOKEN: "spotify_refresh_token",
   PRODUCTION: "production",
 };
+
+export enum Emotion {
+  HAPPY = "happy",
+  SAD = "sad",
+  FOCUS = "focus",
+  ENERGETIC = "energetic",
+  RELAX = "relax",
+}
