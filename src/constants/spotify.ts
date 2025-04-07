@@ -9,10 +9,11 @@ export const SPOTIFY = {
   PRODUCTION: "production",
 };
 
+// 상의 후 수정 예정
 export enum Emotion {
-  HAPPY = "happy",
-  SAD = "sad",
+  HAPPY = "happy upbeat energetic",
+  SAD = "sad emotional chill",
   FOCUS = "focus",
-  ENERGETIC = "energetic",
-  RELAX = "relax",
+  CALM = "calm peaceful acoustic relax",
+  ANGRY = "angry rock intense",
 }
