@@ -12,6 +12,7 @@ const PostingForm = () => {
 
   const { mutate, data: emotions, isPending } = usePostEmotionMutation();
 
+  // 감정 분석 결과를 처리하는 함수
   const onSubmit = ({ inputText }: PostingFormValues) => {
     if (!inputText.trim()) return;
 

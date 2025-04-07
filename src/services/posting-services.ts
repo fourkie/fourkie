@@ -1,5 +1,6 @@
 import { PostingResponse } from "@/app/posting/type";
 
+// route에 요청을 보내는 함수
 export const postEmotion = async (inputText: string) => {
   const response = await fetch("/api/posting", {
     method: "POST",
