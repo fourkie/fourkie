@@ -1,5 +1,7 @@
+import PostingForm from "./_components/posting-form";
+
 const Posting = () => {
-  return <div>page</div>;
+  return <PostingForm />;
 };
 
 export default Posting;
