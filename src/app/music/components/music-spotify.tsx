@@ -1,39 +1,53 @@
 "use client";
 
-import { getAccessToken, getTracksByEmotion } from "./music-api";
-import { Emotion } from "@/constants/spotify";
 import { useEffect, useState } from "react";
-import { TrackItem } from "../type";
+import { PlaylistItem } from "../type";
+import { getAccessToken, getEmotionPlaylists } from "./music-api";
+import { Emotion } from "@/constants/spotify";
+import Image from "next/image";
 
 const MusicSpotify = () => {
-  const [tracks, setTracks] = useState<TrackItem[]>([]);
-  const emotion: Emotion = Emotion.HAPPY;
+  const [playlists, setPlaylists] = useState<PlaylistItem[]>([]);
+  const emotion: Emotion = Emotion.SAD;
 
   useEffect(() => {
-    const fetchTracks = async () => {
+    const fetchPlaylists = async () => {
       const accessToken = await getAccessToken();
 
       if (!accessToken) return;
 
-      const result = await getTracksByEmotion(emotion, accessToken);
-      setTracks(result);
+      const playlistData = await getEmotionPlaylists(emotion, accessToken);
+
+      // playlistData가 배열인 경우에만 상태 업데이트
+      if (Array.isArray(playlistData)) {
+        setPlaylists(playlistData);
+      }
     };
 
-    fetchTracks();
+    fetchPlaylists();
   }, [emotion]);
 
   return (
     <div>
-      <h2>감정 기반 추천 노래 리스트 ({emotion})</h2>
+      <h2>감정 기반 추천 플레이리스트 ({emotion})</h2>
       <ul>
-        {tracks.map((track) => (
-          <li key={track.id}>
-            <p>
-              {track.name} - {track.artists[0]?.name}
-            </p>
-            <audio controls src={track.preview_url}></audio>
-          </li>
-        ))}
+        {playlists.map((item) => {
+          if (!item || !item.id || !item.name) return null;
+
+          return (
+            <li key={item.id}>
+              <p>{item.name}</p>
+              {item.images?.[0]?.url && (
+                <Image
+                  src={item.images[0].url}
+                  alt={`Playlist cover: ${item.name}`}
+                  width={200}
+                  height={200}
+                />
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
