@@ -28,11 +28,15 @@ const HomeCalendar = ({ userId }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const posts: HomePost[] | boolean = await getPostEmotionByUserId(userId);
+      const posts: HomePost[] | boolean = await getPostEmotionByUserId(
+        userId,
+        currentDate.year(),
+        currentDate.month(),
+      );
       //post 잘 받아오나?
       console.log(posts);
-      console.log(currentDate);
-      console.log("달", startOfMonth);
+      //console.log(currentDate.month());
+      //console.log(currentDate.year());
     };
 
     fetchData();
