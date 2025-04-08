@@ -4,6 +4,7 @@ import "./globals.css";
 import Providers from "@/providers/RQProviders";
 import Header from "./(layout)/header";
 import { ToastContainer } from "react-toastify";
+import Navigation from "./(layout)/navigation";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,6 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
+        <Navigation />
         <Providers>{children}</Providers>
         <ToastContainer position="top-right" autoClose={3000}></ToastContainer>
       </body>
