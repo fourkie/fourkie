@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { SPOTIFY } from "@/constants/spotify";
+import {
+  DEFAULT_ACCESS_TOKEN_EXPIRE_SEC,
+  MS_IN_SECOND,
+  REFRESH_TOKEN_EXPIRE_MS,
+  SPOTIFY,
+} from "@/constants/spotify";
 import { TOAST_MESSAGE } from "@/constants/toast-message";
 
 export async function GET(request: Request) {
@@ -80,24 +85,26 @@ export async function GET(request: Request) {
     // Next.js 서버 쿠키 저장 객체 생성
     const cookieStore = cookies();
 
-    // 액세스 토큰 만료 시간 설정 (기본은 3600초 = 1시간)
-    const expiresIn = data.expires_in || 3600;
-    const expiresDate = new Date(Date.now() + expiresIn * 1000);
+    // 액세스 토큰 만료 시간 설정 (기본 3600초 = 1시간)
+    const expiresIn = data.expires_in || DEFAULT_ACCESS_TOKEN_EXPIRE_SEC;
+    const accessExpiresDate = new Date(Date.now() + expiresIn * MS_IN_SECOND); // 1시간
+    const refreshExpiresDate = new Date(Date.now() + REFRESH_TOKEN_EXPIRE_MS); // 14일
 
-    // 액세스 토큰을 쿠키에 저장 (httpOnly + secure 옵션 포함)
+    // 액세스 토큰 : 쿠키 저장 (로그아웃 시 즉시 만료)
     cookieStore.set(SPOTIFY.ACCESS_TOKEN, accessToken, {
-      path: "/", // 전체 경로에서 접근 가능
-      httpOnly: true, // 클라이언트에서 접근 불가 (보안 강화)
-      secure: process.env.NODE_ENV === SPOTIFY.PRODUCTION, // 배포 환경에서만 HTTPS 필수
-      expires: expiresDate, // 만료 시간 설정
+      path: "/",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === SPOTIFY.PRODUCTION,
+      expires: accessExpiresDate,
     });
 
-    // 리프레시 토큰도 함께 반환되는 경우 쿠키에 저장 (만료 시간 없음)
+    // 리프레시 토큰 : 쿠키 저장 (14일 유효)
     if (refreshToken) {
       cookieStore.set(SPOTIFY.REFRESH_TOKEN, refreshToken, {
         path: "/",
         httpOnly: true,
         secure: process.env.NODE_ENV === SPOTIFY.PRODUCTION,
+        expires: refreshExpiresDate,
       });
     }
 
