@@ -79,12 +79,13 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
           >
             {day && (
               <>
-                <span className="absolute top-1 left-1 text-sm">{day}</span>
-                {images[day] && (
+                {images[day] ? (
                   <CommonEmotionImage
                     src={checkEmotion(images[day])}
                     size={"xl"}
                   />
+                ) : (
+                  <span className="absolute top-1 left-1 text-sm">{day}</span>
                 )}
               </>
             )}
