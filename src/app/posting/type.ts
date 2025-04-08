@@ -6,3 +6,8 @@ export type PostingResponse = {
 export type PostingFormValues = {
   inputText: string;
 };
+
+export type PostingResultModalProps = {
+  emotions: string[] | undefined;
+  isPending: boolean;
+};

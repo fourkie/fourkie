@@ -1,11 +1,12 @@
 "use client";
 
-import { usePostAnalyzedEmotionMutation } from "@/hooks/mutations/use-post-emotion-mutation";
 import React from "react";
+import { PostingResultModalProps } from "../type";
 
-const PostingResultModal = () => {
-  const { data: emotions, isPending } = usePostAnalyzedEmotionMutation();
-
+const PostingResultModal = ({
+  emotions,
+  isPending,
+}: PostingResultModalProps) => {
   return (
     <>
       <h1 className="mt-4 font-bold">감정 분석 결과</h1>
@@ -13,7 +14,7 @@ const PostingResultModal = () => {
       {emotions ? (
         <>
           <ul className="bg-gray-100 p-4 rounded mt-2 text-sm list-disc list-inside">
-            {emotions.map((label: string, index: number) => (
+            {emotions.map((label, index) => (
               <li key={index}>{label}</li>
             ))}
           </ul>
