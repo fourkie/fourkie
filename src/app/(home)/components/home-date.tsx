@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import dayjs from "dayjs";
+import { HomeDateProps } from "../types/HomeDate";
 
 // 공식에 공개되지 않은 MuiMonthCalendar, MuiYearCalendar을 사용하기 위해 타입을 지정합니다.
 declare module "@mui/material/styles" {
@@ -20,10 +20,8 @@ declare module "@mui/material/styles" {
     MuiYearCalendar?: Components["MuiButton"];
   }
 }
-
-const HomeDate = () => {
-  const [value, setValue] = useState<dayjs.Dayjs | null>(dayjs());
-
+const HomeDate: React.FC<HomeDateProps> = ({ currentDate, setCurrentDate }) => {
+  console.log(currentDate);
   const customTheme = createTheme({
     palette: {
       //기본 설정
@@ -39,7 +37,7 @@ const HomeDate = () => {
           root: {
             "& .MuiPickersMonth-monthButton.Mui-selected": {
               backgroundColor: "#f48fb1",
-              color: "#fff",
+              color: "#ffffff",
               "&:hover": {
                 backgroundColor: "#8e1a40",
               },
@@ -47,13 +45,13 @@ const HomeDate = () => {
           },
         },
       },
-      //연도 설정정
+      //연도 설정
       MuiYearCalendar: {
         styleOverrides: {
           root: {
             "& .MuiPickersYear-yearButton.Mui-selected": {
               backgroundColor: "#f48fb1",
-              color: "#fff",
+              color: "#ffffff",
               "&:hover": {
                 backgroundColor: "#8d2849",
               },
@@ -70,18 +68,22 @@ const HomeDate = () => {
         e.preventDefault();
         e.stopPropagation();
       }}
-      className="m-10"
+      className="m-3"
     >
       <ThemeProvider theme={customTheme}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
             maxDate={dayjs()}
-            label="월 별로 모아봐요!"
+            /* label="월 별로 모아봐요!" */
             views={["year", "month"]}
             openTo="month"
             format="YYYY 🐰 MM"
-            value={value}
-            onChange={(newValue) => setValue(newValue)}
+            value={currentDate}
+            onChange={(newValue) => {
+              if (newValue) {
+                setCurrentDate(newValue);
+              }
+            }}
             disableOpenPicker={false}
             slotProps={{
               textField: {
@@ -96,7 +98,7 @@ const HomeDate = () => {
                   "& .MuiOutlinedInput-notchedOutline": {
                     border: "none",
                   },
-                  backgroundColor: "#fff4fa",
+                  backgroundColor: "#ffffff",
                   borderRadius: "12px",
                   caretColor: "transparent",
                 },

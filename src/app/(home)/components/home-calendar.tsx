@@ -7,6 +7,7 @@ import { checkEmotion } from "@/utils/home-emotion.util";
 import { HomePost } from "../types/HomePost";
 import { getPostEmotionByUserId } from "@/services/home-client";
 import { useRouter } from "next/navigation";
+import HomeDate from "./home-date";
 
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const route = useRouter();
@@ -18,10 +19,6 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const [currentDate, setCurrentDate] = useState(dayjs());
   const [images, setImages] = useState<{ [key: number]: string }>({});
 
-  //시작 달, 시작 날 기록 끝 날짜는 daysInMonth 함수 사용해서 괜찮을 것 같음.
-  //daysInMonth 함수가 뭐냐?
-  //dayjs().daysInMonth() 형식으로 사용하는 것으로 현재 날짜가 속한 달의 일수를 알려줌
-  //currentDate 가 dayjs()로 초기화 되어있으니 이렇게 사용함.
   const startOfMonth = currentDate.startOf("month");
   const startDay = startOfMonth.day();
   const daysInMonth = currentDate.daysInMonth();
@@ -62,7 +59,8 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
     <div className="w-full max-w-md mx-auto shadow-xl p-5">
       <div className="flex justify-between items-center mb-4 ">
         <button onClick={prevMonth}>◀</button>
-        <h2 className="text-xl font-bold">{currentDate.format("YYYY.MM")}</h2>
+        <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
+        {/* <h2 className="text-xl font-bold">{currentDate.format("YYYY.MM")}</h2> */}
         <button onClick={nextMonth}>▶</button>
       </div>
       <div className="grid grid-cols-7 gap-2">
