@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { SPOTIFY } from "@/constants/spotify";
+import {
+  DEFAULT_ACCESS_TOKEN_EXPIRE_SEC,
+  MS_IN_SECOND,
+  SPOTIFY,
+} from "@/constants/spotify";
 import { TOAST_MESSAGE } from "@/constants/toast-message";
 
 export async function GET() {
@@ -69,8 +73,8 @@ export async function GET() {
         );
       }
 
-      const expiresIn = data.expires_in || 3600;
-      const expiresDate = new Date(Date.now() + expiresIn * 1000);
+      const expiresIn = data.expires_in || DEFAULT_ACCESS_TOKEN_EXPIRE_SEC;
+      const expiresDate = new Date(Date.now() + expiresIn * MS_IN_SECOND);
 
       // 새로운 Access Token을 쿠키에 저장 (쿠키 만료 시간 명확히 설정)
       if (accessToken) {
