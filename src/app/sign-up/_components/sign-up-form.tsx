@@ -9,8 +9,12 @@ import {
   PASSWORD_VALIDATION,
 } from "@/constants/validations.constant";
 import { FORM_MESSAGE } from "@/constants/form-message";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const SignUpForm = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -19,7 +23,13 @@ const SignUpForm = () => {
     mode: "onBlur",
   });
 
-  const { mutate: signUp } = useSignupMutation();
+  const { mutate: signUp, isSuccess } = useSignupMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      router.push("/");
+    }
+  }, [isSuccess, router]);
 
   const onSubmit = (value: FieldValues) => {
     signUp(value);
@@ -33,6 +43,7 @@ const SignUpForm = () => {
         placeholder={FORM_MESSAGE.EMAIL}
       />
       {errors.email && <span>{errors.email.message}</span>}
+
       <input
         {...register("password", PASSWORD_VALIDATION)}
         type="password"
