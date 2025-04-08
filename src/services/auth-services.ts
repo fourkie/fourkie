@@ -29,7 +29,6 @@ export const signIn = async (data: FieldValues) => {
       email,
       password,
     });
-    console.log(signInData);
   } catch (error) {
     console.log(error);
   }
