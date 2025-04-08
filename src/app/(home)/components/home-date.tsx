@@ -77,7 +77,7 @@ const HomeDate: React.FC<HomeDateProps> = ({ currentDate, setCurrentDate }) => {
             /* label="월 별로 모아봐요!" */
             views={["year", "month"]}
             openTo="month"
-            format="YYYY 🐰 MM"
+            format="YYYY.MM"
             value={currentDate}
             onChange={(newValue) => {
               if (newValue) {
@@ -92,7 +92,7 @@ const HomeDate: React.FC<HomeDateProps> = ({ currentDate, setCurrentDate }) => {
                   onKeyDown: (e) => e.preventDefault(),
                 },
                 sx: {
-                  width: "150px",
+                  width: "130px",
                   height: "50px",
                   fontSize: "0.875rem",
                   "& .MuiOutlinedInput-notchedOutline": {
