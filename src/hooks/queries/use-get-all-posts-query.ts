@@ -1,5 +1,3 @@
-"use client";
-
 import { QUERY_KEY } from "@/constants/query-keys";
 import { getAllPosts } from "@/services/post-services";
 import { useQuery } from "@tanstack/react-query";
