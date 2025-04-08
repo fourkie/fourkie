@@ -9,7 +9,7 @@ const ListCard = ({ post }: { post: Posts }) => {
 
   return (
     <div className="flex gap-3 h-14 bg-white text-black px-5 py-4 rounded-xl">
-      <div className="font-bold">{user.user_nickname}</div>
+      <div className="font-bold">{user?.user_nickname}</div>
       <div className="font-bold">{post_title}</div>
     </div>
   );
