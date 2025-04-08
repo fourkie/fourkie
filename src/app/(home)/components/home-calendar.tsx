@@ -29,8 +29,15 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
     currentDate.month() + 1,
   );
 
-  if (isPending) return <div>데이터 불러오는 중</div>;
-  if (isError) return <div>에러 발생!</div>;
+  // 펜딩 or 에러일 때 크기 같게 유지하려고 min-h-500px 줬습니다.
+  if (isPending || isError)
+    return (
+      <div className="w-full max-w-md mx-auto shadow-xl p-5 min-h-[500px] flex items-center justify-center">
+        <span className="text-gray-500 text-lg">
+          {isPending ? "데이터 불러오는 중..." : "에러 발생!"}
+        </span>
+      </div>
+    );
 
   if (!posts) {
     route.push("/sign-in");
