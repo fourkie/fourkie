@@ -7,6 +7,7 @@ import { checkEmotion } from "@/utils/home-emotion.util";
 import { useRouter } from "next/navigation";
 import HomeDate from "./home-date";
 import { useGetUserPostByMonthQuery } from "@/hooks/queries/use-get-user-posts-by-month-query";
+import { QUERYDATA } from "@/constants/query-data";
 
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const route = useRouter();
@@ -30,11 +31,12 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   );
 
   // 펜딩 or 에러일 때 크기 같게 유지하려고 min-h-500px 줬습니다.
+  // 펜딩+에러일때 가져오기, 둘 중 하나 일 때니까, isPending 일 때 나타내고 아닐때는 자연스럽게 에러 나타내기
   if (isPending || isError)
     return (
       <div className="w-full max-w-md mx-auto shadow-xl p-5 min-h-[500px] flex items-center justify-center">
         <span className="text-gray-500 text-lg">
-          {isPending ? "데이터 불러오는 중..." : "에러 발생!"}
+          {isPending ? QUERYDATA.ISPENDING : QUERYDATA.ISERROR}
         </span>
       </div>
     );
