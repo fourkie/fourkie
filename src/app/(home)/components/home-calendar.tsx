@@ -59,8 +59,8 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   for (let i = 1; i <= daysInMonth; i++) days.push(i);
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <div className="flex justify-between items-center mb-4">
+    <div className="w-full max-w-md mx-auto shadow-xl p-5">
+      <div className="flex justify-between items-center mb-4 ">
         <button onClick={prevMonth}>◀</button>
         <h2 className="text-xl font-bold">{currentDate.format("YYYY.MM")}</h2>
         <button onClick={nextMonth}>▶</button>
@@ -75,7 +75,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
         {days.map((day, idx) => (
           <div
             key={idx}
-            className="h-16 border rounded-lg relative flex justify-center items-center"
+            className="h-16 rounded-lg relative flex justify-center items-center"
           >
             {day && (
               <>
@@ -85,7 +85,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
                     size={"xl"}
                   />
                 ) : (
-                  <span className="absolute top-1 left-1 text-sm">{day}</span>
+                  <span>{day}</span>
                 )}
               </>
             )}
