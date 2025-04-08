@@ -1,49 +1,46 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import dayjs from "dayjs";
 import { CommonEmotionImage } from "@/_components/common-emotion-image";
 import { checkEmotion } from "@/utils/home-emotion.util";
-import { HomePost } from "../types/HomePost";
-import { getPostEmotionByUserId } from "@/services/home-client";
 import { useRouter } from "next/navigation";
 import HomeDate from "./home-date";
+import { useGetUserPostByMonthQuery } from "@/hooks/queries/use-get-user-posts-by-month-query";
 
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const route = useRouter();
 
   //달력에 표시된 날 바꾸기 위해 state로 관리 하위 컴포넌트로 전달해줄거임
   const [currentDate, setCurrentDate] = useState(dayjs());
-  const [images, setImages] = useState<{ [key: number]: string }>({});
 
   const startOfMonth = currentDate.startOf("month");
   const startDay = startOfMonth.day();
   const daysInMonth = currentDate.daysInMonth();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const userPosts: HomePost[] | boolean = await getPostEmotionByUserId(
-        userId,
-        currentDate.year(),
-        currentDate.month() + 1,
-      );
+  //쿼리사용
+  const {
+    data: posts,
+    isPending,
+    isError,
+  } = useGetUserPostByMonthQuery(
+    userId,
+    currentDate.year(),
+    currentDate.month() + 1,
+  );
 
-      if (!userPosts) {
-        route.push("/sign-in");
-        return;
-      }
+  if (isPending) return <div>데이터 불러오는 중</div>;
+  if (isError) return <div>에러 발생!</div>;
 
-      const newImages: { [key: number]: string } = {};
-      userPosts.forEach((post) => {
-        const day = parseInt(post.post_created_at.slice(8, 10));
-        newImages[day] = post.post_emotion;
-      });
-
-      setImages(newImages);
-    };
-
-    fetchData();
-  }, [currentDate]);
+  if (!posts) {
+    route.push("/sign-in");
+    return;
+  }
+  const images: { [key: number]: string } = {};
+  posts.forEach((post) => {
+    const day = parseInt(post.post_created_at.slice(8, 10));
+    images[day] = post.post_emotion;
+  });
 
   const handlePrevMonth = () =>
     setCurrentDate(currentDate.subtract(1, "month"));
@@ -91,7 +88,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
                 {images[day] ? (
                   <CommonEmotionImage
                     src={checkEmotion(images[day])}
-                    size={"xl"}
+                    size={"m"}
                   />
                 ) : (
                   <span>{day}</span>
