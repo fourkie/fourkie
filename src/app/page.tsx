@@ -1,6 +1,5 @@
 import { getUserId, getUserNickname } from "@/services/home-services";
 import HomeCalendar from "./(home)/components/home-calendar";
-import HomeDate from "./(home)/components/home-date";
 import HomeHeader from "./(home)/components/home-header";
 import { redirect } from "next/navigation";
 
@@ -13,8 +12,9 @@ const HomePage = async () => {
   return (
     <div>
       <HomeHeader nickname={nickname} />
-      <HomeDate />
       <HomeCalendar userId={userId} />
+      <div>친구 컴포넌트 자리</div>
+      <div>뮤직 컴포넌트 자리</div>
     </div>
   );
 };
