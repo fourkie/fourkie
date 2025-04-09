@@ -16,10 +16,10 @@ const PostingResultModal = ({
   const handleEmotionsSlide = (n: number) => {
     setSlideIndex((prev) => {
       const newIndex = prev + n;
-      return newIndex >= emotions.length
+      return newIndex >= moods.length
         ? 0
         : newIndex < 0
-        ? emotions.length - 1
+        ? moods.length - 1
         : newIndex;
     });
   };
