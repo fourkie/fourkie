@@ -47,12 +47,12 @@ const PostingResultModal = ({
           <div className="flex justify-center items-center mt-4 space-x-4">
             <ChevronLeft
               onClick={() => handleEmotionsSlide(-1)}
-              className="absolute left-1/3 cursor-pointer"
+              className="absolute left-0 cursor-pointer"
             />
             <h2 className="text-2xl font-bold">{emotions[slideIndex]}</h2>
             <ChevronRight
               onClick={() => handleEmotionsSlide(1)}
-              className="absolute right-1/3 cursor-pointer"
+              className="absolute right-0 cursor-pointer"
             />
           </div>
 
