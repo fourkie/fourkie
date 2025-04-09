@@ -5,6 +5,7 @@ import { PostingResultModalProps } from "../type";
 const PostingResultModal = ({
   emotions,
   isPending,
+  nickname,
 }: PostingResultModalProps) => {
   return (
     <>
@@ -22,7 +23,8 @@ const PostingResultModal = ({
         </>
       ) : (
         <p className="text-gray-500 mt-2">
-          {isPending && "ai가 ㅇㅇ님의 기분을 분석중이에요 조금만 기다려주세오"}
+          {isPending &&
+            `ai가 ${nickname}님의 기분을 분석중이에요 조금만 기다려주세오`}
         </p>
       )}
     </>

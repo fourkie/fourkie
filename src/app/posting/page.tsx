@@ -10,7 +10,9 @@ const Posting = async () => {
     redirect("/sign-in");
   }
 
-  return <PostingForm />;
+  const nickname = data.user.user_metadata.user_nickname;
+
+  return <PostingForm nickname={nickname} />;
 };
 
 export default Posting;

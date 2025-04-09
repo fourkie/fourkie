@@ -4,11 +4,11 @@ import { TOAST_MESSAGE } from "@/constants/toast-message";
 import { FORM_MESSAGE } from "@/constants/form-message";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { PostingFormValues } from "../type";
+import { PostingFormValues, UserDateProps } from "../type";
 import { useGetAnalyzedPostEmotionMutation } from "@/hooks/mutations/use-post-emotion-mutation";
 import PostingResultModal from "./posting-result-modal";
 
-const PostingForm = () => {
+const PostingForm = ({ nickname }: UserDateProps) => {
   const { mutate, data, isPending } = useGetAnalyzedPostEmotionMutation();
   const { register, handleSubmit } = useForm<PostingFormValues>();
 
@@ -41,7 +41,11 @@ const PostingForm = () => {
         </button>
       </form>
 
-      <PostingResultModal emotions={data} isPending={isPending} />
+      <PostingResultModal
+        emotions={data}
+        isPending={isPending}
+        nickname={nickname}
+      />
     </div>
   );
 };
