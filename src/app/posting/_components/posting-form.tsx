@@ -5,11 +5,11 @@ import { FORM_MESSAGE } from "@/constants/form-message";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { PostingFormValues } from "../type";
-import { usePostAnalyzedEmotionMutation } from "@/hooks/mutations/use-post-emotion-mutation";
+import { useGetAnalyzedPostEmotionMutation } from "@/hooks/mutations/use-post-emotion-mutation";
 import PostingResultModal from "./posting-result-modal";
 
 const PostingForm = () => {
-  const { mutate, data, isPending } = usePostAnalyzedEmotionMutation();
+  const { mutate, data, isPending } = useGetAnalyzedPostEmotionMutation();
   const { register, handleSubmit } = useForm<PostingFormValues>();
 
   // 감정 분석 결과를 처리하는 함수
