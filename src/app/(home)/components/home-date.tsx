@@ -21,7 +21,6 @@ declare module "@mui/material/styles" {
   }
 }
 const HomeDate: React.FC<HomeDateProps> = ({ currentDate, setCurrentDate }) => {
-  console.log(currentDate);
   const customTheme = createTheme({
     palette: {
       //기본 설정

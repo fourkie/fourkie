@@ -12,14 +12,12 @@ import { QUERYDATA } from "@/constants/query-data";
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const route = useRouter();
 
-  //달력에 표시된 날 바꾸기 위해 state로 관리 하위 컴포넌트로 전달해줄거임
   const [currentDate, setCurrentDate] = useState(dayjs());
 
   const startOfMonth = currentDate.startOf("month");
   const startDay = startOfMonth.day();
   const daysInMonth = currentDate.daysInMonth();
 
-  //쿼리사용
   const {
     data: posts,
     isPending,
@@ -75,13 +73,16 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
         <button onClick={handleNextMonth}>▶</button>
       </div>
       <div className="grid grid-cols-7 gap-2">
-        {["S", "M", "T", "W", "T", "F", "S"].map((d) =>
+        {["S", "M", "T", "W", "T", "F", "S"].map((d, index) =>
           d === "S" ? (
-            <div key={d} className="text-center font-semibold text-green-500">
+            <div
+              key={index}
+              className="text-center font-semibold text-green-500"
+            >
               {d}
             </div>
           ) : (
-            <div key={d} className="text-center font-semibold">
+            <div key={index} className="text-center font-semibold">
               {d}
             </div>
           ),
