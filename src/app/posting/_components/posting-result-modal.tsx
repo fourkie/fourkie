@@ -87,6 +87,7 @@ const PostingResultModal = ({
               <br />
               플레이 리스트를 추천해드릴게요!
             </p>
+
             <div className="flex gap-3">
               <button
                 className="flex-1 py-2 px-4 bg-grey-1 rounded-xl font-medium"
