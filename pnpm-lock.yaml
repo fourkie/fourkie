@@ -35,6 +35,9 @@ importers:
       lucide-cli:
         specifier: ^0.0.11
         version: 0.0.11
+      lucide-react:
+        specifier: ^0.487.0
+        version: 0.487.0(react@18.3.1)
       next:
         specifier: 14.2.18
         version: 14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1645,6 +1648,11 @@ packages:
   lucide-cli@0.0.11:
     resolution: {integrity: sha512-+w+kZyid5ceD8ysqSwpyfNeU94UfuLhs/uXgdt8Ihod/i3TAqNcPhJpjRRzslMO4Kw09zeeoO9g5C7YMQlTSKw==}
     hasBin: true
+
+  lucide-react@0.487.0:
+    resolution: {integrity: sha512-aKqhOQ+YmFnwq8dWgGjOuLc8V1R9/c/yOd+zDY4+ohsR2Jo05lSGc3WsstYPIzcTpeosN7LoCkLReUUITvaIvw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -4221,6 +4229,10 @@ snapshots:
       inquirer: 10.2.2
       ora: 8.2.0
       path: 0.12.7
+
+  lucide-react@0.487.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   math-intrinsics@1.1.0: {}
 
