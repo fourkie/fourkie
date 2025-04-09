@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 const HomePage = async () => {
   const userId: string | undefined = await getUserId();
   const nickname: string | undefined = await getUserNickname();
-  if (userId === null || nickname === null) {
+  if (userId === undefined || nickname === undefined) {
     redirect("/sign-in");
   }
   return (
