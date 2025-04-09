@@ -25,10 +25,7 @@ export const signIn = async (data: FieldValues) => {
   const { email, password } = data;
 
   try {
-    const { data: signInData } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    await supabase.auth.signInWithPassword({ email, password });
   } catch (error) {
     console.log(error);
   }

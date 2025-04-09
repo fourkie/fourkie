@@ -7,6 +7,8 @@ import {
   PASSWORD_VALIDATION,
 } from "@/constants/validations.constant";
 import { useSignInMutation } from "@/hooks/mutations/auth-mutations";
+import Button from "@/ui/common/button";
+import Input from "@/ui/common/input";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
@@ -46,7 +48,9 @@ const SignInForm = () => {
         placeholder={FORM_MESSAGE.PASSWORD}
       />
       {errors.password && <span>{errors.password.message}</span>}
-      <button disabled={!isValid}>로그인</button>
+      <Button type="submit" disabled={!isValid}>
+        로그인
+      </Button>
     </form>
   );
 };
