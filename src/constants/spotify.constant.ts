@@ -27,5 +27,4 @@ export const MS_IN_HOUR = MS_IN_MINUTE * 60; // 1시간
 export const MS_IN_DAY = MS_IN_HOUR * 24; // 1일
 
 // 토큰 만료 기간
-export const DEFAULT_PROVIDER_TOKEN_EXPIRE_SEC = 3600; // 1시간
 export const REFRESH_TOKEN_EXPIRE_MS = MS_IN_DAY * 14; // 14일
