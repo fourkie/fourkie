@@ -1,7 +1,7 @@
 "use client";
 
-import { QUERY_KEY } from "@/constants/query-keys";
-import { Emotion } from "@/constants/spotify";
+import { QUERY_KEY } from "@/constants/query-keys.constant";
+import { Emotion } from "@/constants/spotify.constant";
 import {
   getEmotionPlaylists,
   getSpotifyAccessToken,

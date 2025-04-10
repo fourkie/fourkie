@@ -1,4 +1,4 @@
-import supabaseClient from "./supabase-client";
+import supabaseClient from "./supabase-client-service";
 
 export const getAllPosts = async () => {
   try {
@@ -19,4 +19,4 @@ export const getMyPosts = async ({ userId }: { userId: string }) => {
   } catch (error) {
     console.log(error);
   }
-}
+};

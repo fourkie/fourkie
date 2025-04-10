@@ -1,4 +1,4 @@
-import { SPOTIFY } from "@/constants/spotify";
+import { SPOTIFY } from "@/constants/spotify.constant";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 

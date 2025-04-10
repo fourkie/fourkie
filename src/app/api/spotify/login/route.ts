@@ -1,5 +1,5 @@
-import { SPOTIFY } from "@/constants/spotify";
-import { TOAST_MESSAGE } from "@/constants/toast-message";
+import { SPOTIFY } from "@/constants/spotify.constant";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { NextResponse } from "next/server";
 
 export async function GET() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Emotion } from "@/constants/spotify";
+import { Emotion } from "@/constants/spotify.constant";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import Image from "next/image";
 

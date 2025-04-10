@@ -1,4 +1,4 @@
-import supabaseClient from "./supabase-client";
+import supabaseClient from "./supabase-client-service";
 
 export const getFriendsPosts = async ({ userId }: { userId: string }) => {
   try {

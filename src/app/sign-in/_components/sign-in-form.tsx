@@ -1,12 +1,12 @@
 "use client";
 
 import { FormData } from "@/app/sign-up/type";
-import { FORM_MESSAGE } from "@/constants/form-message";
+import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import {
   EMAIL_VALIDATION,
   PASSWORD_VALIDATION,
 } from "@/constants/validations.constant";
-import { useSignInMutation } from "@/hooks/mutations/auth-mutations";
+import { useSignInMutation } from "@/hooks/mutations/auth-mutation";
 import Button from "@/ui/common/button";
 import Input from "@/ui/common/input";
 import { useRouter } from "next/navigation";

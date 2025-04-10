@@ -1,5 +1,5 @@
 import { AccessToken, PlaylistsResponse } from "@/app/music/type";
-import { Emotion } from "@/constants/spotify";
+import { Emotion } from "@/constants/spotify.constant";
 
 // Spotify 토큰 요청
 export const getSpotifyAccessToken = async () => {

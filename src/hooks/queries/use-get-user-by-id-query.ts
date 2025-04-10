@@ -1,4 +1,4 @@
-import { QUERY_KEY } from "@/constants/query-keys";
+import { QUERY_KEY } from "@/constants/query-keys.constant";
 import { getUserById } from "@/services/user-services";
 import { useQuery } from "@tanstack/react-query";
 

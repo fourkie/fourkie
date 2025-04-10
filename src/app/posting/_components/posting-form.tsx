@@ -1,7 +1,7 @@
 "use client";
 
-import { TOAST_MESSAGE } from "@/constants/toast-message";
-import { FORM_MESSAGE } from "@/constants/form-message";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { PostingFormValues, UserDateProps } from "../type";
