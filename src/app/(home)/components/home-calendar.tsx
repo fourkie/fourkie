@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dayjs from "dayjs";
-import { CommonEmotionImage } from "@/_components/common-emotion-image";
+import { CommonEmotionImage } from "@/ui/common/image";
 import { checkEmotion } from "@/utils/home-emotion.util";
 import HomeDate from "./home-date";
 import { useGetUserPostByMonthQuery } from "@/hooks/queries/use-get-user-posts-by-month-query";
