@@ -10,9 +10,9 @@ export const getUserId = async () => {
 };
 
 export const getUserNickname = async () => {
-  const supabase2 = await supabaseServer();
+  const supabaseServer = createClient();
   const {
     data: { user },
-  } = await supabase2.auth.getUser();
+  } = await supabaseServer.auth.getUser();
   return user?.user_metadata.user_nickname;
 };
