@@ -6,6 +6,7 @@ export const SPOTIFY = {
   CONTENT_TYPE: "application/x-www-form-urlencoded",
   ACCESS_TOKEN: "spotify_access_token",
   REFRESH_TOKEN: "spotify_refresh_token",
+  PROVIDER_TOKEN: "spotify_provider_token",
   PRODUCTION: "production",
 };
 
