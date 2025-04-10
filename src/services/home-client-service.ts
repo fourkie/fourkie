@@ -1,5 +1,5 @@
-import { TOAST_MESSAGE } from "@/constants/toast-message";
-import supabaseClient from "./supabase-client";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import supabaseClient from "./supabase-client-service";
 
 export const getPostEmotionByUserId = async (
   userId: string | undefined,

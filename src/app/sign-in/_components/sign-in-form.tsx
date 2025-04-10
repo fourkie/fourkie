@@ -1,12 +1,15 @@
 "use client";
 
 import { FormData } from "@/app/sign-up/type";
-import { FORM_MESSAGE } from "@/constants/form-message";
+import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import {
   EMAIL_VALIDATION,
   PASSWORD_VALIDATION,
 } from "@/constants/validations.constant";
-import { useSignInMutation } from "@/hooks/mutations/auth-mutations";
+import { useSignInMutation } from "@/hooks/mutations/auth-mutation";
+import Button from "@/ui/common/button.common";
+import Input from "@/ui/common/input.common";
+
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
@@ -34,19 +37,21 @@ const SignInForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input
+      <Input
         {...register("email", EMAIL_VALIDATION)}
         type="email"
         placeholder={FORM_MESSAGE.EMAIL}
+        error={errors.email?.message}
       />
-      {errors.email && <span>{errors.email.message}</span>}
-      <input
+      <Input
         {...register("password", PASSWORD_VALIDATION)}
         type="password"
         placeholder={FORM_MESSAGE.PASSWORD}
+        error={errors.password?.message}
       />
-      {errors.password && <span>{errors.password.message}</span>}
-      <button disabled={!isValid}>로그인</button>
+      <Button type="submit" disabled={!isValid}>
+        로그인
+      </Button>
     </form>
   );
 };

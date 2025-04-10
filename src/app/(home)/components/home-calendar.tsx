@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dayjs from "dayjs";
-import { CommonEmotionImage } from "@/_components/common-emotion-image";
+import EmotionImage from "@/ui/common/emotion-image";
 import { checkEmotion } from "@/utils/home-emotion.util";
 import { useRouter } from "next/navigation";
 import HomeDate from "./home-date";
@@ -96,10 +96,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
             {day && (
               <>
                 {images[day] ? (
-                  <CommonEmotionImage
-                    src={checkEmotion(images[day])}
-                    size={"m"}
-                  />
+                  <EmotionImage src={checkEmotion(images[day])} size={"m"} />
                 ) : (
                   <span>{day}</span>
                 )}

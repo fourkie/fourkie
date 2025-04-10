@@ -1,22 +1,27 @@
 "use client";
 
-import { TOAST_MESSAGE } from "@/constants/toast-message";
-import { FORM_MESSAGE } from "@/constants/form-message";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { PostingFormValues, UserDateProps } from "../type";
 import { useGetAnalyzedPostEmotionMutation } from "@/hooks/mutations/use-post-emotion-mutation";
 import PostingResultModal from "./posting-result-modal";
+import { useState } from "react";
 
 const PostingForm = ({ nickname }: UserDateProps) => {
   const { mutate, data, isPending } = useGetAnalyzedPostEmotionMutation();
   const { register, handleSubmit } = useForm<PostingFormValues>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 감정 분석 결과를 처리하는 함수
   const onSubmit = ({ inputText }: PostingFormValues) => {
     if (!inputText.trim()) return;
 
     mutate(inputText, {
+      onSuccess: () => {
+        setIsModalOpen(true);
+      },
       onError: () => {
         toast.error(TOAST_MESSAGE.AI.HUGGINGFACE.ERROR);
       },
@@ -45,6 +50,8 @@ const PostingForm = ({ nickname }: UserDateProps) => {
         emotions={data}
         isPending={isPending}
         nickname={nickname}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
       />
     </div>
   );

@@ -1,9 +1,10 @@
-import MusicSpotify from "./components/music-spotify";
+import { Emotion } from "@/constants/spotify.constant";
+import EmotionBasedPlaylists from "./components/emotion-based-playlists";
 
-const Music = () => {
+const Music = async () => {
   return (
     <div>
-      <MusicSpotify />
+      <EmotionBasedPlaylists emotion={Emotion.SAD} />
     </div>
   );
 };
