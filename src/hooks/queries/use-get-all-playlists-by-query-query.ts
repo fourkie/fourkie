@@ -1,8 +1,8 @@
 "use client";
 
-import { QUERY_KEY } from "@/constants/query-keys";
-import { Emotion } from "@/constants/spotify";
-import { fetchEmotionBasedPlaylists } from "@/services/music-services";
+import { QUERY_KEY } from "@/constants/query-keys.constant";
+import { Emotion } from "@/constants/spotify.constant";
+import { fetchEmotionBasedPlaylists } from "@/services/music-service";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetAllPlaylistsByQueryQuery = (emotion: Emotion) => {

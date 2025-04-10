@@ -1,5 +1,5 @@
 import { PlaylistsResponse } from "@/app/music/type";
-import { Emotion } from "@/constants/spotify";
+import { Emotion } from "@/constants/spotify.constant";
 import { getSpotifyProviderTokenFromCookies } from "@/utils/music-cookies.util";
 
 // 감정 기반으로 Spotify 플레이리스트를 검색하는 함수

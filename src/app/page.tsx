@@ -1,4 +1,4 @@
-import { getUserId, getUserNickname } from "@/services/home-services";
+import { getUserId, getUserNickname } from "@/services/home-service";
 import HomeCalendar from "./(home)/components/home-calendar";
 import HomeHeader from "./(home)/components/home-header";
 import { redirect } from "next/navigation";

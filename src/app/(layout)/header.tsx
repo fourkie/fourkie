@@ -1,6 +1,6 @@
 "use client";
 
-import { signOut } from "@/services/auth-services";
+import { signOut } from "@/services/auth-service";
 import { useRouter } from "next/navigation";
 import SpotifyLogin from "../music/components/spotify-login";
 

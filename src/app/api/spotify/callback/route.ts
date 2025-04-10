@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
-import createClient from "@/services/supabase-server";
 import { cookies } from "next/headers";
-import { MS_IN_HOUR, REFRESH_TOKEN_EXPIRE_MS } from "@/constants/spotify";
+import {
+  MS_IN_HOUR,
+  REFRESH_TOKEN_EXPIRE_MS,
+} from "@/constants/spotify.constant";
+import createClient from "@/services/supabase-server-service";
 
-export const GET = async (request: Request) => {
-  // 요청에서 URL과 쿼리 파라미터 추출
-  const { searchParams, origin } = new URL(request.url);
+export async function GET(request: Request) {
+  // 요청 URL에서 쿼리 파라미터 가져오기
+  const { searchParams } = new URL(request.url);
 
   // Spotify에서 반환한 OAuth 인증 코드
   const authorizationCode = searchParams.get("code");
@@ -76,4 +79,4 @@ export const GET = async (request: Request) => {
     : `${origin}${redirectPath}`;
 
   return NextResponse.redirect(redirectUrl);
-};
+}

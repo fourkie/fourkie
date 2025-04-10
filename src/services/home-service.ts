@@ -1,4 +1,4 @@
-import createClient from "./supabase-server";
+import createClient from "./supabase-server-service";
 
 export const getUserId = async () => {
   const supabaseServer = createClient();
