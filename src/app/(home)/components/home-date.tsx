@@ -25,8 +25,8 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
   const customTheme = createTheme({
     palette: {
       primary: {
-        main: colors.background,
-        contrastText: colors.background,
+        main: colors.secondary[200],
+        contrastText: colors.secondary[200],
       },
     },
     components: {
@@ -35,10 +35,10 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
         styleOverrides: {
           root: {
             "& .MuiPickersMonth-monthButton.Mui-selected": {
-              backgroundColor: colors.secondary[200],
+              backgroundColor: `${colors.secondary[200]} !important`,
               color: colors.background,
               "&:hover": {
-                backgroundColor: colors.secondary[400],
+                backgroundColor: `${colors.secondary[400]} !important`,
               },
             },
           },
@@ -49,10 +49,10 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
         styleOverrides: {
           root: {
             "& .MuiPickersYear-yearButton.Mui-selected": {
-              backgroundColor: colors.secondary[200],
+              backgroundColor: `${colors.secondary[200]} !important`,
               color: colors.background,
               "&:hover": {
-                backgroundColor: colors.secondary[400],
+                backgroundColor: `${colors.secondary[400]} !important`,
               },
             },
           },
