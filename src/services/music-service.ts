@@ -1,42 +1,41 @@
-import { AccessToken, PlaylistsResponse } from "@/app/music/type";
+import { PlaylistsResponse } from "@/app/music/type";
 import { Emotion } from "@/constants/spotify.constant";
+import { getSpotifyProviderTokenFromCookies } from "@/utils/music-cookies.util";
 
-// Spotify 토큰 요청
-export const getSpotifyAccessToken = async () => {
-  try {
-    const response = await fetch("/api/spotify/token");
-
-    const data: AccessToken = await response.json();
-
-    return data.access_token;
-  } catch (error) {
-    console.error("토큰 요청 실패 : ", error);
-    return null;
-  }
-};
-
-// 감정 기반 플레이리스트 요청
-export const getEmotionPlaylists = async (
+// 감정 기반으로 Spotify 플레이리스트를 검색하는 함수
+export const fetchEmotionBasedPlaylists = async (
   emotion: Emotion,
-  accessToken: string,
-) => {
-  const query = emotion;
+): Promise<PlaylistsResponse["playlists"]["items"]> => {
+  const spotifyProviderToken = getSpotifyProviderTokenFromCookies();
+
+  if (!spotifyProviderToken) {
+    throw new Error("spotifyProviderToken이 없습니다.");
+  }
 
   try {
     const response = await fetch(
       `https://api.spotify.com/v1/search?q=${encodeURIComponent(
-        query,
-      )}&type=playlist&limit=30&market=KR`,
+        emotion,
+      )}&type=playlist&limit=50&market=KR`,
       {
-        headers: { Authorization: `Bearer ${accessToken}` },
+        headers: { Authorization: `Bearer ${spotifyProviderToken}` },
       },
     );
 
+    if (!response.ok) {
+      throw new Error(`HTTP 오류! 상태 코드 : ${response.status}`);
+    }
+
     const data: PlaylistsResponse = await response.json();
 
-    return data.playlists.items;
+    const filteredPlaylists = data.playlists.items.filter(
+      (item) => item !== null,
+    );
+
+    return filteredPlaylists;
   } catch (error) {
     console.error("플레이리스트 요청 실패 : ", error);
-    return [];
+
+    throw error;
   }
 };
