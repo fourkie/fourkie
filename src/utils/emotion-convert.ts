@@ -1,0 +1,83 @@
+// 감정 이름을 영어로 변환
+export const convertEmotions = (emotion: string): string => {
+  const emotionNames: Record<string, string> = {
+    // Joy
+    기쁨: "JOY",
+    만족스러운: "JOY",
+
+    // Excited
+    "신이 난": "EXCITED",
+    신나는: "EXCITED",
+
+    // Butterfly
+    흥분: "BUTTERFLY",
+    안달하는: "BUTTERFLY",
+
+    // Grateful
+    감사하는: "GRATEFUL",
+    신뢰하는: "GRATEFUL",
+
+    // Calm
+    편안한: "CALM",
+    느긋: "CALM",
+    안도: "CALM",
+
+    // Lonely
+    외로운: "LONELY",
+    고립된: "LONELY",
+    버려진: "LONELY",
+    "고립된(당황한)": "LONELY",
+
+    // Anxious
+    초조한: "ANXIOUS",
+    불안: "ANXIOUS",
+    걱정스러운: "ANXIOUS",
+    "남의 시선을 의식하는": "ANXIOUS",
+    당황: "ANXIOUS",
+    "스트레스 받는": "ANXIOUS",
+    "충격 받은": "ANXIOUS",
+    부끄러운: "ANXIOUS",
+    "혼란스러운(당황한)": "ANXIOUS",
+    혼란스러운: "ANXIOUS",
+    두려운: "ANXIOUS",
+    조심스러운: "ANXIOUS",
+
+    // Tired
+    마비된: "TIRED",
+    취약한: "TIRED",
+
+    // Sad
+    슬픔: "SAD",
+    우울한: "SAD",
+    좌절한: "SAD",
+    "눈물이 나는": "SAD",
+    낙담한: "SAD",
+    괴로워하는: "SAD",
+    실망한: "SAD",
+    툴툴대는: "SAD",
+    상처: "SAD",
+    염세적인: "SAD",
+    희생된: "SAD",
+    "환멸을 느끼는": "SAD",
+    한심한: "SAD",
+    억울한: "SAD",
+    배신당한: "SAD",
+    비통한: "SAD",
+    방어적인: "SAD",
+    후회되는: "SAD",
+    질투하는: "SAD",
+    죄책감의: "SAD",
+    "가난한 불우한": "SAD",
+    회의적인: "SAD",
+
+    // Angry
+    짜증내는: "ANGRY",
+    노여워하는: "ANGRY",
+    분노: "ANGRY",
+    성가신: "ANGRY",
+    악의적인: "ANGRY",
+    혐오스러운: "ANGRY",
+  };
+
+  return emotionNames[emotion];
+};
