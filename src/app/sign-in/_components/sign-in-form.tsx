@@ -7,8 +7,9 @@ import {
   PASSWORD_VALIDATION,
 } from "@/constants/validations.constant";
 import { useSignInMutation } from "@/hooks/mutations/auth-mutation";
-import Button from "@/ui/common/button";
-import Input from "@/ui/common/input";
+import Button from "@/ui/common/button.common";
+import Input from "@/ui/common/input.common";
+
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
