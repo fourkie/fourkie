@@ -6,25 +6,24 @@ import { getSpotifyProviderTokenFromCookies } from "@/utils/music-cookies.util";
 export const fetchEmotionBasedPlaylists = async (
   emotion: Emotion,
 ): Promise<PlaylistsResponse["playlists"]["items"]> => {
-  const accessToken = getSpotifyProviderTokenFromCookies();
+  const spotifyProviderToken = getSpotifyProviderTokenFromCookies();
 
-  if (!accessToken) {
-    console.error("Access Token이 없습니다.");
-    throw new Error("Access Token이 없습니다.");
+  if (!spotifyProviderToken) {
+    throw new Error("spotifyProviderToken이 없습니다.");
   }
 
   try {
     const response = await fetch(
       `https://api.spotify.com/v1/search?q=${encodeURIComponent(
         emotion,
-      )}&type=playlist&limit=30&market=KR`,
+      )}&type=playlist&limit=50&market=KR`,
       {
-        headers: { Authorization: `Bearer ${accessToken}` },
+        headers: { Authorization: `Bearer ${spotifyProviderToken}` },
       },
     );
 
     if (!response.ok) {
-      throw new Error(`HTTP 오류! 상태 코드: ${response.status}`);
+      throw new Error(`HTTP 오류! 상태 코드 : ${response.status}`);
     }
 
     const data: PlaylistsResponse = await response.json();
@@ -35,7 +34,8 @@ export const fetchEmotionBasedPlaylists = async (
 
     return filteredPlaylists;
   } catch (error) {
-    console.error("플레이리스트 요청 실패: ", error);
+    console.error("플레이리스트 요청 실패 : ", error);
+
     throw error;
   }
 };

@@ -9,7 +9,7 @@ const SpotifyLogin = () => {
     supabaseClient.auth.signInWithOAuth({
       provider: "spotify",
       options: {
-        redirectTo: "http://localhost:3000/api/spotify/callback",
+        redirectTo: `${process.env.NEXT_PUBLIC_HOST_URL}/api/spotify/callback`,
       },
     });
   };

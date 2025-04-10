@@ -1,10 +1,11 @@
-import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import {
-  MS_IN_HOUR,
+  DEFAULT_PROVIDER_TOKEN_EXPIRE_SEC,
   REFRESH_TOKEN_EXPIRE_MS,
+  SPOTIFY,
 } from "@/constants/spotify.constant";
 import createClient from "@/services/supabase-server-service";
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   // 요청 URL에서 쿼리 파라미터 가져오기
@@ -16,12 +17,8 @@ export async function GET(request: Request) {
   // 인증 후 리디렉트할 경로
   const redirectPath = searchParams.get("next") ?? "/";
 
-  const cookieStore = cookies();
-
   // 인증 코드가 없을 경우, 에러 페이지로 리디렉트
   if (!authorizationCode) {
-    console.error("authorizationCode가 없습니다.");
-
     return NextResponse.redirect(`${origin}/auth/auth-code-error`);
   }
 
@@ -33,38 +30,33 @@ export async function GET(request: Request) {
 
   // 인증 코드 교환 실패 시, 에러 페이지로 리디렉트
   if (error || !data?.session) {
-    console.error("Supabase 세션 교환 실패 : ", error);
-
     return NextResponse.redirect(`${origin}/auth/auth-code-error`);
   }
 
   // 인증 후 제공되는 OAuth 토큰 추출
   const {
-    provider_token: spotifyAccessToken,
-    provider_refresh_token: spotifyRefreshToken,
+    provider_token: spotifyProviderToken,
+    provider_refresh_token: spotifyProviderRefreshToken,
   } = data.session;
 
   // 토큰이 정상적으로 제공되지 않았을 경우, 에러 페이지로 리디렉트
-  if (!spotifyAccessToken || !spotifyRefreshToken) {
-    console.error("provider 토큰이 없습니다.");
-
+  if (!spotifyProviderToken || !spotifyProviderRefreshToken) {
     return NextResponse.redirect(`${origin}/auth/auth-code-error`);
   }
 
+  const cookieStore = cookies();
   const isLocalEnv = process.env.NODE_ENV === "development";
 
-  // 클라이언트에서 읽을 수 있도록 액세스 토큰 저장
-  cookieStore.set("spotify_provider_token", spotifyAccessToken, {
+  cookieStore.set(SPOTIFY.PROVIDER_TOKEN, spotifyProviderToken, {
     path: "/",
-    httpOnly: false, // 클라이언트에서도 읽을 수 있도록 설정
-    secure: !isLocalEnv, // 개발 환경에서는 secure 옵션 비활성화
-    expires: new Date(Date.now() + MS_IN_HOUR), // 1시간
+    httpOnly: false,
+    secure: !isLocalEnv,
+    expires: new Date(Date.now() + DEFAULT_PROVIDER_TOKEN_EXPIRE_SEC), // 1시간
   });
 
-  // 보안을 위해 httpOnly 설정된 리프레시 토큰 저장
-  cookieStore.set("spotify_provider_refresh_token", spotifyRefreshToken, {
+  cookieStore.set(SPOTIFY.PROVIDER_REFRESH_TOKEN, spotifyProviderRefreshToken, {
     path: "/",
-    httpOnly: true, // 보안 강화를 위해 클라이언트에서 읽을 수 없도록 설정
+    httpOnly: true,
     secure: !isLocalEnv,
     expires: new Date(Date.now() + REFRESH_TOKEN_EXPIRE_MS), // 14일
   });

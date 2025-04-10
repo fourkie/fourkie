@@ -1,13 +1,12 @@
-import { Emotion } from "@/constants/spotify";
+import { Emotion } from "@/constants/spotify.constant";
 import EmotionBasedPlaylists from "./components/emotion-based-playlists";
 
-const MusicPage = async () => {
+const Music = async () => {
   return (
     <div>
-      <h1>감정 기반 음악 추천</h1>
       <EmotionBasedPlaylists emotion={Emotion.SAD} />
     </div>
   );
 };
 
-export default MusicPage;
+export default Music;
