@@ -1,4 +1,4 @@
-import { EMOTIONS } from "./emotion";
+import { EMOTIONS } from "./emotion.constant";
 
 const url = (emotion: string) => {
   return `https://kcvtuvflabmysoqvvany.supabase.co/storage/v1/object/public/emotion-img//${emotion}.png`;

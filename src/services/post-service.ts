@@ -1,6 +1,7 @@
-import supabaseClient from "./supabase-client-service";
+import createClient from "./supabase-client-service";
 
 export const getAllPosts = async () => {
+  const supabaseClient = createClient();
   try {
     const { data } = await supabaseClient.from("posts").select("*");
     return data;
@@ -10,6 +11,7 @@ export const getAllPosts = async () => {
 };
 
 export const getMyPosts = async ({ userId }: { userId: string }) => {
+  const supabaseClient = createClient();
   try {
     const { data } = await supabaseClient
       .from("posts")
