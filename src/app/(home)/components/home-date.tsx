@@ -67,7 +67,6 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
         e.preventDefault();
         e.stopPropagation();
       }}
-      className="m-3"
     >
       <ThemeProvider theme={customTheme}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
