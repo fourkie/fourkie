@@ -36,18 +36,18 @@ const SignInForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input
+      <Input
         {...register("email", EMAIL_VALIDATION)}
         type="email"
         placeholder={FORM_MESSAGE.EMAIL}
+        error={errors.email?.message}
       />
-      {errors.email && <span>{errors.email.message}</span>}
-      <input
+      <Input
         {...register("password", PASSWORD_VALIDATION)}
         type="password"
         placeholder={FORM_MESSAGE.PASSWORD}
+        error={errors.password?.message}
       />
-      {errors.password && <span>{errors.password.message}</span>}
       <Button type="submit" disabled={!isValid}>
         로그인
       </Button>

@@ -1,7 +1,20 @@
-import React from "react";
+import { InputProps } from "@/types/common-components.types";
+import { forwardRef } from "react";
 
-const input = () => {
-  return <div>input</div>;
-};
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, error, className, ...props }, ref) => {
+    return (
+      <div className="flex flex-col items-center">
+        {label && <label>{label}</label>}
 
-export default input;
+        <input ref={ref} {...props} />
+
+        {error && <span className="text-xs text-red-500">{error}</span>}
+      </div>
+    );
+  },
+);
+
+Input.displayName = "Input";
+
+export default Input;
