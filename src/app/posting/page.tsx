@@ -1,9 +1,9 @@
-import supabaseServer from "@/services/supabase-server-service";
+import createClient from "@/services/supabase-server-service";
 import PostingForm from "./_components/posting-form";
 import { redirect } from "next/navigation";
 
 const Posting = async () => {
-  const supabase = supabaseServer();
+  const supabase = createClient();
 
   const { data, error } = await supabase.auth.getUser();
   if (error || !data.user) {
