@@ -1,4 +1,4 @@
-import { FORM_MESSAGE } from "./form-message";
+import { FORM_MESSAGE } from "./form-message.constant";
 
 export const EMAIL_VALIDATION = {
   required: { value: true, message: FORM_MESSAGE.EMAIL },

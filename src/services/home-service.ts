@@ -1,4 +1,4 @@
-import supabaseServer from "./supabase-server";
+import supabaseServer from "./supabase-server-service";
 
 export const getUserId = async () => {
   const supabase2 = await supabaseServer();

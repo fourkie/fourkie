@@ -4,8 +4,8 @@ import {
   DEFAULT_ACCESS_TOKEN_EXPIRE_SEC,
   MS_IN_SECOND,
   SPOTIFY,
-} from "@/constants/spotify";
-import { TOAST_MESSAGE } from "@/constants/toast-message";
+} from "@/constants/spotify.constant";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
 export async function GET() {
   try {
