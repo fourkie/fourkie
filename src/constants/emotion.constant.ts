@@ -1,6 +1,4 @@
-// 영어
-
-export const EMOTIONS = {
+export const EMOTION_COOKIES = {
   JOY: "Joy",
   EXCITED: "Fluffy",
   BUTTERFLY: "Butterra",

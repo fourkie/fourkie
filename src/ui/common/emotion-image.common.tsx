@@ -1,5 +1,5 @@
-import { Img } from "@/types/img-component.type";
 import Image from "next/image";
+import { Img } from "../../types/img-component.type";
 
 /* 
 사용법 

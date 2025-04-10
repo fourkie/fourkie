@@ -7,7 +7,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       <div className="flex flex-col items-center">
         {label && <label>{label}</label>}
 
-        <input ref={ref} {...props} />
+        <input
+          ref={ref}
+          {...props}
+          className="w-full h-16 px-4 py-3 rounded-2xl bg-white"
+        />
 
         {error && <span className="text-xs text-red-500">{error}</span>}
       </div>

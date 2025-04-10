@@ -32,7 +32,7 @@ const config: Config = {
           800: "var(--color-secondary-800)",
         },
         pointColor: "var(--color-point)",
-        grey: {
+        gray: {
           0: "var(--color-grey-0)",
           1: "var(--color-grey-1)",
           2: "var(--color-grey-2)",
