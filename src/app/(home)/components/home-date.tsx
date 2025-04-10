@@ -20,7 +20,7 @@ declare module "@mui/material/styles" {
     MuiYearCalendar?: Components["MuiButton"];
   }
 }
-const HomeDate: React.FC<HomeDateProps> = ({ currentDate, setCurrentDate }) => {
+const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
   const customTheme = createTheme({
     palette: {
       //기본 설정
