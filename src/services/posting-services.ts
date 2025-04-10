@@ -4,6 +4,9 @@ import { PostingResponse } from "@/app/posting/type";
 export const getAnalyzedPostEmotion = async (inputText: string) => {
   const response = await fetch("/api/posting", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ inputText }),
   });
 

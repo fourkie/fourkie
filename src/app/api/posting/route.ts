@@ -11,9 +11,19 @@ export const POST = async (req: NextRequest) => {
       method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ inputs: inputText }),
     });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("HuggingFace API 응답 실패:", errorText);
+      return NextResponse.json(
+        { error: TOAST_MESSAGE.AI.HUGGINGFACE.SERVER_ERROR },
+        { status: 500 },
+      );
+    }
 
     const data = await response.json();
 
