@@ -1,6 +1,7 @@
-import supabaseClient from "./supabase-client";
+import createClient from "./supabase-client-service";
 
 export const getFriendsPosts = async ({ userId }: { userId: string }) => {
+  const supabaseClient = createClient();
   try {
     // 친구 목록 가져오기 (sender_uid / receiver_uid가 userId와 일치하고, accepted가 true)
     const { data: friends, error: friendsError } = await supabaseClient

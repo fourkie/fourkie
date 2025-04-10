@@ -1,5 +1,5 @@
 import ListCardContainer from "./_components/list-card-container";
-import supabaseServer from "@/services/supabase-server";
+import supabaseServer from "@/services/supabase-server-service";
 
 const List = async () => {
   const supabase = supabaseServer();

@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetUserByIdQuery } from "@/hooks/queries/use-get-user-by-id-query";
-import { Posts } from "@/types/posts.types";
+import { Posts } from "@/types/posts.type";
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 

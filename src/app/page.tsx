@@ -1,4 +1,4 @@
-import { getUserId, getUserNickname } from "@/services/home-services";
+import { getUserId, getUserNickname } from "@/services/home-service";
 import HomeCalendar from "./(home)/components/home-calendar";
 import HomeHeader from "./(home)/components/home-header";
 import { redirect } from "next/navigation";
@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 const HomePage = async () => {
   const userId: string | undefined = await getUserId();
   const nickname: string | undefined = await getUserNickname();
-  if (userId === null || nickname === null) {
+  if (!userId || !nickname) {
     redirect("/sign-in");
   }
   return (

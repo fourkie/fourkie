@@ -1,4 +1,4 @@
-import { ButtonProps } from "@/types/common-components.types";
+import { ButtonProps } from "@/types/components-props.type";
 
 const Button = ({
   children,

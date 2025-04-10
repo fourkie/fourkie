@@ -1,5 +1,5 @@
-import { AI } from "@/constants/ai";
-import { TOAST_MESSAGE } from "@/constants/toast-message";
+import { AI } from "@/constants/ai.constant";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { NextRequest, NextResponse } from "next/server";
 
 // AI의 감정 분석 API를 호출하는 함수
