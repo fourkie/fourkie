@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import dayjs from "dayjs";
-import { CommonEmotionImage } from "@/ui/common/image";
+
+import EmotionImage from "@/ui/common/emotion-image.common";
+
 import { checkEmotion } from "@/utils/home-emotion.util";
 import HomeDate from "./home-date";
 import { useGetUserPostByMonthQuery } from "@/hooks/queries/use-get-user-posts-by-month-query";
-import { QUERYDATA } from "@/constants/query-data";
+import { QUERYDATA } from "@/constants/query-data.constant";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
@@ -97,10 +99,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
             {day && (
               <>
                 {images[day] ? (
-                  <CommonEmotionImage
-                    src={checkEmotion(images[day])}
-                    size={"m"}
-                  />
+                  <EmotionImage src={checkEmotion(images[day])} size={"m"} />
                 ) : (
                   <span>{day}</span>
                 )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useSignupMutation } from "@/hooks/mutations/auth-mutations";
+import { useSignupMutation } from "@/hooks/mutations/auth-mutation";
 import { FieldValues, useForm } from "react-hook-form";
 import { FormData } from "../type";
 import {
@@ -8,7 +8,7 @@ import {
   NICKNAME_VALIDATION,
   PASSWORD_VALIDATION,
 } from "@/constants/validations.constant";
-import { FORM_MESSAGE } from "@/constants/form-message";
+import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 

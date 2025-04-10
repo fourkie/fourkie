@@ -1,11 +1,12 @@
-import { TOAST_MESSAGE } from "@/constants/toast-message";
-import supabaseClient from "./supabase-client";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import supabaseClient from "./supabase-client-service";
 
 export const getPostEmotionByUserId = async (
   userId: string | undefined,
   year: number,
   month: number,
 ) => {
+  const supabase = supabaseClient();
   if (userId === undefined) {
     return false;
   } else {
@@ -21,7 +22,7 @@ export const getPostEmotionByUserId = async (
       const start = new Date(`${dateBefore}-01T00:00:00.000Z`).toISOString();
       const end = new Date(`${dateAfter}-01T00:00:00.000Z`).toISOString();
 
-      const { data, error } = await supabaseClient
+      const { data, error } = await supabase
         .from("posts")
         .select("*")
         .gte("post_created_at", start)

@@ -5,8 +5,8 @@ import {
   MS_IN_SECOND,
   REFRESH_TOKEN_EXPIRE_MS,
   SPOTIFY,
-} from "@/constants/spotify";
-import { TOAST_MESSAGE } from "@/constants/toast-message";
+} from "@/constants/spotify.constant";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
 export async function GET(request: Request) {
   // 요청 URL에서 쿼리 파라미터 가져오기
