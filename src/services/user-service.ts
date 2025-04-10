@@ -1,6 +1,7 @@
-import supabaseClient from "./supabase-client-service";
+import createClient from "./supabase-client-service";
 
 export const getUserById = async ({ userId }: { userId: string }) => {
+  const supabaseClient = createClient();
   try {
     const { data } = await supabaseClient
       .from("users")

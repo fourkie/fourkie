@@ -8,10 +8,10 @@ const HomeHeader = ({ nickname }: { nickname: string | undefined }) => {
     route.push("/posting");
   };
   return (
-    <div className="flex flex-row items-center justify-between bg-green-300 p-3">
+    <div className="flex flex-row items-center justify-between bg-primary-50 p-3">
       <div className="text-2xl mx-auto">{nickname}님</div>
       <div
-        className="text-3xl font-bold cursor-pointer text-white hover:text-red-200"
+        className="text-3xl font-bold cursor-pointer text-white hover:text-secondary-200"
         onClick={handlePlus}
       >
         +
