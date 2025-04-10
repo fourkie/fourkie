@@ -1,6 +1,6 @@
 "use client";
 
-import createClient from "@/services/supabase-client";
+import createClient from "@/services/supabase-client-service";
 
 const SpotifyLogin = () => {
   const handleSpotifyLogin = () => {
