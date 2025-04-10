@@ -1,7 +1,9 @@
+"use client";
+
 import { Emotion } from "@/constants/spotify.constant";
 import EmotionBasedPlaylists from "./components/emotion-based-playlists";
 
-const Music = async () => {
+const Music = () => {
   return (
     <div>
       <EmotionBasedPlaylists emotion={Emotion.SAD} />
