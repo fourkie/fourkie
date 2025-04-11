@@ -5,12 +5,49 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Primary Colors */
+  --color-primary-50: #ECF3E2;
+  --color-primary-100: #D5E5BD;
+  --color-primary-200: #BED79A;
+  --color-primary-300: #A6C874;
+  --color-primary-400: #8EBA50;
+  --color-primary-500: #73993D;
+  --color-primary-600: #3F5421;
+  --color-primary-700: #212C11;
+  --color-primary-800: #050703;
+
+  /* Secondary Colors */
+  --color-secondary-50: #FFEEEE;
+  --color-secondary-100: #FFBDBD;
+  --color-secondary-200: #F39595;
+  --color-secondary-300: #EE6868;
+  --color-secondary-400: #E93A3A;
+  --color-secondary-500: #CC2424;
+  --color-secondary-600: #8A0000;
+  --color-secondary-700: #570000;
+  --color-secondary-800: #240000;
+
+  /* Point Color */
+  --color-point: #F15C46;
+
+  /* Grey Colors */
+  --color-grey-0: #F2F2F2;
+  --color-grey-1: #D9D9D9;
+  --color-grey-2: #BFBFBF;
+  --color-grey-3: #A6A6A6;
+  --color-grey-4: #8B8B8B;
+  --color-grey-5: #737373;
+  --color-grey-6: #525252;
+  --color-grey-7: #343434;
+  --color-grey-8: #121212;
+  --color-grey-9: #030303;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #171717;
   }
 }
 

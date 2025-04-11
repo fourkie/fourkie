@@ -1,5 +1,5 @@
-import { QUERY_KEY } from "@/constants/query-keys";
-import { getAllPosts } from "@/services/post-services";
+import { QUERY_KEY } from "@/constants/query-keys.constant";
+import { getAllPosts } from "@/services/post-service";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetAllPostsQuery = () => {

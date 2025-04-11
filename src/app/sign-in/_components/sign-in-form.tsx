@@ -1,13 +1,34 @@
 "use client";
 
 import { FormData } from "@/app/sign-up/type";
-import { FORM_MESSAGE } from "@/constants/form-message";
-import { useSignInMutation } from "@/hooks/mutations/auth-mutations";
+import { FORM_MESSAGE } from "@/constants/form-message.constant";
+import {
+  EMAIL_VALIDATION,
+  PASSWORD_VALIDATION,
+} from "@/constants/validations.constant";
+import { useSignInMutation } from "@/hooks/mutations/auth-mutation";
+import Button from "@/ui/common/button.common";
+import Input from "@/ui/common/input.common";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 const SignInForm = () => {
-  const { register, handleSubmit, formState } = useForm<FormData>();
-  const { mutate: signIn } = useSignInMutation();
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<FormData>({ mode: "onBlur" });
+
+  const { mutate: signIn, isSuccess } = useSignInMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      router.push("/");
+    }
+  }, [isSuccess, router]);
 
   const onSubmit = (value: FieldValues) => {
     signIn(value);
@@ -15,22 +36,21 @@ const SignInForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        {...register("email", {
-          required: { value: true, message: FORM_MESSAGE.EMAIL },
-        })} // pattern: {value: ..., message: ...}로 정규식 추가하여 유효성 검사
+      <Input
+        {...register("email", EMAIL_VALIDATION)}
         type="email"
         placeholder={FORM_MESSAGE.EMAIL}
+        error={errors.email?.message}
       />
-      {formState.errors.email && <span>{formState.errors.email.message}</span>}
-      <input
-        {...register("password", {
-          required: { value: true, message: FORM_MESSAGE.PASSWORD },
-        })}
+      <Input
+        {...register("password", PASSWORD_VALIDATION)}
         type="password"
         placeholder={FORM_MESSAGE.PASSWORD}
+        error={errors.password?.message}
       />
-      <button disabled={!formState.isValid}>로그인</button>
+      <Button type="submit" disabled={!isValid}>
+        로그인
+      </Button>
     </form>
   );
 };

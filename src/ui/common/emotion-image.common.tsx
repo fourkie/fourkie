@@ -1,6 +1,5 @@
+import { Img } from "@/types/img-component.type";
 import Image from "next/image";
-import React from "react";
-import { Img } from "./types/ImgComponent.type";
 
 /* 
 사용법 
@@ -15,7 +14,7 @@ import { Img } from "./types/ImgComponent.type";
     size={"xl"}
 />
  */
-export const CommonEmotionImage = ({ src, size }: Img) => {
+const EmotionImage = ({ src, size }: Img) => {
   const sizeClasses: Record<"xs" | "s" | "m" | "l" | "xl", number> = {
     xs: 30, // 아주 작은 사이즈
     s: 50, // 작은 사이즈
@@ -38,3 +37,5 @@ export const CommonEmotionImage = ({ src, size }: Img) => {
     />
   );
 };
+
+export default EmotionImage;

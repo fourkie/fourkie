@@ -1,6 +1,7 @@
-import supabaseClient from "./supabase-client";
+import createClient from "./supabase-client-service";
 
 export const getUserById = async ({ userId }: { userId: string }) => {
+  const supabaseClient = createClient();
   try {
     const { data } = await supabaseClient
       .from("users")
@@ -9,6 +10,6 @@ export const getUserById = async ({ userId }: { userId: string }) => {
       .single();
     return data;
   } catch (error) {
-    console.log(error);   
+    console.log(error);
   }
 };

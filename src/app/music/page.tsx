@@ -1,9 +1,12 @@
-import MusicSpotify from "./components/music-spotify";
+"use client";
+
+import { Emotion } from "@/constants/spotify.constant";
+import EmotionBasedPlaylists from "./components/emotion-based-playlists";
 
 const Music = () => {
   return (
     <div>
-      <MusicSpotify />
+      <EmotionBasedPlaylists emotion={Emotion.SAD} />
     </div>
   );
 };

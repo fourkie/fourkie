@@ -6,6 +6,8 @@ export const SPOTIFY = {
   CONTENT_TYPE: "application/x-www-form-urlencoded",
   ACCESS_TOKEN: "spotify_access_token",
   REFRESH_TOKEN: "spotify_refresh_token",
+  PROVIDER_TOKEN: "spotify_provider_token",
+  PROVIDER_REFRESH_TOKEN: "spotify_provider_refresh_token",
   PRODUCTION: "production",
 };
 
@@ -25,5 +27,4 @@ export const MS_IN_HOUR = MS_IN_MINUTE * 60; // 1시간
 export const MS_IN_DAY = MS_IN_HOUR * 24; // 1일
 
 // 토큰 만료 기간
-export const DEFAULT_ACCESS_TOKEN_EXPIRE_SEC = 3600; // 1시간
 export const REFRESH_TOKEN_EXPIRE_MS = MS_IN_DAY * 14; // 14일

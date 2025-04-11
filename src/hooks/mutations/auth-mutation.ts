@@ -1,5 +1,5 @@
-import { QUERY_KEY } from "@/constants/query-keys";
-import { signIn, signUp } from "@/services/auth-services";
+import { QUERY_KEY } from "@/constants/query-keys.constant";
+import { signIn, signUp } from "@/services/auth-service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
 
