@@ -1,13 +1,19 @@
 import { FieldValues } from "react-hook-form";
-import supabase from "./supabase";
+import createClient from "./supabase-client-service";
 
 export const signUp = async (data: FieldValues) => {
-  const { email, password } = data;
+  const { email, password, nickname } = data;
+  const supabaseClient = createClient();
 
   try {
-    const { data: signUpData } = await supabase.auth.signUp({
+    const { data: signUpData } = await supabaseClient.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          user_nickname: nickname,
+        },
+      },
     });
 
     return signUpData;
@@ -18,21 +24,23 @@ export const signUp = async (data: FieldValues) => {
 
 export const signIn = async (data: FieldValues) => {
   const { email, password } = data;
+  const supabaseClient = createClient();
 
   try {
-    const { data: signInData } = await supabase.auth.signInWithPassword({
+    const {} = await supabaseClient.auth.signInWithPassword({
       email,
       password,
     });
-    console.log(signInData);
   } catch (error) {
     console.log(error);
   }
 };
 
 export const signOut = async () => {
+  const supabaseClient = createClient();
+
   try {
-    await supabase.auth.signOut();
+    await supabaseClient.auth.signOut();
   } catch (error) {
     console.log(error);
   }
