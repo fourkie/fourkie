@@ -16,7 +16,7 @@ const HomePage = async () => {
     <div>
       <HomeHeader nickname={nickname} />
       <HomeCalendar userId={userId} />
-      <HomeFriend />
+      <HomeFriend userId={userId} />
       <div>뮤직 컴포넌트 자리</div>
     </div>
   );
