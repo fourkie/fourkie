@@ -10,7 +10,7 @@ export const getAllPosts = async () => {
   }
 };
 
-export const getMyPosts = async ({ userId }: { userId: string }) => {
+export const getAllPostsById = async ({ userId }: { userId: string }) => {
   const supabaseClient = createClient();
   try {
     const { data } = await supabaseClient
