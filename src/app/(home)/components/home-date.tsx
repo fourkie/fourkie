@@ -35,10 +35,11 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
         styleOverrides: {
           root: {
             "& .MuiPickersMonth-monthButton.Mui-selected": {
-              backgroundColor: `${colors.secondary[200]} !important`,
-              color: colors.background,
+              backgroundColor: `${colors.secondary[50]} !important`,
+              color: colors.foreground,
               "&:hover": {
-                backgroundColor: `${colors.secondary[400]} !important`,
+                backgroundColor: `${colors.secondary[300]} !important`,
+                color: colors.background,
               },
             },
           },
@@ -49,10 +50,11 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
         styleOverrides: {
           root: {
             "& .MuiPickersYear-yearButton.Mui-selected": {
-              backgroundColor: `${colors.secondary[200]} !important`,
-              color: colors.background,
+              backgroundColor: `${colors.secondary[50]} !important`,
+              color: colors.foreground,
               "&:hover": {
-                backgroundColor: `${colors.secondary[400]} !important`,
+                backgroundColor: `${colors.secondary[300]} !important`,
+                color: colors.background,
               },
             },
           },
