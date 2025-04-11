@@ -1,6 +1,6 @@
 import createClient from "./supabase-client-service";
 
-export const getFriendsPosts = async ({ userId }: { userId: string }) => {
+export const getFriendIds = async ({ userId }: { userId: string }) => {
   const supabaseClient = createClient();
   try {
     // 친구 목록 가져오기 (sender_uid / receiver_uid가 userId와 일치하고, accepted가 true)
@@ -18,6 +18,22 @@ export const getFriendsPosts = async ({ userId }: { userId: string }) => {
     const friendIds = friends.map((friend) =>
       friend.sender_uid === userId ? friend.receiver_uid : friend.sender_uid,
     );
+
+    return friendIds;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getFriendsPosts = async ({ userId }: { userId: string }) => {
+  const supabaseClient = createClient();
+  try {
+    const friendIds = await getFriendIds({ userId });
+
+    // 만약 friendIds가 undefined이거나 빈 배열이면 바로 빈 배열 반환
+    if (!friendIds || friendIds.length === 0) {
+      return [];
+    }
 
     // 게시물 가져오기
     const { data: posts, error: postsError } = await supabaseClient
