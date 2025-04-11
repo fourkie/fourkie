@@ -3,13 +3,13 @@
 import ListCard from "./list-card";
 import { useState } from "react";
 import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-query";
-import { useGetMyPostsQuery } from "@/hooks/queries/use-get-my-posts-query";
+import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 
 const ListCardContainer = ({ userId }: { userId: string }) => {
   const [isMyPost, setIsMyPost] = useState(true);
 
   const { data: posts } = useGetFriendPostsQuery({ userId });
-  const { data: myPosts } = useGetMyPostsQuery({ userId });
+  const { data: myPosts } = useGetAllPostsByIdQuery({ userId });
 
   const now = new Date().toISOString();
   const friendPostsForToday = posts?.filter((post) => {
