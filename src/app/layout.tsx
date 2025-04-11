@@ -33,6 +33,7 @@ export default async function RootLayout({
 }>) {
   // 닉네임 불러오기
   const nickname: string | undefined = await getUserNickname();
+  //닉네임 검사 로직을 여기에 추가했습니다.
   if (!nickname) {
     redirect("/sign-in");
   }
