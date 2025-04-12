@@ -52,21 +52,20 @@ const HomeFriend = ({ userId }: { userId: string }) => {
         <ChevronRight className="cursor-pointer" />
       </div>
 
-      {friendPostsForToday.map((post) => (
-        <div
-          key={post.post_id}
-          className="border rounded-xl bg-primary-200 flex flex-row items-center gap-4 p-4"
-        >
-          <EmotionImage src={checkEmotion(post.post_emotion)} size="xs" />
-          <div className="flex flex-col">
-            <div className="text-xl font-bold">오늘 내 친구들은?</div>
-            <div>
-              {user?.user_nickname} 님은
-              {EMOTIONS_QUERY[post.post_emotion]} 하루를 보냈어요
-            </div>
+      <div className="border rounded-xl bg-primary-200 flex flex-row items-center gap-4 p-4">
+        <EmotionImage
+          src={checkEmotion(friendPostsForToday?.[0]?.post_emotion)}
+          size="xs"
+        />
+        <div className="flex flex-col">
+          <div className="text-xl font-bold">오늘 내 친구들은?</div>
+          <div>
+            {user?.user_nickname} 님은
+            {EMOTIONS_QUERY[friendPostsForToday?.[0]?.post_emotion]} 하루를
+            보냈어요
           </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 };
