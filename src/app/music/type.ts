@@ -1,7 +1,6 @@
 // AccessToken 응답 타입
 export interface SpotifyAccessToken {
   access_token: string;
-  expiresIn?: number;
 }
 
 // Spotify 플레이리스트 API 응답 타입
