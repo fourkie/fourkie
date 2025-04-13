@@ -11,7 +11,7 @@ export const EMOTION_COOKIES = {
   ANGRY: "Madvelvet",
 };
 
-export const EMOTIONS_QUERY = {
+export const EMOTIONS_QUERY: Record<string, string> = {
   JOY: "기쁜",
   EXCITED: "신나는",
   BUTTERFLY: "설레는",
