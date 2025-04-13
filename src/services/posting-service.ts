@@ -19,7 +19,7 @@ export const getAnalyzedPostEmotion = async (inputText: string) => {
 
     return data[0][0].label;
   } catch (error) {
-    console.error("클라이언트 감정 분석 요청 실패", error);
+    console.error(error);
     throw new Error(TOAST_MESSAGE.AI.HUGGINGFACE.ERROR);
   }
 };
