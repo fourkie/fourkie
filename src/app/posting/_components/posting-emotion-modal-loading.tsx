@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
 import { PostingEmotionModalLoadingProps } from "../type";
+import { EMOTIONS } from "@/constants/emotion.constant";
 
 const PostingEmotionModalLoading = ({
   nickname,
@@ -20,7 +21,7 @@ const PostingEmotionModalLoading = ({
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
       <div className="flex flex-col items-center justify-center text-white p-4 rounded-lg max-w-xs text-xl font-bold">
-        <EmotionImage src={checkEmotion("JOY")} size="l" />
+        <EmotionImage src={checkEmotion(EMOTIONS.JOY)} size="l" />
         <br />
 
         <div className="text-center mb-6">
