@@ -42,6 +42,18 @@ export const getPostEmotionByUserId = async (
   }
 };
 
+export const getUserIdClient = async () => {
+  const supabase = supabaseClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return undefined;
+  }
+  return user?.id;
+};
+
 export const getUserNickname = async (userId: string | undefined) => {
   if (!userId) {
     console.log(QUERY_KEY.NICKNAME);
