@@ -27,7 +27,7 @@ export const signIn = async (data: FieldValues) => {
   const supabaseClient = createClient();
 
   try {
-    await supabaseClient.auth.signInWithPassword({
+    const {} = await supabaseClient.auth.signInWithPassword({
       email,
       password,
     });
