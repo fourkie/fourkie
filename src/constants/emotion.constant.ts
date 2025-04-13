@@ -1,6 +1,18 @@
-// 영어
+export const EMOTIONS: Record<string, string> = {
+  JOY: "JOY",
+  EXCITED: "EXCITED",
+  BUTTERFLY: "BUTTERFLY",
+  GRATEFUL: "GRATEFUL",
+  CALM: "CALM",
 
-export const EMOTIONS = {
+  LONELY: "LONELY",
+  ANXIOUS: "ANXIOUS",
+  TIRED: "TIRED",
+  SAD: "SAD",
+  ANGRY: "ANGRY",
+};
+
+export const EMOTION_COOKIES: Record<string, string> = {
   JOY: "Joy",
   EXCITED: "Fluffy",
   BUTTERFLY: "Butterra",

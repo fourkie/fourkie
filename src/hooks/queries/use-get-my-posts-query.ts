@@ -1,11 +1,11 @@
 import { QUERY_KEY } from "@/constants/query-keys.constant";
-import { getMyPosts } from "@/services/post-service";
+import { getAllPostsById } from "@/services/post-service";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetMyPostsQuery = ({ userId }: { userId: string }) => {
+export const useGetAllPostsByIdQuery = ({ userId }: { userId: string }) => {
   return useQuery({
     queryKey: [QUERY_KEY.POSTS, userId],
-    queryFn: () => getMyPosts({ userId }),
+    queryFn: () => getAllPostsById({ userId }),
     enabled: !!userId,
   });
 };
