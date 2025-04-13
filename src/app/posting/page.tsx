@@ -9,8 +9,8 @@ const Posting = async () => {
   if (error || !data.user) {
     redirect("/sign-in");
   }
-
-  const nickname = data.user.user_metadata.user_nickname;
+  const nickname =
+    data.user.user_metadata.user_nickname || data.user.user_metadata.name;
 
   return <PostingForm nickname={nickname} />;
 };
