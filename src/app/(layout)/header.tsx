@@ -2,7 +2,6 @@
 
 import { signOut } from "@/services/auth-service";
 import { useRouter } from "next/navigation";
-import SpotifyLogin from "../music/components/spotify-login";
 
 const Header = () => {
   const router = useRouter();
@@ -19,7 +18,6 @@ const Header = () => {
   return (
     <div>
       <button onClick={handleLogout}>log out</button>
-      <SpotifyLogin />
     </div>
   );
 };
