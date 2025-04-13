@@ -20,36 +20,39 @@ export const EMOTIONS: Record<string, string> = {
   ANGRY: "ANGRY",
 };
 
+export const EMOTION_DISPLAY_NAME: Record<keyof typeof Emotion, string> = {
+  JOY: "기쁜 날",
+  EXCITED: "신나는 날",
+  BUTTERFLY: "설레는 날",
+  GRATEFUL: "감사한 날",
+  CALM: "평온한 날",
+  LONELY: "외로운 날",
+  ANXIOUS: "긴장되는",
+  TIRED: "아픈 날",
+  SAD: "슬픈 날",
+  ANGRY: "화나는 날",
+};
+
 export enum Emotion {
-  // Joy "기쁜" – 기쁨, 만족스러운
-  JOY = "happy upbeat energetic joyful content cheerful optimistic",
+  JOY = "happy upbeat energetic joyful content cheerful optimistic 기쁨 즐거움 행복 만족 신바람 유쾌 활기찬",
 
-  // Excited "신나는" – 신이 난
-  EXCITED = "excited lively pumped invigorated exhilarated dynamic",
+  EXCITED = "excited lively pumped invigorated exhilarated dynamic 신남 들뜸 활기찬 열정적인 흥분된 생기있는",
 
-  // Butterfly "설레는" – 흥분, 안달하는
-  BUTTERFLY = "fluttery anticipative nervous jittery excited",
+  BUTTERFLY = "fluttery anticipative nervous jittery excited 설렘 기대 떨림 긴장 두근거림 안달",
 
-  // Grateful "감사한" – 감사하는, 신뢰하는, 자신하는
-  GRATEFUL = "grateful thankful appreciative trusting confident",
+  GRATEFUL = "grateful thankful appreciative trusting confident 감사 고마움 신뢰 자신감 만족",
 
-  // Calm "평온한" – 편안한, 느긋, 안도
-  CALM = "calm serene peaceful relaxed tranquil mellow",
+  CALM = "calm serene peaceful relaxed tranquil mellow 평온 차분함 안도 느긋함 안정 편안함",
 
-  // Lonely "외로운" – 외로운, 고립된, 버려진, 고립된(당황한)
-  LONELY = "lonely isolated abandoned solitary forlorn",
+  LONELY = "lonely isolated abandoned solitary forlorn 외로움 고독 고립 쓸쓸함 버려짐 소외",
 
-  // Anxious "긴장되는" – 초조한, 불안, 걱정스러운, 남의 시선을 의식하는, 당황, 스트레스 받는, 충격 받은, 부끄러운, 혼란스러운(당황한), 혼란스러운, 두려운, 조심스러운, 당혹스러운
-  ANXIOUS = "anxious nervous worried jittery tense uneasy stressed",
+  ANXIOUS = "anxious nervous worried jittery tense uneasy stressed 초조 불안 걱정 긴장 당황 스트레스 충격 부끄러움 혼란 두려움 조심 당혹",
 
-  // Tired "아픈" – 마비된, 취약한
-  TIRED = "tired weary exhausted drained fatigued",
+  TIRED = "tired weary exhausted drained fatigued 피로 지침 탈진 무기력 허약",
 
-  // Sad "슬픈" – 슬픔, 우울한, 좌절한, 눈물이 나는, 낙담한, 괴로워하는, 실망한, 툴툴대는, 상처, 염세적인, 희생된, 환멸을 느끼는, 한심한, 억울한, 배신당한, 비통한, 방어적인, 후회되는, 질투하는, 죄책감의, 가난한 불우한, 회의적인, 열등감
-  SAD = "sad depressed sorrowful melancholic gloomy forlorn tearful",
+  SAD = "sad depressed sorrowful melancholic gloomy forlorn tearful 슬픔 우울 좌절 낙담 실망 괴로움 눈물 상처 염세 희생 환멸 억울 배신 비통 후회 질투 죄책감 가난 회의 열등감",
 
-  // Angry "화나는" – 짜증내는, 노여워하는, 분노, 성가신, 악의적인, 혐오스러운, 구역질 나는
-  ANGRY = "angry furious irate enraged heated upset bitter",
+  ANGRY = "angry furious irate enraged heated upset bitter 화남 분노 짜증 노여움 성가심 악의 혐오 구역질 격분 격노",
 }
 
 // 토큰 만료 기간 (14일)
