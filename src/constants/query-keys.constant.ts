@@ -1,5 +1,6 @@
 export const QUERY_KEY = {
   USER: "user",
+  USER_NICKNAME: "user_nickname",
   MUSICS: "musics",
   POSTS: "posts",
   FOLLOWS: "follows",
