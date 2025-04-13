@@ -4,7 +4,6 @@ export const EMOTION_COOKIES: Record<string, string> = {
   BUTTERFLY: "Butterra",
   GRATEFUL: "Glumoo",
   CALM: "Calmkin",
-
   LONELY: "Smolo",
   ANXIOUS: "Anxielin",
   TIRED: "Tireoat",
@@ -18,7 +17,6 @@ export const EMOTIONS_QUERY: Record<string, string> = {
   BUTTERFLY: "설레는",
   GRATEFUL: "감사한",
   CALM: "평온한",
-
   LONELY: "외로운",
   ANXIOUS: "긴장되는",
   TIRED: "아픈",
@@ -32,7 +30,6 @@ export const EMOTIONS: Record<string, string> = {
   BUTTERFLY: "BUTTERFLY",
   GRATEFUL: "GRATEFUL",
   CALM: "CALM",
-
   LONELY: "LONELY",
   ANXIOUS: "ANXIOUS",
   TIRED: "TIRED",
@@ -46,7 +43,6 @@ export const EMOTION_COLOR_CLASSES: Record<string, string> = {
   BUTTERFLY: "text-primary-200",
   GRATEFUL: "text-primary-100",
   CALM: "text-primary-50",
-
   LONELY: "text-secondary-50",
   ANXIOUS: "text-secondary-100",
   TIRED: "text-secondary-200",
