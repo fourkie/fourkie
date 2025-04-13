@@ -2,12 +2,12 @@ import { InputProps } from "@/types/components-props.type";
 import { forwardRef } from "react";
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, className, ...props }, ref) => {
+  ({ label, error, ...props }, ref) => {
     return (
       <div className="flex flex-col items-center">
-        <label>{label}</label>
+        {label && <label>{label}</label>}
 
-        <input ref={ref} className={`${className}`} {...props} />
+        <input ref={ref} {...props} />
 
         {error && <span className="text-xs text-red-500">{error}</span>}
       </div>
