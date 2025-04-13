@@ -44,19 +44,20 @@ export const getPostEmotionByUserId = async (
 
 export const getUserNickname = async (userId: string | undefined) => {
   if (!userId) {
-    console.log(QUERY_KEY.NICKNAME + QUERYDATA.ISERROR);
-    return undefined;
+    console.log(QUERY_KEY.NICKNAME);
+    return null;
   }
   const supabase = supabaseClient();
+
   const { data: nickname, error } = await supabase
     .from("users")
     .select("user_nickname")
-    .eq("user_id", userId)
+    .eq("user_uid", userId)
     .single();
 
   if (error) {
     console.log(QUERY_KEY.NICKNAME + QUERYDATA.ISERROR);
-    return undefined;
+    return null;
   }
 
   return nickname;

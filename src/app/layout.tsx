@@ -38,7 +38,6 @@ export default async function RootLayout({
       >
         <Header />
         <Navigation />
-
         <Providers>
           <HomeHeader userId={userId} />
           {children}
