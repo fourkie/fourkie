@@ -1,5 +1,6 @@
 import { Img } from "@/types/img-component.type";
 import Image from "next/image";
+import { memo } from "react";
 
 /* 
 사용법 
@@ -33,9 +34,8 @@ const EmotionImage = ({ src, size }: Img) => {
       className={`rounded object-cover`}
       width={imageSize}
       height={imageSize}
-      priority
     />
   );
 };
 
-export default EmotionImage;
+export default memo(EmotionImage);
