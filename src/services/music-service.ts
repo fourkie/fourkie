@@ -28,7 +28,7 @@ export const fetchSpotifyPlaylistList = async (
 
   const apiUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
     query,
-  )}&type=playlist&limit=50&offset=0`;
+  )}&type=playlist&limit=50`;
 
   const response = await fetch(apiUrl, {
     headers: {
@@ -46,6 +46,8 @@ export const fetchSpotifyPlaylistList = async (
   const filteredPlaylists: SpotifyPlaylistList = data.playlists.items.filter(
     (item: SpotifyPlaylistItem) => item !== null,
   );
+
+  console.log("filteredPlaylists : ", filteredPlaylists);
 
   return filteredPlaylists;
 };
