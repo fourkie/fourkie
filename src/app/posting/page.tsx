@@ -3,9 +3,9 @@ import PostingForm from "./_components/posting-form";
 import { redirect } from "next/navigation";
 
 const Posting = async () => {
-  const supabase = createClient();
+  const supabaseServer = createClient();
 
-  const { data, error } = await supabase.auth.getUser();
+  const { data, error } = await supabaseServer.auth.getUser();
   if (error || !data.user) {
     redirect("/sign-in");
   }
