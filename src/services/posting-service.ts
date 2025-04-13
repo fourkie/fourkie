@@ -1,18 +1,25 @@
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+
 // route에 요청을 보내는 함수
 export const getAnalyzedPostEmotion = async (inputText: string) => {
-  const response = await fetch("/api/posting", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ inputText }),
-  });
+  try {
+    const response = await fetch("/api/posting", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ inputText }),
+    });
 
-  const data = await response.json();
+    const data = await response.json();
 
-  if (!Array.isArray(data) || !data[0]) {
-    throw new Error("감정 분석 실패");
+    if (!Array.isArray(data) || !data[0]) {
+      throw new Error(TOAST_MESSAGE.AI.HUGGINGFACE.ERROR);
+    }
+
+    return data[0][0].label;
+  } catch (error) {
+    console.error("클라이언트 감정 분석 요청 실패", error);
+    throw new Error(TOAST_MESSAGE.AI.HUGGINGFACE.ERROR);
   }
-
-  return data[0][0].label;
 };
