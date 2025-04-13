@@ -3,12 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
-import { Emotion } from "@/constants/spotify.constant";
+import { Emotion, EMOTION_DISPLAY_NAME } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { QUERYDATA } from "@/constants/query-data.constant";
 
 const Music = () => {
-  const [query, setquery] = useState("happy");
+  const [query, setQuery] = useState(Emotion.JOY);
   const { playlists, tokenPending, playlistsPending, playlistsError } =
     useGetAllPlaylistsByQueryQuery(query);
 
@@ -29,19 +29,27 @@ const Music = () => {
       <div className="mb-4">
         <select
           value={query}
-          onChange={(e) => setquery(e.target.value)}
+          onChange={(e) => setQuery(e.target.value as Emotion)}
           className="p-2 border rounded mt-4"
         >
-          <option value={Emotion.JOY}>JOY</option>
-          <option value={Emotion.EXCITED}>EXCITED</option>
-          <option value={Emotion.BUTTERFLY}>BUTTERFLY</option>
-          <option value={Emotion.GRATEFUL}>GRATEFUL</option>
-          <option value={Emotion.CALM}>CALM</option>
-          <option value={Emotion.LONELY}>LONELY</option>
-          <option value={Emotion.ANXIOUS}>ANXIOUS</option>
-          <option value={Emotion.TIRED}>TIRED</option>
-          <option value={Emotion.SAD}>SAD</option>
-          <option value={Emotion.ANGRY}>ANGRY</option>
+          <option value={Emotion.JOY}>{EMOTION_DISPLAY_NAME.JOY}</option>
+          <option value={Emotion.EXCITED}>
+            {EMOTION_DISPLAY_NAME.EXCITED}
+          </option>
+          <option value={Emotion.BUTTERFLY}>
+            {EMOTION_DISPLAY_NAME.BUTTERFLY}
+          </option>
+          <option value={Emotion.GRATEFUL}>
+            {EMOTION_DISPLAY_NAME.GRATEFUL}
+          </option>
+          <option value={Emotion.CALM}>{EMOTION_DISPLAY_NAME.CALM}</option>
+          <option value={Emotion.LONELY}>{EMOTION_DISPLAY_NAME.LONELY}</option>
+          <option value={Emotion.ANXIOUS}>
+            {EMOTION_DISPLAY_NAME.ANXIOUS}
+          </option>
+          <option value={Emotion.TIRED}>{EMOTION_DISPLAY_NAME.TIRED}</option>
+          <option value={Emotion.SAD}>{EMOTION_DISPLAY_NAME.SAD}</option>
+          <option value={Emotion.ANGRY}>{EMOTION_DISPLAY_NAME.ANGRY}</option>
         </select>
       </div>
       <ul>
