@@ -1,6 +1,4 @@
-// 영어
-
-export const EMOTIONS = {
+export const EMOTION_COOKIES = {
   JOY: "Joy",
   EXCITED: "Fluffy",
   BUTTERFLY: "Butterra",
@@ -13,7 +11,7 @@ export const EMOTIONS = {
   ANGRY: "Madvelvet",
 };
 
-export const EMOTIONS_QUERY = {
+export const EMOTIONS_QUERY: Record<string, string> = {
   JOY: "기쁜",
   EXCITED: "신나는",
   BUTTERFLY: "설레는",
@@ -24,4 +22,17 @@ export const EMOTIONS_QUERY = {
   TIRED: "아픈",
   SAD: "슬픈",
   ANGRY: "화나는",
+};
+
+export const EMOTIONS = {
+  JOY: "JOY",
+  EXCITED: "EXCITED",
+  BUTTERFLY: "BUTTERFLY",
+  GRATEFUL: "GRATEFUL",
+  CALM: "CALM",
+  LONELY: "LONELY",
+  ANXIOUS: "ANXIOUS",
+  TIRED: "TIRED",
+  SAD: "SAD",
+  ANGRY: "ANGRY",
 };

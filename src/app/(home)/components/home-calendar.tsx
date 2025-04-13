@@ -31,7 +31,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   // 펜딩 or 에러일 때 크기 같게 유지하려고 min-h-500px 줬습니다.
   if (isPending || isError)
     return (
-      <div className="w-full max-w-md mx-auto shadow-xl p-5 min-h-[500px] flex items-center justify-center border-secondary-100 rounded">
+      <div className="w-full max-w-md mx-auto shadow-xl p-5 min-h-[21rem] flex items-center justify-center border-secondary-100 rounded">
         <span className="text-grey-3 text-lg">
           {isPending ? QUERYDATA.ISPENDING : QUERYDATA.ISERROR}
         </span>
@@ -60,8 +60,8 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   for (let i = 1; i <= daysInMonth; i++) days.push(i);
 
   return (
-    <div className="w-full max-w-md mx-auto shadow-xl p-5 border border-secondary-100 rounded-xl mt-5">
-      <div className="flex justify-between items-center mb-1 ">
+    <div className="w-full max-w-md mx-auto shadow-xl p-5 border border-secondary-100 rounded-xl m-4">
+      <div className="flex justify-between items-center ">
         <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
         <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
         <ChevronRight onClick={handleNextMonth} className="cursor-pointer" />
@@ -94,12 +94,12 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
         {days.map((day, idx) => (
           <div
             key={idx}
-            className="h-16 rounded-lg relative flex justify-center items-center"
+            className="h-[3rem] rounded-lg relative flex justify-center items-center"
           >
             {day && (
               <>
                 {images[day] ? (
-                  <EmotionImage src={checkEmotion(images[day])} size={"m"} />
+                  <EmotionImage src={checkEmotion(images[day])} size={"xs"} />
                 ) : (
                   <span>{day}</span>
                 )}
