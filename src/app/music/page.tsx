@@ -32,11 +32,16 @@ const Music = () => {
           onChange={(e) => setquery(e.target.value)}
           className="p-2 border rounded mt-4"
         >
-          <option value={Emotion.HAPPY}>Happy</option>
-          <option value={Emotion.SAD}>Sad</option>
-          <option value={Emotion.ANGRY}>Angry</option>
-          <option value={Emotion.CALM}>Calm</option>
-          <option value={Emotion.FOCUS}>Focus</option>
+          <option value={Emotion.JOY}>JOY</option>
+          <option value={Emotion.EXCITED}>EXCITED</option>
+          <option value={Emotion.BUTTERFLY}>BUTTERFLY</option>
+          <option value={Emotion.GRATEFUL}>GRATEFUL</option>
+          <option value={Emotion.CALM}>CALM</option>
+          <option value={Emotion.LONELY}>LONELY</option>
+          <option value={Emotion.ANXIOUS}>ANXIOUS</option>
+          <option value={Emotion.TIRED}>TIRED</option>
+          <option value={Emotion.SAD}>SAD</option>
+          <option value={Emotion.ANGRY}>ANGRY</option>
         </select>
       </div>
       <ul>
