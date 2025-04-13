@@ -5,18 +5,19 @@ import Image from "next/image";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import { Emotion } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import { QUERYDATA } from "@/constants/query-data.constant";
 
 const Music = () => {
-  const [searchTerm, setSearchTerm] = useState("happy");
+  const [query, setquery] = useState("happy");
   const { playlists, tokenPending, playlistsPending, playlistsError } =
-    useGetAllPlaylistsByQueryQuery(searchTerm);
+    useGetAllPlaylistsByQueryQuery(query);
 
   if (tokenPending || playlistsPending) {
-    return TOAST_MESSAGE.SPOTIFY.DATA_PENDING;
+    return QUERYDATA.ISPENDING;
   }
 
   if (playlistsError) {
-    return TOAST_MESSAGE.SPOTIFY.DATA_ERROR;
+    return QUERYDATA.ISERROR;
   }
 
   if (!playlists || playlists.length === 0) {
@@ -27,8 +28,8 @@ const Music = () => {
     <div>
       <div className="mb-4">
         <select
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={query}
+          onChange={(e) => setquery(e.target.value)}
           className="p-2 border rounded mt-4"
         >
           <option value={Emotion.HAPPY}>Happy</option>
