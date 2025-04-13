@@ -1,17 +1,3 @@
-export const EMOTIONS: Record<string, string> = {
-  JOY: "JOY",
-  EXCITED: "EXCITED",
-  BUTTERFLY: "BUTTERFLY",
-  GRATEFUL: "GRATEFUL",
-  CALM: "CALM",
-
-  LONELY: "LONELY",
-  ANXIOUS: "ANXIOUS",
-  TIRED: "TIRED",
-  SAD: "SAD",
-  ANGRY: "ANGRY",
-};
-
 export const EMOTION_COOKIES: Record<string, string> = {
   JOY: "Joy",
   EXCITED: "Fluffy",
@@ -38,6 +24,20 @@ export const EMOTIONS_QUERY: Record<string, string> = {
   TIRED: "아픈",
   SAD: "슬픈",
   ANGRY: "화나는",
+};
+
+export const EMOTIONS: Record<string, string> = {
+  JOY: "JOY",
+  EXCITED: "EXCITED",
+  BUTTERFLY: "BUTTERFLY",
+  GRATEFUL: "GRATEFUL",
+  CALM: "CALM",
+
+  LONELY: "LONELY",
+  ANXIOUS: "ANXIOUS",
+  TIRED: "TIRED",
+  SAD: "SAD",
+  ANGRY: "ANGRY",
 };
 
 export const EMOTION_COLOR_CLASSES: Record<string, string> = {
