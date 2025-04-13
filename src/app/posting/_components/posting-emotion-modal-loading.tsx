@@ -2,18 +2,15 @@ import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
-
-type PostingEmotionModalLoadingProps = {
-  nickname: string | undefined;
-};
+import { PostingEmotionModalLoadingProps } from "../type";
 
 const PostingEmotionModalLoading = ({
   nickname,
 }: PostingEmotionModalLoadingProps) => {
   const [dots, setDots] = useState("");
 
+  // 일정 시간마다 loadingText를 변경
   useEffect(() => {
-    // 일정 시간마다 loadingText를 변경
     const interval = setInterval(() => {
       setDots((prev) => (prev.length >= 3 ? "" : prev + "."));
     }, 500);

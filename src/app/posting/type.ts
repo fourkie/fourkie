@@ -19,6 +19,10 @@ export type PostingResultModalProps = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+export type PostingEmotionModalLoadingProps = {
+  nickname: string | undefined;
+};
+
 export type PostingEmotionModalSlideProps = {
   currentEmotionKey: string;
   emotionKeys: string[];
