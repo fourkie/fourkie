@@ -1,45 +1,58 @@
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import createClient from "./supabase-client-service";
+import { toast } from "react-toastify";
 
 export const getUserNickname = async () => {
-  const supabase = createClient();
+  const supabaseClient = createClient();
 
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
+  try {
+    const {
+      data: { user },
+      error,
+    } = await supabaseClient.auth.getUser();
 
-  if (error || !user?.id) {
-    throw new Error("로그인이 필요한 서비스입니다.");
+    if (error || !user?.id) {
+      throw new Error(TOAST_MESSAGE.ERROR.AUTH_ERROR);
+    }
+
+    const { data, error: nicknameError } = await supabaseClient
+      .from("users")
+      .select("user_nickname")
+      .eq("user_uid", user.id)
+      .single();
+
+    if (nicknameError) {
+      throw new Error(TOAST_MESSAGE.MYPAGE.GET_NICKNAME_ERROR);
+    }
+    return data?.user_nickname;
+  } catch (error) {
+    toast.error(TOAST_MESSAGE.MYPAGE.GET_NICKNAME_ERROR);
   }
-
-  const { data } = await supabase
-    .from("users")
-    .select("user_nickname")
-    .eq("user_uid", user.id)
-    .single();
-
-  return data?.user_nickname;
 };
 
 // 닉네임 수정하기
 export const upDateMyNickname = async (newNickname: string) => {
-  const supabase = createClient();
+  const supabaseClient = createClient();
 
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
+  try {
+    const {
+      data: { user },
+      error,
+    } = await supabaseClient.auth.getUser();
 
-  if (error || !user?.id) {
-    throw new Error("로그인이 필요한 서비스입니다.");
-  }
+    if (error || !user?.id) {
+      throw new Error(TOAST_MESSAGE.ERROR.AUTH_ERROR);
+    }
 
-  const { error: updateNicknameError } = await supabase
-    .from("users")
-    .update({ user_nickname: newNickname })
-    .eq("user_uid", user.id);
+    const { error: updateNicknameError } = await supabaseClient
+      .from("users")
+      .update({ user_nickname: newNickname })
+      .eq("user_uid", user.id);
 
-  if (updateNicknameError) {
-    throw new Error("닉네임 변경에 실패했습니다.");
+    if (updateNicknameError) {
+      throw new Error(TOAST_MESSAGE.MYPAGE.CHANGE_NICKNAME_ERROR);
+    }
+  } catch (error) {
+    toast.error(TOAST_MESSAGE.MYPAGE.CHANGE_NICKNAME_ERROR);
   }
 };
