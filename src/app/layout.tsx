@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 import Navigation from "./(layout)/navigation";
 import HomeHeader from "./(home)/components/home-header";
 import { getUserNickname } from "@/services/home-service";
-// import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,9 +34,9 @@ export default async function RootLayout({
   // 닉네임 불러오기
   const nickname: string | undefined = await getUserNickname();
   //닉네임 검사 로직을 여기에 추가했습니다.
-  // if (!nickname) {
-  //   redirect("/sign-in");
-  // }
+  if (!nickname) {
+    redirect("/sign-in");
+  }
 
   return (
     <html lang="en">
