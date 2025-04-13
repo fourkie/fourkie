@@ -4,4 +4,6 @@ export const QUERY_KEY = {
   POSTS: "posts",
   FOLLOWS: "follows",
   EMOTION_PLAYLISTS: "emotionPlaylists",
+  SPOTIFY_ACCESS_TOKEN: "spotifyAccessToken",
+  SPOTIFY_PLAYLISTS: "spotifyPlaylists",
 };
