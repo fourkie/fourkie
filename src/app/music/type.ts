@@ -40,3 +40,9 @@ export interface EmotionSelectProps {
   value: Emotion;
   onChange: (value: Emotion) => void;
 }
+
+// TabButtonsProps 타입
+export interface TabButtonsProps {
+  isTab: "recommend" | "bookmark";
+  onTabChange: (tab: "recommend" | "bookmark") => void;
+}
