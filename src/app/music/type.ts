@@ -1,25 +1,34 @@
-// AccessToken 응답 타입
+// AccessToken 타입
 export interface SpotifyAccessToken {
-  access_token: string;
+  accessToken: string;
   expiresIn: number;
   success: boolean;
 }
 
-// Spotify 플레이리스트 API 응답 타입
-export type SpotifyPlaylistList = SpotifyPlaylistItem[];
+// Image 타입
+export interface SpotifyImage {
+  url: string;
+}
 
-// 개별 플레이리스트 아이템 타입
+// 플레이리스트 아이템 타입
 export interface SpotifyPlaylistItem {
   id: string;
-  images: SpotifyImage[];
   name: string;
+  external_urls: { spotify: string };
+  images: SpotifyImage[];
   tracks: {
     href: string;
     total: number;
   };
 }
 
-// 이미지 정보 타입
-export interface SpotifyImage {
-  url: string;
+// 플레이리스트 목록 타입
+export type SpotifyPlaylistList = SpotifyPlaylistItem[];
+
+// 컴포넌트 Props 타입
+export interface PlaylistListProps {
+  playlists: SpotifyPlaylistItem[];
+  bookmarkedPlaylistIds: Set<string>;
+  onToggleBookmark: (playlistId: string) => void;
+  isTab: "recommend" | "bookmark";
 }
