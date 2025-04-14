@@ -23,7 +23,7 @@ const MypageMenuList = () => {
         <MypageMenuItem href="/version" label="버전정보" />
       </li>
       <li>
-        <MypageMenuItem href="/makers" label="메이커스" />
+        <MypageMenuItem href="/smookie-makers" label="메이커스" />
       </li>
     </ul>
   );

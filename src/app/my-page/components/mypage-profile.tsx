@@ -1,7 +1,9 @@
 "use client";
 
+import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 import { useUpdateNicknameMutation } from "@/hooks/mutations/use-update-nickname-mutation";
 import { useGetUserNicknameQuery } from "@/hooks/queries/use-get-user-nickname-query";
+import EmotionImage from "@/ui/common/emotion-image.common";
 import Input from "@/ui/common/input.common";
 import { SquareCheckBig, SquarePen } from "lucide-react";
 import { useState } from "react";
@@ -35,16 +37,17 @@ const MypageProfile = () => {
 
   return (
     <div className="w-full bg-white rounded-xl border border-primary-100 p-6 mb-6">
-      <div className="flex flex-col items-center gap-2">
-        <div>
+      <div className="flex flex-col items-center gap-1">
+        <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="m" />
+        <div className="flex justify-center items-center gap-1">
           {edit ? (
             <Input
-              className="border"
+              className="w-20 rounded-xl bg-grey-0 py-2 px-3"
               value={newNickname}
               onChange={(e) => setNewNickname(e.target.value)}
             />
           ) : (
-            <h2>{nickname}</h2>
+            <h2 className="text-xl font-medium">{nickname}</h2>
           )}
           <button
             onClick={edit ? handleUpdateNickname : handleEditToggle}
@@ -53,7 +56,7 @@ const MypageProfile = () => {
             {edit ? <SquareCheckBig size={20} /> : <SquarePen size={20} />}
           </button>
         </div>
-        {!edit && <p>나의 프로필</p>}
+        {!edit && <p className="text-sm text-grey-4">나의 프로필</p>}
       </div>
     </div>
   );

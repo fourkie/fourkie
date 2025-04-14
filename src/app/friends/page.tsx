@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import FriendsSearchInput from "./components/friend-search-input";
-import FriendRequest from "./components/friend-request";
 import FriendList from "./components/friend-list";
 import { SelectedUserType } from "./type";
 import FriendrequestPopUp from "./components/friend-request-popup";
+import FriendRequestButton from "./components/friend-request-button";
 
 const Friends = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -19,7 +19,7 @@ const Friends = () => {
         searchKeyword={searchKeyword}
         setSearchKeyword={setSearchKeyword}
       />
-      <FriendRequest />
+      <FriendRequestButton />
       {/* 로그인한 사용자 닉네임 */}
       <FriendList
         searchUser={searchKeyword}
