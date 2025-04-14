@@ -1,23 +1,16 @@
 // AccessToken 응답 타입
-export interface AccessToken {
+export interface SpotifyAccessToken {
   access_token: string;
 }
 
 // Spotify 플레이리스트 API 응답 타입
-export interface PlaylistsResponse {
-  playlists: {
-    items: PlaylistItem[];
-  };
-}
+export type SpotifyPlaylistList = SpotifyPlaylistItem[];
 
 // 개별 플레이리스트 아이템 타입
-export interface PlaylistItem {
+export interface SpotifyPlaylistItem {
   id: string;
   images: SpotifyImage[];
   name: string;
-  owner: {
-    id: string;
-  };
   tracks: {
     href: string;
     total: number;
