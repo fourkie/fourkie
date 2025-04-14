@@ -19,5 +19,5 @@ export type SelectedUserType = {
 export interface FriendRequestPopUpProps {
   user: SelectedUserType;
   onClose: () => void;
-  handleSendRequest: () => void;
+  // handleSendRequest: () => void;
 }

@@ -5,6 +5,7 @@ import FriendsSearchInput from "./components/friend-search-input";
 import FriendRequest from "./components/friend-request";
 import FriendList from "./components/friend-list";
 import { SelectedUserType } from "./type";
+import FriendrequestPopUp from "./components/friend-request-popup";
 
 const Friends = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -24,6 +25,12 @@ const Friends = () => {
         searchUser={searchKeyword}
         setSelectedUser={setSelectedUser}
       />
+      {selectedUser && (
+        <FriendrequestPopUp
+          user={selectedUser}
+          onClose={() => setSelectedUser(null)}
+        />
+      )}
     </div>
   );
 };
