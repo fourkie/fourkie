@@ -9,16 +9,19 @@ import { useGetAnalyzedPostEmotionMutation } from "@/hooks/mutations/use-post-em
 import PostingEmotionModal from "./posting-emotion-modal";
 import { useState } from "react";
 
-const PostingForm = ({ nickname }: UserDateProps) => {
+const PostingForm = ({ userId, nickname }: UserDateProps) => {
   const { mutate, data, isPending } = useGetAnalyzedPostEmotionMutation();
-  const { register, handleSubmit } = useForm<PostingFormValues>();
+  const { register, handleSubmit, watch } = useForm<PostingFormValues>();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 감정 분석 결과를 처리하는 함수
-  const onSubmit = ({ inputText }: PostingFormValues) => {
-    if (!inputText.trim()) return;
+  const inputTitle = watch("inputTitle");
+  const inputContent = watch("inputContent");
 
-    mutate(inputText, {
+  // 감정 분석 결과를 처리하는 함수
+  const onSubmit = ({ inputTitle, inputContent }: PostingFormValues) => {
+    if (!inputTitle.trim() || !inputContent.trim()) return;
+
+    mutate(inputContent, {
       onSuccess: () => {
         setIsModalOpen(true);
       },
@@ -31,10 +34,17 @@ const PostingForm = ({ nickname }: UserDateProps) => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          {...register("inputText")}
+        <h2>Title</h2>
+        <textarea
+          {...register("inputTitle")}
           placeholder={FORM_MESSAGE.POST.TITLE}
+          className="border p-2 rounded"
+        />
+
+        <h2>Content</h2>
+        <textarea
+          {...register("inputContent")}
+          placeholder={FORM_MESSAGE.POST.CONTENT}
           className="border p-2 rounded"
         />
 
@@ -42,10 +52,13 @@ const PostingForm = ({ nickname }: UserDateProps) => {
           type="submit"
           className="ml-2 px-4 py-2 bg-blue-500 text-white rounded"
         >
-          게시
+          {isPending ? "처리 중..." : "게시"}
         </button>
       </form>
       <PostingEmotionModal
+        userId={userId}
+        title={inputTitle}
+        content={inputContent}
         emotion={data}
         isPending={isPending}
         nickname={nickname}
