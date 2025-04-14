@@ -1,8 +1,9 @@
 "use client";
 
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import dayjs from "dayjs";
@@ -72,7 +73,7 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
     >
       <ThemeProvider theme={customTheme}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
+          <DesktopDatePicker
             maxDate={dayjs()}
             views={["year", "month"]}
             openTo="month"
