@@ -13,8 +13,13 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
+import { useLoginStore } from "@/hooks/zustand/store";
+
 const SignInForm = () => {
   const router = useRouter();
+  const updateLoginStateKey = useLoginStore(
+    (state) => state.updateLoginStateKey,
+  );
 
   const {
     register,
@@ -27,6 +32,7 @@ const SignInForm = () => {
   useEffect(() => {
     if (isSuccess) {
       router.push("/");
+      updateLoginStateKey();
     }
   }, [isSuccess, router]);
 

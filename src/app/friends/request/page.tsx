@@ -24,6 +24,11 @@ const Request = () => {
         >
           보낸 요청
         </button>
+        {/* {tab === 'received' ? (
+          <ReceivedFriendList />
+        ) : (
+          <SentFriendList />
+        )} */}
       </div>
     </div>
   );

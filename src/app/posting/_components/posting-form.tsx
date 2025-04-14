@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { PostingFormValues, UserDateProps } from "../type";
 import { useGetAnalyzedPostEmotionMutation } from "@/hooks/mutations/use-post-emotion-mutation";
-import PostingResultModal from "./posting-result-modal";
+import PostingEmotionModal from "./posting-emotion-modal";
 import { useState } from "react";
 
 const PostingForm = ({ nickname }: UserDateProps) => {
@@ -45,9 +45,8 @@ const PostingForm = ({ nickname }: UserDateProps) => {
           게시
         </button>
       </form>
-
-      <PostingResultModal
-        emotions={data}
+      <PostingEmotionModal
+        emotion={data}
         isPending={isPending}
         nickname={nickname}
         isModalOpen={isModalOpen}
