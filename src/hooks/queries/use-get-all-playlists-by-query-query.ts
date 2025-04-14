@@ -1,50 +1,42 @@
-import { SpotifyAccessToken } from "@/app/music/type";
 import { QUERY_KEY } from "@/constants/query-keys.constant";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import {
   fetchAccessToken,
   fetchSpotifyPlaylistList,
 } from "@/services/music-service";
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export const useGetAllPlaylistsByQueryQuery = (query: string) => {
-  // ① 토큰 요청
-  const {
-    data: tokenData,
-    error: tokenError,
-    isPending: tokenPending,
-    refetch: refetchToken,
-  } = useQuery({
-    queryKey: [QUERY_KEY.SPOTIFY_ACCESS_TOKEN],
-    queryFn: fetchAccessToken,
-  });
-
-  const accessToken: SpotifyAccessToken = tokenData?.accessToken;
-
-  // ② 토큰이 없으면 새로 발급 요청
-  if (!accessToken) {
-    refetchToken();
-  }
-
-  // ③ 토큰이 있을 때만 플레이리스트 데이터 요청
+  // 토큰과 플레이리스트 요청을 하나의 useQuery 훅으로 처리
   const {
     data: playlistsData,
     error: playlistsError,
     isPending: playlistsPending,
-    refetch,
   } = useQuery({
-    queryKey: [QUERY_KEY.SPOTIFY_PLAYLISTS, query, accessToken],
-    queryFn: () => fetchSpotifyPlaylistList(accessToken, query),
-    // 토큰과 검색어가 있을 때만 실행
-    enabled: !!accessToken && !!query,
+    queryKey: [QUERY_KEY.SPOTIFY_PLAYLISTS, query],
+    queryFn: async () => {
+      // 토큰 요청
+      const tokenData = await fetchAccessToken();
+      const accessToken: string = tokenData?.accessToken;
+
+      if (!accessToken) {
+        throw new Error(TOAST_MESSAGE.SPOTIFY.ACCESS_TOKEN_ERROR);
+      }
+
+      // 받은 토큰으로 플레이리스트 요청
+      return fetchSpotifyPlaylistList(accessToken, query);
+    },
+    enabled: !!query,
   });
 
+  if (playlistsError) {
+    toast.error(TOAST_MESSAGE.SPOTIFY.PLAYLISTS_ERROR);
+  }
+
   return {
-    accessToken,
-    playlists: playlistsData || [],
-    tokenError,
+    playlists: playlistsData || [], // 기본값으로 빈 배열 반환
     playlistsError,
-    tokenPending,
     playlistsPending,
-    refetch,
   };
 };
