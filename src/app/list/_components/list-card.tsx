@@ -5,16 +5,34 @@ import { Posts } from "@/types/posts.type";
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import EmotionGraph from "@/ui/common/emotion-graph";
+import { useRemovePostMutation } from "@/hooks/mutations/use-remove-post-mutation";
+import { useRouter } from "next/navigation";
 
 const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
-  const { post_title, post_content, user_id, post_created_at, post_emotion } =
-    post;
+  const {
+    post_id,
+    post_title,
+    post_content,
+    user_id,
+    post_created_at,
+    post_emotion,
+  } = post;
   const { data: user } = useGetUserByIdQuery(user_id);
+  const { mutate: removePost } = useRemovePostMutation({ postId: post_id });
+  const router = useRouter();
 
   const [isExpanded, setIsExpanded] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
 
   const date = post_created_at.split("T")[0];
+
+  const handleDelete = () => {
+    removePost();
+  };
+
+  const handleEdit = () => {
+    router.push(`/posting/${post_id}`);
+  };
 
   return (
     <div className="flex flex-col items-center p-3 gap-3 bg-white text-black px-5 py-4 rounded-xl">
@@ -22,7 +40,14 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         <div className="font-bold w-[100px]">{date}</div>
         <div className="font-bold text-center">{post_emotion}</div>
         {isMyPost ? (
-          <div className="w-[100px]"></div>
+          <>
+            <div className="cursor-pointer" onClick={handleDelete}>
+              삭제
+            </div>
+            <div className="cursor-pointer" onClick={handleEdit}>
+              수정
+            </div>
+          </>
         ) : (
           <div
             className="w-[100px] text-right cursor-pointer"

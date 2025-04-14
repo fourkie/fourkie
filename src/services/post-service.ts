@@ -22,3 +22,16 @@ export const getAllPostsById = async ({ userId }: { userId: string }) => {
     console.log(error);
   }
 };
+
+export const removePost = async ({ postId }: { postId: number }) => {
+  const supabaseClient = createClient();
+  try {
+    const { data } = await supabaseClient
+      .from("posts")
+      .delete()
+      .eq("post_id", postId);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
