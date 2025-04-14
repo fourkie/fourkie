@@ -11,8 +11,9 @@ const Posting = async () => {
   }
   const nickname =
     data.user.user_metadata.user_nickname || data.user.user_metadata.name;
+  const userId = data.user.id;
 
-  return <PostingForm nickname={nickname} />;
+  return <PostingForm userId={userId} nickname={nickname} />;
 };
 
 export default Posting;
