@@ -17,4 +17,8 @@ export const TOAST_MESSAGE = {
       SERVER_ERROR: "서버 오류가 발생했습니다. 나중에 다시 시도해주세요.",
     },
   },
+  POSTING: {
+    SUCCESS: "게시물이 성공적으로 작성되었습니다.",
+    ERROR: "게시물 작성에 실패했습니다. 잠시 후 다시 시도해주세요.",
+  },
 };

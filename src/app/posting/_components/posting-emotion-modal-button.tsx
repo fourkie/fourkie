@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 import { PostingEmotionModalButtonProps } from "../type";
 import { toast } from "react-toastify";
 import { useCreatePostMutation } from "@/hooks/mutations/use-create-post-mutation";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
 const PostingEmotionModalButton = ({
   userId,
@@ -20,11 +21,11 @@ const PostingEmotionModalButton = ({
       { userId, title, content, currentEmotion },
       {
         onSuccess: () => {
-          toast.success("게시물이 성공적으로 저장되었습니다!");
+          toast.success(TOAST_MESSAGE.POSTING.SUCCESS);
           router.push("/music");
         },
         onError: (error) => {
-          toast.error("게시물 저장 중 오류가 발생했습니다.");
+          toast.error(TOAST_MESSAGE.POSTING.ERROR);
           console.error(error);
         },
       },
