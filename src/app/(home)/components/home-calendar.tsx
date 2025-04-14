@@ -2,14 +2,13 @@
 
 import { useState } from "react";
 import dayjs from "dayjs";
-
 import EmotionImage from "@/ui/common/emotion-image.common";
-
 import { checkEmotion } from "@/utils/home-emotion.util";
 import HomeDate from "./home-date";
 import { useGetUserPostByMonthQuery } from "@/hooks/queries/use-get-user-posts-by-month-query";
 import { QUERYDATA } from "@/constants/query-data.constant";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const [currentDate, setCurrentDate] = useState(dayjs());
@@ -66,48 +65,50 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
         <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
         <ChevronRight onClick={handleNextMonth} className="cursor-pointer" />
       </div>
-      <div className="grid grid-cols-7 gap-2">
-        {["S", "M", "T", "W", "T", "F", "S"].map((d, index) =>
-          d === "S" ? (
-            index === 0 ? (
-              <div
-                key={index}
-                className="text-center font-semibold text-secondary-200"
-              >
-                {d}
-              </div>
+      <Link href={"/list"}>
+        <div className="grid grid-cols-7 gap-2">
+          {["S", "M", "T", "W", "T", "F", "S"].map((d, index) =>
+            d === "S" ? (
+              index === 0 ? (
+                <div
+                  key={index}
+                  className="text-center font-semibold text-secondary-200"
+                >
+                  {d}
+                </div>
+              ) : (
+                <div
+                  key={index}
+                  className="text-center font-semibold text-primary-200"
+                >
+                  {d}
+                </div>
+              )
             ) : (
-              <div
-                key={index}
-                className="text-center font-semibold text-primary-200"
-              >
+              <div key={index} className="text-center font-semibold">
                 {d}
               </div>
-            )
-          ) : (
-            <div key={index} className="text-center font-semibold">
-              {d}
-            </div>
-          ),
-        )}
+            ),
+          )}
 
-        {days.map((day, idx) => (
-          <div
-            key={idx}
-            className="h-[3rem] rounded-lg relative flex justify-center items-center"
-          >
-            {day && (
-              <>
-                {images[day] ? (
-                  <EmotionImage src={checkEmotion(images[day])} size={"xs"} />
-                ) : (
-                  <span>{day}</span>
-                )}
-              </>
-            )}
-          </div>
-        ))}
-      </div>
+          {days.map((day, idx) => (
+            <div
+              key={idx}
+              className="h-[3rem] rounded-lg relative flex justify-center items-center"
+            >
+              {day && (
+                <>
+                  {images[day] ? (
+                    <EmotionImage src={checkEmotion(images[day])} size={"xs"} />
+                  ) : (
+                    <span>{day}</span>
+                  )}
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      </Link>
     </div>
   );
 };
