@@ -59,7 +59,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   for (let i = 1; i <= daysInMonth; i++) days.push(i);
 
   return (
-    <div className="w-full max-w-md mx-auto shadow-xl p-5 border border-secondary-100 rounded-xl m-4">
+    <div className="w-full max-w-md mx-auto shadow-xl p-5 border border-secondary-100 rounded-xl mt-2">
       <div className="flex justify-between items-center ">
         <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
         <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
