@@ -1,41 +1,83 @@
-import { PlaylistsResponse } from "@/app/music/type";
-import { Emotion } from "@/constants/spotify.constant";
-import { getSpotifyProviderTokenFromCookies } from "@/utils/music-cookies.util";
+import {
+  SpotifyAccessToken,
+  SpotifyPlaylistItem,
+  SpotifyPlaylistList,
+} from "@/app/music/type";
+import { SPOTIFY } from "@/constants/spotify.constant";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
-// 감정 기반으로 Spotify 플레이리스트를 검색하는 함수
-export const fetchEmotionBasedPlaylists = async (
-  emotion: Emotion,
-): Promise<PlaylistsResponse["playlists"]["items"]> => {
-  const spotifyProviderToken = getSpotifyProviderTokenFromCookies();
-
-  if (!spotifyProviderToken) {
-    throw new Error("spotifyProviderToken이 없습니다.");
-  }
-
+// Spotify accessToken 요청 함수
+export const fetchAccessToken = async () => {
   try {
-    const response = await fetch(
-      `https://api.spotify.com/v1/search?q=${encodeURIComponent(
-        emotion,
-      )}&type=playlist&limit=50&market=KR`,
-      {
-        headers: { Authorization: `Bearer ${spotifyProviderToken}` },
-      },
-    );
+    const response = await fetch(SPOTIFY.CALLBACK_ROUTE);
 
     if (!response.ok) {
-      throw new Error(`HTTP 오류! 상태 코드 : ${response.status}`);
+      throw new Error(TOAST_MESSAGE.SPOTIFY.ACCESS_TOKEN_ERROR);
     }
 
-    const data: PlaylistsResponse = await response.json();
+    const accessToken: SpotifyAccessToken = await response.json();
 
-    const filteredPlaylists = data.playlists.items.filter(
-      (item) => item !== null,
+    return accessToken;
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : TOAST_MESSAGE.SPOTIFY.ACCESS_TOKEN_ERROR;
+    throw new Error(errorMessage);
+  }
+};
+
+// Spotify 플레이리스트 검색 함수
+export const fetchSpotifyPlaylistList = async (
+  accessToken: string,
+  query: string,
+) => {
+  if (!accessToken) {
+    throw new Error(TOAST_MESSAGE.SPOTIFY.ACCESS_TOKEN_ERROR);
+  }
+
+  const apiUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
+    query,
+  )}&type=playlist&limit=50`;
+
+  // accessToken을 받아 검색 요청하는 내부 함수
+  const fetchWithToken = async (accessToken: string) => {
+    const response = await fetch(apiUrl, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    const data = await response.json();
+
+    // 토큰 만료 → 새 토큰 발급 요청
+    if (response.status === 401) {
+      const newAccessToken = await fetchAccessToken();
+
+      return await fetchWithToken(newAccessToken.accessToken);
+    }
+
+    // 그 외 실패 처리
+    if (!response.ok) {
+      const errorMessage = data?.error?.message || TOAST_MESSAGE.SPOTIFY.ERROR;
+
+      throw new Error(errorMessage);
+    }
+
+    // 유효한 플레이리스트 필터링
+    const filteredPlaylists: SpotifyPlaylistList = data.playlists.items.filter(
+      (item: SpotifyPlaylistItem) => item !== null,
     );
 
     return filteredPlaylists;
-  } catch (error) {
-    console.error("플레이리스트 요청 실패 : ", error);
+  };
 
-    throw error;
+  try {
+    return await fetchWithToken(accessToken);
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : TOAST_MESSAGE.SPOTIFY.ERROR;
+
+    throw new Error(errorMessage);
   }
 };
