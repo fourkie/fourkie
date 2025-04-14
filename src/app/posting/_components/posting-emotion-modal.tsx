@@ -12,6 +12,9 @@ import PostingEmotionModalButton from "./posting-emotion-modal-button";
 import PostingEmotionModalLoading from "./posting-emotion-modal-loading";
 
 const PostingEmotionModal = ({
+  userId,
+  title,
+  content,
   emotion,
   isPending,
   nickname,
@@ -60,7 +63,13 @@ const PostingEmotionModal = ({
               플레이 리스트를 추천해드릴게요!
             </p>
 
-            <PostingEmotionModalButton onClose={() => setIsModalOpen(false)} />
+            <PostingEmotionModalButton
+              onClose={() => setIsModalOpen(false)}
+              userId={userId}
+              title={title}
+              content={content}
+              currentEmotion={currentEmotionKey}
+            />
           </div>
         </div>
       )}
