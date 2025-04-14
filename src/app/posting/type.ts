@@ -4,14 +4,19 @@ export type PostingResponse = {
 };
 
 export type PostingFormValues = {
-  inputText: string;
+  inputTitle: string;
+  inputContent: string;
 };
 
 export type UserDateProps = {
-  nickname: string | undefined;
+  userId?: string;
+  nickname?: string;
 };
 
 export type PostingResultModalProps = {
+  userId?: string;
+  title: string;
+  content: string;
   emotion: string;
   isPending: boolean;
   nickname: string | undefined;
@@ -30,5 +35,23 @@ export type PostingEmotionModalSlideProps = {
 };
 
 export type PostingEmotionModalButtonProps = {
+  userId?: string;
+  title: string;
+  content: string;
+  currentEmotion: string;
   onClose: () => void;
+};
+
+export type CreatePostParams = {
+  userId?: string;
+  title: string;
+  content: string;
+  currentEmotion: string;
+};
+
+export type updatePostsByPostIdParams = {
+  postId: number;
+  title: string;
+  content: string;
+  currentEmotion: string;
 };
