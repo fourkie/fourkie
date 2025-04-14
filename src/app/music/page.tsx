@@ -1,23 +1,29 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
+import { QUERYDATA } from "@/constants/query-data.constant";
 import { Emotion } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
-import { QUERYDATA } from "@/constants/query-data.constant";
+import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import EmotionSelect from "./_components/emotion-select";
 
 const Music = () => {
-  const [query, setquery] = useState("happy");
-  const { playlists, tokenPending, playlistsPending, playlistsError } =
+  const [query, setQuery] = useState(Emotion.JOY);
+  const { playlists, playlistsPending, playlistsError } =
     useGetAllPlaylistsByQueryQuery(query);
 
-  if (tokenPending || playlistsPending) {
-    return QUERYDATA.ISPENDING;
-  }
+  useEffect(() => {
+    if (playlistsError) {
+      toast.warning(
+        playlistsError.message || TOAST_MESSAGE.SPOTIFY.PLAYLISTS_ERROR,
+      );
+    }
+  }, [playlistsError]);
 
-  if (playlistsError) {
-    return QUERYDATA.ISERROR;
+  if (playlistsPending) {
+    return QUERYDATA.ISPENDING;
   }
 
   if (!playlists || playlists.length === 0) {
@@ -27,22 +33,7 @@ const Music = () => {
   return (
     <div>
       <div className="mb-4">
-        <select
-          value={query}
-          onChange={(e) => setquery(e.target.value)}
-          className="p-2 border rounded mt-4"
-        >
-          <option value={Emotion.JOY}>JOY</option>
-          <option value={Emotion.EXCITED}>EXCITED</option>
-          <option value={Emotion.BUTTERFLY}>BUTTERFLY</option>
-          <option value={Emotion.GRATEFUL}>GRATEFUL</option>
-          <option value={Emotion.CALM}>CALM</option>
-          <option value={Emotion.LONELY}>LONELY</option>
-          <option value={Emotion.ANXIOUS}>ANXIOUS</option>
-          <option value={Emotion.TIRED}>TIRED</option>
-          <option value={Emotion.SAD}>SAD</option>
-          <option value={Emotion.ANGRY}>ANGRY</option>
-        </select>
+        <EmotionSelect value={query} onChange={setQuery} />
       </div>
       <ul>
         {playlists.map((playlist) => (
