@@ -1,3 +1,5 @@
+import { Emotion } from "@/constants/spotify.constant";
+
 // AccessToken 타입
 export interface SpotifyAccessToken {
   accessToken: string;
@@ -25,10 +27,16 @@ export interface SpotifyPlaylistItem {
 // 플레이리스트 목록 타입
 export type SpotifyPlaylistList = SpotifyPlaylistItem[];
 
-// 컴포넌트 Props 타입
+// PlaylistListProps 타입
 export interface PlaylistListProps {
   playlists: SpotifyPlaylistItem[];
   bookmarkedPlaylistIds: Set<string>;
   onToggleBookmark: (playlistId: string) => void;
   isTab: "recommend" | "bookmark";
+}
+
+// EmotionSelectProps 타입
+export interface EmotionSelectProps {
+  value: Emotion;
+  onChange: (value: Emotion) => void;
 }
