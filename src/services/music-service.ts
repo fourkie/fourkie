@@ -6,6 +6,7 @@ import {
 import { SPOTIFY } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
+// Spotify accessToken 요청 함수
 export const fetchAccessToken = async () => {
   try {
     const response = await fetch(SPOTIFY.CALLBACK_ROUTE);
@@ -14,20 +15,21 @@ export const fetchAccessToken = async () => {
       throw new Error(TOAST_MESSAGE.SPOTIFY.ACCESS_TOKEN_ERROR);
     }
 
-    const data: SpotifyAccessToken = await response.json();
+    const accessToken: SpotifyAccessToken = await response.json();
 
-    return data;
+    return accessToken;
   } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message);
-    }
-
-    throw new Error(TOAST_MESSAGE.SPOTIFY.ACCESS_TOKEN_ERROR);
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : TOAST_MESSAGE.SPOTIFY.ACCESS_TOKEN_ERROR;
+    throw new Error(errorMessage);
   }
 };
 
+// Spotify 플레이리스트 검색 함수
 export const fetchSpotifyPlaylistList = async (
-  accessToken: SpotifyAccessToken,
+  accessToken: string,
   query: string,
 ) => {
   if (!accessToken) {
@@ -38,7 +40,8 @@ export const fetchSpotifyPlaylistList = async (
     query,
   )}&type=playlist&limit=50`;
 
-  try {
+  // accessToken을 받아 검색 요청하는 내부 함수
+  const fetchWithToken = async (accessToken: string) => {
     const response = await fetch(apiUrl, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -47,24 +50,34 @@ export const fetchSpotifyPlaylistList = async (
 
     const data = await response.json();
 
-    if (!response.ok || response.status === 401) {
-      const spotifyErrorMessage =
-        data?.error?.message || TOAST_MESSAGE.SPOTIFY.ERROR;
+    // 토큰 만료 → 새 토큰 발급 요청
+    if (response.status === 401) {
+      const newAccessToken = await fetchAccessToken();
 
-      throw new Error(spotifyErrorMessage);
+      return await fetchWithToken(newAccessToken.accessToken);
     }
 
-    // null이 아닌 플레이리스트 항목만 필터링
+    // 그 외 실패 처리
+    if (!response.ok) {
+      const errorMessage = data?.error?.message || TOAST_MESSAGE.SPOTIFY.ERROR;
+
+      throw new Error(errorMessage);
+    }
+
+    // 유효한 플레이리스트 필터링
     const filteredPlaylists: SpotifyPlaylistList = data.playlists.items.filter(
       (item: SpotifyPlaylistItem) => item !== null,
     );
 
     return filteredPlaylists;
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message);
-    }
+  };
 
-    throw new Error(TOAST_MESSAGE.SPOTIFY.ERROR);
+  try {
+    return await fetchWithToken(accessToken);
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : TOAST_MESSAGE.SPOTIFY.ERROR;
+
+    throw new Error(errorMessage);
   }
 };
