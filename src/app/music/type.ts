@@ -63,3 +63,10 @@ export interface TabButtonsProps {
   isTab: "recommend" | "bookmark";
   onTabChange: (tab: "recommend" | "bookmark") => void;
 }
+
+// TabButtonProps 타입
+export interface TabButtonProps {
+  isActive: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}
