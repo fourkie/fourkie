@@ -1,7 +1,7 @@
 import { BOOKMARK, RECOMMEND } from "@/constants/music-constant";
 import { TabButtonProps, TabButtonsProps } from "../type";
 
-export const TabButtons = ({ activeTab, onTabChange }: TabButtonsProps) => {
+export const TabsContainer = ({ activeTab, onTabChange }: TabButtonsProps) => {
   return (
     <div className="flex gap-4">
       <TabButton
