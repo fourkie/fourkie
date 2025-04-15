@@ -9,36 +9,37 @@ import { PlaylistList } from "./_components/playlist-list";
 import { Emotion } from "@/constants/spotify.constant";
 import { useBookmarks } from "@/services/music-bookmark-service";
 import createClient from "@/services/supabase-client-service";
+import { QUERYDATA } from "@/constants/query-data.constant";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
 const Music = () => {
   const [isTab, setIsTab] = useState<"recommend" | "bookmark">("recommend");
   const [query, setQuery] = useState(Emotion.JOY);
-  const [user, setUser] = useState<any>(null); // 유저 상태 관리
+  const [user, setUser] = useState<any>(null);
 
-  const supabase = createClient();
+  const supabaseClient = createClient();
 
   useEffect(() => {
-    // getUser()를 호출하여 유저 정보 가져오기
+    // 유저 정보 가져오기
     const fetchUser = async () => {
       const {
         data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user); // 유저 상태에 저장
+      } = await supabaseClient.auth.getUser();
+      setUser(user);
     };
 
     fetchUser();
-  }, []); // 컴포넌트가 마운트될 때 한 번만 호출
+  }, []);
 
   const { playlists, playlistsPending } = useGetAllPlaylistsByQueryQuery(query);
 
-  console.log("playlists : ", playlists);
   // userId가 유효할 때만 북마크 훅 호출
   const { bookmarkedIds, toggleBookmark } = useBookmarks(user?.id);
 
-  if (playlistsPending) return <div>로딩 중...</div>;
+  if (playlistsPending) return QUERYDATA.ISPENDING;
 
-  // 유저 정보가 없으면 로딩 화면 또는 로그인 화면으로 전환
-  if (!user) return <div>로그인되어 있지 않습니다.</div>;
+  // 유저 정보가 없을 경우
+  if (!user) return TOAST_MESSAGE.SPOTIFY.ERROR;
 
   const filteredPlaylists =
     isTab === "bookmark"
