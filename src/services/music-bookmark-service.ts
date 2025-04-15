@@ -11,7 +11,7 @@ export const fetchBookmarkedPlaylists = async (userId: string) => {
     .eq("user_id", userId);
 
   if (bookmarkedError) {
-    throw new Error(TOAST_MESSAGE.SPOTIFY.BOOKMARK_PENDING_ERROR);
+    throw new Error(TOAST_MESSAGE.SPOTIFY.BOOKMARK_ERROR);
   }
 
   console.log("bookmarkedData : ", bookmarkedData);
@@ -20,7 +20,10 @@ export const fetchBookmarkedPlaylists = async (userId: string) => {
 };
 
 // 북마크 추가
-export const addBookmark = async (musicPlaylistId: string, userId: string) => {
+export const addBookmarkedPlaylists = async (
+  musicPlaylistId: string,
+  userId: string,
+) => {
   const supabaseClient = createClient();
 
   const { error } = await supabaseClient
@@ -33,7 +36,7 @@ export const addBookmark = async (musicPlaylistId: string, userId: string) => {
 };
 
 // 북마크 삭제
-export const removeBookmark = async (
+export const removeBookmarkedPlaylists = async (
   musicPlaylistId: string,
   userId: string,
 ) => {
