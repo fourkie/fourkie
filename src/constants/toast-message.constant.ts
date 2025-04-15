@@ -25,6 +25,7 @@ export const TOAST_MESSAGE = {
     GET_MY_FRIENDS_ERROR: "친구 목록을 불러오지 못했습니다.",
     GET_NICKNAME_ERROR: "닉네임을 불러오는 데 실패했습니다.",
     SUBMIT_NICKNAME_INFO: "닉네임을 입력해주세요.",
+    EXIST_NICKNAME_ERROR: "중복되는 닉네임입니다.",
     CHANGE_NICKNAME_ERROR: "닉네임 변경에 실패했습니다.",
     CHANGE_NICKNAME_SUCCESS: "닉네임을 변경했습니다.",
     FRIEND_REQUEST_SUCCESS: "친구 요청을 보냈습니다.",

@@ -4,6 +4,7 @@ import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useUpdateNicknameMutation } from "@/hooks/mutations/use-update-nickname-mutation";
 import { useGetUserNicknameQuery } from "@/hooks/queries/use-get-user-nickname-query";
+import { checkNicknameDuplicate } from "@/services/nickname-service";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import Input from "@/ui/common/input.common";
 import { SquareCheckBig, SquarePen } from "lucide-react";
@@ -21,11 +22,20 @@ const MypageProfile = () => {
     setNewNickname(nickname);
   };
 
-  const handleUpdateNickname = () => {
+  const handleUpdateNickname = async () => {
     if (!newNickname.trim()) {
       toast.error(TOAST_MESSAGE.MYPAGE.SUBMIT_NICKNAME_INFO);
       return;
     }
+
+    if (newNickname !== nickname) {
+      const isDuplicate = await checkNicknameDuplicate(newNickname);
+      if (isDuplicate) {
+        toast.error(TOAST_MESSAGE.MYPAGE.EXIST_NICKNAME_ERROR);
+        return;
+      }
+    }
+
     updateNickname(newNickname, {
       onSuccess: () => {
         toast.success(TOAST_MESSAGE.MYPAGE.CHANGE_NICKNAME_SUCCESS);
