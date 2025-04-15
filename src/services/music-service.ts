@@ -66,7 +66,8 @@ export const fetchSpotifyPlaylistList = async (
 
     // 유효한 플레이리스트 필터링
     const filteredPlaylists: SpotifyPlaylistList = data.playlists.items.filter(
-      (item: SpotifyPlaylistItem) => item !== null,
+      (item: SpotifyPlaylistItem) =>
+        item && item.images && item.images.length > 0,
     );
 
     return filteredPlaylists;

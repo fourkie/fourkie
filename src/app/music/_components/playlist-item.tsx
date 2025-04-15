@@ -12,7 +12,6 @@ export const PlaylistItem = ({
 
   return (
     <div className="flex items-center justify-start gap-4 mb-4">
-      {/* 북마크 버튼 */}
       <button onClick={() => onToggleBookmark(playlist.id)}>
         <Star
           className={`w-6 h-6 ${
@@ -20,22 +19,14 @@ export const PlaylistItem = ({
           }`}
         />
       </button>
-
-      {/* 앨범 이미지 */}
       <Image
-        src={playlist.images?.[0]?.url || "/default-image.jpg"}
+        src={playlist.images?.[0]?.url}
         alt={playlist.name}
         width={50}
         height={50}
       />
-
-      {/* 플레이리스트 이름 */}
       <p>{playlist.name}</p>
-
-      {/* 총 곡 수 표시 */}
       <p>총 곡 수 {playlist.tracks.total}</p>
-
-      {/* Spotify URL로 이동하는 링크 */}
       {playlistUrl && (
         <Link href={playlistUrl} target="_blank">
           <button>보기</button>
