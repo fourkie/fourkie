@@ -10,6 +10,7 @@ const PostingEmotionModalButton = ({
   postId,
   onClose,
 }: PostingEmotionModalButtonProps) => {
+  // mutation 함수
   const { mutate: createPostsMutate, isPending: createPostsPending } =
     useCreatePostsMutation();
   const { mutate: updatePostMutate, isPending: UpdatePostsPending } =

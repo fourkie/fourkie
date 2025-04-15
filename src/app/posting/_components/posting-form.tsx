@@ -9,17 +9,20 @@ import { useState, useEffect } from "react";
 import { useGetPostsByPostIdQuery } from "@/hooks/queries/use-get-posts-by-postId-query";
 import { useRouter } from "next/navigation";
 
-// react-hook-form을 사용하여 폼 상태 관리
 const PostingForm = ({ postId, userId, nickname }: UserDateProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // query, mutation 함수
   const { mutate, data, isPending } =
     useGetAnalyzedPostEmotionMutation(setIsModalOpen);
   const { data: postData } = useGetPostsByPostIdQuery({ postId });
+
   // react-hook-form을 사용하여 폼 상태 관리
   const { register, handleSubmit, watch, setValue } =
     useForm<PostingFormValues>();
   const inputTitle = watch("inputTitle");
   const inputContent = watch("inputContent");
+
   const router = useRouter();
 
   // 감정 분석 결과를 처리하는 함수
