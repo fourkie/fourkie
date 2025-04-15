@@ -1,7 +1,7 @@
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import createClient from "./supabase-client-service";
 
-// 북마크된 플레이리스트 조회
+// 유저의 북마크된 플레이리스트 조회
 export const fetchBookmarkedPlaylists = async (userId: string) => {
   const supabaseClient = createClient();
 
@@ -19,7 +19,7 @@ export const fetchBookmarkedPlaylists = async (userId: string) => {
   return bookmarkedData;
 };
 
-// 북마크 추가
+// 특정 플레이리스트를 북마크에 추가
 export const addBookmarkedPlaylists = async (
   musicPlaylistId: string,
   userId: string,
@@ -35,7 +35,7 @@ export const addBookmarkedPlaylists = async (
   }
 };
 
-// 북마크 삭제
+// 특정 플레이리스트를 북마크에서 제거
 export const removeBookmarkedPlaylists = async (
   musicPlaylistId: string,
   userId: string,

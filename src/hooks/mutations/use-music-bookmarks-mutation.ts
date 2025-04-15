@@ -7,7 +7,7 @@ import {
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-// 북마크 추가 뮤테이션 훅
+// 북마크 추가 API를 호출하는 뮤테이션 훅
 export const useAddBookmarkMutation = () => {
   const queryClient = useQueryClient();
 
@@ -34,7 +34,7 @@ export const useAddBookmarkMutation = () => {
   });
 };
 
-// 북마크 삭제 뮤테이션 훅
+// 북마크 삭제 API를 호출하는 뮤테이션 훅
 export const useRemoveBookmarkMutation = () => {
   const queryClient = useQueryClient();
 
