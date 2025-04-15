@@ -9,7 +9,8 @@ export type PostingFormValues = {
 };
 
 export type UserDateProps = {
-  userId?: string;
+  postId?: string;
+  userId: string;
   nickname?: string;
 };
 
@@ -18,6 +19,7 @@ export type PostingResultModalProps = {
   title: string;
   content: string;
   emotion: string;
+  postId?: string;
   isPending: boolean;
   nickname: string | undefined;
   isModalOpen: boolean;
@@ -39,6 +41,7 @@ export type PostingEmotionModalButtonProps = {
   title: string;
   content: string;
   currentEmotion: string;
+  postId?: string;
   onClose: () => void;
 };
 
@@ -50,7 +53,7 @@ export type CreatePostsParams = {
 };
 
 export type updatePostsByPostIdParams = {
-  postId: number;
+  postId?: string;
   title: string;
   content: string;
   currentEmotion: string;
