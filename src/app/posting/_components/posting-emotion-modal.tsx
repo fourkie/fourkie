@@ -16,6 +16,7 @@ const PostingEmotionModal = ({
   title,
   content,
   emotion,
+  postId,
   isPending,
   nickname,
   isModalOpen,
@@ -69,6 +70,7 @@ const PostingEmotionModal = ({
               title={title}
               content={content}
               currentEmotion={currentEmotionKey}
+              postId={postId}
             />
           </div>
         </div>
