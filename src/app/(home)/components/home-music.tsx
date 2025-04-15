@@ -7,7 +7,7 @@ const HomeMusic = () => {
   return (
     <div className="flex flex-col my-4 gap-2">
       <Link href={"/music"}>
-        <div className="flex justify-between items-center mt-6">
+        <div className="flex justify-between items-center mt-2">
           <div className="text-xl font-bold">오늘 추천 음악</div>
           <ChevronRight className="cursor-pointer" />
         </div>
