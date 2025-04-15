@@ -35,7 +35,7 @@ const FriendList = ({
     <div className="flex flex-col gap-3 w-full px-3 py-3">
       {friendList?.length === 0 ? (
         <div className="text-sm text-grey-4">
-          {UI_TEXT.MYPAGE.FRIEND_LIST_ALT}
+          {UI_TEXT.MYPAGE.EMPTY_FRIEND_LIST_ALT}
         </div>
       ) : (
         friendList?.map((friend) => (
