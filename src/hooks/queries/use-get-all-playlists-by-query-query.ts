@@ -5,7 +5,6 @@ import {
   fetchSpotifyPlaylistList,
 } from "@/services/music-service";
 import { useQuery } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 
 export const useGetAllPlaylistsByQueryQuery = (query: string) => {
   // 토큰과 플레이리스트 요청을 하나의 useQuery 훅으로 처리
@@ -29,10 +28,6 @@ export const useGetAllPlaylistsByQueryQuery = (query: string) => {
     },
     enabled: !!query,
   });
-
-  if (playlistsError) {
-    toast.error(TOAST_MESSAGE.SPOTIFY.PLAYLISTS_ERROR);
-  }
 
   return {
     playlists: playlistsData || [], // 기본값으로 빈 배열 반환
