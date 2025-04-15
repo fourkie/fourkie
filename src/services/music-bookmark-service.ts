@@ -12,10 +12,10 @@ export const useBookmarks = (userId?: string) => {
       return;
     }
 
-    const supabase = createClient();
+    const supabaseClient = createClient();
 
     const fetchBookmarks = async () => {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseClient
         .from("musics")
         .select("music_playlist_id")
         .eq("user_id", userId);
@@ -39,13 +39,13 @@ export const useBookmarks = (userId?: string) => {
   const toggleBookmark = async (playlistId: string) => {
     if (!userId) return;
 
-    const supabase = createClient();
+    const supabaseClient = createClient();
 
     const isBookmarked = bookmarkedIds.has(playlistId);
 
     if (isBookmarked) {
       // 이미 북마크 -> 삭제
-      await supabase
+      await supabaseClient
         .from("musics")
         .delete()
         .eq("user_id", userId)
@@ -58,7 +58,7 @@ export const useBookmarks = (userId?: string) => {
       });
     } else {
       // 북마크 추가
-      await supabase.from("musics").insert({
+      await supabaseClient.from("musics").insert({
         user_id: userId,
         music_playlist_id: playlistId,
       });
