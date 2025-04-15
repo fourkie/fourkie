@@ -22,7 +22,7 @@ export const EMOTIONS_QUERY = {
   TIRED: "아픈",
   SAD: "슬픈",
   ANGRY: "화나는",
-};
+} as const;
 
 export const EMOTIONS = {
   JOY: "JOY",
@@ -36,3 +36,5 @@ export const EMOTIONS = {
   SAD: "SAD",
   ANGRY: "ANGRY",
 };
+
+export type EmotionKey = keyof typeof EMOTIONS_QUERY;

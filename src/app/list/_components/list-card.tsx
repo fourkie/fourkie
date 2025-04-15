@@ -7,6 +7,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import EmotionGraph from "@/ui/common/emotion-graph";
 import { useRemovePostMutation } from "@/hooks/mutations/use-remove-post-mutation";
 import { useRouter } from "next/navigation";
+import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 
 const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   const {
@@ -38,7 +39,9 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
     <div className="flex flex-col items-center p-3 gap-3 bg-white text-black px-5 py-4 rounded-xl">
       <div className="flex w-full justify-between">
         <div className="font-bold w-[100px]">{date}</div>
-        <div className="font-bold text-center">{post_emotion}</div>
+        <div className="font-bold text-center">
+          {EMOTIONS_QUERY[post_emotion]}
+        </div>
         {isMyPost ? (
           <>
             <div className="cursor-pointer" onClick={handleDelete}>
@@ -65,16 +68,24 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         )}
       </div>
       <div className="w-[100px] h-[100px] bg-gray-200">쿠키 이미지</div>
-      {!isMyPost && <div className="font-bold">{user?.user_nickname}</div>}
-      <div className="font-bold">{post_title}</div>
-      {isMyPost && (
-        <div
-          className={`font-bold w-full break-words text-center ${
-            isExpanded ? "line-clamp-none" : "line-clamp-2"
-          }`}
-        >
-          {post_content}
+      {!isMyPost && (
+        <div className="font-bold text-center">
+          오늘 <span className="text-secondary-200">{user?.user_nickname}</span>{" "}
+          님! <br /> {EMOTIONS_QUERY[post_emotion]}
+          기분이시네요!
         </div>
+      )}
+      {isMyPost && (
+        <>
+          <div className="font-bold">{post_title}</div>
+          <div
+            className={`font-bold w-full break-words text-center ${
+              isExpanded ? "line-clamp-none" : "line-clamp-2"
+            }`}
+          >
+            {post_content}
+          </div>
+        </>
       )}
       {isMyPost && (
         <div onClick={() => setIsExpanded(!isExpanded)}>
