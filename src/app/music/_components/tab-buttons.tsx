@@ -1,17 +1,17 @@
 import { BOOKMARK, RECOMMEND } from "@/constants/music-constant";
 import { TabButtonProps, TabButtonsProps } from "../type";
 
-export const TabButtons = ({ isTab, onTabChange }: TabButtonsProps) => {
+export const TabButtons = ({ activeTab, onTabChange }: TabButtonsProps) => {
   return (
     <div className="flex gap-4">
       <TabButton
-        isActive={isTab === RECOMMEND}
+        isActive={activeTab === RECOMMEND}
         onClick={() => onTabChange(RECOMMEND)}
       >
         추천 플리
       </TabButton>
       <TabButton
-        isActive={isTab === BOOKMARK}
+        isActive={activeTab === BOOKMARK}
         onClick={() => onTabChange(BOOKMARK)}
       >
         즐겨찾기
