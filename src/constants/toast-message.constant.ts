@@ -29,5 +29,7 @@ export const TOAST_MESSAGE = {
     FRIEND_REQUEST_SUCCESS: "친구 요청을 보냈습니다.",
     FRIEND_RECEIVED_ERROR: "받은 친구 요청을 불러오지 못했습니다.",
     FRIEND_SENT_ERROR: "보낸 친구 요청을 불러오지 못했습니다.",
+    FRIEND_ACCEPT_ERROR: "친구 맺기에 실패했습니다.",
+    FRIEND_ACCEPT_SUCCESS: "친구 요청을 수락했습니다.",
   },
 };

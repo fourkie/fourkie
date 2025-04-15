@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import ReceivedFriendList from "./components/friend-request-received-friend-list";
+import SentFriendList from "./components/friend-request-sent-friend-list";
 
 const Request = () => {
   const [tab, setTab] = useState<"received" | "sent">("received");
@@ -24,11 +26,7 @@ const Request = () => {
         >
           보낸 요청
         </button>
-        {/* {tab === 'received' ? (
-          <ReceivedFriendList />
-        ) : (
-          <SentFriendList />
-        )} */}
+        {tab === "received" ? <ReceivedFriendList /> : <SentFriendList />}
       </div>
     </div>
   );

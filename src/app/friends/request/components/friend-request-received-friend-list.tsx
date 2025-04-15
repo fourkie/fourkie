@@ -1,12 +1,14 @@
 "use client";
 
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import { useAcceptFriendRequestMutation } from "@/hooks/mutations/use-accept-friend-request-mutation";
 import { useGetReceivedRequestQuery } from "@/hooks/queries/use-get-received-requests-query";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 const ReceivedFriendList = () => {
   const { data, error } = useGetReceivedRequestQuery();
+  const { mutate: acceptRequest } = useAcceptFriendRequestMutation();
 
   useEffect(() => {
     if (error) {
@@ -22,7 +24,9 @@ const ReceivedFriendList = () => {
       {data.map((request) => (
         <div key={request.id} className="border">
           <span>{request.users.user_nickname}</span>
-          <button className="border">수락하기</button>
+          <button onClick={() => acceptRequest(request.id)} className="border">
+            수락하기
+          </button>
         </div>
       ))}
     </div>
