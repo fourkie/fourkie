@@ -8,7 +8,7 @@ export const getPostEmotionByUserId = async (
   year: number,
   month: number,
 ) => {
-  const supabase = supabaseClient();
+  const supabaseclient = supabaseClient();
   if (userId === undefined) {
     return false;
   } else {
@@ -24,7 +24,7 @@ export const getPostEmotionByUserId = async (
       const start = new Date(`${dateBefore}-01T00:00:00.000Z`).toISOString();
       const end = new Date(`${dateAfter}-01T00:00:00.000Z`).toISOString();
 
-      const { data, error } = await supabase
+      const { data, error } = await supabaseclient
         .from("posts")
         .select("*")
         .gte("post_created_at", start)
@@ -43,34 +43,39 @@ export const getPostEmotionByUserId = async (
 };
 
 export const getUserIdClient = async () => {
-  const supabase = supabaseClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return undefined;
+  const supabaseclient = supabaseClient();
+  try {
+    const {
+      data: { user },
+    } = await supabaseclient.auth.getUser();
+    if (!user) {
+      return undefined;
+    }
+    return user?.id;
+  } catch (err) {
+    console.error(err);
   }
-  return user?.id;
 };
 
 export const getUserNickname = async (userId: string | undefined) => {
   if (!userId) {
-    console.log(QUERY_KEY.NICKNAME);
+    console.error(QUERY_KEY.NICKNAME);
     return null;
   }
-  const supabase = supabaseClient();
+  const supabaseclient = supabaseClient();
+  try {
+    const { data: nickname, error } = await supabaseclient
+      .from("users")
+      .select("user_nickname")
+      .eq("user_uid", userId)
+      .single();
 
-  const { data: nickname, error } = await supabase
-    .from("users")
-    .select("user_nickname")
-    .eq("user_uid", userId)
-    .single();
+    if (error) {
+      throw error;
+    }
 
-  if (error) {
-    console.log(QUERY_KEY.NICKNAME + QUERYDATA.ISERROR);
-    return null;
+    return nickname;
+  } catch (err) {
+    console.error(QUERY_KEY.NICKNAME + QUERYDATA.ISERROR + err);
   }
-
-  return nickname;
 };
