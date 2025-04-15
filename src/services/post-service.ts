@@ -1,5 +1,5 @@
 import {
-  CreatePostParams,
+  CreatePostsParams,
   updatePostsByPostIdParams,
 } from "@/app/posting/type";
 import createClient from "./supabase-client-service";
@@ -27,12 +27,12 @@ export const getAllPostsById = async ({ userId }: { userId: string }) => {
   }
 };
 
-export const createPost = async ({
+export const createPosts = async ({
   userId,
   title,
   content,
   currentEmotion,
-}: CreatePostParams) => {
+}: CreatePostsParams) => {
   const supabaseClient = createClient();
   try {
     const { data } = await supabaseClient.from("posts").insert([

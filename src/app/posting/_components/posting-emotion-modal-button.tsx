@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { PostingEmotionModalButtonProps } from "../type";
 import { toast } from "react-toastify";
-import { useCreatePostMutation } from "@/hooks/mutations/use-create-post-mutation";
+import { useCreatePostsMutation } from "@/hooks/mutations/use-create-posts-mutation";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
 const PostingEmotionModalButton = ({
@@ -13,7 +13,7 @@ const PostingEmotionModalButton = ({
 }: PostingEmotionModalButtonProps) => {
   const router = useRouter();
 
-  const { mutate, isPending } = useCreatePostMutation();
+  const { mutate, isPending } = useCreatePostsMutation();
 
   // 버튼 클릭 시 게시글 저장
   const handleSave = () => {

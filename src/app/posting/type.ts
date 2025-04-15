@@ -42,7 +42,7 @@ export type PostingEmotionModalButtonProps = {
   onClose: () => void;
 };
 
-export type CreatePostParams = {
+export type CreatePostsParams = {
   userId?: string;
   title: string;
   content: string;
