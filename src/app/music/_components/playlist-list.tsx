@@ -9,12 +9,13 @@ export const PlaylistList = ({
   return (
     <ul>
       {playlists.map((playlist) => (
-        <PlaylistItem
-          key={playlist.id}
-          playlist={playlist}
-          bookmarked={bookmarkedPlaylistIds.has(playlist.id)}
-          onToggleBookmark={onToggleBookmark}
-        />
+        <li key={playlist.id}>
+          <PlaylistItem
+            playlist={playlist}
+            bookmarked={bookmarkedPlaylistIds.has(playlist.id)}
+            onToggleBookmark={onToggleBookmark}
+          />
+        </li>
       ))}
     </ul>
   );

@@ -11,7 +11,7 @@ export const PlaylistItem = ({
   const playlistUrl = playlist.url || playlist.external_urls.spotify; // url이 없으면 external_urls.spotify 사용
 
   return (
-    <li className="flex items-center justify-start gap-4 mb-4">
+    <div className="flex items-center justify-start gap-4 mb-4">
       {/* 북마크 버튼 */}
       <button onClick={() => onToggleBookmark(playlist.id)}>
         <Star
@@ -41,6 +41,6 @@ export const PlaylistItem = ({
           <button>보기</button>
         </Link>
       )}
-    </li>
+    </div>
   );
 };
