@@ -34,7 +34,6 @@ export const getReceivedRequests = async (userId: string) => {
   const supabaseClient = createClient();
 
   try {
-    console.log(userId);
     const { data, error } = await supabaseClient
       .from("friends")
       .select("*, users:sender_uid(user_uid,user_nickname)")
@@ -42,7 +41,6 @@ export const getReceivedRequests = async (userId: string) => {
       .eq("accepted", false);
 
     if (error) throw new Error(TOAST_MESSAGE.MYPAGE.FRIEND_RECEIVED_ERROR);
-    console.log(data);
     return data;
   } catch (error) {
     toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_RECEIVED_ERROR);
@@ -57,7 +55,7 @@ export const getSentRequests = async (userId: string) => {
   try {
     const { data, error } = await supabaseClient
       .from("friends")
-      .select("*, users:receiver_uid(users_uid, users_nickname)")
+      .select("*, users:receiver_uid(user_uid, user_nickname)")
       .eq("sender_uid", userId)
       .eq("accepted", false);
 
@@ -84,5 +82,30 @@ export const acceptFriendRequest = async (requestId: number) => {
   } catch (error) {
     toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_ACCEPT_ERROR);
     return [];
+  }
+};
+
+// 손절하기
+export const deleteFriend = async ({
+  myUid,
+  friendUid,
+}: {
+  myUid: string;
+  friendUid: string;
+}) => {
+  const supabaseClient = createClient();
+
+  try {
+    const { error } = await supabaseClient
+      .from("friends")
+      .delete()
+      .or(
+        `and(sender_uid.eq.${myUid},receiver_uid.eq.${friendUid}),and(sender_uid.eq.${friendUid},receiver_uid.eq.${myUid})`,
+      );
+
+    if (error) throw new Error(TOAST_MESSAGE.MYPAGE.FRIEND_DELETE_ERROR);
+  } catch (error) {
+    toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_DELETE_ERROR);
+    throw error;
   }
 };

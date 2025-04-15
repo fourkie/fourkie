@@ -7,4 +7,5 @@ export const FORM_MESSAGE = {
     TITLE: "오늘의 감정을 한 문장으로.",
     CONTENT: `오늘 어떤 감정을 느꼈나요? \n무슨 일이 있었나요?`,
   },
+  PLACEHOLDER_USER_SEARCH: "이메일 또는 닉네임으로 친구 검색하기",
 };

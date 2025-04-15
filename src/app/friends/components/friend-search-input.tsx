@@ -1,6 +1,8 @@
 "use client";
 
+import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import { FriendSearchInputProps } from "../type";
+import { Search } from "lucide-react";
 
 const FriendSearchInput = ({
   searchKeyword,
@@ -17,14 +19,15 @@ const FriendSearchInput = ({
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full relative">
+      <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-grey-3 w-5 h-5" />
       <input
         type="text"
         value={searchKeyword}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        placeholder="이메일 또는 닉네임으로 친구 검색하기"
-        className="border-none w-full h-12 px-4 py-2 rounded-xl bg-grey-0 text-sm"
+        placeholder={FORM_MESSAGE.PLACEHOLDER_USER_SEARCH}
+        className="w-full h-12 pl-12 pr-4 py-2 rounded-2xl bg-grey-0 text-sm border-none placeholder:text-grey-3"
       />
     </div>
   );

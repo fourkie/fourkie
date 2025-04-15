@@ -1,6 +1,7 @@
 "use client";
 
 import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useUpdateNicknameMutation } from "@/hooks/mutations/use-update-nickname-mutation";
 import { useGetUserNicknameQuery } from "@/hooks/queries/use-get-user-nickname-query";
 import EmotionImage from "@/ui/common/emotion-image.common";
@@ -22,12 +23,12 @@ const MypageProfile = () => {
 
   const handleUpdateNickname = () => {
     if (!newNickname.trim()) {
-      toast.error("닉네임을 입력해주세요.");
+      toast.error(TOAST_MESSAGE.MYPAGE.SUBMIT_NICKNAME_INFO);
       return;
     }
     updateNickname(newNickname, {
       onSuccess: () => {
-        toast.success("닉네임이 수정되었습니다.");
+        toast.success(TOAST_MESSAGE.MYPAGE.CHANGE_NICKNAME_SUCCESS);
         setEdit(false);
       },
     });

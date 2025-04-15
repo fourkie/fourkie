@@ -8,8 +8,6 @@ import { toast } from "react-toastify";
 const SentFriendList = () => {
   const { data, error } = useGetSentRequestsQuery();
 
-  console.log(data);
-
   useEffect(() => {
     if (error) {
       toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_SENT_ERROR);
@@ -23,7 +21,7 @@ const SentFriendList = () => {
     <div className="border">
       {data.map((request) => (
         <div key={request.id} className="border">
-          <span>{request.users.user_nickname}</span>
+          <p>{request.users.user_nickname}</p>
         </div>
       ))}
     </div>

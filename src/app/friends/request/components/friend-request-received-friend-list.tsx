@@ -23,7 +23,7 @@ const ReceivedFriendList = () => {
     <div className="border">
       {data.map((request) => (
         <div key={request.id} className="border">
-          <span>{request.users.user_nickname}</span>
+          <p>{request.users.user_nickname}</p>
           <button onClick={() => acceptRequest(request.id)} className="border">
             수락하기
           </button>

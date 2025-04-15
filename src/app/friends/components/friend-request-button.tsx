@@ -1,17 +1,15 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const FriendRequestButton = () => {
-  const router = useRouter();
-
   return (
-    <button
-      onClick={() => router.push("/friends/request")}
-      className="w-full flex justify-end items-center text-xs text-grey-5 gap-1"
+    <Link
+      href="/friends/request"
+      className="w-full flex justify-end items-center text-sm text-grey-5 gap-1"
     >
       받은 친구 요청
-    </button>
+    </Link>
   );
 };
 
