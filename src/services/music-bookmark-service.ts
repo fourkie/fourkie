@@ -14,8 +14,6 @@ export const fetchBookmarkedPlaylists = async (userId: string) => {
     throw new Error(TOAST_MESSAGE.SPOTIFY.BOOKMARK_ERROR);
   }
 
-  console.log("bookmarkedData : ", bookmarkedData);
-
   return bookmarkedData;
 };
 
