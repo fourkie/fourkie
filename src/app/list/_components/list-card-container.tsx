@@ -30,14 +30,14 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
     return post.post_created_at.includes(now.slice(0, 10));
   });
 
-  console.log(myPosts)
-
   return (
     <div className="flex flex-col gap-4 px-5 bg-primary-50">
-      <div className="flex items-center gap-4">
+      <div className="flex justify-center items-center gap-4">
         <div
           className={`${
-            isMyPost ? "text-black" : "text-gray-400"
+            isMyPost
+              ? "text-primary-600 border-b-2 border-primary-600"
+              : "text-gray-400"
           } cursor-pointer font-bold`}
           onClick={() => setIsMyPost(true)}
         >
@@ -45,7 +45,9 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
         </div>
         <div
           className={`${
-            isMyPost ? "text-gray-400" : "text-black"
+            isMyPost
+              ? "text-gray-400"
+              : "text-primary-600 border-b-2 border-primary-600"
           } cursor-pointer font-bold`}
           onClick={() => setIsMyPost(false)}
         >

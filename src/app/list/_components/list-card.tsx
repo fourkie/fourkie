@@ -8,6 +8,8 @@ import EmotionGraph from "@/ui/common/emotion-graph";
 import { useRemovePostMutation } from "@/hooks/mutations/use-remove-post-mutation";
 import { useRouter } from "next/navigation";
 import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
+import EmotionImage from "@/ui/common/emotion-image.common";
+import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 
 const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   const {
@@ -67,10 +69,10 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
           />
         )}
       </div>
-      <div className="w-[100px] h-[100px] bg-gray-200">쿠키 이미지</div>
+      <EmotionImage src={EMOTION_COOKIE_IMAGE_URL[post_emotion]} size="l" />
       {!isMyPost && (
         <div className="font-bold text-center">
-          오늘 <span className="text-secondary-200">{user?.user_nickname}</span>{" "}
+          오늘 <span className="text-secondary-200">{user?.user_nickname}</span>
           님! <br /> {EMOTIONS_QUERY[post_emotion]}
           기분이시네요!
         </div>
