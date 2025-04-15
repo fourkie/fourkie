@@ -6,17 +6,18 @@ import "dayjs/locale/ko";
 
 const Posting = async () => {
   const supabaseServer = createClient();
-
-  const { data, error } = await supabaseServer.auth.getUser();
-  if (error || !data.user) {
+  const {
+    data: { user },
+    error,
+  } = await supabaseServer.auth.getUser();
+  if (error || !user) {
     redirect("/sign-in");
   }
-  const nickname =
-    data.user.user_metadata.user_nickname || data.user.user_metadata.name;
-  const userId = data.user.id;
+
+  const userId = user.id;
+  const nickname = user.user_metadata.user_nickname || user.user_metadata.name;
 
   dayjs.locale("ko");
-
   const dateWithDay = dayjs().format("D dddd");
 
   return (
