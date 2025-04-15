@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import createClient from "./supabase-client-service";
+import { toast } from "react-toastify";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
 export const useBookmarks = (userId?: string) => {
   const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set());
@@ -19,7 +21,7 @@ export const useBookmarks = (userId?: string) => {
         .eq("user_id", userId);
 
       if (error) {
-        console.log("북마크 데이터 로드 실패", error);
+        toast.error(TOAST_MESSAGE.SPOTIFY.BOOKMARK_LOADING_ERROR);
         return;
       }
 
@@ -33,8 +35,6 @@ export const useBookmarks = (userId?: string) => {
 
     fetchBookmarks();
   }, [userId]); // userId가 변경될 때만 호출
-
-  console.log("userId", userId);
 
   const toggleBookmark = async (playlistId: string) => {
     if (!userId) return;
