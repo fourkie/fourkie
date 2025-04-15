@@ -1,8 +1,5 @@
-import { useRouter } from "next/navigation";
 import { PostingEmotionModalButtonProps } from "../type";
-import { toast } from "react-toastify";
 import { useCreatePostsMutation } from "@/hooks/mutations/use-create-posts-mutation";
-import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
 const PostingEmotionModalButton = ({
   userId,
@@ -11,25 +8,12 @@ const PostingEmotionModalButton = ({
   currentEmotion,
   onClose,
 }: PostingEmotionModalButtonProps) => {
-  const router = useRouter();
-
-  const { mutate, isPending } = useCreatePostsMutation();
+  const { mutate: createPostsMutate, isPending: createPostsPending } =
+    useCreatePostsMutation();
 
   // 버튼 클릭 시 게시글 저장
   const handleSave = () => {
-    mutate(
-      { userId, title, content, currentEmotion },
-      {
-        onSuccess: () => {
-          toast.success(TOAST_MESSAGE.POSTING.SUCCESS);
-          router.push("/music");
-        },
-        onError: (error) => {
-          toast.error(TOAST_MESSAGE.POSTING.ERROR);
-          console.error(error);
-        },
-      },
-    );
+    createPostsMutate({ userId, title, content, currentEmotion });
   };
 
   return (
@@ -45,7 +29,7 @@ const PostingEmotionModalButton = ({
         className="flex-1 py-2 px-4 bg-primary-200 rounded-2xl text-black"
         onClick={handleSave}
       >
-        {isPending ? "저장 중..." : "확인"}
+        {createPostsPending ? "저장 중..." : "확인"}
       </button>
     </div>
   );

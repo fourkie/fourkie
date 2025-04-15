@@ -1,19 +1,19 @@
 "use client";
 
-import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import { PostingFormValues, UserDateProps } from "../type";
 import { useGetAnalyzedPostEmotionMutation } from "@/hooks/mutations/use-post-emotion-mutation";
 import PostingEmotionModal from "./posting-emotion-modal";
 import { useState } from "react";
 
 const PostingForm = ({ userId, nickname }: UserDateProps) => {
-  const { mutate, data, isPending } = useGetAnalyzedPostEmotionMutation();
-  const { register, handleSubmit, watch } = useForm<PostingFormValues>();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { mutate, data, isPending } =
+    useGetAnalyzedPostEmotionMutation(setIsModalOpen);
 
+  // react-hook-form을 사용하여 폼 상태 관리
+  const { register, handleSubmit, watch } = useForm<PostingFormValues>();
   const inputTitle = watch("inputTitle");
   const inputContent = watch("inputContent");
 
@@ -21,14 +21,7 @@ const PostingForm = ({ userId, nickname }: UserDateProps) => {
   const onSubmit = ({ inputTitle, inputContent }: PostingFormValues) => {
     if (!inputTitle.trim() || !inputContent.trim()) return;
 
-    mutate(inputContent, {
-      onSuccess: () => {
-        setIsModalOpen(true);
-      },
-      onError: () => {
-        toast.error(TOAST_MESSAGE.AI.HUGGINGFACE.ERROR);
-      },
-    });
+    mutate(inputContent);
   };
 
   return (
