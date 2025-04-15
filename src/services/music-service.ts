@@ -52,9 +52,9 @@ export const fetchSpotifyPlaylistList = async (
 
     // 토큰 만료 → 새 토큰 발급 요청
     if (response.status === 401) {
-      const newAccessToken = await fetchAccessToken();
+      const data = await fetchAccessToken();
 
-      return await fetchWithToken(newAccessToken.accessToken);
+      return await fetchWithToken(data.accessToken);
     }
 
     // 그 외 실패 처리
@@ -66,7 +66,8 @@ export const fetchSpotifyPlaylistList = async (
 
     // 유효한 플레이리스트 필터링
     const filteredPlaylists: SpotifyPlaylistList = data.playlists.items.filter(
-      (item: SpotifyPlaylistItem) => item !== null,
+      (item: SpotifyPlaylistItem) =>
+        item && item.images && item.images.length > 0,
     );
 
     return filteredPlaylists;
