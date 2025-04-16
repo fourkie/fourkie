@@ -17,10 +17,12 @@ const PostingEmotionModalSlide = ({
   };
 
   return (
-    <div className="flex items-center justify-center gap-4 mb-4">
+    <div className="flex items-center justify-center gap-5">
       <ChevronLeft
         onClick={() => handleEmotionSlide(-1)}
-        className="cursor-pointer stroke-[3] "
+        size={32}
+        strokeWidth={3}
+        className="stroke-grey-6 cursor-pointer"
       />
 
       <EmotionImage
@@ -30,7 +32,9 @@ const PostingEmotionModalSlide = ({
 
       <ChevronRight
         onClick={() => handleEmotionSlide(1)}
-        className="cursor-pointer stroke-[3] "
+        size={32}
+        strokeWidth={3}
+        className="stroke-grey-6 cursor-pointer"
       />
     </div>
   );

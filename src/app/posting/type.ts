@@ -11,7 +11,7 @@ export type PostingFormValues = {
 export type UserDateProps = {
   postId?: string;
   userId: string;
-  nickname?: string;
+  nickname: string;
 };
 
 export type PostingResultModalProps = {

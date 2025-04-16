@@ -26,16 +26,16 @@ const PostingEmotionModalButton = ({
   };
 
   return (
-    <div className="flex gap-3 font-bold text-lg">
+    <div className="flex gap-4 font-bold text-lg">
       <button
-        className="flex-1 py-2 px-4 bg-primary-500 rounded-2xl text-white"
+        className="flex-1 py-2 bg-primary-500 rounded-2xl text-grey-0"
         onClick={onClose}
       >
         취소
       </button>
 
       <button
-        className="flex-1 py-2 px-4 bg-primary-200 rounded-2xl text-black"
+        className="flex-1 py-2 bg-primary-200 rounded-2xl text-primary-700"
         onClick={handleSave}
       >
         {createPostsPending || UpdatePostsPending ? "저장 중..." : "확인"}

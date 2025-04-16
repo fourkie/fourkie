@@ -19,23 +19,19 @@ const PostingEmotionModalLoading = ({
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-      <div className="flex flex-col items-center justify-center text-white p-4 rounded-lg max-w-xs text-xl font-bold">
+    <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50">
+      <div className="flex flex-col items-center justify-center gap-7 p-6  rounded-lg max-w-xs text-xl font-bold">
         <EmotionImage src={checkEmotion(EMOTIONS.JOY)} size="l" />
-        <br />
 
-        <div className="text-center mb-6">
-          <p className="mb-2">
-            <span className="text-primary-400">Smookie</span>가 {nickname}님의
-            <br />
-            기분을 분석중이에요.
-          </p>
-          <p className="text-white">잠시만 기다려 주세요{dots}!</p>
+        <div className="text-center text-grey-0">
+          <span className="text-primary-500">Smookie</span>가 {nickname}님의
+          <br />
+          기분을 분석중이에요.
         </div>
 
-        <div className="animate-spin mb-6">
-          <Loader className="h-9 w-9 text-white" />
-        </div>
+        <div className="text-white">잠시만 기다려 주세요{dots}!</div>
+
+        <Loader size={38} className="animate-spin text-white" />
       </div>
     </div>
   );
