@@ -1,6 +1,8 @@
 export const TOAST_MESSAGE = {
   ERROR: {
     AUTH_ERROR: "로그인이 필요한 서비스입니다.",
+    SIGNOUT_ERROR: "로그아웃에 실패하였습니다.",
+    SIGNOUT_SUCCESS: "로그아웃 되었습니다",
   },
   HOMEERROR: "불러오는 중 오류가 났습니다.",
   SPOTIFY: {

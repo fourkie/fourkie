@@ -1,12 +1,14 @@
 "use client";
 
 import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
+import { QUERY_KEY } from "@/constants/query-keys.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useUpdateNicknameMutation } from "@/hooks/mutations/use-update-nickname-mutation";
 import { useGetUserNicknameQuery } from "@/hooks/queries/use-get-user-nickname-query";
 import { checkNicknameDuplicate } from "@/services/nickname-service";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import Input from "@/ui/common/input.common";
+import { useQueryClient } from "@tanstack/react-query";
 import { SquareCheckBig, SquarePen } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -16,6 +18,7 @@ const MypageProfile = () => {
   const { mutate: updateNickname } = useUpdateNicknameMutation();
   const [edit, setEdit] = useState(false);
   const [newNickname, setNewNickname] = useState(nickname);
+  const queryClient = useQueryClient();
 
   const handleEditToggle = () => {
     setEdit((prev) => !prev);
@@ -40,6 +43,9 @@ const MypageProfile = () => {
       onSuccess: () => {
         toast.success(TOAST_MESSAGE.MYPAGE.CHANGE_NICKNAME_SUCCESS);
         setEdit(false);
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEY.NICKNAME],
+        });
       },
     });
   };
