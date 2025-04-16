@@ -47,6 +47,7 @@ export const TOAST_MESSAGE = {
     CHANGE_NICKNAME_ERROR: "닉네임 변경에 실패했습니다.",
     CHANGE_NICKNAME_SUCCESS: "닉네임을 변경했습니다.",
     FRIEND_REQUEST_SUCCESS: "친구 요청을 보냈습니다.",
+    FRIEND_REQUEST_EXIST: "이미 요청을 보낸 사용자입니다.",
     FRIEND_REQUEST_ERROR: "친구 요청에 실패했습니다",
     FRIEND_RECEIVED_ERROR: "받은 친구 요청을 불러오지 못했습니다.",
     FRIEND_SENT_ERROR: "보낸 친구 요청을 불러오지 못했습니다.",

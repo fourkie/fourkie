@@ -29,6 +29,33 @@ export const sendFriendRequest = async ({
   }
 };
 
+// 친구 요청 중복 여부 확인
+export const checkExistFriendRequest = async ({
+  senderUid,
+  receiverUid,
+}: {
+  senderUid: string;
+  receiverUid: string;
+}) => {
+  const supabaseClient = createClient();
+
+  try {
+    const { data, error } = await supabaseClient
+      .from("friends")
+      .select("id")
+      .eq("sender_uid", senderUid)
+      .eq("receiver_uid", receiverUid)
+      .maybeSingle();
+
+    if (error) throw new Error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
+
+    return !!data;
+  } catch (error) {
+    toast.error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
+    return false;
+  }
+};
+
 // 받은 친구 요청 목록 조회
 export const getReceivedRequests = async (userId: string) => {
   const supabaseClient = createClient();
