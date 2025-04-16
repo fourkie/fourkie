@@ -41,14 +41,14 @@ export const useRemoveBookmarkMutation = ({
 }: BookmarkedProps) => {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<void, Error, BookmarkedProps>({
     mutationFn: () => removeBookmarkedPlaylists(musicPlaylistId, userId),
 
     onSuccess: () => {
       toast.success(TOAST_MESSAGE.MUSIC.REMOVE_BOOKMARK_SUCCESS);
 
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY.BOOKMARKED_PLAYLISTS],
+        queryKey: [QUERY_KEY.BOOKMARKED_PLAYLISTS, userId],
       });
     },
 
