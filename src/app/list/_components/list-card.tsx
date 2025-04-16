@@ -55,8 +55,8 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         </div>
         {isMyPost ? (
           <div className="flex gap-3 w-[80px] justify-end">
-            <Pencil className="w-5 cursor-pointer" onClick={handleEdit} />
-            <Trash2 className="w-5 cursor-pointer" onClick={handleDelete} />
+            <Pencil className="w-5 cursor-pointer" onClick={handleDelete} />
+            <Trash2 className="w-5 cursor-pointer" onClick={handleEdit} />
           </div>
         ) : (
           <div
@@ -68,6 +68,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         )}
         {openPopup && (
           <EmotionGraph
+            page="list"
             openPopup={openPopup}
             setOpenPopup={() => setOpenPopup(!openPopup)}
             userId={user_id}
@@ -78,7 +79,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
       {!isMyPost && (
         <div className="font-bold text-center font-ownglyph leading-4p">
-          오늘{" "}
+          오늘
           <span className="text-secondary-200 font-ownglyph leading-4p">
             {user?.user_nickname}
           </span>
@@ -87,17 +88,17 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         </div>
       )}
       {isMyPost && (
-        <>
-          <div className="font-bold">{post_title}</div>
+        <div className="flex flex-col items-center">
+          <div className="font-bold text-xl">{post_title}</div>
           <div
             ref={contentRef}
-            className={`font-bold w-full break-words text-center text-sm ${
+            className={`font-bold w-full break-words text-center text-lg ${
               isExpanded ? "line-clamp-none" : "line-clamp-2"
             }`}
           >
             {post_content}
           </div>
-        </>
+        </div>
       )}
 
       {isMyPost && isOverflowing && (
