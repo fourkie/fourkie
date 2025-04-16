@@ -30,7 +30,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   // 펜딩 or 에러일 때 크기 같게 유지하려고 min-h-500px 줬습니다.
   if (isPending || isError)
     return (
-      <div className="w-full max-w-md mx-auto shadow-xl p-5 min-h-[21rem] flex items-center justify-center border-secondary-100 rounded">
+      <div className="w-full max-w-md mx-auto shadow-lg p-5 border border-secondary-100 rounded-xl my-5 min-h-[25rem] flex items-center justify-center ">
         <span className="text-grey-3 text-lg">
           {isPending ? QUERYDATA.ISPENDING : QUERYDATA.ISERROR}
         </span>
@@ -59,7 +59,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   for (let i = 1; i <= daysInMonth; i++) days.push(i);
 
   return (
-    <div className="w-full max-w-md mx-auto shadow-xl p-5 border border-secondary-100 rounded-xl mt-2">
+    <div className="w-full max-w-md mx-auto shadow-lg p-5 border border-secondary-100 rounded-xl my-5">
       <div className="flex justify-between items-center ">
         <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
         <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
@@ -114,7 +114,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
                     {images[day] ? (
                       <EmotionImage
                         src={checkEmotion(images[day])}
-                        size={"xs"}
+                        size={"xxs"}
                       />
                     ) : (
                       <span>{day}</span>

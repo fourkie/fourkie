@@ -1,6 +1,12 @@
 "use client";
 import Link from "next/link";
-import { House, Gem, CirclePlus, Music4, UserRound } from "lucide-react";
+import {
+  House,
+  HeartHandshake,
+  CirclePlus,
+  Music4,
+  UserRound,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const Navigation = () => {
@@ -32,12 +38,12 @@ const Navigation = () => {
       <Link href="/list">
         {pathname === "/list" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
-            <Gem className="w-5 h-5" />
+            <HeartHandshake className="w-5 h-5" />
             리스트
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center text-center text-grey-3">
-            <Gem className="w-5 h-5" />
+            <HeartHandshake className="w-5 h-5" />
             리스트
           </div>
         )}
@@ -58,7 +64,12 @@ const Navigation = () => {
         )}
       </Link>
       <Link href="my-page">
-        {pathname.startsWith("/my-page") ? (
+        {pathname.startsWith("/my-page") ||
+        pathname.startsWith("/notice") ||
+        pathname.startsWith("/version") ||
+        pathname.startsWith("/term") ||
+        pathname.startsWith("/smookie-makers") ||
+        pathname.startsWith("/friends") ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
             <UserRound className="w-5 h-5" />
             마이

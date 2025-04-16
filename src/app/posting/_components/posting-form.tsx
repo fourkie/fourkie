@@ -55,7 +55,7 @@ const PostingForm = ({ postId, userId, nickname }: UserDateProps) => {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col px-5 pt-2.5"
+        className="flex flex-col px-5 pt-2.5 gap-5"
       >
         <div className="flex flex-col gap-2">
           <h2 className="text-center text-xl font-bold text-grey-4">Title</h2>
@@ -63,7 +63,8 @@ const PostingForm = ({ postId, userId, nickname }: UserDateProps) => {
           <textarea
             {...register("inputTitle")}
             placeholder={FORM_MESSAGE.POST.TITLE}
-            className={`w-full text-base text-center resize-none overflow-hidden whitespace-normal focus:outline-none ${
+            maxLength={20}
+            className={`w-full text-xl text-center resize-none overflow-hidden whitespace-normal focus:outline-none font-ownglyph leading-4p ${
               inputTitle ? "text-black" : "text-grey-2"
             }`}
             onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
@@ -73,12 +74,12 @@ const PostingForm = ({ postId, userId, nickname }: UserDateProps) => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <h2 className="text-center text-lg font-bold text-grey-4">Content</h2>
+          <h2 className="text-center text-xl font-bold text-grey-4">Content</h2>
 
           <textarea
             {...register("inputContent")}
             placeholder={FORM_MESSAGE.POST.CONTENT}
-            className={`w-full text-base text-center resize-none overflow-hidden whitespace-pre-line focus:outline-none ${
+            className={`w-full text-lg text-center resize-none overflow-hidden whitespace-pre-line focus:outline-none font-ownglyph leading-4p ${
               inputContent ? "text-black" : "text-grey-2"
             }`}
             onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
