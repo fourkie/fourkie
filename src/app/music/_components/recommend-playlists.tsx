@@ -1,10 +1,9 @@
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import PlaylistCard from "./playlist-card";
-import { Emotion } from "@/constants/spotify.constant";
 
 type RecommendPlaylistsProps = {
   userId: string;
-  emotion: Emotion;
+  emotion: string;
 };
 
 const RecommendPlaylists = ({ userId, emotion }: RecommendPlaylistsProps) => {
