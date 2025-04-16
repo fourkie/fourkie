@@ -48,9 +48,7 @@ const TabButton = ({ isActive, onClick, children }: TabButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-2 rounded transition-colors duration-200 ${
-        isActive ? "bg-black text-white" : "bg-gray-200 text-gray-600"
-      }`}
+      className={`h-[24px] w-[85px] border-b border-b-[1px] border-b-[#E3E3E3] ${isActive ? "bg-black text-white" : "bg-gray-200 text-gray-600"}`}
     >
       {children}
     </button>
