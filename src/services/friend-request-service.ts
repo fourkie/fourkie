@@ -4,10 +4,10 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
 // 친구 요청 supabase 에 저장
 export const sendFriendRequest = async ({
-  senderUid,
+  userId,
   receiverUid,
 }: {
-  senderUid: string;
+  userId: string;
   receiverUid: string;
 }) => {
   const supabaseClient = createClient();
@@ -15,7 +15,7 @@ export const sendFriendRequest = async ({
   try {
     const { data, error } = await supabaseClient.from("friends").insert([
       {
-        sender_uid: senderUid,
+        sender_uid: userId,
         receiver_uid: receiverUid,
         accepted: false,
       },
@@ -23,7 +23,7 @@ export const sendFriendRequest = async ({
 
     if (error) throw new Error(TOAST_MESSAGE.MYPAGE.FRIEND_REQUEST_ERROR);
     return data;
-  } catch (error) {
+  } catch {
     toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_REQUEST_ERROR);
     return [];
   }
@@ -42,7 +42,7 @@ export const getReceivedRequests = async (userId: string) => {
 
     if (error) throw new Error(TOAST_MESSAGE.MYPAGE.FRIEND_RECEIVED_ERROR);
     return data;
-  } catch (error) {
+  } catch {
     toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_RECEIVED_ERROR);
     return [];
   }
@@ -61,7 +61,7 @@ export const getSentRequests = async (userId: string) => {
 
     if (error) throw new Error(TOAST_MESSAGE.MYPAGE.FRIEND_SENT_ERROR);
     return data;
-  } catch (error) {
+  } catch {
     toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_SENT_ERROR);
     return [];
   }
@@ -79,7 +79,7 @@ export const acceptFriendRequest = async (requestId: number) => {
 
     if (error) throw new Error(TOAST_MESSAGE.MYPAGE.FRIEND_ACCEPT_ERROR);
     return data;
-  } catch (error) {
+  } catch {
     toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_ACCEPT_ERROR);
     return [];
   }
@@ -87,10 +87,10 @@ export const acceptFriendRequest = async (requestId: number) => {
 
 // 손절하기
 export const deleteFriend = async ({
-  myUid,
+  userId,
   friendUid,
 }: {
-  myUid: string;
+  userId: string;
   friendUid: string;
 }) => {
   const supabaseClient = createClient();
@@ -100,7 +100,7 @@ export const deleteFriend = async ({
       .from("friends")
       .delete()
       .or(
-        `and(sender_uid.eq.${myUid},receiver_uid.eq.${friendUid}),and(sender_uid.eq.${friendUid},receiver_uid.eq.${myUid})`,
+        `and(sender_uid.eq.${userId},receiver_uid.eq.${friendUid}),and(sender_uid.eq.${friendUid},receiver_uid.eq.${userId})`,
       );
 
     if (error) throw new Error(TOAST_MESSAGE.MYPAGE.FRIEND_DELETE_ERROR);

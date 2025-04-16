@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FriendsSearchInput from "./components/friend-search-input";
 import FriendList from "./components/friend-list";
 import { SelectedUserType } from "./type";

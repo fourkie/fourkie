@@ -18,6 +18,7 @@ const PlaylistCard = ({
   onBookmarkToggle,
 }: PlaylistCardProps) => {
   const playlistUrl = playlist.uri || playlist.external_urls?.spotify;
+  console.log(userId);
 
   const { mutate: addBookmark } = useAddBookmarkMutation();
 

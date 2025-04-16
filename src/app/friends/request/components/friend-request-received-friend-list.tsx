@@ -5,12 +5,22 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { UI_TEXT } from "@/constants/ui-text";
 import { useAcceptFriendRequestMutation } from "@/hooks/mutations/use-accept-friend-request-mutation";
 import { useGetReceivedRequestQuery } from "@/hooks/queries/use-get-received-requests-query";
+import { getUserForClient } from "@/services/user-client-service";
 import EmotionImage from "@/ui/common/emotion-image.common";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const ReceivedFriendList = () => {
-  const { data, error } = useGetReceivedRequestQuery();
+  const [userId, setUserId] = useState<string>("");
+  useEffect(() => {
+    const fetchUserId = async () => {
+      const result = await getUserForClient(); // 이 함수가 Promise<{ userId: string }>
+      if (result) setUserId(result.userId);
+    };
+
+    fetchUserId();
+  }, []);
+  const { data, error } = useGetReceivedRequestQuery(userId);
   const { mutate: acceptRequest } = useAcceptFriendRequestMutation();
 
   useEffect(() => {
