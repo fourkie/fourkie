@@ -13,17 +13,11 @@ const createClient = () => {
         getAll() {
           return cookieStore.getAll();
         },
-        // setAll(cookiesToSet) {
-        //   try {
-        //     cookiesToSet.forEach(({ name, value, options }) =>
-        //       cookieStore.set(name, value, options),
-        //     );
-        //   } catch {
-        //     throw new Error(
-        //       "서버 컴포넌트에서는 cookies().set() 메서드를 사용할 수 없습니다.",
-        //     );
-        //   }
-        // },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, options),
+          );
+        },
       },
     },
   );

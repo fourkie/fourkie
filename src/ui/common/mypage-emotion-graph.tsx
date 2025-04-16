@@ -6,13 +6,7 @@ import emotionGraphCal from "@/utils/emotion-graph-cal.util";
 import { checkEmotion } from "@/utils/home-emotion.util";
 import EmotionImage from "./emotion-image.common";
 
-const MypageEmotionGraph = ({
-  userId,
-  nickname,
-}: {
-  userId: string;
-  nickname: string;
-}) => {
+const MypageEmotionGraph = ({ userId }: { userId: string }) => {
   const { data: posts } = useGetAllPostsByIdQuery({ userId });
   if (!posts) return null;
 
@@ -38,11 +32,11 @@ const MypageEmotionGraph = ({
   };
 
   return (
-    <div className="w-full bg-white rounded-xl border border-primary-100 p-4 mb-6">
-      <div className="text-xs w-full text-right mb-4 text-gray-400">
+    <div className="mb-6 w-full rounded-xl border border-primary-100 bg-white p-4">
+      <div className="mb-4 w-full text-right text-xs text-gray-400">
         * 최근 3개월 통계
       </div>
-      <div className="flex w-full justify-between items-end">
+      <div className="flex w-full items-end justify-between">
         {emotions.map((e, i) => {
           const percentageValue = parseFloat(e.percentage.replace("%", ""));
           const barHeight = Math.max(
@@ -53,10 +47,10 @@ const MypageEmotionGraph = ({
           return (
             <div
               key={i}
-              className="flex flex-col items-center justify-end text-xs gap-2"
+              className="flex flex-col items-center justify-end gap-2 text-xs"
             >
               <div
-                className="w-4 border rounded-t-lg px-7"
+                className="w-4 rounded-t-lg border px-7"
                 style={{
                   height: `${barHeight}px`,
                   backgroundColor: `var(--color-${color[e.emotion]})`,

@@ -40,6 +40,16 @@ export const TOAST_MESSAGE = {
       SERVER_ERROR: "서버 오류가 발생했습니다. 나중에 다시 시도해주세요.",
     },
   },
+  SIGNUP: {
+    SUCCESS: "회원가입이 완료되었습니다!",
+    SIGNUP_ERROR: "회원가입 중 오류가 발생했습니다.",
+    DUPLICATE_EMAIL: "이미 가입된 이메일입니다.",
+    DUPLICATE_NICKNAME: "이미 가입된 닉네임입니다.",
+  },
+  SIGNIN: {
+    ERROR: "이메일 또는 비밀번호가 올바르지 않습니다.",
+    SIGNIN_ERROR: "로그인 중 오류가 발생했습니다.",
+  },
   POST: {
     POSTING: {
       SUCCESS: "게시물이 성공적으로 작성되었습니다.",

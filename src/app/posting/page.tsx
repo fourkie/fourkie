@@ -1,9 +1,8 @@
 import createClient from "@/services/supabase-server-service";
-import PostingForm from "./_components/posting-form";
-import { redirect } from "next/navigation";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
-import { useGetUserByIdQuery } from "@/hooks/queries/use-get-user-by-id-query";
+import { redirect } from "next/navigation";
+import PostingForm from "./_components/posting-form";
 
 const Posting = async () => {
   const supabaseServer = createClient();
@@ -27,7 +26,7 @@ const Posting = async () => {
         <span className="text-xl">{date}</span>
         <span className="text-lg">{day}</span>
       </div>
-      <hr className="my-2.5 w-full border-grey-0 " />
+      <hr className="my-2.5 w-full border-grey-0" />
 
       <PostingForm userId={userId} />
     </div>
