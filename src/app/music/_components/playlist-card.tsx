@@ -1,43 +1,49 @@
-import { useState } from "react";
-import { SpotifyPlaylistItem } from "../type";
-import Image from "next/image";
+import {
+  useAddBookmarkMutation,
+  useRemoveBookmarkMutation,
+} from "@/hooks/mutations/use-music-bookmarks-mutation";
+import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
 import { Star } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { SpotifyPlaylistItem } from "../type";
 
 interface PlaylistCardProps {
   playlist: SpotifyPlaylistItem;
-  // onBookmarkToggle: (playlistId: string) => void; // 북마크 추가 / 삭제함수
+  userId: string;
 }
 
-export const PlaylistCard = ({ playlist }: PlaylistCardProps) => {
-  const [isBookmarkedState, setIsBookmarkedState] = useState(false);
+export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
+  const musicPlaylistId = playlist.id || playlist.music_playlist_id;
+
+  const { mutate: addBookmark } = useAddBookmarkMutation(userId);
+  const { mutate: removeBookmark } = useRemoveBookmarkMutation({
+    musicPlaylistId,
+    userId,
+  });
+
+  const { data: bookmarkedIds } = useGetAllBookmarkedPlaylistsByIdQuery(userId);
+
+  const isBookmarked = bookmarkedIds?.some(
+    (item) => item.music_playlist_id === musicPlaylistId,
+  );
 
   const handleBookmarkToggle = () => {
-    // onBookmarkToggle(playlist.id);
-    console.log("setIsBookmarkedState", !isBookmarkedState);
-    setIsBookmarkedState(!isBookmarkedState); // 버튼 클릭 후 상태 변경
-
-    if (isBookmarkedState == false) {
+    if (isBookmarked == false) {
       // 북마크 추가
-      console.log("북마크 추가");
-      // addBookmark(playlist);
-    } else if (isBookmarkedState == true) {
+      addBookmark({ ...playlist, userId });
+    } else if (isBookmarked == true) {
       // 북마크 삭제
-      console.log("북마크 삭제");
+      removeBookmark({ musicPlaylistId, userId });
     }
   };
-
-  // const { mutate: addBookmark } = useAddBookmarkMutation();
-  // const { mutate: removeBookmark } = useRemoveBookmarkMutation();
 
   return (
     <div className="flex items-center justify-start">
       <button className="bookmark-button" onClick={handleBookmarkToggle}>
         <Star
           className={
-            isBookmarkedState
-              ? "fill-yellow-500 text-yellow-500"
-              : "text-yellow-500"
+            isBookmarked ? "fill-yellow-500 text-yellow-500" : "text-yellow-500"
           }
           size={24}
         />
