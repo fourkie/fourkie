@@ -15,6 +15,7 @@ const BookmarkedPlaylists = ({ userId }: { userId: string }) => {
       {playlists?.map((playlist) => (
         <PlaylistCard
           key={playlist.id}
+          userId={userId}
           playlist={playlist}
           isBookmarked={true}
           onBookmarkToggle={() => {

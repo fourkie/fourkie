@@ -7,7 +7,7 @@ const RecommendPlaylists = ({ userId }: { userId: string }) => {
   const [emotion, setEmotion] = useState(Emotion.JOY); // 기본 감정값
   const { playlists, playlistsPending } =
     useGetAllPlaylistsByQueryQuery(emotion);
-
+  console.log(setEmotion);
   if (playlistsPending) return <p>로딩 중...</p>;
 
   return (
@@ -15,6 +15,7 @@ const RecommendPlaylists = ({ userId }: { userId: string }) => {
       {playlists.map((playlist) => (
         <PlaylistCard
           key={playlist.id}
+          userId={userId}
           playlist={playlist}
           isBookmarked={false} // 추천 탭이므로 북마크 여부는 따로 로직 추가 가능
           onBookmarkToggle={() => console.log("북마크 토글")}

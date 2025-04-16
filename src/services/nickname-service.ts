@@ -1,7 +1,6 @@
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import createClient from "./supabase-client-service";
 import { toast } from "react-toastify";
-import { UI_TEXT } from "@/constants/ui-text";
 
 export const getUserNickname = async () => {
   const supabaseClient = createClient();
@@ -26,7 +25,7 @@ export const getUserNickname = async () => {
       throw new Error(TOAST_MESSAGE.MYPAGE.GET_NICKNAME_ERROR);
     }
     return data?.user_nickname;
-  } catch (error) {
+  } catch {
     toast.error(TOAST_MESSAGE.MYPAGE.GET_NICKNAME_ERROR);
   }
 };
@@ -53,7 +52,7 @@ export const upDateMyNickname = async (newNickname: string) => {
     if (updateNicknameError) {
       throw new Error(TOAST_MESSAGE.MYPAGE.CHANGE_NICKNAME_ERROR);
     }
-  } catch (error) {
+  } catch {
     toast.error(TOAST_MESSAGE.MYPAGE.CHANGE_NICKNAME_ERROR);
   }
 };
@@ -70,7 +69,7 @@ export const checkNicknameDuplicate = async (nickname: string) => {
       .single();
 
     return !!data;
-  } catch (error) {
+  } catch {
     toast.error(TOAST_MESSAGE.MYPAGE.EXIST_NICKNAME_ERROR);
     return true;
   }

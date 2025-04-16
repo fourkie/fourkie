@@ -69,8 +69,8 @@ const Music = () => {
 
       <PlaylistTabContainer
         userId={userId}
-        // activeTab={isSelectedTab}
-        // onTabChange={setIsSelectedTab}
+        activeTab={isSelectedTab}
+        onTabChange={setIsSelectedTab}
       />
 
       <div className="mt-4">
@@ -82,6 +82,7 @@ const Music = () => {
               return (
                 <PlaylistCard
                   key={playlist.id}
+                  userId={userId}
                   playlist={playlist}
                   isBookmarked={isBookmarked}
                   onBookmarkToggle={() => handleBookmarkToggle(playlist.id)}

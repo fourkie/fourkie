@@ -1,8 +1,8 @@
 import { SPOTIFY } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export const GET = async (req: NextRequest) => {
+export const GET = async () => {
   try {
     // Spotify 자격 증명 가져오기
     const clientId = process.env.SPOTIFY_CLIENT_ID;

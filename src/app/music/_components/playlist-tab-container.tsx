@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { PlaylistTabProps, TabButtonProps } from "../type";
 import RecommendPlaylists from "./recommend-playlists";
 import BookmarkedPlaylists from "./bookmarked-playlists";
 
-const PlaylistTabContainer = ({ userId }: { userId: string }) => {
+const PlaylistTabContainer = ({
+  userId,
+}: {
+  userId: string;
+  activeTab?: PlaylistTabProps;
+  onTabChange?: Dispatch<SetStateAction<PlaylistTabProps>>;
+}) => {
   console.log("userId:", userId); // 확인 완료
 
   const [activeTab, setActiveTab] = useState<PlaylistTabProps>(

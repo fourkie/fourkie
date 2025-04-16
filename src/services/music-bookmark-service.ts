@@ -3,7 +3,7 @@ import createClient from "./supabase-client-service";
 import { SpotifyPlaylistItem } from "@/app/music/type";
 
 // 유저의 북마크된 플레이리스트 조회
-export const fetchBookmarkedPlaylists = async (userId: string) => {
+export const fetchBookmarkedPlaylists = async (userId: string | null) => {
   const supabaseClient = createClient();
 
   console.log("북마크 목록 조회 시작 : ", userId);

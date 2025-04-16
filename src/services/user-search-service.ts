@@ -14,7 +14,7 @@ export const searchUserByNicknameOrEmail = async (searchKeyword: string) => {
 
     if (error) throw new Error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
     return data;
-  } catch (error) {
+  } catch {
     toast.error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
     return null;
   }
