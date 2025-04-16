@@ -6,7 +6,7 @@ import emotionGraphCal from "@/utils/emotion-graph-cal.util";
 import { X } from "lucide-react";
 import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import EmotionImage from "./emotion-image.common";
-import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
+import { checkEmotion } from "@/utils/home-emotion.util";
 
 const EmotionGraph = ({
   openPopup,
@@ -29,7 +29,7 @@ const EmotionGraph = ({
   );
   const maxPercentage = Math.max(...numericPercentages);
 
-  const color = {
+  const color: Record<string, string> = {
     JOY: "primary-400",
     EXCITED: "primary-300",
     BUTTERFLY: "primary-200",
@@ -82,10 +82,7 @@ const EmotionGraph = ({
                     borderTopRightRadius: "8px",
                   }}
                 ></div>
-                <EmotionImage
-                  src={EMOTION_COOKIE_IMAGE_URL[e.emotion]}
-                  size="s"
-                />
+                <EmotionImage src={checkEmotion(e.emotion)} size="s" />
                 <div className="mt-1">{EMOTIONS_QUERY[e.emotion]}</div>
                 <div className="mt-1">{e.percentage}</div>
               </div>

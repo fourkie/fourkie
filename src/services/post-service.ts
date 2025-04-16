@@ -88,3 +88,23 @@ export const updatePostsByPostId = async ({
     console.log(error);
   }
 };
+
+export const removePost = async (postId: number) => {
+  const supabaseClient = createClient();
+  try {
+    const { error } = await supabaseClient
+      .from("posts")
+      .delete()
+      .eq("post_id", postId);
+
+    if (error) {
+      console.error("게시글 삭제 실패:", error.message);
+      throw new Error("게시글 삭제에 실패했어요.");
+    }
+
+    console.log("게시글 삭제 성공");
+  } catch (err) {
+    console.error("에러 발생:", err);
+    throw err;
+  }
+};

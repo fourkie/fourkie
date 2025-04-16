@@ -3,25 +3,22 @@ import createClient from "./supabase-client-service";
 import { SpotifyPlaylistItem } from "@/app/music/type";
 
 // 유저의 북마크된 플레이리스트 조회
-export const fetchBookmarkedPlaylists = async (userId: string) => {
+export const fetchBookmarkedPlaylists = async (userId: string | null) => {
   const supabaseClient = createClient();
 
-  console.log("🔍 [fetchBookmarkedPlaylists] 북마크 목록 조회 시작:", userId);
+  console.log("북마크 목록 조회 시작 : ", userId);
 
   const { data: bookmarkedData, error: bookmarkedError } = await supabaseClient
     .from("musics")
-    .select("music_playlist_id")
+    .select("music_playlist_id") // 음악 아이디
     .eq("user_id", userId);
 
   if (bookmarkedError) {
-    console.error("❌ [fetchBookmarkedPlaylists] 에러:", bookmarkedError);
+    console.error("bookmarkedError : ", bookmarkedError);
     throw new Error(TOAST_MESSAGE.SPOTIFY.BOOKMARK_ERROR);
   }
 
-  console.log(
-    "✅ [fetchBookmarkedPlaylists] 조회된 북마크 목록:",
-    bookmarkedData,
-  );
+  console.log("조회된 북마크 목록 : ", bookmarkedData);
 
   return bookmarkedData.map((item) => item.music_playlist_id);
 };
@@ -29,6 +26,7 @@ export const fetchBookmarkedPlaylists = async (userId: string) => {
 // 특정 플레이리스트를 북마크에 추가
 export const addBookmarkedPlaylists = async ({
   id: music_playlist_id,
+  userId,
   name,
   external_urls,
   images,
@@ -37,12 +35,19 @@ export const addBookmarkedPlaylists = async ({
 }: SpotifyPlaylistItem) => {
   const supabaseClient = createClient();
 
-  const { error } = await supabaseClient
-    .from("musics")
-    .insert([{ music_playlist_id, name, external_urls, images, tracks, uri }]);
+  const { error } = await supabaseClient.from("musics").insert([
+    {
+      music_playlist_id,
+      user_id: userId,
+      name,
+      external_urls,
+      images,
+      tracks,
+      uri,
+    },
+  ]);
 
   if (error) {
-    console.error("❌ [addBookmarkedPlaylists] 북마크 추가 실패:", error);
     throw new Error(TOAST_MESSAGE.SPOTIFY.ADD_BOOKMARK_ERROR);
   }
 };

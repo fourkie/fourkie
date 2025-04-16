@@ -9,7 +9,7 @@ import { useRemovePostMutation } from "@/hooks/mutations/use-remove-post-mutatio
 import { useRouter } from "next/navigation";
 import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import EmotionImage from "@/ui/common/emotion-image.common";
-import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
+import { checkEmotion } from "@/utils/home-emotion.util";
 
 const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   const {
@@ -55,8 +55,8 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         </div>
         {isMyPost ? (
           <div className="flex gap-3 w-[80px] justify-end">
-            <Pencil className="w-5 cursor-pointer" onClick={handleDelete} />
-            <Trash2 className="w-5 cursor-pointer" onClick={handleEdit} />
+            <Pencil className="w-5 cursor-pointer" onClick={handleEdit} />
+            <Trash2 className="w-5 cursor-pointer" onClick={handleDelete} />
           </div>
         ) : (
           <div
@@ -75,7 +75,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
           />
         )}
       </div>
-      <EmotionImage src={EMOTION_COOKIE_IMAGE_URL[post_emotion]} size="l" />
+      <EmotionImage src={checkEmotion(post_emotion)} size="l" />
       {!isMyPost && (
         <div className="font-bold text-center font-ownglyph leading-4p">
           오늘{" "}

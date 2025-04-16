@@ -26,7 +26,7 @@ export const getMyFriends = async () => {
 
     if (friendError) throw friendError;
     return data;
-  } catch (error) {
+  } catch {
     toast.error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
   }
 };

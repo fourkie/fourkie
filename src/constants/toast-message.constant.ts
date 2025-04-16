@@ -36,6 +36,7 @@ export const TOAST_MESSAGE = {
     FETCH: {
       ERROR: "게시글을 불러오지 못했습니다.",
     },
+  },
   MYPAGE: {
     SEARCH_ERROR: "유저 정보가 없습니다",
     REQUEST_ERROR: "요청 전송에 실패했습니다.",
@@ -52,6 +53,5 @@ export const TOAST_MESSAGE = {
     FRIEND_ACCEPT_ERROR: "친구 맺기에 실패했습니다.",
     FRIEND_ACCEPT_SUCCESS: "친구 요청을 수락했습니다.",
     FRIEND_DELETE_ERROR: "친구 삭제에 실패했습니다.",
-  },
   },
 };

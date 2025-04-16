@@ -8,6 +8,7 @@ import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 import { deleteFriend } from "@/services/friend-request-service";
 import { getUserForClient } from "@/services/user-client-service";
 import { UI_TEXT } from "@/constants/ui-text";
+import { useEffect, useState } from "react";
 
 const FriendList = ({
   searchUser,
@@ -15,7 +16,15 @@ const FriendList = ({
 }: FriendListProps & { setSelectedUser: (user: SelectedUserType) => void }) => {
   const { data: searchedUser } = useSearchUserQuery(searchUser);
   const { data: friendList } = useGetMyFriendsQuery();
-  const { userId: myUid } = getUserForClient();
+  const [userId, setUserId] = useState<string>("");
+  useEffect(() => {
+    const fetchUserId = async () => {
+      const result = await getUserForClient(); // 이 함수가 Promise<{ userId: string }>
+      if (result) setUserId(result.userId);
+    };
+
+    fetchUserId();
+  }, []);
 
   if (searchUser && searchedUser) {
     return (
@@ -49,7 +58,7 @@ const FriendList = ({
             </div>
             <button
               onClick={() =>
-                deleteFriend({ myUid, friendUid: friend.user_uid })
+                deleteFriend({ userId, friendUid: friend.user_uid })
               }
               className="text-sm text-secondary-300 border border-secondary-300 rounded-full px-2 py-1 hover:bg-secondary-300 hover:text-white transition-all duration-300"
             >

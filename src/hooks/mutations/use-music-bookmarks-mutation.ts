@@ -19,6 +19,7 @@ export const useAddBookmarkMutation = () => {
       images,
       tracks,
       uri,
+      userId,
     }: {
       music_playlist_id: string;
       name: string;
@@ -26,6 +27,7 @@ export const useAddBookmarkMutation = () => {
       images: { url: string }[];
       tracks: { href: string; total: number };
       uri: string;
+      userId: string;
     }) =>
       addBookmarkedPlaylists({
         id: music_playlist_id,
@@ -34,6 +36,7 @@ export const useAddBookmarkMutation = () => {
         images,
         tracks,
         uri,
+        userId,
       }),
 
     onSuccess: () => {
@@ -51,33 +54,17 @@ export const useAddBookmarkMutation = () => {
 };
 
 // 북마크 삭제 API를 호출하는 뮤테이션 훅
+type RemoveBookmarkInput = {
+  musicPlaylistId: string;
+  userId: string;
+};
+
 export const useRemoveBookmarkMutation = () => {
   const queryClient = useQueryClient();
 
-  return useMutation({
-    mutationFn: ({
-      music_playlist_id,
-      name,
-      external_urls,
-      images,
-      tracks,
-      uri,
-    }: {
-      music_playlist_id: string;
-      name: string;
-      external_urls: { spotify: string };
-      images: { url: string }[];
-      tracks: { href: string; total: number };
-      uri: string;
-    }) =>
-      removeBookmarkedPlaylists({
-        id: music_playlist_id,
-        name,
-        external_urls,
-        images,
-        tracks,
-        uri,
-      }),
+  return useMutation<void, Error, RemoveBookmarkInput>({
+    mutationFn: ({ musicPlaylistId, userId }) =>
+      removeBookmarkedPlaylists(musicPlaylistId, userId),
 
     onSuccess: () => {
       toast.success(TOAST_MESSAGE.SPOTIFY.REMOVE_BOOKMARK_SUCCESS);

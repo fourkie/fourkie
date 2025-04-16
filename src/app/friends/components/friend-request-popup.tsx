@@ -6,14 +6,23 @@ import { getUserForClient } from "@/services/user-client-service";
 import { useSendFriendRequestMutation } from "@/hooks/mutations/use-send-friend-request-mutation";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
+import { useEffect, useState } from "react";
 
 const FriendrequestPopUp = ({ user, onClose }: FriendRequestPopUpProps) => {
-  const { userId } = getUserForClient();
+  const [userId, setUserId] = useState<string>("");
+  useEffect(() => {
+    const fetchUserId = async () => {
+      const result = await getUserForClient(); // 이 함수가 Promise<{ userId: string }>
+      if (result) setUserId(result.userId);
+    };
+
+    fetchUserId();
+  }, []);
   const { mutate: sendRequest } = useSendFriendRequestMutation();
 
   const handleSendRequest = () => {
     if (!userId) return;
-    sendRequest({ senderUid: userId, receiverUid: user.user_uid });
+    sendRequest({ userId, receiverUid: user.user_uid });
     onClose();
   };
 

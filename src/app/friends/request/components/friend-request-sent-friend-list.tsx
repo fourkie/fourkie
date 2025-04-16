@@ -4,12 +4,22 @@ import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { UI_TEXT } from "@/constants/ui-text";
 import { useGetSentRequestsQuery } from "@/hooks/queries/use-get-sent-requests-query";
+import { getUserForClient } from "@/services/user-client-service";
 import EmotionImage from "@/ui/common/emotion-image.common";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const SentFriendList = () => {
-  const { data, error } = useGetSentRequestsQuery();
+  const [userId, setUserId] = useState<string>("");
+  useEffect(() => {
+    const fetchUserId = async () => {
+      const result = await getUserForClient(); // 이 함수가 Promise<{ userId: string }>
+      if (result) setUserId(result.userId);
+    };
+
+    fetchUserId();
+  }, []);
+  const { data, error } = useGetSentRequestsQuery(userId);
 
   useEffect(() => {
     if (error) {
