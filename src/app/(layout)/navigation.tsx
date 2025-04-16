@@ -6,8 +6,16 @@ import { usePathname } from "next/navigation";
 const Navigation = () => {
   const pathname = usePathname();
 
+  if (
+    pathname.startsWith("/sign-in") ||
+    pathname.startsWith("/sign-up") ||
+    pathname.startsWith("/posting")
+  ) {
+    return null;
+  }
+
   return (
-    <div className="grid grid-cols-5 justify-evenly items-center text-black fixed bottom-0 w-full h-[106px]  rounded-t-[28px] bg-white shadow-md z-10  border-t border-grey-1">
+    <div className="grid grid-cols-5 justify-evenly items-center text-black fixed bottom-0 w-full h-[106px] pb-[34px]  rounded-t-[28px] bg-white shadow-md z-10  border-t border-grey-1">
       <Link href="/">
         {pathname === "/" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
@@ -35,11 +43,7 @@ const Navigation = () => {
         )}
       </Link>
       <Link href="/posting">
-        {pathname === "/posting" ? (
-          <CirclePlus className="w-10 h-10 text-secondary-400 mx-auto" />
-        ) : (
-          <CirclePlus className="w-10 h-10 text-primary-400 mx-auto" />
-        )}
+        <CirclePlus className="w-10 h-10 text-primary-400 mx-auto" />
       </Link>
 
       <Link href="/music">
