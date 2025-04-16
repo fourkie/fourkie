@@ -1,5 +1,4 @@
 "use client";
-
 import { Emotion } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
@@ -9,7 +8,7 @@ import { toast } from "react-toastify";
 import EmotionSelect from "./_components/emotion-select";
 import PlaylistTabContainer from "./_components/playlist-tab-container";
 import { PlaylistTabProps } from "./type";
-import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
+
 import PlaylistCard from "./_components/playlist-card";
 
 const Music = () => {
@@ -18,9 +17,10 @@ const Music = () => {
   );
   const [query, setQuery] = useState(Emotion.JOY);
   const [userId, setUserId] = useState<string | null>(null);
-  const [bookmarks, setBookmarks] = useState<{ [key: string]: boolean }>({});
 
   const supabaseClient = createClient();
+  const { playlists, playlistsPending, playlistsError } =
+    useGetAllPlaylistsByQueryQuery(query);
 
   // 유저 정보 조회
   useEffect(() => {
@@ -32,36 +32,16 @@ const Music = () => {
         toast.error(TOAST_MESSAGE.SPOTIFY.USER_ERROR);
         return;
       }
-
       setUserId(userId);
     };
-
     fetchUser();
   }, []);
 
-  useEffect(() => {
-    const fetchBookmarks = async () => {
-      if (!userId || !playlists.length) return;
-
-      const bookmarked = useGetAllBookmarkedPlaylistsByIdQuery(userId);
-      const bookmarkMap = bookmarked.reduce((acc, id) => {
-        acc[id] = true;
-        return acc;
-      }, {} as { [key: string]: boolean });
-
-      setBookmarks(bookmarkMap);
-    };
-
-    fetchBookmarks();
-  }, [userId]);
-
-  const { playlists, playlistsPending, playlistsError } =
-    useGetAllPlaylistsByQueryQuery(query);
+  if (!userId || !playlists.length) return;
 
   if (playlistsPending || playlistsError || !userId) {
     return <div>{TOAST_MESSAGE.SPOTIFY.ERROR}</div>;
   }
-
   return (
     <div>
       <EmotionSelect value={query} onChange={setQuery} />
@@ -74,14 +54,11 @@ const Music = () => {
         {isSelectedTab === PlaylistTabProps.RECOMMEND && (
           <ul className="flex flex-col gap-4">
             {playlists.map((playlist) => {
-              const isBookmarked = bookmarks[playlist.id] || false;
-
               return (
                 <PlaylistCard
                   key={playlist.id}
                   userId={userId}
                   playlist={playlist}
-                  isBookmarked={isBookmarked}
                 />
               );
             })}
@@ -91,5 +68,4 @@ const Music = () => {
     </div>
   );
 };
-
 export default Music;

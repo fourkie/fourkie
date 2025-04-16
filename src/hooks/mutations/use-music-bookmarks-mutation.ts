@@ -54,17 +54,17 @@ export const useAddBookmarkMutation = () => {
 };
 
 // 북마크 삭제 API를 호출하는 뮤테이션 훅
+type RemoveBookmarkInput = {
+  musicPlaylistId: string;
+  userId: string;
+};
+
 export const useRemoveBookmarkMutation = () => {
   const queryClient = useQueryClient();
 
-  return useMutation({
-    mutationFn: ({
-      music_playlist_id,
-      userId,
-    }: {
-      music_playlist_id: string;
-      userId: string;
-    }) => removeBookmarkedPlaylists(music_playlist_id, userId),
+  return useMutation<void, Error, RemoveBookmarkInput>({
+    mutationFn: ({ musicPlaylistId, userId }) =>
+      removeBookmarkedPlaylists(musicPlaylistId, userId),
 
     onSuccess: () => {
       toast.success(TOAST_MESSAGE.SPOTIFY.REMOVE_BOOKMARK_SUCCESS);

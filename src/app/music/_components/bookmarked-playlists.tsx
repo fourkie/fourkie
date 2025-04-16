@@ -3,7 +3,7 @@
 import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
 import PlaylistCard from "./playlist-card";
 import { SpotifyPlaylistItem } from "../type";
-import { removeBookmarkedPlaylists } from "@/services/music-bookmark-service";
+// import { removeBookmarkedPlaylists } from "@/services/music-bookmark-service";
 
 const BookmarkedPlaylists = ({ userId }: { userId: string }) => {
   const { data, isPending, isError } =
@@ -26,9 +26,9 @@ const BookmarkedPlaylists = ({ userId }: { userId: string }) => {
     );
 
   // 북마크 제거 처리
-  const handleBookmarkToggle = (playlist: SpotifyPlaylistItem) => {
-    removeBookmarkedPlaylists(playlist.id, userId);
-  };
+  // const handleBookmarkToggle = (playlist: SpotifyPlaylistItem) => {
+  //   removeBookmarkedPlaylists(playlist.id, userId);
+  // };
 
   return (
     <ul className="flex flex-col gap-4">
@@ -37,8 +37,8 @@ const BookmarkedPlaylists = ({ userId }: { userId: string }) => {
           key={playlist.id}
           userId={userId}
           playlist={playlist}
-          isBookmarked={true}
-          onBookmarkToggle={() => handleBookmarkToggle(playlist)}
+          // isBookmarked={true}
+          // onBookmarkToggle={() => handleBookmarkToggle(playlist)}
         />
       ))}
     </ul>
