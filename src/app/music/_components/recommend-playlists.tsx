@@ -4,10 +4,12 @@ import { useState } from "react";
 import PlaylistCard from "./playlist-card";
 
 const RecommendPlaylists = ({ userId }: { userId: string }) => {
-  const [emotion, setEmotion] = useState(Emotion.JOY); // 기본 감정값
+  const [emotion, setEmotion] = useState(Emotion.JOY);
   const { playlists, playlistsPending } =
     useGetAllPlaylistsByQueryQuery(emotion);
+
   console.log(setEmotion);
+
   if (playlistsPending) return <p>로딩 중...</p>;
 
   return (

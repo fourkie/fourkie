@@ -17,6 +17,7 @@ export interface SpotifyTracks {
 
 export interface SpotifyPlaylistItem {
   id: string;
+  userId: string;
   name: string;
   external_urls: { spotify: string };
   images: SpotifyImage[];

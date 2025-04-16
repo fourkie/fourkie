@@ -19,6 +19,7 @@ export const useAddBookmarkMutation = () => {
       images,
       tracks,
       uri,
+      userId,
     }: {
       music_playlist_id: string;
       name: string;
@@ -26,6 +27,7 @@ export const useAddBookmarkMutation = () => {
       images: { url: string }[];
       tracks: { href: string; total: number };
       uri: string;
+      userId: string;
     }) =>
       addBookmarkedPlaylists({
         id: music_playlist_id,
@@ -34,6 +36,7 @@ export const useAddBookmarkMutation = () => {
         images,
         tracks,
         uri,
+        userId,
       }),
 
     onSuccess: () => {
@@ -57,27 +60,11 @@ export const useRemoveBookmarkMutation = () => {
   return useMutation({
     mutationFn: ({
       music_playlist_id,
-      name,
-      external_urls,
-      images,
-      tracks,
-      uri,
+      userId,
     }: {
       music_playlist_id: string;
-      name: string;
-      external_urls: { spotify: string };
-      images: { url: string }[];
-      tracks: { href: string; total: number };
-      uri: string;
-    }) =>
-      removeBookmarkedPlaylists({
-        id: music_playlist_id,
-        name,
-        external_urls,
-        images,
-        tracks,
-        uri,
-      }),
+      userId: string;
+    }) => removeBookmarkedPlaylists(music_playlist_id, userId),
 
     onSuccess: () => {
       toast.success(TOAST_MESSAGE.SPOTIFY.REMOVE_BOOKMARK_SUCCESS);

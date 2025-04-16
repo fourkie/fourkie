@@ -7,9 +7,10 @@ import createClient from "@/services/supabase-client-service";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import EmotionSelect from "./_components/emotion-select";
-import PlaylistCard from "./_components/playlist-card";
 import PlaylistTabContainer from "./_components/playlist-tab-container";
 import { PlaylistTabProps } from "./type";
+import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
+import PlaylistCard from "./_components/playlist-card";
 
 const Music = () => {
   const [isSelectedTab, setIsSelectedTab] = useState<PlaylistTabProps>(
@@ -27,8 +28,6 @@ const Music = () => {
       const { data } = await supabaseClient.auth.getUser();
       const userId = data.user?.id;
 
-      console.log("유저 정보 : ", userId); // 확인 완료
-
       if (!userId) {
         toast.error(TOAST_MESSAGE.SPOTIFY.USER_ERROR);
         return;
@@ -44,7 +43,7 @@ const Music = () => {
     const fetchBookmarks = async () => {
       if (!userId || !playlists.length) return;
 
-      const bookmarked = await getBookmarkedPlaylistsByUser(userId);
+      const bookmarked = useGetAllBookmarkedPlaylistsByIdQuery(userId);
       const bookmarkMap = bookmarked.reduce((acc, id) => {
         acc[id] = true;
         return acc;
@@ -66,13 +65,11 @@ const Music = () => {
   return (
     <div>
       <EmotionSelect value={query} onChange={setQuery} />
-
       <PlaylistTabContainer
         userId={userId}
         activeTab={isSelectedTab}
         onTabChange={setIsSelectedTab}
       />
-
       <div className="mt-4">
         {isSelectedTab === PlaylistTabProps.RECOMMEND && (
           <ul className="flex flex-col gap-4">
@@ -85,7 +82,6 @@ const Music = () => {
                   userId={userId}
                   playlist={playlist}
                   isBookmarked={isBookmarked}
-                  onBookmarkToggle={() => handleBookmarkToggle(playlist.id)}
                 />
               );
             })}
