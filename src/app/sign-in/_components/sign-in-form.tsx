@@ -13,9 +13,9 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
+import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 import { useLoginStore } from "@/hooks/zustand/store";
 import EmotionImage from "@/ui/common/emotion-image.common";
-import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 import Link from "next/link";
 
 const SignInForm = () => {
@@ -56,31 +56,31 @@ const SignInForm = () => {
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-xs space-y-4"
+        className="w-full max-w-xs"
       >
         <Input
           {...register("email", EMAIL_VALIDATION)}
           type="email"
           placeholder={FORM_MESSAGE.EMAIL}
           error={errors.email?.message}
-          className="bg-white px-4 py-3 rounded-xl border-none shadow-sm focus:outline-none"
+          className="bg-white px-4 py-3 rounded-xl border-none shadow-sm w-full focus:outline-none"
         />
         <Input
           {...register("password", PASSWORD_VALIDATION)}
           type="password"
           placeholder={FORM_MESSAGE.PASSWORD}
           error={errors.password?.message}
-          className="bg-white px-4 py-3 rounded-xl border-none shadow-sm focus:outline-none"
+          className="bg-white px-4 py-3 rounded-xl border-none w-full shadow-sm focus:outline-none"
         />
         <Button
           type="submit"
           disabled={!isValid}
-          classname="w-full bg-primary-300 text-primary-800 font-semibold py-3 rounded-xl"
+          classname="w-full bg-primary-300 text-primary-800 font-semibold py-3 rounded-xl mt-6"
         >
           로그인
         </Button>
       </form>
-      <div className="border border-grey-3 w-full mt-10" />
+      <div className="border border-grey-2 w-full mt-10" />
       <div className="text-grey-3 m-4">
         <Link href="/sign-up">회원가입하기</Link>
       </div>
