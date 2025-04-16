@@ -5,6 +5,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-own-glyph: "Ownglyph", sans-serif;
+  --font-pretendard: "Pretendard", sans-serif;
 
   /* Primary Colors */
   --color-primary-50: #ecf3e2;
@@ -65,7 +67,7 @@ body {
 
 @font-face {
   font-family: "Ownglyph";
-  src: url("/fonts/Ownglyph.ttf") format("truetype");
+  src: url("/fonts/ownglyph.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        ownglyph: ["Ownglyph", "sans-serif"],
-        pretendard: ["Pretendard", "sans-serif"],
+        ownglyph: "var(--font-own-glyph)",
+        pretendard: "var(--font-pretendard)",
       },
       lineHeight: {
         "4p": "1.04",

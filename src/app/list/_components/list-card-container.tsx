@@ -36,8 +36,8 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
         <div
           className={`${
             isMyPost
-              ? "text-primary-600 border-b-2 border-primary-600"
-              : "text-gray-400"
+              ? "text-primary-600 border-b-2 border-primary-600 text-sm"
+              : "text-gray-400 text-sm"
           } cursor-pointer font-bold`}
           onClick={() => setIsMyPost(true)}
         >
@@ -46,8 +46,8 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
         <div
           className={`${
             isMyPost
-              ? "text-gray-400"
-              : "text-primary-600 border-b-2 border-primary-600"
+              ? "text-gray-400 text-sm"
+              : "text-primary-600 border-b-2 border-primary-600 text-sm"
           } cursor-pointer font-bold`}
           onClick={() => setIsMyPost(false)}
         >
