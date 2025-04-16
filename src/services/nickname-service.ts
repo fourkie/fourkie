@@ -1,7 +1,6 @@
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import createClient from "./supabase-client-service";
 import { toast } from "react-toastify";
-import { UI_TEXT } from "@/constants/ui-text";
 
 export const getUserNickname = async () => {
   const supabaseClient = createClient();
