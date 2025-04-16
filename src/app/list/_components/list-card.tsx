@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
+import Popup from "@/ui/common/popup";
 
 const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   const {
@@ -67,13 +68,15 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
           </div>
         )}
         {openPopup && (
-          <EmotionGraph
-            page="list"
-            openPopup={openPopup}
-            setOpenPopup={() => setOpenPopup(!openPopup)}
-            userId={user_id}
-            nickname={user?.user_nickname}
-          />
+          <Popup>
+            <EmotionGraph
+              page="list"
+              openPopup={openPopup}
+              setOpenPopup={() => setOpenPopup(!openPopup)}
+              userId={user_id}
+              nickname={user?.user_nickname}
+            />
+          </Popup>
         )}
       </div>
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
@@ -84,7 +87,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
             {user?.user_nickname}
           </span>
           님! <br /> {EMOTIONS_QUERY[post_emotion]}
-          기분이시네요!
+          날이시네요!
         </div>
       )}
       {isMyPost && (
