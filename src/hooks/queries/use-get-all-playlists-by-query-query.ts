@@ -30,7 +30,7 @@ export const useGetAllPlaylistsByQueryQuery = (query: string) => {
   });
 
   return {
-    playlists: playlistsData || [], // 기본값으로 빈 배열 반환
+    playlists: playlistsData || [],
     playlistsError,
     playlistsPending,
   };
