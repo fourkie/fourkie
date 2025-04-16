@@ -16,6 +16,7 @@ export interface SpotifyTracks {
 }
 
 export interface SpotifyPlaylistItem {
+  music_playlist_id: string;
   id: string;
   userId: string;
   name: string;
@@ -23,6 +24,11 @@ export interface SpotifyPlaylistItem {
   images: SpotifyImage[];
   tracks: SpotifyTracks;
   uri: string;
+}
+
+export interface Musics extends SpotifyPlaylistItem {
+  userId: string;
+  music_playlist_id: string;
 }
 
 export type SpotifyPlaylistList = SpotifyPlaylistItem[];
