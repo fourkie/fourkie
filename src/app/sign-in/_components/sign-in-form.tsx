@@ -44,17 +44,15 @@ const SignInForm = () => {
           type="email"
           placeholder={FORM_MESSAGE.EMAIL}
           error={errors.email?.message}
-          className="rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
+          className="w-full rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
         />
-
         <Input
           {...register("password", PASSWORD_VALIDATION)}
           type="password"
           placeholder={FORM_MESSAGE.PASSWORD}
           error={errors.password?.message}
-          className="rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
+          className="w-full rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
         />
-
         <Button
           type="submit"
           disabled={!isValid}
@@ -63,12 +61,11 @@ const SignInForm = () => {
           로그인
         </Button>
       </form>
-      <div className="mt-10 w-full border border-grey-3" />
+      <div className="mt-10 w-full border border-grey-2" />
       <div className="m-4 text-grey-3">
         <Link href="/sign-up">회원가입하기</Link>
       </div>
     </div>
   );
 };
-
 export default SignInForm;

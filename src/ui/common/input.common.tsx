@@ -9,8 +9,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
         <input ref={ref} {...props} />
 
-        {error && (
-          <p className="flex justify-center text-sm text-red-500">{error}</p>
+        {error ? (
+          <span className="flex h-6 w-full items-center justify-start pl-4 text-xs text-red-500">
+            {error}
+          </span>
+        ) : (
+          <div className="h-6"></div>
         )}
       </div>
     );

@@ -47,7 +47,7 @@ const SignUpForm = () => {
           type="email"
           placeholder={FORM_MESSAGE.EMAIL}
           error={errors.email?.message}
-          className="rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
+          className="w-full rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
         />
 
         <Input
@@ -55,7 +55,7 @@ const SignUpForm = () => {
           type="password"
           placeholder={FORM_MESSAGE.PASSWORD}
           error={errors.password?.message}
-          className="rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
+          className="w-full rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
         />
 
         <Input
@@ -63,7 +63,7 @@ const SignUpForm = () => {
           type="text"
           placeholder={FORM_MESSAGE.NICKNAME}
           error={errors.nickname?.message}
-          className="rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
+          className="w-full rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
         />
 
         <Button
@@ -82,5 +82,4 @@ const SignUpForm = () => {
     </div>
   );
 };
-
 export default SignUpForm;
