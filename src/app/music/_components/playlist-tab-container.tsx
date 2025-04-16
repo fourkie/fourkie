@@ -10,8 +10,6 @@ const PlaylistTabContainer = ({
   activeTab?: PlaylistTabProps;
   onTabChange?: Dispatch<SetStateAction<PlaylistTabProps>>;
 }) => {
-  console.log("userId:", userId); // 확인 완료
-
   const [activeTab, setActiveTab] = useState<PlaylistTabProps>(
     PlaylistTabProps.RECOMMEND,
   );
