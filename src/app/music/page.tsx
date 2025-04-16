@@ -1,7 +1,9 @@
 "use client";
 import { Emotion } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import createClient from "@/services/supabase-client-service";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import EmotionSelect from "./_components/emotion-select";
@@ -9,12 +11,16 @@ import PlaylistTabContainer from "./_components/playlist-tab-container";
 import { PlaylistTabProps } from "./type";
 
 const Music = () => {
-  // 감정 상태 관리
   const [emotion, setEmotion] = useState(Emotion.JOY);
   const [isSelectedTab, setIsSelectedTab] = useState<PlaylistTabProps>(
     PlaylistTabProps.RECOMMEND,
   );
   const [userId, setUserId] = useState<string | null>(null);
+
+  const { playlists } = useGetAllPlaylistsByQueryQuery(emotion);
+  const imageUrl = playlists[0]?.images[0]?.url;
+
+  console.log("imageUrl", imageUrl);
 
   const supabaseClient = createClient();
 
@@ -39,11 +45,17 @@ const Music = () => {
 
   return (
     <div>
-      <div className="flex gap-4 px-3">
-        <div className="w-full bg-blue-600">
-          <EmotionSelect value={emotion} onChange={setEmotion} />
-          <div className="h-[200px] bg-red-500">플레이리스트 모달</div>
+      <div className="flex gap-4">
+        <div style={{ position: "relative", width: "100%", height: "200px" }}>
+          <Image
+            src={imageUrl}
+            alt="imageUrl"
+            fill
+            style={{ objectFit: "cover" }}
+          />
         </div>
+
+        <EmotionSelect value={emotion} onChange={setEmotion} />
       </div>
 
       <PlaylistTabContainer
