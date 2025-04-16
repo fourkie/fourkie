@@ -18,7 +18,7 @@ import "./globals.css";
 // });
 
 const ownGlyph = localFont({
-  src: "./fonts/OwnGlyph.ttf",
+  src: "./fonts/ownglyph.ttf",
   variable: "--font-own-glyph",
   weight: "100",
 });
