@@ -31,7 +31,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   });
 
   return (
-    <div className="flex flex-col gap-4 px-5 bg-primary-50">
+    <div className="flex flex-col gap-4 px-5 bg-primary-50 h-screen">
       <div className="flex justify-center items-center gap-4">
         <div
           className={`${
