@@ -2,7 +2,7 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import createClient from "./supabase-client-service";
 import { SpotifyPlaylistItem } from "@/app/music/type";
 
-// 유저의 북마크된 플레이리스트 조회
+// 북마크 플레이리스트 조회
 export const fetchBookmarkedPlaylists = async (userId: string | null) => {
   const supabaseClient = createClient();
 
@@ -35,7 +35,7 @@ export const fetchBookmarkedPlaylists = async (userId: string | null) => {
   return bookmarkedPlaylistsData;
 };
 
-// 특정 플레이리스트를 북마크에 추가
+// 북마크 추가
 export const addBookmarkedPlaylists = async ({
   id: music_playlist_id,
   userId,
@@ -47,48 +47,49 @@ export const addBookmarkedPlaylists = async ({
 }: SpotifyPlaylistItem) => {
   const supabaseClient = createClient();
 
-  const { error } = await supabaseClient.from("musics").insert([
-    {
-      music_playlist_id,
-      user_id: userId,
-      name,
-      external_urls,
-      images,
-      tracks,
-      uri,
-    },
-  ]);
+  try {
+    const { error } = await supabaseClient.from("musics").insert([
+      {
+        music_playlist_id,
+        user_id: userId,
+        name,
+        external_urls,
+        images,
+        tracks,
+        uri,
+      },
+    ]);
 
-  if (error) {
-    throw new Error(TOAST_MESSAGE.MUSIC.ADD_BOOKMARK_ERROR);
+    if (error) {
+      throw new Error(error.message || "북마크 추가 중 오류가 발생했습니다.");
+    }
+  } catch (error) {
+    console.error("북마크 추가 실패 : ", error);
+    throw new Error("북마크를 추가하는 동안 문제가 발생했습니다.");
   }
 };
 
-// 특정 플레이리스트를 북마크에서 제거
+// 북마크 삭제
 export const removeBookmarkedPlaylists = async (
   musicPlaylistId: string,
   userId: string,
 ) => {
   const supabaseClient = createClient();
 
-  console.log("🗑️ [removeBookmarkedPlaylists] 북마크 제거 시도:", {
-    musicPlaylistId,
-    userId,
-  });
+  try {
+    const { error } = await supabaseClient
+      .from("musics")
+      .delete()
+      .eq("music_playlist_id", musicPlaylistId)
+      .eq("user_id", userId);
 
-  const { error } = await supabaseClient
-    .from("musics")
-    .delete()
-    .eq("music_playlist_id", musicPlaylistId)
-    .eq("user_id", userId);
+    if (error) {
+      throw new Error(error.message || "북마크 삭제 중 오류가 발생했습니다.");
+    }
 
-  if (error) {
-    console.error("❌ [removeBookmarkedPlaylists] 북마크 제거 실패:", error);
-    throw new Error(TOAST_MESSAGE.MUSIC.REMOVE_BOOKMARK_ERROR);
+    console.log("북마크 삭제 성공 : ", musicPlaylistId);
+  } catch (error) {
+    console.error("북마크 삭제 실패 : ", error);
+    throw new Error("북마크를 제거하는 동안 문제가 발생했습니다.");
   }
-
-  console.log(
-    "✅ [removeBookmarkedPlaylists] 북마크 제거 성공:",
-    musicPlaylistId,
-  );
 };
