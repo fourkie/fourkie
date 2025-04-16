@@ -21,6 +21,18 @@ export const TOAST_MESSAGE = {
       SERVER_ERROR: "서버 오류가 발생했습니다. 나중에 다시 시도해주세요.",
     },
   },
+  POST: {
+    POSTING: {
+      SUCCESS: "게시물이 성공적으로 작성되었습니다.",
+      ERROR: "게시물 작성 중 오류가 발생했습니다.",
+    },
+    EDIT: {
+      SUCCESS: "게시물이 성공적으로 수정되었습니다.",
+      ERROR: "게시물 수정 중 오류가 발생했습니다.",
+    },
+    FETCH: {
+      ERROR: "게시글을 불러오지 못했습니다.",
+    },
   MYPAGE: {
     SEARCH_ERROR: "유저 정보가 없습니다",
     REQUEST_ERROR: "요청 전송에 실패했습니다.",
@@ -38,12 +50,5 @@ export const TOAST_MESSAGE = {
     FRIEND_ACCEPT_SUCCESS: "친구 요청을 수락했습니다.",
     FRIEND_DELETE_ERROR: "친구 삭제에 실패했습니다.",
   },
-  POSTING: {
-    SUCCESS: "게시물이 성공적으로 작성되었습니다.",
-    ERROR: "게시물 작성 중 오류가 발생했습니다.",
-  },
-  EDIT: {
-    SUCCESS: "게시물이 성공적으로 수정되었습니다.",
-    ERROR: "게시물 수정 중 오류가 발생했습니다.",
   },
 };

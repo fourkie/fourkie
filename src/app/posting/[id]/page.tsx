@@ -1,10 +1,12 @@
 import createClient from "@/services/supabase-server-service";
-import PostingForm from "./_components/posting-form";
+import PostingForm from "../_components/posting-form";
 import { redirect } from "next/navigation";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
-const Posting = async () => {
+const Edit = async ({ params }: { params: { id: string } }) => {
+  const { id: postId } = params;
+
   const supabaseServer = createClient();
   const {
     data: { user },
@@ -13,9 +15,7 @@ const Posting = async () => {
   if (error || !user) {
     redirect("/sign-in");
   }
-
   const userId = user.id;
-  const nickname = user.user_metadata.user_nickname || user.user_metadata.name;
 
   dayjs.locale("ko");
   const dateWithDay = dayjs().format("D dddd");
@@ -23,9 +23,9 @@ const Posting = async () => {
   return (
     <>
       <div>{dateWithDay}</div>
-      <PostingForm userId={userId} nickname={nickname} />
+      <PostingForm postId={postId} userId={userId} />
     </>
   );
 };
 
-export default Posting;
+export default Edit;

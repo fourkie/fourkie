@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import EmotionImage from "@/ui/common/emotion-image.common";
-import { checkEmotion } from "@/utils/home-emotion.util";
 import { PostingEmotionModalSlideProps } from "../type";
+import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 
 const PostingEmotionModalSlide = ({
   currentEmotionKey,
@@ -23,7 +23,10 @@ const PostingEmotionModalSlide = ({
         className="cursor-pointer stroke-[3] "
       />
 
-      <EmotionImage src={checkEmotion(currentEmotionKey)} size="m" />
+      <EmotionImage
+        src={EMOTION_COOKIE_IMAGE_URL[currentEmotionKey]}
+        size="m"
+      />
 
       <ChevronRight
         onClick={() => handleEmotionSlide(1)}
