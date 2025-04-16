@@ -15,7 +15,6 @@ const PostingEmotionModal = ({
   emotion,
   postId,
   isPending,
-  nickname,
   isModalOpen,
   setIsModalOpen,
 }: PostingResultModalProps) => {
@@ -35,7 +34,7 @@ const PostingEmotionModal = ({
   }, [emotion]);
 
   if (isPending && !emotion) {
-    return <PostingEmotionModalLoading nickname={nickname} />;
+    return <PostingEmotionModalLoading />;
   }
 
   return (

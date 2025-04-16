@@ -11,23 +11,17 @@ export type PostingFormValues = {
 export type UserDateProps = {
   postId?: string;
   userId: string;
-  nickname: string;
 };
 
 export type PostingResultModalProps = {
-  userId?: string;
+  userId: string;
   title: string;
   content: string;
   emotion: string;
   postId?: string;
   isPending: boolean;
-  nickname: string | undefined;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export type PostingEmotionModalLoadingProps = {
-  nickname: string | undefined;
 };
 
 export type PostingEmotionModalSlideProps = {
@@ -37,7 +31,7 @@ export type PostingEmotionModalSlideProps = {
 };
 
 export type PostingEmotionModalButtonProps = {
-  userId?: string;
+  userId: string;
   title: string;
   content: string;
   currentEmotion: string;
@@ -46,7 +40,7 @@ export type PostingEmotionModalButtonProps = {
 };
 
 export type CreatePostsParams = {
-  userId?: string;
+  userId: string;
   title: string;
   content: string;
   currentEmotion: string;
