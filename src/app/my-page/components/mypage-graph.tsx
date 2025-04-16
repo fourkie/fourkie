@@ -19,7 +19,7 @@ const MypageGraph = () => {
 
   if (!userId || !nickname) return null;
 
-  return <MypageEmotionGraph userId={userId} nickname={nickname} />;
+  return <MypageEmotionGraph userId={userId} />;
 };
 
 export default MypageGraph;

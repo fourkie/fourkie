@@ -1,9 +1,9 @@
 "use client";
 
-import { HeartHandshake, LogOut } from "lucide-react";
-import MypageMenuItem from "./mypage-menu-item";
-import { useRouter } from "next/navigation";
 import { handleLogout } from "@/services/auth-service";
+import { HeartHandshake, LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
+import MypageMenuItem from "./mypage-menu-item";
 
 const MypageMenuList = () => {
   const router = useRouter();
@@ -30,10 +30,14 @@ const MypageMenuList = () => {
         <MypageMenuItem href="/smookie-makers" label="메이커스" />
       </li>
       <li>
-        <div className="hover:pl-1 transition-all duration-300">
+        <div className="transition-all duration-300 hover:pl-1">
           <button
-            onClick={() => handleLogout(router)}
-            className="w-full flex items-center gap-2 text-left px-4 py-3 text-secondary-300 font-medium"
+            onClick={() =>
+              handleLogout(() => {
+                router.push("/sign-in");
+              })
+            }
+            className="flex w-full items-center gap-2 px-4 py-3 text-left font-medium text-secondary-300"
           >
             <LogOut size={18} />
             로그아웃

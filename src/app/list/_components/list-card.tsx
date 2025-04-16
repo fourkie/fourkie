@@ -27,6 +27,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
+  console.log("🚀 ~ ListCard ~ setIsOverflowing:", setIsOverflowing);
 
   const date = post_created_at.split("T")[0];
 
@@ -39,20 +40,20 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   };
 
   return (
-    <div className="flex flex-col items-center p-3 gap-4 bg-white text-black px-5 py-4 rounded-xl font-ownglyph leading-4p">
-      <div className="flex w-full justify-between items-center">
-        <div className="font-bold w-[80px] text-sm">{date}</div>
-        <div className="font-bold text-center">
+    <div className="flex flex-col items-center gap-4 rounded-xl bg-white p-3 px-5 py-4 font-ownglyph leading-4p text-black">
+      <div className="flex w-full items-center justify-between">
+        <div className="w-[80px] text-sm font-bold">{date}</div>
+        <div className="text-center font-bold">
           {EMOTIONS_QUERY[post_emotion]}
         </div>
         {isMyPost ? (
-          <div className="flex gap-3 w-[80px] justify-end">
+          <div className="flex w-[80px] justify-end gap-3">
             <Pencil className="w-5 cursor-pointer" onClick={handleEdit} />
             <Trash2 className="w-5 cursor-pointer" onClick={handleDelete} />
           </div>
         ) : (
           <div
-            className="w-[80px] text-right cursor-pointer text-xs font-pretendard"
+            className="w-[80px] cursor-pointer text-right font-pretendard text-xs"
             onClick={() => setOpenPopup(!openPopup)}
           >
             프로필 보러가기
@@ -72,9 +73,9 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       </div>
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
       {!isMyPost && (
-        <div className="font-bold text-center font-ownglyph leading-4p">
+        <div className="text-center font-ownglyph font-bold leading-4p">
           오늘
-          <span className="text-secondary-200 font-ownglyph leading-4p">
+          <span className="font-ownglyph leading-4p text-secondary-200">
             {user?.user_nickname}
           </span>
           님! <br /> {EMOTIONS_QUERY[post_emotion]}
@@ -83,9 +84,9 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       )}
       {isMyPost && (
         <div className="flex flex-col items-center">
-          <div className="font-bold text-xl">{post_title}</div>
+          <div className="text-xl font-bold">{post_title}</div>
           <div
-            className={`font-bold w-full break-all text-center text-lg ${
+            className={`w-full break-all text-center text-lg font-bold ${
               isExpanded ? "line-clamp-none" : "line-clamp-2"
             }`}
           >
@@ -97,7 +98,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       {isMyPost && isOverflowing && (
         <div
           onClick={() => setIsExpanded(!isExpanded)}
-          className="cursor-pointer w-fit mx-auto mt-1"
+          className="mx-auto mt-1 w-fit cursor-pointer"
         >
           {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </div>

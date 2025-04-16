@@ -17,7 +17,7 @@ export const useSignupMutation = () => {
       toast.success(TOAST_MESSAGE.SIGNUP.SUCCESS);
       router.push("/");
     },
-    onError: (error: any) => {
+    onError: (error) => {
       if (error?.message === "User already registered") {
         toast.error(TOAST_MESSAGE.SIGNUP.DUPLICATE_EMAIL);
       } else if (error?.message === "Database error saving new user") {

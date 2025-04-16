@@ -1,6 +1,6 @@
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { toast } from "react-toastify";
 import createClient from "./supabase-client-service";
-import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
 // 친구 요청 supabase 에 저장
 export const sendFriendRequest = async ({
@@ -50,7 +50,7 @@ export const checkExistFriendRequest = async ({
     if (error) throw new Error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
 
     return !!data;
-  } catch (error) {
+  } catch {
     toast.error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
     return false;
   }
