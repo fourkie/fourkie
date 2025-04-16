@@ -1,5 +1,7 @@
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import supabaseClient from "./supabase-client-service";
+import { QUERYDATA } from "@/constants/query-data.constant";
+import { QUERY_KEY } from "@/constants/query-keys.constant";
 
 export const getPostEmotionByUserId = async (
   userId: string | undefined,
@@ -38,4 +40,37 @@ export const getPostEmotionByUserId = async (
       return [];
     }
   }
+};
+
+export const getUserIdClient = async () => {
+  const supabase = supabaseClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return undefined;
+  }
+  return user?.id;
+};
+
+export const getUserNickname = async (userId: string | undefined) => {
+  if (!userId) {
+    console.log(QUERY_KEY.NICKNAME);
+    return null;
+  }
+  const supabase = supabaseClient();
+
+  const { data: nickname, error } = await supabase
+    .from("users")
+    .select("user_nickname")
+    .eq("user_uid", userId)
+    .single();
+
+  if (error) {
+    console.log(QUERY_KEY.NICKNAME + QUERYDATA.ISERROR);
+    return null;
+  }
+
+  return nickname;
 };
