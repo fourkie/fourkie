@@ -47,11 +47,17 @@ const EmotionGraph = ({
   return (
     <Popup>
       <div className="flex flex-col items-center justify-center w-full h-full bg-white p-5 font-pretendard rounded-xl">
-        <div className="flex justify-between items-center w-full border-grey-1 border-b-2 pb-4 mb-1">
+        <div
+          className="flex justify-between items-center w-full border-grey-1 border-b-2 mb-1"
+          style={{ paddingBottom: "16px" }}
+        >
           <div className="text-xl font-bold">{nickname}</div>
           <X className="cursor-pointer" onClick={setOpenPopup} />
         </div>
-        <div className="text-grey-2 text-xs w-full text-right mb-2">
+        <div
+          className="text-xs w-full text-right mb-2"
+          style={{ color: "var(--color-grey-2)" }}
+        >
           * 최근 3개월 통계
         </div>
         <div className="flex gap-4 items-end h-[70px]">
@@ -68,10 +74,12 @@ const EmotionGraph = ({
                 className="flex flex-col items-center max-w-4 w-4 justify-end text-xs gap-2"
               >
                 <div
-                  className="w-4 border p-6 rounded-xl"
+                  className="w-4 border p-6"
                   style={{
                     height: `${barHeight}px`,
                     backgroundColor: `var(--color-${color[e.emotion]})`,
+                    borderTopLeftRadius: "8px",
+                    borderTopRightRadius: "8px",
                   }}
                 ></div>
                 <EmotionImage
