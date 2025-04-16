@@ -26,6 +26,7 @@ export const GET = async (req: NextRequest) => {
     // access_token 요청 (Client Credentials 방식)
     const tokenResponse = await fetch(tokenEndpoint, {
       method: "POST",
+      cache: "no-store", // 캐시 사용 안 함
       headers: {
         "Content-Type": SPOTIFY.CONTENT_TYPE,
         Authorization: `Basic ${credentials}`, // Base64 인코딩된 자격 증명 사용

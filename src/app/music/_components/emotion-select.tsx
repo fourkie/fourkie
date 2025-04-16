@@ -1,9 +1,5 @@
 import { Emotion, EMOTION_DISPLAY_NAME } from "@/constants/spotify.constant";
-
-interface EmotionSelectProps {
-  value: Emotion;
-  onChange: (value: Emotion) => void;
-}
+import { EmotionSelectProps } from "../type";
 
 const EmotionSelect = ({ value, onChange }: EmotionSelectProps) => {
   return (
