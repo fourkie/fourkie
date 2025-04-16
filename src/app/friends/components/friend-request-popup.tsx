@@ -7,6 +7,9 @@ import { useSendFriendRequestMutation } from "@/hooks/mutations/use-send-friend-
 import EmotionImage from "@/ui/common/emotion-image.common";
 import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 import { useEffect, useState } from "react";
+import { checkExistFriendRequest } from "@/services/friend-request-service";
+import { toast } from "react-toastify";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
 const FriendrequestPopUp = ({ user, onClose }: FriendRequestPopUpProps) => {
   const [userId, setUserId] = useState<string>("");
@@ -20,8 +23,19 @@ const FriendrequestPopUp = ({ user, onClose }: FriendRequestPopUpProps) => {
   }, []);
   const { mutate: sendRequest } = useSendFriendRequestMutation();
 
-  const handleSendRequest = () => {
+  const handleSendRequest = async () => {
     if (!userId) return;
+
+    const alreadyRequested = await checkExistFriendRequest({
+      senderUid: userId,
+      receiverUid: user.user_uid,
+    });
+
+    if (alreadyRequested) {
+      toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_REQUEST_EXIST);
+      return;
+    }
+
     sendRequest({ userId, receiverUid: user.user_uid });
     onClose();
   };

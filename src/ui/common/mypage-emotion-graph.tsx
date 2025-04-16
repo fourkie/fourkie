@@ -4,19 +4,12 @@ import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 import emotionGraphCal from "@/utils/emotion-graph-cal.util";
 import { checkEmotion } from "@/utils/home-emotion.util";
-import { X } from "lucide-react";
 import EmotionImage from "./emotion-image.common";
 
-const EmotionGraph = ({
-  page,
-  openPopup,
-  setOpenPopup,
+const MypageEmotionGraph = ({
   userId,
   nickname,
 }: {
-  page: string;
-  openPopup?: boolean;
-  setOpenPopup?: () => void;
   userId: string;
   nickname: string;
 }) => {
@@ -28,6 +21,7 @@ const EmotionGraph = ({
   const numericPercentages = emotions.map((e) =>
     parseFloat(e.percentage.replace("%", "")),
   );
+
   const maxPercentage = Math.max(...numericPercentages);
 
   const color: Record<string, string> = {
@@ -43,20 +37,12 @@ const EmotionGraph = ({
     ANGRY: "secondary-400",
   };
 
-  if (!openPopup) return null;
-
   return (
-    <div className="flex flex-col items-center justify-center w-full bg-white p-5 font-pretendard rounded-xl">
-      {page === "list" && (
-        <div className="flex justify-between items-center w-full border-grey-1 border-b-2 pb-4 mb-1">
-          <div className="text-xl font-bold">{nickname}</div>
-          <X className="cursor-pointer" onClick={setOpenPopup} />
-        </div>
-      )}
-      <div className="text-xs w-full text-right mb-2 text-grey-2 mt-2">
+    <div className="w-full bg-white rounded-xl border border-primary-100 p-4 mb-6">
+      <div className="text-xs w-full text-right mb-4 text-gray-400">
         * 최근 3개월 통계
       </div>
-      <div className="flex flex-col items-center justify-end text-xs gap-2">
+      <div className="flex w-full justify-between items-end">
         {emotions.map((e, i) => {
           const percentageValue = parseFloat(e.percentage.replace("%", ""));
           const barHeight = Math.max(
@@ -78,7 +64,7 @@ const EmotionGraph = ({
               ></div>
               <EmotionImage src={checkEmotion(e.emotion)} size="s" />
               <div className="mt-1">{EMOTIONS_QUERY[e.emotion]}</div>
-              <div className="mt-1">{Math.floor(parseInt(e.percentage))}%</div>
+              <div className="mt-1">{Math.floor(Number(percentageValue))}%</div>
             </div>
           );
         })}
@@ -87,4 +73,4 @@ const EmotionGraph = ({
   );
 };
 
-export default EmotionGraph;
+export default MypageEmotionGraph;

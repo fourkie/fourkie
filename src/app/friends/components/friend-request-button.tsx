@@ -8,7 +8,7 @@ const FriendRequestButton = () => {
       href="/friends/request"
       className="w-full flex justify-end items-center text-sm text-grey-5 gap-1"
     >
-      받은 친구 요청
+      친구 요청
     </Link>
   );
 };

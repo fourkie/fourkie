@@ -31,7 +31,7 @@ const FriendList = ({
       <div className="px-3 py-2">
         <div
           onClick={() => setSelectedUser(searchedUser)}
-          className="cursor-pointer flex items-center gap-2 font-medium"
+          className="cursor-pointer flex items-center gap-2 font-medium text-lg text-grey-7"
         >
           <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
           {searchedUser.user_nickname}
@@ -52,8 +52,8 @@ const FriendList = ({
             key={friend.user_uid}
             className="flex justify-between items-center py-3"
           >
-            <div className="flex items-center gap-2 font-semibold text-xl text-grey-7">
-              <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="s" />
+            <div className="flex items-center gap-2 font-medium text-lg text-grey-7">
+              <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
               {friend.user_nickname}
             </div>
             <button

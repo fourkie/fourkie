@@ -45,7 +45,7 @@ export default function RootLayout({
         className={`${pretendard.variable} ${ownGlyph.variable} antialiased`}>
         <Providers>
           <HeaderWithZustand />
-          {children}
+          <div className="pb-24">{children}</div>
         </Providers>
         <ToastContainer position="top-right" autoClose={3000} />
         <Navigation />
