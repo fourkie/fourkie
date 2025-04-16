@@ -1,11 +1,11 @@
 "use client";
 
+import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 import emotionGraphCal from "@/utils/emotion-graph-cal.util";
-import { X } from "lucide-react";
-import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
-import EmotionImage from "./emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
+import { X } from "lucide-react";
+import EmotionImage from "./emotion-image.common";
 
 const EmotionGraph = ({
   page,
@@ -56,7 +56,7 @@ const EmotionGraph = ({
       <div className="text-xs w-full text-right mb-2 text-grey-2 mt-2">
         * 최근 3개월 통계
       </div>
-      <div className="flex w-full justify-between items-end">
+      <div className="flex flex-col items-center justify-end text-xs gap-2">
         {emotions.map((e, i) => {
           const percentageValue = parseFloat(e.percentage.replace("%", ""));
           const barHeight = Math.max(

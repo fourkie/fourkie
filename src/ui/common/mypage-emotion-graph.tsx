@@ -1,10 +1,10 @@
 "use client";
 
+import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 import emotionGraphCal from "@/utils/emotion-graph-cal.util";
-import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
-import EmotionImage from "./emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
+import EmotionImage from "./emotion-image.common";
 
 const MypageEmotionGraph = ({
   userId,
@@ -42,7 +42,7 @@ const MypageEmotionGraph = ({
       <div className="text-xs w-full text-right mb-4 text-gray-400">
         * 최근 3개월 통계
       </div>
-      <div className="flex w-full justify-between items-end h-[70px]">
+      <div className="flex w-full justify-between items-end">
         {emotions.map((e, i) => {
           const percentageValue = parseFloat(e.percentage.replace("%", ""));
           const barHeight = Math.max(
@@ -53,17 +53,13 @@ const MypageEmotionGraph = ({
           return (
             <div
               key={i}
-              className="flex flex-col items-center max-w-4 w-4 justify-end text-xs gap-2"
+              className="flex flex-col items-center justify-end text-xs gap-2"
             >
               <div
-                className="w-4 border"
+                className="w-4 border rounded-t-lg px-7"
                 style={{
                   height: `${barHeight}px`,
                   backgroundColor: `var(--color-${color[e.emotion]})`,
-                  borderTopLeftRadius: "8px",
-                  borderTopRightRadius: "8px",
-                  paddingRight: "26px",
-                  paddingLeft: "26px",
                 }}
               ></div>
               <EmotionImage src={checkEmotion(e.emotion)} size="s" />
