@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import dayjs from "dayjs";
+import { QUERYDATA } from "@/constants/query-data.constant";
+import { useGetUserPostByMonthQuery } from "@/hooks/queries/use-get-user-posts-by-month-query";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
-import HomeDate from "./home-date";
-import { useGetUserPostByMonthQuery } from "@/hooks/queries/use-get-user-posts-by-month-query";
-import { QUERYDATA } from "@/constants/query-data.constant";
+import dayjs from "dayjs";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+import HomeDate from "./home-date";
 
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const [currentDate, setCurrentDate] = useState(dayjs());
@@ -30,7 +30,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   // 펜딩 or 에러일 때 크기 같게 유지하려고 min-h-500px 줬습니다.
   if (isPending || isError)
     return (
-      <div className="w-full max-w-md mx-auto shadow-lg p-5 border border-secondary-100 rounded-xl my-5 min-h-[25rem] flex items-center justify-center ">
+      <div className="w-full max-w-md mx-auto shadow-[0_0_6px_0_rgba(0,0,0,0.10)] p-5 border border-secondary-100 rounded-xl my-5 min-h-[25rem] flex items-center justify-center ">
         <span className="text-grey-3 text-lg">
           {isPending ? QUERYDATA.ISPENDING : QUERYDATA.ISERROR}
         </span>
@@ -59,7 +59,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   for (let i = 1; i <= daysInMonth; i++) days.push(i);
 
   return (
-    <div className="w-full max-w-md mx-auto shadow-lg p-5 border border-secondary-100 rounded-xl my-5">
+    <div className="w-full max-w-md mx-auto shadow-[0_0_6px_0_rgba(0,0,0,0.10)] p-5 border border-secondary-100 rounded-xl my-5">
       <div className="flex justify-between items-center ">
         <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
         <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />

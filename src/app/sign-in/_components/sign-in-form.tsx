@@ -38,10 +38,7 @@ const SignInForm = () => {
           하루의 끝, 마음을 조용히 들여다보고 싶을 때
         </p>
       </div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-xs space-y-4"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xs">
         <Input
           {...register("email", EMAIL_VALIDATION)}
           type="email"
@@ -61,7 +58,7 @@ const SignInForm = () => {
         <Button
           type="submit"
           disabled={!isValid}
-          classname="w-full bg-primary-300 text-primary-800 font-semibold py-3 rounded-xl"
+          classname="w-full bg-primary-300 text-primary-800 font-semibold py-3 rounded-xl mt-6"
         >
           로그인
         </Button>

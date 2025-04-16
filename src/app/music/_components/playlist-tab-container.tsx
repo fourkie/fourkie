@@ -1,8 +1,8 @@
+import { AudioLines, Star } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { PlaylistTabProps, TabButtonProps } from "../type";
 import BookmarkedPlaylists from "./bookmarked-playlists";
 import RecommendPlaylists from "./recommend-playlists";
-import { AudioLines, Star } from "lucide-react";
 
 const PlaylistTabContainer = ({
   userId,
@@ -18,14 +18,14 @@ const PlaylistTabContainer = ({
   );
 
   return (
-    <div className="flex flex-col gap-4 p-3">
-      <div className="flex gap-4 pt-4">
+    <div className="flex flex-col gap-[12px] px-[20px]">
+      <div className="flex items-center justify-center gap-[28px] pt-4">
         <TabButton
           isActive={activeTab === PlaylistTabProps.RECOMMEND}
           onClick={() => setActiveTab(PlaylistTabProps.RECOMMEND)}
         >
-          <div className="flex items-center gap-2">
-            <AudioLines className="h-4" />
+          <div className="flex items-center gap-[6px] text-[16px]">
+            <AudioLines className="h-[18px]" />
             추천 플리
           </div>
         </TabButton>
@@ -33,8 +33,8 @@ const PlaylistTabContainer = ({
           isActive={activeTab === PlaylistTabProps.BOOKMARK}
           onClick={() => setActiveTab(PlaylistTabProps.BOOKMARK)}
         >
-          <div className="flex items-center gap-2">
-            <Star className="h-4" />
+          <div className="flex items-center gap-[6px] text-[16px]">
+            <Star className="h-[18px]" />
             즐겨찾기
           </div>
         </TabButton>

@@ -1,6 +1,6 @@
 import { getUserId } from "@/services/home-service";
-import HomeCalendar from "./(home)/components/home-calendar";
 import { redirect } from "next/navigation";
+import HomeCalendar from "./(home)/components/home-calendar";
 import HomeFriend from "./(home)/components/home-friend";
 import HomeMusic from "./(home)/components/home-music";
 
@@ -11,7 +11,7 @@ const HomePage = async () => {
     redirect("/sign-in");
   }
   return (
-    <div className="px-4">
+    <div className="px-5">
       <HomeCalendar userId={userId} />
       <HomeFriend userId={userId} />
       <HomeMusic />

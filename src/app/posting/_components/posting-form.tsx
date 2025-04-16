@@ -90,7 +90,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
 
         <button
           type="submit"
-          className="absolute top-3.5 right-5 px-2 py-1 bg-primary-700 text-secondary-50 rounded-lg font-medium text-sm"
+          className="absolute top-3.5 right-5 px-2 py-1 bg-primary-700 text-secondary-50 rounded-lg font-medium text-sm z-50"
         >
           {isPending ? "처리 중..." : "게시"}
         </button>
