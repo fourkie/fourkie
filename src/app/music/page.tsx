@@ -1,69 +1,71 @@
 "use client";
-
-import { useEffect, useState } from "react";
-
-import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
-import EmotionSelect from "./_components/emotion-select";
-import { TabButtons } from "./_components/tab-buttons";
-import { PlaylistList } from "./_components/playlist-list";
 import { Emotion } from "@/constants/spotify.constant";
-import { useBookmarks } from "@/services/music-bookmark-service";
-import createClient from "@/services/supabase-client-service";
-import { QUERYDATA } from "@/constants/query-data.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
+import createClient from "@/services/supabase-client-service";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import EmotionSelect from "./_components/emotion-select";
+import PlaylistTabContainer from "./_components/playlist-tab-container";
+import { PlaylistTabProps } from "./type";
+
+import PlaylistCard from "./_components/playlist-card";
 
 const Music = () => {
-  const [isTab, setIsTab] = useState<"recommend" | "bookmark">("recommend");
+  const [isSelectedTab, setIsSelectedTab] = useState<PlaylistTabProps>(
+    PlaylistTabProps.RECOMMEND,
+  );
   const [query, setQuery] = useState(Emotion.JOY);
-  const [user, setUser] = useState<any>(null);
+  const [userId, setUserId] = useState<string | null>(null);
 
   const supabaseClient = createClient();
+  const { playlists, playlistsPending, playlistsError } =
+    useGetAllPlaylistsByQueryQuery(query);
 
+  // 유저 정보 조회
   useEffect(() => {
-    // 유저 정보 가져오기
     const fetchUser = async () => {
-      const {
-        data: { user },
-      } = await supabaseClient.auth.getUser();
-      setUser(user);
-    };
+      const { data } = await supabaseClient.auth.getUser();
+      const userId = data.user?.id;
 
+      if (!userId) {
+        toast.error(TOAST_MESSAGE.SPOTIFY.USER_ERROR);
+        return;
+      }
+      setUserId(userId);
+    };
     fetchUser();
   }, []);
 
-  const { playlists, playlistsPending } = useGetAllPlaylistsByQueryQuery(query);
+  if (!userId || !playlists.length) return;
 
-  // userId가 유효할 때만 북마크 훅 호출
-  const { bookmarkedIds, toggleBookmark } = useBookmarks(user?.id);
-
-  if (playlistsPending) return QUERYDATA.ISPENDING;
-
-  // 유저 정보가 없을 경우
-  if (!user) return TOAST_MESSAGE.SPOTIFY.ERROR;
-
-  const filteredPlaylists =
-    isTab === "bookmark"
-      ? playlists.filter((p) => bookmarkedIds.has(p.id))
-      : playlists;
-
+  if (playlistsPending || playlistsError || !userId) {
+    return <div>{TOAST_MESSAGE.SPOTIFY.ERROR}</div>;
+  }
   return (
     <div>
-      <div className="mt-4">
-        <TabButtons isTab={isTab} onTabChange={setIsTab} />
-      </div>
-
-      <div className="mb-4">
-        <EmotionSelect value={query} onChange={setQuery} />
-      </div>
-
-      <PlaylistList
-        playlists={filteredPlaylists}
-        bookmarkedPlaylistIds={bookmarkedIds}
-        onToggleBookmark={toggleBookmark}
-        isTab={isTab}
+      <EmotionSelect value={query} onChange={setQuery} />
+      <PlaylistTabContainer
+        userId={userId}
+        activeTab={isSelectedTab}
+        onTabChange={setIsSelectedTab}
       />
+      <div className="mt-4">
+        {isSelectedTab === PlaylistTabProps.RECOMMEND && (
+          <ul className="flex flex-col gap-4">
+            {playlists.map((playlist) => {
+              return (
+                <PlaylistCard
+                  key={playlist.id}
+                  userId={userId}
+                  playlist={playlist}
+                />
+              );
+            })}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
-
 export default Music;

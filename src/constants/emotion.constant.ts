@@ -22,7 +22,7 @@ export const EMOTIONS_QUERY: Record<string, string> = {
   TIRED: "아픈",
   SAD: "슬픈",
   ANGRY: "화나는",
-};
+} as const;
 
 export const EMOTIONS: Record<string, string> = {
   JOY: "JOY",
@@ -36,6 +36,8 @@ export const EMOTIONS: Record<string, string> = {
   SAD: "SAD",
   ANGRY: "ANGRY",
 };
+
+export type EmotionKey = keyof typeof EMOTIONS_QUERY;
 
 export const EMOTION_COLOR_CLASSES: Record<string, string> = {
   JOY: "text-primary-400",

@@ -1,78 +1,82 @@
-import { useEffect, useState } from "react";
-import createClient from "./supabase-client-service";
-import { toast } from "react-toastify";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import createClient from "./supabase-client-service";
+import { SpotifyPlaylistItem } from "@/app/music/type";
 
-export const useBookmarks = (userId?: string) => {
-  const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set());
+// 유저의 북마크된 플레이리스트 조회
+export const fetchBookmarkedPlaylists = async (userId: string | null) => {
+  const supabaseClient = createClient();
 
-  useEffect(() => {
-    if (!userId) {
-      console.log("로그인 되어 있지 않음");
-      return;
-    }
+  console.log("북마크 목록 조회 시작 : ", userId);
 
-    const supabaseClient = createClient();
+  const { data: bookmarkedData, error: bookmarkedError } = await supabaseClient
+    .from("musics")
+    .select("music_playlist_id") // 음악 아이디
+    .eq("user_id", userId);
 
-    const fetchBookmarks = async () => {
-      const { data, error } = await supabaseClient
-        .from("musics")
-        .select("music_playlist_id")
-        .eq("user_id", userId);
+  if (bookmarkedError) {
+    console.error("bookmarkedError : ", bookmarkedError);
+    throw new Error(TOAST_MESSAGE.SPOTIFY.BOOKMARK_ERROR);
+  }
 
-      if (error) {
-        toast.error(TOAST_MESSAGE.SPOTIFY.BOOKMARK_LOADING_ERROR);
-        return;
-      }
+  console.log("조회된 북마크 목록 : ", bookmarkedData);
 
-      if (data) {
-        const newBookmarkedIds = new Set(
-          data.map((item) => item.music_playlist_id),
-        );
-        setBookmarkedIds(newBookmarkedIds);
-      }
-    };
+  return bookmarkedData.map((item) => item.music_playlist_id);
+};
 
-    fetchBookmarks();
-  }, [userId]); // userId가 변경될 때만 호출
+// 특정 플레이리스트를 북마크에 추가
+export const addBookmarkedPlaylists = async ({
+  id: music_playlist_id,
+  userId,
+  name,
+  external_urls,
+  images,
+  tracks,
+  uri,
+}: SpotifyPlaylistItem) => {
+  const supabaseClient = createClient();
 
-  const toggleBookmark = async (playlistId: string) => {
-    if (!userId) return;
+  const { error } = await supabaseClient.from("musics").insert([
+    {
+      music_playlist_id,
+      user_id: userId,
+      name,
+      external_urls,
+      images,
+      tracks,
+      uri,
+    },
+  ]);
 
-    const supabaseClient = createClient();
+  if (error) {
+    throw new Error(TOAST_MESSAGE.SPOTIFY.ADD_BOOKMARK_ERROR);
+  }
+};
 
-    const isBookmarked = bookmarkedIds.has(playlistId);
+// 특정 플레이리스트를 북마크에서 제거
+export const removeBookmarkedPlaylists = async (
+  musicPlaylistId: string,
+  userId: string,
+) => {
+  const supabaseClient = createClient();
 
-    if (isBookmarked) {
-      // 이미 북마크 -> 삭제
-      await supabaseClient
-        .from("musics")
-        .delete()
-        .eq("user_id", userId)
-        .eq("music_playlist_id", playlistId);
+  console.log("🗑️ [removeBookmarkedPlaylists] 북마크 제거 시도:", {
+    musicPlaylistId,
+    userId,
+  });
 
-      setBookmarkedIds((prev) => {
-        const newSet = new Set(prev);
-        newSet.delete(playlistId);
-        return newSet;
-      });
-    } else {
-      // 북마크 추가
-      await supabaseClient.from("musics").insert({
-        user_id: userId,
-        music_playlist_id: playlistId,
-      });
+  const { error } = await supabaseClient
+    .from("musics")
+    .delete()
+    .eq("music_playlist_id", musicPlaylistId)
+    .eq("user_id", userId);
 
-      setBookmarkedIds((prev) => {
-        const newSet = new Set(prev);
-        newSet.add(playlistId);
-        return newSet;
-      });
-    }
-  };
+  if (error) {
+    console.error("❌ [removeBookmarkedPlaylists] 북마크 제거 실패:", error);
+    throw new Error(TOAST_MESSAGE.SPOTIFY.REMOVE_BOOKMARK_ERROR);
+  }
 
-  return {
-    bookmarkedIds,
-    toggleBookmark,
-  };
+  console.log(
+    "✅ [removeBookmarkedPlaylists] 북마크 제거 성공:",
+    musicPlaylistId,
+  );
 };

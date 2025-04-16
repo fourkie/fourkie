@@ -1,3 +1,4 @@
+import { useUpdatePostsByPostIdMutation } from "@/hooks/mutations/use-update-posts-by-postId-mutation";
 import { PostingEmotionModalButtonProps } from "../type";
 import { useCreatePostsMutation } from "@/hooks/mutations/use-create-posts-mutation";
 
@@ -6,32 +7,41 @@ const PostingEmotionModalButton = ({
   title,
   content,
   currentEmotion,
+  postId,
   onClose,
 }: PostingEmotionModalButtonProps) => {
+  // mutation 함수
   const { mutate: createPostsMutate, isPending: createPostsPending } =
     useCreatePostsMutation();
+  const { mutate: updatePostMutate, isPending: UpdatePostsPending } =
+    useUpdatePostsByPostIdMutation();
 
   // 버튼 클릭 시 게시글 저장
   const handleSave = () => {
-    createPostsMutate({ userId, title, content, currentEmotion });
+    if (postId) {
+      updatePostMutate({ postId, title, content, currentEmotion });
+    } else {
+      createPostsMutate({ userId, title, content, currentEmotion });
+    }
   };
 
   return (
-    <div className="flex gap-3 font-bold text-lg">
+    <div className="flex gap-4 font-bold text-lg">
       <button
-        className="flex-1 py-2 px-4 bg-primary-500 rounded-2xl text-white"
+        className="flex-1 py-2 bg-primary-500 rounded-2xl text-grey-0"
         onClick={onClose}
       >
         취소
       </button>
 
       <button
-        className="flex-1 py-2 px-4 bg-primary-200 rounded-2xl text-black"
+        className="flex-1 py-2 bg-primary-200 rounded-2xl text-primary-700"
         onClick={handleSave}
       >
-        {createPostsPending ? "저장 중..." : "확인"}
+        {createPostsPending || UpdatePostsPending ? "저장 중..." : "확인"}
       </button>
     </div>
   );
 };
+
 export default PostingEmotionModalButton;

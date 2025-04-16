@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import EmotionImage from "@/ui/common/emotion-image.common";
-import { checkEmotion } from "@/utils/home-emotion.util";
 import { PostingEmotionModalSlideProps } from "../type";
+import { checkEmotion } from "@/utils/home-emotion.util";
 
 const PostingEmotionModalSlide = ({
   currentEmotionKey,
@@ -17,17 +17,21 @@ const PostingEmotionModalSlide = ({
   };
 
   return (
-    <div className="flex items-center justify-center gap-4 mb-4">
+    <div className="flex items-center justify-center gap-5">
       <ChevronLeft
         onClick={() => handleEmotionSlide(-1)}
-        className="cursor-pointer stroke-[3] "
+        size={32}
+        strokeWidth={3}
+        className="stroke-grey-6 cursor-pointer"
       />
 
       <EmotionImage src={checkEmotion(currentEmotionKey)} size="m" />
 
       <ChevronRight
         onClick={() => handleEmotionSlide(1)}
-        className="cursor-pointer stroke-[3] "
+        size={32}
+        strokeWidth={3}
+        className="stroke-grey-6 cursor-pointer"
       />
     </div>
   );

@@ -10,4 +10,5 @@ export const QUERY_KEY = {
   NICKNAME: "nicknmae",
   SPOTIFY_ACCESS_TOKEN: "spotifyAccessToken",
   SPOTIFY_PLAYLISTS: "spotifyPlaylists",
+  BOOKMARKED_PLAYLISTS: "bookmarkedPlaylists",
 };

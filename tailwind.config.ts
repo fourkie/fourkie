@@ -5,9 +5,17 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/globals.css",
   ],
   theme: {
     extend: {
+      fontFamily: {
+        ownglyph: "var(--font-own-glyph)",
+        pretendard: "var(--font-pretendard)",
+      },
+      lineHeight: {
+        "4p": "1.04",
+      },
       colors: {
         primary: {
           50: "var(--color-primary-50)",
