@@ -39,10 +39,7 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   };
 
   return (
-    <div
-      className="h-[72px] border-b border-b-[#E7E7E7] border-b-[1px] p-3 gap-3 flex items-center justify-arround
-"
-    >
+    <div className="justify-arround flex h-[72px] items-center gap-3 border-b border-b-[1px] border-b-[#E7E7E7]">
       <button
         className="flex items-center justify-center"
         onClick={handleBookmarkToggle}
@@ -56,7 +53,7 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
       </button>
 
       {/* 이미지 수정 */}
-      <div className="w-[50px] h-[50px]  flex items-center justify-center overflow-hidden">
+      <div className="flex h-[50px] w-[50px] items-center justify-center overflow-hidden">
         <Image
           src={playlist.images[0]?.url || "/default-image.jpg"}
           alt={playlist.name}
@@ -74,7 +71,7 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
         href={playlist.external_urls.spotify}
         target="_blank"
         rel="noopener noreferrer"
-        className="whitespace-nowrap "
+        className="whitespace-nowrap"
       >
         <Play />
       </Link>
