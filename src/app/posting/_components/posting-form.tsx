@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import { useGetPostsByPostIdQuery } from "@/hooks/queries/use-get-posts-by-postId-query";
 import { useRouter } from "next/navigation";
 
-const PostingForm = ({ postId, userId, nickname }: UserDateProps) => {
+const PostingForm = ({ postId, userId }: UserDateProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // query, mutation 함수
@@ -103,7 +103,6 @@ const PostingForm = ({ postId, userId, nickname }: UserDateProps) => {
         emotion={data}
         postId={postId}
         isPending={isPending}
-        nickname={nickname}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
       />

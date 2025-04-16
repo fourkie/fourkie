@@ -7,7 +7,7 @@ export const QUERY_KEY = {
   EMOTION_PLAYLISTS: "emotionPlaylists",
   SEARCH_USER: "searchUser",
   MY_FRIENDS: "myFriends",
-  NICKNAME: "nicknmae",
+  NICKNAME: "nickname",
   SPOTIFY_ACCESS_TOKEN: "spotifyAccessToken",
   SPOTIFY_PLAYLISTS: "spotifyPlaylists",
   BOOKMARKED_PLAYLISTS: "bookmarkedPlaylists",

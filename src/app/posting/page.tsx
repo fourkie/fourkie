@@ -3,6 +3,7 @@ import PostingForm from "./_components/posting-form";
 import { redirect } from "next/navigation";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
+import { useGetUserByIdQuery } from "@/hooks/queries/use-get-user-by-id-query";
 
 const Posting = async () => {
   const supabaseServer = createClient();
@@ -15,7 +16,6 @@ const Posting = async () => {
   }
 
   const userId = user.id;
-  const nickname = user.user_metadata.user_nickname || user.user_metadata.name;
 
   dayjs.locale("ko");
   const date = dayjs().format("D");
@@ -29,7 +29,7 @@ const Posting = async () => {
       </div>
       <hr className="my-2.5 w-full border-grey-0 " />
 
-      <PostingForm userId={userId} nickname={nickname} />
+      <PostingForm userId={userId} />
     </div>
   );
 };
