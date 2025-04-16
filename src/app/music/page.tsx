@@ -1,7 +1,6 @@
 "use client";
 import { Emotion } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
-import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import createClient from "@/services/supabase-client-service";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -9,18 +8,15 @@ import EmotionSelect from "./_components/emotion-select";
 import PlaylistTabContainer from "./_components/playlist-tab-container";
 import { PlaylistTabProps } from "./type";
 
-import PlaylistCard from "./_components/playlist-card";
-
 const Music = () => {
+  // 감정 상태 관리
+  const [emotion, setEmotion] = useState(Emotion.JOY);
   const [isSelectedTab, setIsSelectedTab] = useState<PlaylistTabProps>(
     PlaylistTabProps.RECOMMEND,
   );
-  const [query, setQuery] = useState(Emotion.JOY);
   const [userId, setUserId] = useState<string | null>(null);
 
   const supabaseClient = createClient();
-  const { playlists, playlistsPending, playlistsError } =
-    useGetAllPlaylistsByQueryQuery(query);
 
   // 유저 정보 조회
   useEffect(() => {
@@ -29,42 +25,35 @@ const Music = () => {
       const userId = data.user?.id;
 
       if (!userId) {
-        toast.error(TOAST_MESSAGE.SPOTIFY.USER_ERROR);
+        toast.error(TOAST_MESSAGE.MUSIC.USER_ERROR);
         return;
       }
+
       setUserId(userId);
     };
+
     fetchUser();
   }, []);
 
-  if (!userId || !playlists.length) return;
+  if (!userId) return <p>유저 정보가 없습니다.</p>;
 
-  if (playlistsPending || playlistsError || !userId) {
-    return <div>{TOAST_MESSAGE.SPOTIFY.ERROR}</div>;
-  }
   return (
     <div>
-      <EmotionSelect value={query} onChange={setQuery} />
+      <EmotionSelect value={emotion} onChange={setEmotion} />
       <PlaylistTabContainer
         userId={userId}
+        emotion={emotion}
         activeTab={isSelectedTab}
         onTabChange={setIsSelectedTab}
       />
-      <div className="mt-4">
+      {/* <div className="mt-4">
         {isSelectedTab === PlaylistTabProps.RECOMMEND && (
-          <ul className="flex flex-col gap-4">
-            {playlists.map((playlist) => {
-              return (
-                <PlaylistCard
-                  key={playlist.id}
-                  userId={userId}
-                  playlist={playlist}
-                />
-              );
-            })}
-          </ul>
+          <RecommendPlaylists userId={userId} emotion={emotion} />
         )}
-      </div>
+        {isSelectedTab === PlaylistTabProps.BOOKMARK && (
+          <BookmarkedPlaylists userId={userId} />
+        )}
+      </div> */}
     </div>
   );
 };
