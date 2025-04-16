@@ -5,6 +5,7 @@ import Providers from "@/providers/RQProviders";
 import Header from "./(layout)/header";
 import { ToastContainer } from "react-toastify";
 import Navigation from "./(layout)/navigation";
+import HeaderWithZustand from "./(home)/components/home-zustand";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -44,8 +45,11 @@ export default function RootLayout({
       <body className={`${pretendard.variable} ${ownGlyph.variable} antialiased`}>
         <Header />
         <Navigation />
-        <Providers>{children}</Providers>
-        <ToastContainer position="top-right" autoClose={3000}></ToastContainer>
+        <Providers>
+          <HeaderWithZustand />
+          {children}
+        </Providers>
+        <ToastContainer position="top-right" autoClose={3000} />
       </body>
     </html>
   );

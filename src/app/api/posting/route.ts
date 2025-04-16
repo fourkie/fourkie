@@ -13,7 +13,12 @@ export const POST = async (req: NextRequest) => {
         Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ inputs: inputText }),
+      body: JSON.stringify({
+        inputs: inputText,
+        options: {
+          wait_for_model: true,
+        },
+      }),
     });
 
     if (!response.ok) {

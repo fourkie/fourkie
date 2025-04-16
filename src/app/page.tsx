@@ -1,20 +1,20 @@
-import { getUserId, getUserNickname } from "@/services/home-service";
+import { getUserId } from "@/services/home-service";
 import HomeCalendar from "./(home)/components/home-calendar";
-import HomeHeader from "./(home)/components/home-header";
 import { redirect } from "next/navigation";
+import HomeFriend from "./(home)/components/home-friend";
+import HomeMusic from "./(home)/components/home-music";
 
 const HomePage = async () => {
   const userId: string | undefined = await getUserId();
-  const nickname: string | undefined = await getUserNickname();
+
   if (!userId) {
     redirect("/sign-in");
   }
   return (
-    <div>
-      <HomeHeader nickname={nickname} />
+    <div className="px-4">
       <HomeCalendar userId={userId} />
-      <div>친구 컴포넌트 자리</div>
-      <div>뮤직 컴포넌트 자리</div>
+      <HomeFriend userId={userId} />
+      <HomeMusic />
     </div>
   );
 };
