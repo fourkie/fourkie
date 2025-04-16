@@ -37,6 +37,7 @@ export const TOAST_MESSAGE = {
     FRIEND_ACCEPT_ERROR: "친구 맺기에 실패했습니다.",
     FRIEND_ACCEPT_SUCCESS: "친구 요청을 수락했습니다.",
     FRIEND_DELETE_ERROR: "친구 삭제에 실패했습니다.",
+  },
   POSTING: {
     SUCCESS: "게시물이 성공적으로 작성되었습니다.",
     ERROR: "게시물 작성 중 오류가 발생했습니다.",
