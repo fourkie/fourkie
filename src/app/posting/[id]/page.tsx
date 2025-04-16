@@ -15,8 +15,8 @@ const Edit = async ({ params }: { params: { id: string } }) => {
   if (error || !user) {
     redirect("/sign-in");
   }
+
   const userId = user.id;
-  const nickname = user.user_metadata.user_nickname || user.user_metadata.name;
 
   dayjs.locale("ko");
   const date = dayjs().format("D");
@@ -29,7 +29,7 @@ const Edit = async ({ params }: { params: { id: string } }) => {
         <span className="text-lg">{day}</span>
       </div>
       <hr className="my-2.5 w-full border-grey-0 " />
-      <PostingForm postId={postId} userId={userId} nickname={nickname} />
+      <PostingForm postId={postId} userId={userId} />
     </div>
   );
 };

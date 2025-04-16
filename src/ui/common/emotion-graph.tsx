@@ -1,7 +1,6 @@
 "use client";
 
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
-import Popup from "./popup";
 import emotionGraphCal from "@/utils/emotion-graph-cal.util";
 import { X } from "lucide-react";
 import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
@@ -47,58 +46,44 @@ const EmotionGraph = ({
   if (!openPopup) return null;
 
   return (
-    <Popup>
-      <div className="flex flex-col items-center justify-center w-full h-full bg-white p-5 font-pretendard rounded-xl">
-        {page === "list" && (
-          <div
-            className="flex justify-between items-center w-full border-grey-1 border-b-2 mb-1"
-            style={{ paddingBottom: "16px" }}
-          >
-            <div className="text-xl font-bold">{nickname}</div>
-            <X className="cursor-pointer" onClick={setOpenPopup} />
-          </div>
-        )}
-        <div
-          className="text-xs w-full text-right mb-2 mt-2"
-          style={{ color: "var(--color-grey-2)" }}
-        >
-          * 최근 3개월 통계
+    <div className="flex flex-col items-center justify-center w-full bg-white p-5 font-pretendard rounded-xl">
+      {page === "list" && (
+        <div className="flex justify-between items-center w-full border-grey-1 border-b-2 pb-4 mb-1">
+          <div className="text-xl font-bold">{nickname}</div>
+          <X className="cursor-pointer" onClick={setOpenPopup} />
         </div>
-        <div className="flex w-full justify-between items-end h-[70px]">
-          {emotions.map((e, i) => {
-            const percentageValue = parseFloat(e.percentage.replace("%", ""));
-            const barHeight = Math.max(
-              (percentageValue / maxPercentage) * 150,
-              4,
-            );
-
-            return (
-              <div
-                key={i}
-                className="flex flex-col items-center max-w-4 w-4 justify-end text-xs gap-2"
-              >
-                <div
-                  className="w-4 border"
-                  style={{
-                    height: `${barHeight}px`,
-                    backgroundColor: `var(--color-${color[e.emotion]})`,
-                    borderTopLeftRadius: "8px",
-                    borderTopRightRadius: "8px",
-                    paddingRight: "26px",
-                    paddingLeft: "26px",
-                  }}
-                ></div>
-                <EmotionImage src={checkEmotion(e.emotion)} size="s" />
-                <div className="mt-1">{EMOTIONS_QUERY[e.emotion]}</div>
-                <div className="mt-1">
-                  {Math.floor(parseInt(e.percentage))}%
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      )}
+      <div className="text-xs w-full text-right mb-2 text-grey-2 mt-2">
+        * 최근 3개월 통계
       </div>
-    </Popup>
+      <div className="flex w-full justify-between items-end">
+        {emotions.map((e, i) => {
+          const percentageValue = parseFloat(e.percentage.replace("%", ""));
+          const barHeight = Math.max(
+            (percentageValue / maxPercentage) * 150,
+            4,
+          );
+
+          return (
+            <div
+              key={i}
+              className="flex flex-col items-center justify-end text-xs gap-2"
+            >
+              <div
+                className="w-4 border rounded-t-lg px-7"
+                style={{
+                  height: `${barHeight}px`,
+                  backgroundColor: `var(--color-${color[e.emotion]})`,
+                }}
+              ></div>
+              <EmotionImage src={checkEmotion(e.emotion)} size="s" />
+              <div className="mt-1">{EMOTIONS_QUERY[e.emotion]}</div>
+              <div className="mt-1">{Math.floor(parseInt(e.percentage))}%</div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 };
 

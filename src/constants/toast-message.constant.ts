@@ -10,7 +10,11 @@ export const TOAST_MESSAGE = {
   },
   MUSIC: {
     USER_ERROR: "로그인이 필요합니다. 로그인 후 이용해주세요!",
-    PLAYLISTS_ERROR: "플레이리스트를 불러오는 데 실패했습니다.",
+
+    // 플레이리스트 관련 메시지
+    PLAYLISTS_PENDING:
+      "추천 플레이리스트를 불러오는 중입니다. 잠시만 기다려주세요.",
+    PLAYLISTS_ERROR: "추천 플레이리스트를 불러오는 데 실패했습니다.",
 
     // 북마크 관련 메시지
     EMPTY_BOOKMARK: "추가한 즐겨찾기 플레이리스트가 없습니다.",

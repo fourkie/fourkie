@@ -1,10 +1,10 @@
+import Providers from "@/providers/RQProviders";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
-import Providers from "@/providers/RQProviders";
 import { ToastContainer } from "react-toastify";
-import Navigation from "./(layout)/navigation";
 import HeaderWithZustand from "./(home)/components/home-zustand";
+import Navigation from "./(layout)/navigation";
+import "./globals.css";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -42,8 +42,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${pretendard.variable} ${ownGlyph.variable} antialiased `}
-      >
+        className={`${pretendard.variable} ${ownGlyph.variable} antialiased`}>
         <Providers>
           <HeaderWithZustand />
           {children}

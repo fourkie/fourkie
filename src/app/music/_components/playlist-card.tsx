@@ -3,7 +3,7 @@ import {
   useRemoveBookmarkMutation,
 } from "@/hooks/mutations/use-music-bookmarks-mutation";
 import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
-import { Star } from "lucide-react";
+import { Play, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SpotifyPlaylistItem } from "../type";
@@ -39,33 +39,41 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   };
 
   return (
-    <div className="flex items-center justify-start">
-      <button className="bookmark-button" onClick={handleBookmarkToggle}>
+    <div className="justify-arround flex h-[72px] items-center gap-3 border-b border-b-[1px] border-b-[#E7E7E7]">
+      <button
+        className="flex items-center justify-center"
+        onClick={handleBookmarkToggle}
+      >
         <Star
           className={
-            isBookmarked ? "fill-yellow-500 text-yellow-500" : "text-yellow-500"
+            isBookmarked ? "fill-yellow-400 text-yellow-400" : "text-yellow-400"
           }
           size={24}
         />
       </button>
 
-      <Image
-        src={playlist.images[0]?.url || "/default-image.jpg"}
-        alt={playlist.name}
-        width={50}
-        height={50}
-      />
+      {/* 이미지 수정 */}
+      <div className="flex h-[50px] w-[50px] items-center justify-center overflow-hidden">
+        <Image
+          src={playlist.images[0]?.url || "/default-image.jpg"}
+          alt={playlist.name}
+          width={50}
+          height={50}
+          className="object-cover"
+        />
+      </div>
 
-      <h3>{playlist.name}</h3>
+      <p className="w-full">{playlist.name}</p>
 
-      <p>{playlist.tracks.total}곡</p>
+      <p className="whitespace-nowrap">{playlist.tracks.total}곡</p>
 
       <Link
         href={playlist.external_urls.spotify}
         target="_blank"
         rel="noopener noreferrer"
+        className="whitespace-nowrap"
       >
-        Spotify
+        <Play />
       </Link>
     </div>
   );

@@ -1,15 +1,16 @@
 "use client";
 
+import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
+import { useRemovePostMutation } from "@/hooks/mutations/use-remove-post-mutation";
 import { useGetUserByIdQuery } from "@/hooks/queries/use-get-user-by-id-query";
 import { Posts } from "@/types/posts.type";
-import { useEffect, useRef, useState } from "react";
-import { ChevronDown, ChevronUp, Pencil, Trash2 } from "lucide-react";
 import EmotionGraph from "@/ui/common/emotion-graph";
-import { useRemovePostMutation } from "@/hooks/mutations/use-remove-post-mutation";
-import { useRouter } from "next/navigation";
-import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import EmotionImage from "@/ui/common/emotion-image.common";
+import Popup from "@/ui/common/popup";
 import { checkEmotion } from "@/utils/home-emotion.util";
+import { ChevronDown, ChevronUp, Pencil, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   const {
@@ -23,20 +24,11 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   const { data: user } = useGetUserByIdQuery(user_id);
   const { mutate: removePost } = useRemovePostMutation({ postId: post_id });
   const router = useRouter();
-  const contentRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
 
   const date = post_created_at.split("T")[0];
-
-  useEffect(() => {
-    const el = contentRef.current;
-    if (el) {
-      const isOver = el.scrollHeight > el.clientHeight + 1;
-      setIsOverflowing(isOver);
-    }
-  }, [post_content]);
 
   const handleDelete = () => {
     removePost();
@@ -55,8 +47,8 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         </div>
         {isMyPost ? (
           <div className="flex gap-3 w-[80px] justify-end">
-            <Pencil className="w-5 cursor-pointer" onClick={handleDelete} />
-            <Trash2 className="w-5 cursor-pointer" onClick={handleEdit} />
+            <Pencil className="w-5 cursor-pointer" onClick={handleEdit} />
+            <Trash2 className="w-5 cursor-pointer" onClick={handleDelete} />
           </div>
         ) : (
           <div
@@ -67,13 +59,15 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
           </div>
         )}
         {openPopup && (
-          <EmotionGraph
-            page="list"
-            openPopup={openPopup}
-            setOpenPopup={() => setOpenPopup(!openPopup)}
-            userId={user_id}
-            nickname={user?.user_nickname}
-          />
+          <Popup>
+            <EmotionGraph
+              page="list"
+              openPopup={openPopup}
+              setOpenPopup={() => setOpenPopup(!openPopup)}
+              userId={user_id}
+              nickname={user?.user_nickname}
+            />
+          </Popup>
         )}
       </div>
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
@@ -84,15 +78,14 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
             {user?.user_nickname}
           </span>
           님! <br /> {EMOTIONS_QUERY[post_emotion]}
-          기분이시네요!
+          날이시네요!
         </div>
       )}
       {isMyPost && (
         <div className="flex flex-col items-center">
           <div className="font-bold text-xl">{post_title}</div>
           <div
-            ref={contentRef}
-            className={`font-bold w-full break-words text-center text-lg ${
+            className={`font-bold w-full break-all text-center text-lg ${
               isExpanded ? "line-clamp-none" : "line-clamp-2"
             }`}
           >
