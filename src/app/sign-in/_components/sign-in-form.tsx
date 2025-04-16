@@ -14,6 +14,9 @@ import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 import { useLoginStore } from "@/hooks/zustand/store";
+import EmotionImage from "@/ui/common/emotion-image.common";
+import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
+import Link from "next/link";
 
 const SignInForm = () => {
   const router = useRouter();
@@ -41,23 +44,47 @@ const SignInForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        {...register("email", EMAIL_VALIDATION)}
-        type="email"
-        placeholder={FORM_MESSAGE.EMAIL}
-        error={errors.email?.message}
-      />
-      <Input
-        {...register("password", PASSWORD_VALIDATION)}
-        type="password"
-        placeholder={FORM_MESSAGE.PASSWORD}
-        error={errors.password?.message}
-      />
-      <Button type="submit" disabled={!isValid}>
-        로그인
-      </Button>
-    </form>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-primary-50 px-6">
+      <div className="flex flex-col items-center mb-10">
+        <div className=" rounded-full flex items-center justify-center mb-4">
+          <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="l" />
+        </div>
+        <h1 className="text-xl font-bold text-grey-6 mb-1">Smookie</h1>
+        <p className="text-grey-6 text-center">
+          하루의 끝, 마음을 조용히 들여다보고 싶을 때
+        </p>
+      </div>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full max-w-xs space-y-4"
+      >
+        <Input
+          {...register("email", EMAIL_VALIDATION)}
+          type="email"
+          placeholder={FORM_MESSAGE.EMAIL}
+          error={errors.email?.message}
+          className="bg-white px-4 py-3 rounded-xl border-none shadow-sm focus:outline-none"
+        />
+        <Input
+          {...register("password", PASSWORD_VALIDATION)}
+          type="password"
+          placeholder={FORM_MESSAGE.PASSWORD}
+          error={errors.password?.message}
+          className="bg-white px-4 py-3 rounded-xl border-none shadow-sm focus:outline-none"
+        />
+        <Button
+          type="submit"
+          disabled={!isValid}
+          classname="w-full bg-primary-300 text-primary-800 font-semibold py-3 rounded-xl"
+        >
+          로그인
+        </Button>
+      </form>
+      <div className="border border-grey-3 w-full mt-10" />
+      <div className="text-grey-3 m-4">
+        <Link href="/sign-up">회원가입하기</Link>
+      </div>
+    </div>
   );
 };
 
