@@ -39,7 +39,12 @@ const Music = () => {
 
   return (
     <div>
-      <EmotionSelect value={emotion} onChange={setEmotion} />
+      <div className="flex gap-4 px-3">
+        <div className="w-full bg-blue-600">
+          <EmotionSelect value={emotion} onChange={setEmotion} />
+          <div className="h-[200px] bg-red-500">플레이리스트 모달</div>
+        </div>
+      </div>
 
       <PlaylistTabContainer
         userId={userId}
