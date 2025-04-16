@@ -13,18 +13,34 @@ export const useAddBookmarkMutation = () => {
 
   return useMutation({
     mutationFn: ({
-      musicPlaylistId,
-      userId,
+      music_playlist_id,
+      name,
+      external_urls,
+      images,
+      tracks,
+      uri,
     }: {
-      musicPlaylistId: string;
-      userId: string;
-    }) => addBookmarkedPlaylists(musicPlaylistId, userId),
+      music_playlist_id: string;
+      name: string;
+      external_urls: { spotify: string };
+      images: { url: string }[];
+      tracks: { href: string; total: number };
+      uri: string;
+    }) =>
+      addBookmarkedPlaylists({
+        id: music_playlist_id,
+        name,
+        external_urls,
+        images,
+        tracks,
+        uri,
+      }),
 
-    onSuccess: (_, variables) => {
+    onSuccess: () => {
       toast.success(TOAST_MESSAGE.SPOTIFY.ADD_BOOKMARK_SUCCESS);
 
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY.BOOKMARKED_PLAYLISTS, variables.userId],
+        queryKey: [QUERY_KEY.BOOKMARKED_PLAYLISTS],
       });
     },
 
@@ -40,18 +56,34 @@ export const useRemoveBookmarkMutation = () => {
 
   return useMutation({
     mutationFn: ({
-      musicPlaylistId,
-      userId,
+      music_playlist_id,
+      name,
+      external_urls,
+      images,
+      tracks,
+      uri,
     }: {
-      musicPlaylistId: string;
-      userId: string;
-    }) => removeBookmarkedPlaylists(musicPlaylistId, userId),
+      music_playlist_id: string;
+      name: string;
+      external_urls: { spotify: string };
+      images: { url: string }[];
+      tracks: { href: string; total: number };
+      uri: string;
+    }) =>
+      removeBookmarkedPlaylists({
+        id: music_playlist_id,
+        name,
+        external_urls,
+        images,
+        tracks,
+        uri,
+      }),
 
-    onSuccess: (_, variables) => {
+    onSuccess: () => {
       toast.success(TOAST_MESSAGE.SPOTIFY.REMOVE_BOOKMARK_SUCCESS);
 
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY.BOOKMARKED_PLAYLISTS, variables.userId],
+        queryKey: [QUERY_KEY.BOOKMARKED_PLAYLISTS],
       });
     },
 

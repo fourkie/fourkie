@@ -1,3 +1,4 @@
+import { useAddBookmarkMutation } from "@/hooks/mutations/use-music-bookmarks-mutation";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,36 +10,55 @@ interface PlaylistCardProps {
 }
 
 const PlaylistCard = ({
+  userId,
   playlist,
   isBookmarked,
   onBookmarkToggle,
 }: PlaylistCardProps) => {
   const playlistUrl = playlist.uri || playlist.external_urls?.spotify;
 
+  const { mutate: addBookmark } = useAddBookmarkMutation();
+
   return (
-    <div className="flex items-center justify-start gap-4">
-      {/* 북마크 버튼 */}
-      <button onClick={onBookmarkToggle} aria-label="즐겨찾기 토글">
-        {isBookmarked ? (
-          <Star className="fill-yellow-500 text-yellow-500" />
-        ) : (
-          <Star className="text-yellow-500 " />
-        )}
-      </button>
+    <div className="playlist-card">
       <Image
-        src={playlist.images?.[0]?.url}
+        src={playlist.images?.[0]?.url || "/default-image.png"}
         alt={playlist.name}
         width={50}
         height={50}
       />
       <div className="flex flex-col">
-        <p>{playlist.name}</p>
-        <p>총 곡 수 {playlist.tracks?.total}</p>
+        <p className="text-lg font-bold">{playlist.name}</p>
         {playlistUrl && (
           <Link href={playlistUrl} target="_blank">
             <button className="text-sm underline text-blue-500">보기</button>
           </Link>
         )}
+        <button
+          aria-label="즐겨찾기 토글"
+          onClick={() => {
+            onBookmarkToggle();
+            addBookmark({
+              user_id: userId,
+              music_playlist_id: playlist.id,
+              name: playlist.name,
+              external_urls: playlist.external_urls,
+              images: playlist.images,
+              tracks: playlist.tracks,
+              uri: playlist.uri,
+            });
+          }}
+          className="flex items-center mt-2"
+        >
+          <Star
+            className={`w-5 h-5 ${
+              isBookmarked ? "text-yellow-500" : "text-gray-400"
+            }`}
+          />
+          <span className="ml-2 text-sm">
+            {isBookmarked ? "북마크됨" : "북마크 추가"}
+          </span>
+        </button>
       </div>
     </div>
   );

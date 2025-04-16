@@ -1,9 +1,12 @@
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import createClient from "./supabase-client-service";
+import { SpotifyPlaylistItem } from "@/app/music/type";
 
 // 유저의 북마크된 플레이리스트 조회
 export const fetchBookmarkedPlaylists = async (userId: string) => {
   const supabaseClient = createClient();
+
+  console.log("🔍 [fetchBookmarkedPlaylists] 북마크 목록 조회 시작:", userId);
 
   const { data: bookmarkedData, error: bookmarkedError } = await supabaseClient
     .from("musics")
@@ -11,24 +14,35 @@ export const fetchBookmarkedPlaylists = async (userId: string) => {
     .eq("user_id", userId);
 
   if (bookmarkedError) {
+    console.error("❌ [fetchBookmarkedPlaylists] 에러:", bookmarkedError);
     throw new Error(TOAST_MESSAGE.SPOTIFY.BOOKMARK_ERROR);
   }
 
-  return bookmarkedData;
+  console.log(
+    "✅ [fetchBookmarkedPlaylists] 조회된 북마크 목록:",
+    bookmarkedData,
+  );
+
+  return bookmarkedData.map((item) => item.music_playlist_id);
 };
 
 // 특정 플레이리스트를 북마크에 추가
-export const addBookmarkedPlaylists = async (
-  musicPlaylistId: string,
-  userId: string,
-) => {
+export const addBookmarkedPlaylists = async ({
+  id: music_playlist_id,
+  name,
+  external_urls,
+  images,
+  tracks,
+  uri,
+}: SpotifyPlaylistItem) => {
   const supabaseClient = createClient();
 
   const { error } = await supabaseClient
     .from("musics")
-    .insert([{ music_playlist_id: musicPlaylistId, user_id: userId }]);
+    .insert([{ music_playlist_id, name, external_urls, images, tracks, uri }]);
 
   if (error) {
+    console.error("❌ [addBookmarkedPlaylists] 북마크 추가 실패:", error);
     throw new Error(TOAST_MESSAGE.SPOTIFY.ADD_BOOKMARK_ERROR);
   }
 };
@@ -40,6 +54,11 @@ export const removeBookmarkedPlaylists = async (
 ) => {
   const supabaseClient = createClient();
 
+  console.log("🗑️ [removeBookmarkedPlaylists] 북마크 제거 시도:", {
+    musicPlaylistId,
+    userId,
+  });
+
   const { error } = await supabaseClient
     .from("musics")
     .delete()
@@ -47,6 +66,12 @@ export const removeBookmarkedPlaylists = async (
     .eq("user_id", userId);
 
   if (error) {
+    console.error("❌ [removeBookmarkedPlaylists] 북마크 제거 실패:", error);
     throw new Error(TOAST_MESSAGE.SPOTIFY.REMOVE_BOOKMARK_ERROR);
   }
+
+  console.log(
+    "✅ [removeBookmarkedPlaylists] 북마크 제거 성공:",
+    musicPlaylistId,
+  );
 };
