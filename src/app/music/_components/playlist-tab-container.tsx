@@ -4,7 +4,7 @@ import RecommendPlaylists from "./recommend-playlists";
 import BookmarkedPlaylists from "./bookmarked-playlists";
 
 const PlaylistTabContainer = ({ userId }: { userId: string }) => {
-  console.log("userId:", userId);
+  console.log("userId:", userId); // 확인 완료
 
   const [activeTab, setActiveTab] = useState<PlaylistTabProps>(
     PlaylistTabProps.RECOMMEND,

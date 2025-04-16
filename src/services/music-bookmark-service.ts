@@ -6,22 +6,19 @@ import { SpotifyPlaylistItem } from "@/app/music/type";
 export const fetchBookmarkedPlaylists = async (userId: string) => {
   const supabaseClient = createClient();
 
-  console.log("🔍 [fetchBookmarkedPlaylists] 북마크 목록 조회 시작:", userId);
+  console.log("북마크 목록 조회 시작 : ", userId);
 
   const { data: bookmarkedData, error: bookmarkedError } = await supabaseClient
     .from("musics")
-    .select("music_playlist_id")
+    .select("music_playlist_id") // 음악 아이디
     .eq("user_id", userId);
 
   if (bookmarkedError) {
-    console.error("❌ [fetchBookmarkedPlaylists] 에러:", bookmarkedError);
+    console.error("bookmarkedError : ", bookmarkedError);
     throw new Error(TOAST_MESSAGE.SPOTIFY.BOOKMARK_ERROR);
   }
 
-  console.log(
-    "✅ [fetchBookmarkedPlaylists] 조회된 북마크 목록:",
-    bookmarkedData,
-  );
+  console.log("조회된 북마크 목록 : ", bookmarkedData);
 
   return bookmarkedData.map((item) => item.music_playlist_id);
 };

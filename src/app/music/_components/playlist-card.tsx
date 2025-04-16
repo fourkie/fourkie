@@ -21,6 +21,7 @@ const PlaylistCard = ({
 
   const { mutate: addBookmark } = useAddBookmarkMutation();
 
+  // 북마크 추가 / 제거 핸들러
   const handleBookmarkToggle = () => {
     const payload: BookmarkMutationPayload = {
       music_playlist_id: playlist.id,
