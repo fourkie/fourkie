@@ -1,6 +1,5 @@
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import createClient from "./supabase-client-service";
-import { toast } from "react-toastify";
 
 export const searchUserByNicknameOrEmail = async (searchKeyword: string) => {
   const supabaseClient = createClient();
@@ -15,7 +14,6 @@ export const searchUserByNicknameOrEmail = async (searchKeyword: string) => {
     if (error) throw new Error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
     return data;
   } catch {
-    toast.error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
     return null;
   }
 };
