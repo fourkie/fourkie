@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "@/providers/RQProviders";
-import Header from "./(layout)/header";
 import { ToastContainer } from "react-toastify";
 import Navigation from "./(layout)/navigation";
 import HeaderWithZustand from "./(home)/components/home-zustand";
@@ -42,14 +41,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${pretendard.variable} ${ownGlyph.variable} antialiased`}>
-        <Header />
-        <Navigation />
+      <body
+        className={`${pretendard.variable} ${ownGlyph.variable} antialiased mb-[110px]`}
+      >
         <Providers>
           <HeaderWithZustand />
           {children}
         </Providers>
         <ToastContainer position="top-right" autoClose={3000} />
+        <Navigation />
       </body>
     </html>
   );
