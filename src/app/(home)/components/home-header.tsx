@@ -80,6 +80,12 @@ const HomeHeader = () => {
         <div className="text-2xl mx-auto">
           {nickname.user_nickname}님의 기록 목록
         </div>
+        {/* <button
+          type="submit"
+          className="px-2 py-1 bg-primary-700 text-secondary-50 rounded-lg font-medium text-sm"
+        >
+          게시
+        </button> */}
       </div>
     );
   }
