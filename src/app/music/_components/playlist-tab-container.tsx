@@ -1,12 +1,14 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { PlaylistTabProps, TabButtonProps } from "../type";
-import RecommendPlaylists from "./recommend-playlists";
 import BookmarkedPlaylists from "./bookmarked-playlists";
+import RecommendPlaylists from "./recommend-playlists";
 
 const PlaylistTabContainer = ({
   userId,
+  emotion,
 }: {
   userId: string;
+  emotion: string;
   activeTab?: PlaylistTabProps;
   onTabChange?: Dispatch<SetStateAction<PlaylistTabProps>>;
 }) => {
@@ -33,7 +35,7 @@ const PlaylistTabContainer = ({
 
       <div className="mt-4">
         {activeTab === PlaylistTabProps.RECOMMEND ? (
-          <RecommendPlaylists userId={userId} />
+          <RecommendPlaylists userId={userId} emotion={emotion} />
         ) : (
           <BookmarkedPlaylists userId={userId} />
         )}
