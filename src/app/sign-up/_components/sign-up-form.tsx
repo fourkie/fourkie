@@ -1,22 +1,22 @@
 "use client";
 
-import { useSignupMutation } from "@/hooks/mutations/auth-mutation";
-import { FieldValues, useForm } from "react-hook-form";
-import { FormData } from "../type";
+import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
+import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import {
   EMAIL_VALIDATION,
   NICKNAME_VALIDATION,
   PASSWORD_VALIDATION,
 } from "@/constants/validations.constant";
-import { FORM_MESSAGE } from "@/constants/form-message.constant";
+import { useSignupMutation } from "@/hooks/mutations/auth-mutation";
+import { useLoginStore } from "@/hooks/zustand/store";
+import Button from "@/ui/common/button.common";
+import EmotionImage from "@/ui/common/emotion-image.common";
+import Input from "@/ui/common/input.common";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useLoginStore } from "@/hooks/zustand/store";
-import Input from "@/ui/common/input.common";
-import Button from "@/ui/common/button.common";
-import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
-import EmotionImage from "@/ui/common/emotion-image.common";
-import Link from "next/link";
+import { FieldValues, useForm } from "react-hook-form";
+import { FormData } from "../type";
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -58,36 +58,36 @@ const SignUpForm = () => {
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-xs space-y-4"
+        className="w-full max-w-xs"
       >
         <Input
           {...register("email", EMAIL_VALIDATION)}
           type="email"
           placeholder={FORM_MESSAGE.EMAIL}
-          className="bg-white px-4 py-3 rounded-xl border-none shadow-sm focus:outline-none"
+          error={errors.email?.message}
+          className="bg-white px-4 py-3 rounded-xl border-none shadow-sm focus:outline-none w-full"
         />
-        {errors.email && <span>{errors.email.message}</span>}
 
         <Input
           {...register("password", PASSWORD_VALIDATION)}
           type="password"
           placeholder={FORM_MESSAGE.PASSWORD}
-          className="bg-white px-4 py-3 rounded-xl border-none shadow-sm focus:outline-none"
+          error={errors.password?.message}
+          className="bg-white px-4 py-3 rounded-xl border-none shadow-sm focus:outline-none w-full"
         />
-        {errors.password && <span>{errors.password.message}</span>}
 
         <Input
           {...register("nickname", NICKNAME_VALIDATION)}
           type="text"
           placeholder={FORM_MESSAGE.NICKNAME}
-          className="bg-white px-4 py-3 rounded-xl border-none shadow-sm focus:outline-none"
+          error={errors.nickname?.message}
+          className="bg-white px-4 py-3 rounded-xl border-none shadow-sm focus:outline-none w-full"
         />
-        {errors.nickname && <span>{errors.nickname.message}</span>}
 
         <Button
           type="submit"
           disabled={!isValid}
-          classname="w-full bg-primary-300 text-primary-800 font-semibold py-3 rounded-xl"
+          classname="w-full bg-primary-300 text-primary-800 font-semibold py-3 rounded-xl mt-6"
         >
           회원가입
         </Button>
