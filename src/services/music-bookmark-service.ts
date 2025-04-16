@@ -26,6 +26,7 @@ export const fetchBookmarkedPlaylists = async (userId: string | null) => {
     await supabaseClient
       .from("musics")
       .select("*")
+      .eq("user_id", userId)
       .in("music_playlist_id", bookmarkedPlaylistIds); // music_playlist_id가 bookmarkedPlaylistIds 테이블의 id와 일치하는 데이터 조회
 
   if (bookmarkedPlaylistsError) {
