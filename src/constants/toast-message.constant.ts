@@ -1,6 +1,8 @@
 export const TOAST_MESSAGE = {
   ERROR: {
     AUTH_ERROR: "로그인이 필요한 서비스입니다.",
+    SIGNOUT_ERROR: "로그아웃에 실패하였습니다.",
+    SIGNOUT_SUCCESS: "로그아웃 되었습니다",
   },
   HOMEERROR: "불러오는 중 오류가 났습니다.",
   SPOTIFY: {
@@ -61,6 +63,7 @@ export const TOAST_MESSAGE = {
     CHANGE_NICKNAME_ERROR: "닉네임 변경에 실패했습니다.",
     CHANGE_NICKNAME_SUCCESS: "닉네임을 변경했습니다.",
     FRIEND_REQUEST_SUCCESS: "친구 요청을 보냈습니다.",
+    FRIEND_REQUEST_EXIST: "이미 요청을 보낸 사용자입니다.",
     FRIEND_REQUEST_ERROR: "친구 요청에 실패했습니다",
     FRIEND_RECEIVED_ERROR: "받은 친구 요청을 불러오지 못했습니다.",
     FRIEND_SENT_ERROR: "보낸 친구 요청을 불러오지 못했습니다.",

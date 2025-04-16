@@ -8,7 +8,7 @@ const MypageMenuItem = ({ href, label, icon }: MypageMenuItemProps) => {
   return (
     <Link
       href={href}
-      className="flex items-center justify-between bg-white p-4 rounded-xl"
+      className="flex items-center justify-between bg-white p-4 rounded-xl transition-all duration-300 hover:text-secondary-300"
     >
       <div className="flex items-center gap-2 font-semibold">
         {icon}

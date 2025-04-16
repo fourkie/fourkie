@@ -1,12 +1,14 @@
 "use client";
 
 import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
+import { QUERY_KEY } from "@/constants/query-keys.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useUpdateNicknameMutation } from "@/hooks/mutations/use-update-nickname-mutation";
 import { useGetUserNicknameQuery } from "@/hooks/queries/use-get-user-nickname-query";
 import { checkNicknameDuplicate } from "@/services/nickname-service";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import Input from "@/ui/common/input.common";
+import { useQueryClient } from "@tanstack/react-query";
 import { SquareCheckBig, SquarePen } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -16,6 +18,7 @@ const MypageProfile = () => {
   const { mutate: updateNickname } = useUpdateNicknameMutation();
   const [edit, setEdit] = useState(false);
   const [newNickname, setNewNickname] = useState(nickname);
+  const queryClient = useQueryClient();
 
   const handleEditToggle = () => {
     setEdit((prev) => !prev);
@@ -40,6 +43,9 @@ const MypageProfile = () => {
       onSuccess: () => {
         toast.success(TOAST_MESSAGE.MYPAGE.CHANGE_NICKNAME_SUCCESS);
         setEdit(false);
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEY.NICKNAME],
+        });
       },
     });
   };
@@ -47,13 +53,13 @@ const MypageProfile = () => {
   if (isPending) return <div>쿠키 주문하신 분?</div>;
 
   return (
-    <div className="w-full bg-white rounded-xl border border-primary-100 p-6 mb-6">
+    <div className="mb-6 w-full rounded-xl border border-primary-100 bg-white py-6">
       <div className="flex flex-col items-center gap-1">
         <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="m" />
-        <div className="flex justify-center items-center gap-1">
+        <div className="flex items-center justify-center gap-1">
           {edit ? (
             <Input
-              className="w-20 rounded-xl bg-grey-0 py-2 px-3"
+              className="w-20 rounded-xl bg-grey-0 px-3 py-2"
               value={newNickname}
               onChange={(e) => setNewNickname(e.target.value)}
             />
