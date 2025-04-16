@@ -57,6 +57,3 @@ export enum Emotion {
 
 // 토큰 만료 기간 (14일)
 export const MS_IN_FOURTEEN_DAYS = 1000 * 60 * 60 * 24 * 14;
-
-// 캐시 만료 기간 (5분)
-export const CACHE_STALE_TIME = 1000 * 60 * 5; // 5분
