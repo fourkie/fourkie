@@ -1,10 +1,10 @@
 "use client";
 
-import ListCard from "./list-card";
-import { useEffect, useRef, useState } from "react";
 import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-query";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 import { usePostStore } from "@/stores/post-date-store";
+import { useEffect, useRef, useState } from "react";
+import ListCard from "./list-card";
 
 const ListCardContainer = ({ userId }: { userId: string }) => {
   const [isMyPost, setIsMyPost] = useState(true);
@@ -31,13 +31,13 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   });
 
   return (
-    <div className="flex flex-col gap-4 px-5 bg-primary-50 h-screen">
-      <div className="flex justify-center items-center gap-4">
+    <div className="flex h-screen flex-col gap-4 bg-primary-50 px-5">
+      <div className="flex items-center justify-center gap-4">
         <div
           className={`${
             isMyPost
-              ? "text-primary-600 border-b-2 border-primary-600 text-sm"
-              : "text-gray-400 text-sm"
+              ? "border-b-2 border-primary-600 text-sm text-primary-600"
+              : "text-sm text-gray-400"
           } cursor-pointer font-bold`}
           onClick={() => setIsMyPost(true)}
         >
@@ -46,8 +46,8 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
         <div
           className={`${
             isMyPost
-              ? "text-gray-400 text-sm"
-              : "text-primary-600 border-b-2 border-primary-600 text-sm"
+              ? "text-sm text-gray-400"
+              : "border-b-2 border-primary-600 text-sm text-primary-600"
           } cursor-pointer font-bold`}
           onClick={() => setIsMyPost(false)}
         >

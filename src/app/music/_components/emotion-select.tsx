@@ -3,12 +3,12 @@ import { EmotionSelectProps } from "../type";
 
 const EmotionSelect = ({ value, onChange }: EmotionSelectProps) => {
   return (
-    <div>
+    <div className="absolute left-[20px] top-[64px]">
       <div className="mb-2 flex items-center gap-3">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value as Emotion)}
-          className="h-[34px] w-[100px] gap-[3px] rounded-[30px] border-[3px] border-[#BED79A] px-[14px] py-[4px]"
+          className="h-[24px] w-[81px] gap-[3px] rounded-[12px] border-[1px] border-[#A6C874] bg-[#D5E5BD] px-[8px] py-[3px] text-[14px]"
         >
           {Object.entries(EMOTION_DISPLAY_NAME).map(
             ([emotionKey, emotionDisplayName]) => (
@@ -18,9 +18,9 @@ const EmotionSelect = ({ value, onChange }: EmotionSelectProps) => {
             ),
           )}
         </select>
-        <p>듣기 좋은</p>
+        <p className="font-bold text-white">듣기 좋은</p>
       </div>
-      <p>플레이리스트를 추천해 드릴게요!</p>
+      <p className="font-bold text-white">플레이리스트를 추천해 드릴게요!</p>
     </div>
   );
 };
