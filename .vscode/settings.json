@@ -1,0 +1,7 @@
+{
+  "cSpell.words": ["HUGGINGFACE", "Smookie", "supabase"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  }
+}

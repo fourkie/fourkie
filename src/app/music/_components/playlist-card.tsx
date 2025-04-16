@@ -1,0 +1,84 @@
+import {
+  useAddBookmarkMutation,
+  useRemoveBookmarkMutation,
+} from "@/hooks/mutations/use-music-bookmarks-mutation";
+import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
+import { Play, Star } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { SpotifyPlaylistItem } from "../type";
+
+interface PlaylistCardProps {
+  playlist: SpotifyPlaylistItem;
+  userId: string;
+}
+
+export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
+  const musicPlaylistId = playlist.id || playlist.music_playlist_id;
+
+  const { mutate: addBookmark } = useAddBookmarkMutation(userId);
+  const { mutate: removeBookmark } = useRemoveBookmarkMutation({
+    musicPlaylistId,
+    userId,
+  });
+
+  const { data: bookmarkedIds } = useGetAllBookmarkedPlaylistsByIdQuery(userId);
+
+  const isBookmarked = bookmarkedIds?.some(
+    (item) => item.music_playlist_id === musicPlaylistId,
+  );
+
+  const handleBookmarkToggle = () => {
+    if (isBookmarked == false) {
+      // 북마크 추가
+      addBookmark({ ...playlist, userId });
+    } else if (isBookmarked == true) {
+      // 북마크 삭제
+      removeBookmark({ musicPlaylistId, userId });
+    }
+  };
+
+  return (
+    <div className="h-[74px]">
+      <div className="justify-arround mt-[11px] flex h-[52px] items-center gap-3 border-b border-b-[1px] border-b-[#E7E7E7]">
+        <button
+          className="flex items-center justify-center"
+          onClick={handleBookmarkToggle}
+        >
+          <Star
+            className={`h-[18px] ${
+              isBookmarked
+                ? "fill-yellow-400 text-yellow-400"
+                : "text-yellow-400"
+            }`}
+            size={24}
+          />
+        </button>
+        {/* 이미지 수정 */}
+        <div className="flex h-[50px] w-[50px] items-center justify-center overflow-hidden">
+          <Image
+            src={playlist.images[0]?.url || "/default-image.jpg"}
+            alt={playlist.name}
+            width={62}
+            height={52}
+            className="rounded-[10px] object-cover"
+          />
+        </div>
+        <p className="w-full text-[16px] font-bold">{playlist.name}</p>
+        <p className="whitespace-nowrap text-[12px]">
+          {playlist.tracks.total}곡
+        </p>
+        <Link
+          href={playlist.external_urls.spotify}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="whitespace-nowrap"
+        >
+          <Play className="h-[18px]" />
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default PlaylistCard;

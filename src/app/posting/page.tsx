@@ -1,18 +1,36 @@
-import supabaseServer from "@/services/supabase-server-service";
-import PostingForm from "./_components/posting-form";
+import createClient from "@/services/supabase-server-service";
+import dayjs from "dayjs";
+import "dayjs/locale/ko";
 import { redirect } from "next/navigation";
+import PostingForm from "./_components/posting-form";
 
 const Posting = async () => {
-  const supabase = supabaseServer();
-
-  const { data, error } = await supabase.auth.getUser();
-  if (error || !data.user) {
+  const supabaseServer = createClient();
+  const {
+    data: { user },
+    error,
+  } = await supabaseServer.auth.getUser();
+  if (error || !user) {
     redirect("/sign-in");
   }
 
-  const nickname = data.user.user_metadata.user_nickname;
+  const userId = user.id;
 
-  return <PostingForm nickname={nickname} />;
+  dayjs.locale("ko");
+  const date = dayjs().format("D");
+  const day = dayjs().format("dddd");
+
+  return (
+    <div className="ml-5 mr-6">
+      <div className="flex gap-2 pt-4 font-bold">
+        <span className="text-xl">{date}</span>
+        <span className="text-lg">{day}</span>
+      </div>
+      <hr className="my-2.5 w-full border-grey-0" />
+
+      <PostingForm userId={userId} />
+    </div>
+  );
 };
 
 export default Posting;

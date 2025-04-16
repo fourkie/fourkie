@@ -1,20 +1,32 @@
+import Providers from "@/providers/RQProviders";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
-import Providers from "@/providers/RQProviders";
-import Header from "./(layout)/header";
 import { ToastContainer } from "react-toastify";
+import HeaderWithZustand from "./(home)/components/home-zustand";
 import Navigation from "./(layout)/navigation";
+import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+// const geistSans = localFont({
+//   src: "./fonts/GeistVF.woff",
+//   variable: "--font-geist-sans",
+//   weight: "100 900",
+// });
+// const geistMono = localFont({
+//   src: "./fonts/GeistMonoVF.woff",
+//   variable: "--font-geist-mono",
+//   weight: "100 900",
+// });
+
+const ownGlyph = localFont({
+  src: "./fonts/OwnGlyph.ttf",
+  variable: "--font-own-glyph",
+  weight: "100",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const pretendard = localFont({
+  src: "./fonts/PretendardVariable.woff2",
+  variable: "--font-pretendard",
+  weight: "400 700",
 });
 
 export const metadata: Metadata = {
@@ -28,14 +40,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Header />
+        className={`${pretendard.variable} ${ownGlyph.variable} antialiased`}>
+        <Providers>
+          <HeaderWithZustand />
+          <div className="pb-24">{children}</div>
+        </Providers>
+        <ToastContainer position="top-right" autoClose={3000} />
         <Navigation />
-        <Providers>{children}</Providers>
-        <ToastContainer position="top-right" autoClose={3000}></ToastContainer>
       </body>
     </html>
   );

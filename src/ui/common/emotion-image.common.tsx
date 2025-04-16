@@ -10,13 +10,14 @@ import Image from "next/image";
 
 사용 예시
 <CommonEmotionImage
-    src={EMOTION_URL.JOY}
+    src={EMOTION_URL.JOY} // 여기 바뀌었습니다.
     size={"xl"}
 />
  */
 const EmotionImage = ({ src, size }: Img) => {
-  const sizeClasses: Record<"xs" | "s" | "m" | "l" | "xl", number> = {
-    xs: 30, // 아주 작은 사이즈
+  const sizeClasses: Record<"xxs" | "xs" | "s" | "m" | "l" | "xl", number> = {
+    xxs: 30, // 아주 작은 사이즈
+    xs: 40,
     s: 50, // 작은 사이즈
     m: 60, // 보통 사이즈
     l: 100, // 큰 사이즈
@@ -33,7 +34,6 @@ const EmotionImage = ({ src, size }: Img) => {
       className={`rounded object-cover`}
       width={imageSize}
       height={imageSize}
-      priority
     />
   );
 };

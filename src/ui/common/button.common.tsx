@@ -7,10 +7,16 @@ const Button = ({
   type,
   icon,
   iconPosition,
+  classname,
 }: ButtonProps) => {
   return (
-    <button type={type} onClick={onClick} disabled={disabled}>
-      <div className="flex items-center">
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={`${classname}`}
+    >
+      <div className="mx-auto">
         {icon && iconPosition === "left" && <>{icon}</>}
         {children}
         {icon && iconPosition === "right" && <>{icon}</>}

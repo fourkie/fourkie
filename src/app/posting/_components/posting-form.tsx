@@ -1,55 +1,108 @@
 "use client";
 
-import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import { PostingFormValues, UserDateProps } from "../type";
-import { useGetAnalyzedPostEmotionMutation } from "@/hooks/mutations/use-post-emotion-mutation";
-import PostingResultModal from "./posting-result-modal";
-import { useState } from "react";
+import { useGetAnalyzedPostEmotionMutation } from "@/hooks/mutations/use-get-analyzed-post-emotion-mutation";
+import PostingEmotionModal from "./posting-emotion-modal";
+import { useState, useEffect } from "react";
+import { useGetPostsByPostIdQuery } from "@/hooks/queries/use-get-posts-by-postId-query";
+import { useRouter } from "next/navigation";
 
-const PostingForm = ({ nickname }: UserDateProps) => {
-  const { mutate, data, isPending } = useGetAnalyzedPostEmotionMutation();
-  const { register, handleSubmit } = useForm<PostingFormValues>();
+const PostingForm = ({ postId, userId }: UserDateProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 감정 분석 결과를 처리하는 함수
-  const onSubmit = ({ inputText }: PostingFormValues) => {
-    if (!inputText.trim()) return;
+  // query, mutation 함수
+  const { mutate, data, isPending } =
+    useGetAnalyzedPostEmotionMutation(setIsModalOpen);
+  const { data: postData } = useGetPostsByPostIdQuery({ postId });
 
-    mutate(inputText, {
-      onSuccess: () => {
-        setIsModalOpen(true);
-      },
-      onError: () => {
-        toast.error(TOAST_MESSAGE.AI.HUGGINGFACE.ERROR);
-      },
-    });
+  // react-hook-form을 사용하여 폼 상태 관리
+  const { register, handleSubmit, watch, setValue } =
+    useForm<PostingFormValues>();
+  const inputTitle = watch("inputTitle");
+  const inputContent = watch("inputContent");
+
+  const router = useRouter();
+
+  // 감정 분석 결과를 처리하는 함수
+  const onSubmit = ({ inputTitle, inputContent }: PostingFormValues) => {
+    if (!inputTitle.trim() || !inputContent.trim()) return;
+    mutate(inputContent);
+  };
+
+  // 게시글 수정 시 내가 작성한 게시글인지 확인
+  useEffect(() => {
+    if (!postId || !postData || !postData[0]) return;
+
+    const isOwner = postData[0].user_id === userId;
+    if (isOwner) {
+      setValue("inputTitle", postData[0].post_title);
+      setValue("inputContent", postData[0].post_content);
+    } else {
+      router.push("/");
+    }
+  }, [postData, userId, setValue, router]);
+
+  // textarea 높이 자동 조절 함수
+  const handleAutoResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const target = e.target;
+    target.style.height = "auto";
+    target.style.height = `${target.scrollHeight}px`;
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          {...register("inputText")}
-          placeholder={FORM_MESSAGE.POST.TITLE}
-          className="border p-2 rounded"
-        />
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col px-5 pt-2.5 gap-5"
+      >
+        <div className="flex flex-col gap-2">
+          <h2 className="text-center text-xl font-bold text-grey-4">Title</h2>
+
+          <textarea
+            {...register("inputTitle")}
+            placeholder={FORM_MESSAGE.POST.TITLE}
+            maxLength={20}
+            className={`w-full text-xl text-center resize-none overflow-hidden whitespace-normal focus:outline-none font-ownglyph leading-4p ${
+              inputTitle ? "text-black" : "text-grey-2"
+            }`}
+            onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              handleAutoResize(e)
+            }
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h2 className="text-center text-xl font-bold text-grey-4">Content</h2>
+
+          <textarea
+            {...register("inputContent")}
+            placeholder={FORM_MESSAGE.POST.CONTENT}
+            className={`w-full text-lg text-center resize-none overflow-hidden whitespace-pre-line focus:outline-none font-ownglyph leading-4p ${
+              inputContent ? "text-black" : "text-grey-2"
+            }`}
+            onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              handleAutoResize(e)
+            }
+          />
+        </div>
 
         <button
           type="submit"
-          className="ml-2 px-4 py-2 bg-blue-500 text-white rounded"
+          className="absolute top-3.5 right-5 px-2 py-1 bg-primary-700 text-secondary-50 rounded-lg font-medium text-sm z-50"
         >
-          게시
+          {isPending ? "처리 중..." : "게시"}
         </button>
       </form>
 
-      <PostingResultModal
-        emotions={data}
+      <PostingEmotionModal
+        userId={userId}
+        title={inputTitle}
+        content={inputContent}
+        emotion={data}
+        postId={postId}
         isPending={isPending}
-        nickname={nickname}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
       />

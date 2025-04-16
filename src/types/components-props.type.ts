@@ -7,6 +7,7 @@ export interface ButtonProps {
   type?: "button" | "submit" | "reset";
   icon?: ReactNode; // 아이콘
   iconPosition?: "left" | "right"; // 아이콘 위치
+  classname?: string;
 }
 
 export interface InputProps {

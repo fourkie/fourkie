@@ -1,30 +1,64 @@
-// AccessToken 응답 타입
-export interface AccessToken {
-  access_token: string;
+import { Emotion } from "@/constants/spotify.constant";
+
+export interface SpotifyAccessToken {
+  accessToken: string;
+  expiresIn: number;
+  success: boolean;
 }
 
-// Spotify 플레이리스트 API 응답 타입
-export interface PlaylistsResponse {
-  playlists: {
-    items: PlaylistItem[];
-  };
-}
-
-// 개별 플레이리스트 아이템 타입
-export interface PlaylistItem {
-  id: string;
-  images: SpotifyImage[];
-  name: string;
-  owner: {
-    id: string;
-  };
-  tracks: {
-    href: string;
-    total: number;
-  };
-}
-
-// 이미지 정보 타입
 export interface SpotifyImage {
   url: string;
+}
+
+export interface SpotifyTracks {
+  href: string;
+  total: number;
+}
+
+export interface SpotifyPlaylistItem {
+  music_playlist_id: string;
+  id: string;
+  userId: string;
+  name: string;
+  external_urls: { spotify: string };
+  images: SpotifyImage[];
+  tracks: SpotifyTracks;
+  uri: string;
+}
+
+export interface Musics extends SpotifyPlaylistItem {
+  userId: string;
+  music_playlist_id: string;
+}
+
+export type SpotifyPlaylistList = SpotifyPlaylistItem[];
+
+export interface EmotionSelectProps {
+  value: Emotion;
+  onChange: (value: Emotion) => void;
+}
+
+export enum PlaylistTabProps {
+  RECOMMEND = "recommend",
+  BOOKMARK = "bookmark",
+}
+
+export interface TabButtonsProps {
+  activeTab: PlaylistTabProps | undefined;
+  onTabChange: (tab: PlaylistTabProps) => void;
+}
+
+export interface TabButtonProps {
+  isActive: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}
+
+export interface BookmarkMutationPayload {
+  music_playlist_id: string;
+  name: string;
+  external_urls: { spotify: string };
+  images: { url: string }[];
+  tracks: { href: string; total: number };
+  uri: string;
 }

@@ -4,24 +4,51 @@ export type PostingResponse = {
 };
 
 export type PostingFormValues = {
-  inputText: string;
+  inputTitle: string;
+  inputContent: string;
 };
 
 export type UserDateProps = {
-  nickname: string | undefined;
+  postId?: string;
+  userId: string;
 };
 
 export type PostingResultModalProps = {
-  emotions: string[];
+  userId: string;
+  title: string;
+  content: string;
+  emotion: string;
+  postId?: string;
   isPending: boolean;
-  nickname: string | undefined;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-// test 타입입니다.
-export type Mood = {
-  name: string;
-  icon: string;
-  color: string;
+export type PostingEmotionModalSlideProps = {
+  currentEmotionKey: string;
+  emotionKeys: string[];
+  setSlideIndex: React.Dispatch<React.SetStateAction<number>>;
+};
+
+export type PostingEmotionModalButtonProps = {
+  userId: string;
+  title: string;
+  content: string;
+  currentEmotion: string;
+  postId?: string;
+  onClose: () => void;
+};
+
+export type CreatePostsParams = {
+  userId: string;
+  title: string;
+  content: string;
+  currentEmotion: string;
+};
+
+export type updatePostsByPostIdParams = {
+  postId?: string;
+  title: string;
+  content: string;
+  currentEmotion: string;
 };
