@@ -1,12 +1,11 @@
 import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
 import PlaylistCard from "./playlist-card";
 
-// bookmarked-playlists.tsx
 const BookmarkedPlaylists = ({ userId }: { userId: string }) => {
   const { data, isPending } = useGetAllBookmarkedPlaylistsByIdQuery(userId);
 
-  console.log("userId:", userId);
-  console.log("북마크된 플레이리스트 데이터:", data);
+  console.log("userId : ", userId);
+  console.log("북마크된 플레이리스트 데이터 : ", data);
 
   const playlists = data?.map((item) => item.music_playlist_id);
   if (isPending) return <p>로딩 중...</p>;
