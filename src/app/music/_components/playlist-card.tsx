@@ -2,9 +2,11 @@ import { useAddBookmarkMutation } from "@/hooks/mutations/use-music-bookmarks-mu
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { BookmarkMutationPayload, SpotifyPlaylistItem } from "../type";
 
 interface PlaylistCardProps {
-  playlist: any;
+  userId: string;
+  playlist: SpotifyPlaylistItem;
   isBookmarked: boolean;
   onBookmarkToggle: () => void;
 }
@@ -18,6 +20,20 @@ const PlaylistCard = ({
   const playlistUrl = playlist.uri || playlist.external_urls?.spotify;
 
   const { mutate: addBookmark } = useAddBookmarkMutation();
+
+  const handleBookmarkToggle = () => {
+    const payload: BookmarkMutationPayload = {
+      music_playlist_id: playlist.id,
+      name: playlist.name,
+      external_urls: playlist.external_urls,
+      images: playlist.images,
+      tracks: playlist.tracks,
+      uri: playlist.uri,
+    };
+
+    onBookmarkToggle();
+    addBookmark(payload);
+  };
 
   return (
     <div className="playlist-card">
@@ -36,18 +52,7 @@ const PlaylistCard = ({
         )}
         <button
           aria-label="즐겨찾기 토글"
-          onClick={() => {
-            onBookmarkToggle();
-            addBookmark({
-              user_id: userId,
-              music_playlist_id: playlist.id,
-              name: playlist.name,
-              external_urls: playlist.external_urls,
-              images: playlist.images,
-              tracks: playlist.tracks,
-              uri: playlist.uri,
-            });
-          }}
+          onClick={handleBookmarkToggle}
           className="flex items-center mt-2"
         >
           <Star
