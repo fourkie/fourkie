@@ -19,8 +19,8 @@ const RecommendPlaylists = ({ userId }: { userId: string }) => {
           key={playlist.id}
           userId={userId}
           playlist={playlist}
-          isBookmarked={false} // 추천 탭이므로 북마크 여부는 따로 로직 추가 가능
-          onBookmarkToggle={() => console.log("북마크 토글")}
+          // isBookmarked={false} // 추천 탭이므로 북마크 여부는 따로 로직 추가 가능
+          // onBookmarkToggle={() => console.log("북마크 토글")}
         />
       ))}
     </ul>

@@ -55,8 +55,8 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         </div>
         {isMyPost ? (
           <div className="flex gap-3 w-[80px] justify-end">
-            <Pencil className="w-5 cursor-pointer" onClick={handleDelete} />
-            <Trash2 className="w-5 cursor-pointer" onClick={handleEdit} />
+            <Pencil className="w-5 cursor-pointer" onClick={handleEdit} />
+            <Trash2 className="w-5 cursor-pointer" onClick={handleDelete} />
           </div>
         ) : (
           <div
