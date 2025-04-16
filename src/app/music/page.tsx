@@ -35,25 +35,18 @@ const Music = () => {
     fetchUser();
   }, []);
 
-  if (!userId) return <p>유저 정보가 없습니다.</p>;
+  if (!userId) return TOAST_MESSAGE.MUSIC.USER_ERROR;
 
   return (
     <div>
       <EmotionSelect value={emotion} onChange={setEmotion} />
+
       <PlaylistTabContainer
         userId={userId}
         emotion={emotion}
         activeTab={isSelectedTab}
         onTabChange={setIsSelectedTab}
       />
-      {/* <div className="mt-4">
-        {isSelectedTab === PlaylistTabProps.RECOMMEND && (
-          <RecommendPlaylists userId={userId} emotion={emotion} />
-        )}
-        {isSelectedTab === PlaylistTabProps.BOOKMARK && (
-          <BookmarkedPlaylists userId={userId} />
-        )}
-      </div> */}
     </div>
   );
 };
