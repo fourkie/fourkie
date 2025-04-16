@@ -11,7 +11,7 @@ const HomePage = async () => {
     redirect("/sign-in");
   }
   return (
-    <div className="px-4">
+    <div className="px-4 min-h-screen">
       <HomeCalendar userId={userId} />
       <HomeFriend userId={userId} />
       <HomeMusic />

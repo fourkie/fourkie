@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 
 const Navigation = () => {
   const pathname = usePathname();
-
+  //레이아웃 + 헤더 경로 상수화
   if (
     pathname.startsWith("/sign-in") ||
     pathname.startsWith("/sign-up") ||

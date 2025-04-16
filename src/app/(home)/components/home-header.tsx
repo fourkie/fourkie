@@ -2,11 +2,34 @@
 
 import { useGetUserNicknameByIdQuery } from "@/hooks/queries/use-get-user-nickname-by-id-query";
 import { getUserIdClient } from "@/services/home-client-service";
-
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ChevronLeft } from "lucide-react";
 
-import { ChevronLeft, X } from "lucide-react";
+/* //헤더 리펙토링 시도 중...
+//계획 backIconPaths에 해당하면 뒤로가기 함수랑 같이 주기기
+const headerPaths = [
+  { path: "/my-page", title: "마이페이지", needsNickname: true },
+  { path: "/friends", title: "내 친구", needsNickname: false },
+  { path: "/smookie-makers", title: "메이커스", needsNickname: false },
+  { path: "/term", title: "약관정책", needsNickname: false },
+  { path: "/version", title: "버전정보", needsNickname: false },
+  { path: "/notice", title: "공지사항", needsNickname: false },
+  { path: "/list", title: "기록 목록", needsNickname: true },
+  { path: "/posting", title: "기록", needsNickname: true },
+];
+//뒤로가기 필요 목록록
+const backIconPaths = [
+  "/friends",
+  "/smookie-makers",
+  "/term",
+  "/version",
+  "/notice",
+  "/posting", // 이젠 X 대신 뒤로가기!
+];
+//공통 tailwind
+
+ */
 
 const HomeHeader = () => {
   const pathname = usePathname();
@@ -116,9 +139,9 @@ const HomeHeader = () => {
   if (pathname.startsWith("/posting")) {
     return (
       <div className="flex flex-row items-center justify-between bg-primary-50 p-3">
-        <X onClick={handleBack} />
+        <ChevronLeft onClick={handleBack} />
         <div className="text-lg font-bold mx-auto">
-          {nickname.user_nickname}님의 기록
+          {nickname.user_nickname}님의 기록(여기)
         </div>
       </div>
     );

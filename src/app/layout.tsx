@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${pretendard.variable} ${ownGlyph.variable} antialiased mb-[110px]`}
+        className={`${pretendard.variable} ${ownGlyph.variable} antialiased `}
       >
         <Providers>
           <HeaderWithZustand />
