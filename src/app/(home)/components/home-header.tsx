@@ -51,7 +51,47 @@ const HomeHeader = () => {
     return (
       <div className="flex flex-row items-center justify-between bg-primary-50 p-3">
         <ChevronLeft className="cursor-pointer" onClick={handleBack} />
-        <div className="text-2xl mx-auto">내 친구</div>
+        <div className="text-lg font-bold mx-auto">내 친구</div>
+      </div>
+    );
+  }
+
+  //스무키 메이커
+  if (pathname.startsWith("/smookie-makers")) {
+    return (
+      <div className="flex flex-row items-center justify-between bg-primary-50 p-3">
+        <ChevronLeft className="cursor-pointer" onClick={handleBack} />
+        <div className="text-lg font-bold mx-auto">메이커스</div>
+      </div>
+    );
+  }
+
+  //마이페이지 친구
+  if (pathname.startsWith("/term")) {
+    return (
+      <div className="flex flex-row items-center justify-between bg-primary-50 p-3">
+        <ChevronLeft className="cursor-pointer" onClick={handleBack} />
+        <div className=" text-lg font-bold mx-auto">약관정책</div>
+      </div>
+    );
+  }
+
+  //버전
+  if (pathname.startsWith("/version")) {
+    return (
+      <div className="flex flex-row items-center justify-between bg-primary-50 p-3">
+        <ChevronLeft className="cursor-pointer" onClick={handleBack} />
+        <div className=" text-lg font-bold mx-auto">버전정보</div>
+      </div>
+    );
+  }
+
+  //공지
+  if (pathname.startsWith("/notice")) {
+    return (
+      <div className="flex flex-row items-center justify-between bg-primary-50 p-3">
+        <ChevronLeft className="cursor-pointer" onClick={handleBack} />
+        <div className="text-lg font-bold mx-auto">공지사항</div>
       </div>
     );
   }
@@ -66,7 +106,7 @@ const HomeHeader = () => {
   if (pathname.startsWith("/list")) {
     return (
       <div className="flex flex-row items-center justify-between bg-primary-50 p-3">
-        <div className="text-2xl mx-auto">
+        <div className="text-lg font-bold mx-auto">
           {nickname.user_nickname}님의 기록 목록
         </div>
       </div>
@@ -77,15 +117,9 @@ const HomeHeader = () => {
     return (
       <div className="flex flex-row items-center justify-between bg-primary-50 p-3">
         <X onClick={handleBack} />
-        <div className="text-2xl mx-auto">
-          {nickname.user_nickname}님의 기록 목록
+        <div className="text-lg font-bold mx-auto">
+          {nickname.user_nickname}님의 기록
         </div>
-        {/* <button
-          type="submit"
-          className="px-2 py-1 bg-primary-700 text-secondary-50 rounded-lg font-medium text-sm"
-        >
-          게시
-        </button> */}
       </div>
     );
   }
@@ -93,7 +127,7 @@ const HomeHeader = () => {
   if (pathname.startsWith("/my-page")) {
     return (
       <div className="flex flex-row items-center justify-between bg-primary-50 p-3">
-        <div className="text-2xl mx-auto">
+        <div className="text-lg font-bold mx-auto">
           {nickname.user_nickname}님의 마이페이지
         </div>
       </div>
@@ -102,7 +136,9 @@ const HomeHeader = () => {
 
   return (
     <div className="flex flex-row items-center justify-between bg-primary-50 p-3">
-      <div className="text-2xl mx-auto">{nickname.user_nickname}님</div>
+      <div className="text-lg font-bold mx-auto">
+        {nickname.user_nickname}님
+      </div>
     </div>
   );
 };

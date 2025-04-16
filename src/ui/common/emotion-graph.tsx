@@ -9,13 +9,15 @@ import EmotionImage from "./emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
 
 const EmotionGraph = ({
+  page,
   openPopup,
   setOpenPopup,
   userId,
   nickname,
 }: {
-  openPopup: boolean;
-  setOpenPopup: () => void;
+  page: string;
+  openPopup?: boolean;
+  setOpenPopup?: () => void;
   userId: string;
   nickname: string;
 }) => {
@@ -47,20 +49,22 @@ const EmotionGraph = ({
   return (
     <Popup>
       <div className="flex flex-col items-center justify-center w-full h-full bg-white p-5 font-pretendard rounded-xl">
+        {page === "list" && (
+          <div
+            className="flex justify-between items-center w-full border-grey-1 border-b-2 mb-1"
+            style={{ paddingBottom: "16px" }}
+          >
+            <div className="text-xl font-bold">{nickname}</div>
+            <X className="cursor-pointer" onClick={setOpenPopup} />
+          </div>
+        )}
         <div
-          className="flex justify-between items-center w-full border-grey-1 border-b-2 mb-1"
-          style={{ paddingBottom: "16px" }}
-        >
-          <div className="text-xl font-bold">{nickname}</div>
-          <X className="cursor-pointer" onClick={setOpenPopup} />
-        </div>
-        <div
-          className="text-xs w-full text-right mb-2"
+          className="text-xs w-full text-right mb-2 mt-2"
           style={{ color: "var(--color-grey-2)" }}
         >
           * 최근 3개월 통계
         </div>
-        <div className="flex gap-4 items-end h-[70px]">
+        <div className="flex w-full justify-between items-end h-[70px]">
           {emotions.map((e, i) => {
             const percentageValue = parseFloat(e.percentage.replace("%", ""));
             const barHeight = Math.max(
@@ -74,17 +78,21 @@ const EmotionGraph = ({
                 className="flex flex-col items-center max-w-4 w-4 justify-end text-xs gap-2"
               >
                 <div
-                  className="w-4 border p-6"
+                  className="w-4 border"
                   style={{
                     height: `${barHeight}px`,
                     backgroundColor: `var(--color-${color[e.emotion]})`,
                     borderTopLeftRadius: "8px",
                     borderTopRightRadius: "8px",
+                    paddingRight: "26px",
+                    paddingLeft: "26px",
                   }}
                 ></div>
                 <EmotionImage src={checkEmotion(e.emotion)} size="s" />
                 <div className="mt-1">{EMOTIONS_QUERY[e.emotion]}</div>
-                <div className="mt-1">{e.percentage}</div>
+                <div className="mt-1">
+                  {Math.floor(parseInt(e.percentage))}%
+                </div>
               </div>
             );
           })}
