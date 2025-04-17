@@ -3,7 +3,7 @@ import {
   useRemoveBookmarkMutation,
 } from "@/hooks/mutations/use-music-bookmarks-mutation";
 import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
-import { Play, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SpotifyPlaylistItem } from "../type";
@@ -40,7 +40,7 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
 
   return (
     <div className="h-[74px]">
-      <div className="justify-arround mt-[11px] flex h-[52px] items-center gap-3 border-b border-b-[1px] border-b-[#E7E7E7]">
+      <div className="justify-arround mt-[11px] flex h-[52px] items-center gap-3 border-b-[1px] border-b-[#E7E7E7]">
         <button
           className="flex items-center justify-center"
           onClick={handleBookmarkToggle}
@@ -55,26 +55,26 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
           />
         </button>
         {/* 이미지 수정 */}
+        <Link
+          href={playlist.external_urls.spotify}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="whitespace-nowrap flex items-center justify-between w-full gap-4"
+        >
         <div className="flex h-[50px] w-[50px] items-center justify-center overflow-hidden">
           <Image
             src={playlist.images[0]?.url || "/default-image.jpg"}
             alt={playlist.name}
-            width={62}
+            width={52}
             height={52}
-            className="rounded-[10px] object-cover"
+            className="rounded-l object-fit"
           />
         </div>
         <p className="w-full text-[16px] font-bold">{playlist.name}</p>
         <p className="whitespace-nowrap text-[12px]">
           {playlist.tracks.total}곡
         </p>
-        <Link
-          href={playlist.external_urls.spotify}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="whitespace-nowrap"
-        >
-          <Play className="h-[18px]" />
+
         </Link>
       </div>
     </div>

@@ -46,7 +46,7 @@ const Music = () => {
   return (
     <div>
       <div className="flex gap-4">
-        <div style={{ position: "relative", width: "100%", height: "200px" }}>
+        <div style={{ position: "relative", width: "100%", height: "208px" }}>
           <Image
             src={imageUrl}
             alt="imageUrl"
@@ -54,7 +54,7 @@ const Music = () => {
             style={{ objectFit: "cover" }}
           />
         </div>
-
+        <div className="absolute inset-0 bg-black bg-opacity-80 z-10 h-52" />
         <EmotionSelect value={emotion} onChange={setEmotion} />
       </div>
 

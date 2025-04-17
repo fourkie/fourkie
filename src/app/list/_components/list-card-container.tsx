@@ -3,12 +3,12 @@
 import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-query";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 import { usePostStore } from "@/stores/post-date-store";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import ListCard from "./list-card";
 
 const ListCardContainer = ({ userId }: { userId: string }) => {
   const [isMyPost, setIsMyPost] = useState(true);
-  const selectedRef = useRef<HTMLDivElement | null>(null);
+  // const selectedRef = useRef<HTMLDivElement | null>(null);
 
   const { data: posts } = useGetFriendPostsQuery({ userId });
   const { data: myPosts } = useGetAllPostsByIdQuery({ userId });
@@ -16,14 +16,14 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   const selectedDate = usePostStore((state) => state.selectedDate);
   const sortedMyPosts = myPosts?.slice().reverse();
 
-  useEffect(() => {
-    if (selectedRef.current) {
-      selectedRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }
-  }, [sortedMyPosts, selectedDate]);
+  // useEffect(() => {
+  //   if (selectedRef.current) {
+  //     selectedRef.current.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "center",
+  //     });
+  //   }
+  // }, [sortedMyPosts, selectedDate]);
 
   const now = new Date().toISOString();
   const friendPostsForToday = posts?.filter((post) => {
@@ -31,8 +31,8 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   });
 
   return (
-    <div className="flex h-screen flex-col gap-4 bg-primary-50 px-5">
-      <div className="flex items-center justify-center gap-4">
+    <div className="flex h-full min-h-screen pb-32 pt-4 flex-col gap-4 bg-primary-50 px-5">
+      <div className="fixed bg-primary-50 w-full py-3 top-12 flex items-center justify-center gap-4">
         <div
           className={`${
             isMyPost
@@ -54,14 +54,15 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
           친구 기록 보기
         </div>
       </div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 mt-8">
         {isMyPost
           ? sortedMyPosts?.map((post) => {
               const postDate = post.post_created_at.slice(0, 10);
               const isSelected = postDate === selectedDate;
 
               return (
-                <div key={post.post_id} ref={isSelected ? selectedRef : null}>
+                // <div key={post.post_id} ref={isSelected ? selectedRef : null}>
+                <div key={post.post_id}>
                   <ListCard post={post} isMyPost={isMyPost} />
                 </div>
               );

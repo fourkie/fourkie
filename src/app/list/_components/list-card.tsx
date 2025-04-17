@@ -27,7 +27,6 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
-  console.log("🚀 ~ ListCard ~ setIsOverflowing:", setIsOverflowing);
 
   const date = post_created_at.split("T")[0];
 
