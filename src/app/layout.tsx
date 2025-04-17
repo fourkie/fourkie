@@ -1,4 +1,3 @@
-import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 import Providers from "@/providers/RQProviders";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -40,13 +39,19 @@ export const metadata: Metadata = {
     siteName: "Smookie",
     images: [
       {
-        url: EMOTION_COOKIE_IMAGE_URL.JOY,
+        url: "/images/Joy.png",
         width: 800,
         height: 600,
       },
     ],
     locale: "ko_KR",
     type: "website",
+  },
+  icons: {
+    icon: [
+      { url: "/images/joy.ico", type: "image/x-icon" },
+      { url: "/images/joy.png", type: "image/png", sizes: "32x32" },
+    ],
   },
 };
 
