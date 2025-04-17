@@ -2,9 +2,9 @@
 
 import { useGetUserNicknameByIdQuery } from "@/hooks/queries/use-get-user-nickname-by-id-query";
 import { getUserIdClient } from "@/services/home-client-service";
+import { ChevronLeft } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ChevronLeft } from "lucide-react";
 
 const headerPaths = [
   { path: "/my-page", title: "마이페이지", needsNickname: true },
@@ -76,16 +76,26 @@ const HomeHeader = () => {
   }
   if (!nickname || isLoading || isError)
     return (
-      <div className="flex flex-row items-center justify-between bg-primary-50 p-3 h-[56px]"></div>
+      <div className="flex h-[56px] flex-row items-center justify-between bg-primary-50 p-3"></div>
     );
+
+  if (pathname === "/") {
+    return (
+      <div className={baseHeaderClass}>
+        <div className="mx-auto text-lg font-bold">
+          {nickname?.user_nickname}
+        </div>
+      </div>
+    );
+  }
 
   const headertext = nowPath
     ? nowPath.needsNickname
       ? `${nickname.user_nickname}님의 ${nowPath.title}`
       : nowPath.title
     : nickname && !isLoading && !isError
-    ? `${nickname.user_nickname}님`
-    : "";
+      ? `${nickname.user_nickname}님`
+      : "";
 
   const showBackIcon =
     nowPath && backIconPaths.some((p) => pathname.startsWith(p));
@@ -95,7 +105,7 @@ const HomeHeader = () => {
       {showBackIcon && (
         <ChevronLeft className="cursor-pointer" onClick={handleBack} />
       )}
-      <div className="text-lg font-bold mx-auto">{headertext}</div>
+      <div className="mx-auto text-lg font-bold">{headertext}</div>
     </div>
   );
 };
