@@ -10,6 +10,6 @@ export const getUserById = async ({ userId }: { userId: string }) => {
       .single();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

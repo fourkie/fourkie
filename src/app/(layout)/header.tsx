@@ -11,7 +11,7 @@ const Header = () => {
       await signOut();
       router.push("/sign-in");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

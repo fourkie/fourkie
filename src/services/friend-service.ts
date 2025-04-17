@@ -21,7 +21,7 @@ export const getFriendIds = async ({ userId }: { userId: string }) => {
 
     return friendIds;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
