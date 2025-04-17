@@ -54,7 +54,7 @@ const Music = () => {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="absolute inset-0 bg-black bg-opacity-80 z-10 h-52" />
+        <div className="absolute inset-0 bg-black bg-opacity-80 h-52" />
         <EmotionSelect value={emotion} onChange={setEmotion} />
       </div>
 

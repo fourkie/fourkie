@@ -10,7 +10,7 @@ import Popup from "@/ui/common/popup";
 import { checkEmotion } from "@/utils/home-emotion.util";
 import { ChevronDown, ChevronUp, Pencil, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   const {
@@ -27,6 +27,22 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
+
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const contentEl = contentRef.current;
+    if (!contentEl) return;
+
+    const lineHeight = parseFloat(getComputedStyle(contentEl).lineHeight);
+    const maxHeight = lineHeight * 2;
+
+    if (contentEl.scrollHeight > maxHeight) {
+      setIsOverflowing(true);
+    } else {
+      setIsOverflowing(false);
+    }
+  }, [post_content]);
 
   const date = post_created_at.split("T")[0];
 
@@ -85,6 +101,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         <div className="flex flex-col items-center">
           <div className="text-xl font-bold">{post_title}</div>
           <div
+          ref={contentRef}
             className={`w-full break-all text-center text-lg font-bold ${
               isExpanded ? "line-clamp-none" : "line-clamp-2"
             }`}

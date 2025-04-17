@@ -1,12 +1,12 @@
 "use client";
-import Link from "next/link";
 import {
-  House,
-  HeartHandshake,
   CirclePlus,
+  HeartHandshake,
+  House,
   Music4,
   UserRound,
 } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const Navigation = () => {
@@ -21,7 +21,7 @@ const Navigation = () => {
   }
 
   return (
-    <div className="grid grid-cols-5 justify-evenly items-center text-black fixed bottom-0 w-full h-[106px] pb-[34px]  rounded-t-[28px] bg-white shadow-md z-10  border-t border-grey-1">
+    <div className="z-40 grid grid-cols-5 justify-evenly items-center text-black fixed bottom-0 w-full h-[106px] pb-[34px]  rounded-t-[28px] bg-white shadow-md border-t border-grey-1">
       <Link href="/">
         {pathname === "/" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">

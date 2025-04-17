@@ -3,12 +3,12 @@ import { EmotionSelectProps } from "../type";
 
 const EmotionSelect = ({ value, onChange }: EmotionSelectProps) => {
   return (
-    <div className="absolute left-[20px] top-[64px] z-20">
+    <div className="absolute left-5 top-16">
       <div className="mb-2 flex items-center gap-3">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value as Emotion)}
-          className="h-[24px] w-[81px] gap-[3px] rounded-[12px] border-[1px] bg-[#D5E5BD] px-[8px] py-[3px] text-[14px]"
+          className="h-8 w-20 rounded-full border-[1px] bg-[#D5E5BD] pl-2 text-center py-1 text-sm font-bold"
         >
           {Object.entries(EMOTION_DISPLAY_NAME).map(
             ([emotionKey, emotionDisplayName]) => (

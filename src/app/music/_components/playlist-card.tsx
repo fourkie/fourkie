@@ -39,8 +39,8 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   };
 
   return (
-    <div className="h-[74px]">
-      <div className="justify-arround mt-[11px] flex h-[52px] items-center gap-3 border-b-[1px] border-b-[#E7E7E7]">
+    <div className="h-18">
+      <div className="justify-arround mt-4 pb-6 flex h-[52px] items-center gap-3 border-b-[1px] border-b-grey-1">
         <button
           className="flex items-center justify-center"
           onClick={handleBookmarkToggle}
@@ -61,7 +61,7 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
           rel="noopener noreferrer"
           className="whitespace-nowrap flex items-center justify-between w-full gap-4"
         >
-        <div className="flex h-[50px] w-[50px] items-center justify-center overflow-hidden">
+        <div className="flex h-[50px] w-12 items-center justify-center overflow-hidden">
           <Image
             src={playlist.images[0]?.url || "/default-image.jpg"}
             alt={playlist.name}
@@ -70,8 +70,8 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
             className="rounded-l object-fit"
           />
         </div>
-        <p className="w-full text-[16px] font-bold">{playlist.name}</p>
-        <p className="whitespace-nowrap text-[12px]">
+        <p className="w-52 font-bold line-clamp-1 whitespace-nowrap text-ellipsis">{playlist.name}</p>
+        <p className="break-all text-sm text-grey-3">
           {playlist.tracks.total}곡
         </p>
 

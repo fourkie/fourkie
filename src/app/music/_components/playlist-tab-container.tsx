@@ -17,13 +17,13 @@ const PlaylistTabContainer = ({
   );
 
   return (
-    <div className="flex flex-col gap-[12px] px-[20px]">
-      <div className="flex items-center justify-center gap-[28px] pt-4">
+    <div className="flex flex-col gap-3 px-5">
+      <div className="flex items-center justify-center gap-[28px] my-2 pt-4">
         <TabButton
           isActive={activeTab === PlaylistTabProps.RECOMMEND}
           onClick={() => setActiveTab(PlaylistTabProps.RECOMMEND)}
         >
-          <div className="flex items-center gap-[6px] text-[16px]">
+          <div className="flex items-center font-bold">
             추천 플리
           </div>
         </TabButton>
@@ -31,7 +31,7 @@ const PlaylistTabContainer = ({
           isActive={activeTab === PlaylistTabProps.BOOKMARK}
           onClick={() => setActiveTab(PlaylistTabProps.BOOKMARK)}
         >
-          <div className="flex items-center gap-[6px] text-[16px]">
+          <div className="flex items-center font-bold">
             즐겨찾기
           </div>
         </TabButton>
