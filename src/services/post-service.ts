@@ -2,8 +2,8 @@ import {
   CreatePostsParams,
   updatePostsByPostIdParams,
 } from "@/app/posting/type";
-import createClient from "./supabase-client-service";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import createClient from "./supabase-client-service";
 
 export const getAllPosts = async () => {
   const supabaseClient = createClient();
@@ -11,7 +11,7 @@ export const getAllPosts = async () => {
     const { data } = await supabaseClient.from("posts").select("*");
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -24,7 +24,7 @@ export const getAllPostsById = async ({ userId }: { userId: string }) => {
       .eq("user_id", userId);
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -62,7 +62,7 @@ export const createPosts = async ({
 
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -85,7 +85,7 @@ export const updatePostsByPostId = async ({
 
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -101,8 +101,6 @@ export const removePost = async (postId: number) => {
       console.error("게시글 삭제 실패:", error.message);
       throw new Error("게시글 삭제에 실패했어요.");
     }
-
-    console.log("게시글 삭제 성공");
   } catch (err) {
     console.error("에러 발생:", err);
     throw err;

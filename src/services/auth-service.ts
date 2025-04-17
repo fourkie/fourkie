@@ -48,7 +48,7 @@ export const signOut = async () => {
   try {
     await supabaseClient.auth.signOut();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

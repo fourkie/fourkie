@@ -1,6 +1,6 @@
+import { SpotifyPlaylistItem } from "@/app/music/type";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import createClient from "./supabase-client-service";
-import { SpotifyPlaylistItem } from "@/app/music/type";
 
 // 북마크 플레이리스트 조회
 export const fetchBookmarkedPlaylists = async (userId: string | null) => {
@@ -87,8 +87,6 @@ export const removeBookmarkedPlaylists = async (
     if (error) {
       throw new Error(error.message || "북마크 삭제 중 오류가 발생했습니다.");
     }
-
-    console.log("북마크 삭제 성공 : ", musicPlaylistId);
   } catch (error) {
     console.error("북마크 삭제 실패 : ", error);
     throw new Error("북마크를 제거하는 동안 문제가 발생했습니다.");
