@@ -27,9 +27,8 @@ const backIconPaths = [
   "/posting",
 ];
 
-//공통 tailwind
 const baseHeaderClass =
-  "sticky top-0 z-50 flex flex-row items-center justify-between bg-primary-50 p-3 h-[56px]";
+  "fixed top-0 z-50  w-full flex flex-row items-center justify-between bg-primary-50 p-3 h-[56px]";
 
 const HomeHeader = () => {
   const pathname = usePathname();
