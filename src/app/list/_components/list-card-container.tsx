@@ -2,7 +2,6 @@
 
 import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-query";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
-import { usePostStore } from "@/stores/post-date-store";
 import { useState } from "react";
 import ListCard from "./list-card";
 
@@ -13,7 +12,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   const { data: posts } = useGetFriendPostsQuery({ userId });
   const { data: myPosts } = useGetAllPostsByIdQuery({ userId });
 
-  const selectedDate = usePostStore((state) => state.selectedDate);
+  // const selectedDate = usePostStore((state) => state.selectedDate);
   const sortedMyPosts = myPosts?.slice().reverse();
 
   // useEffect(() => {
@@ -31,12 +30,12 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   });
 
   return (
-    <div className="flex h-full min-h-screen pb-32 pt-4 flex-col gap-4 bg-primary-50 px-5">
-      <div className="fixed bg-primary-50 w-full py-3 top-12 flex items-center justify-center gap-4">
+    <div className="flex h-full min-h-screen flex-col gap-4 bg-primary-50 px-5 pb-32 pt-4">
+      <div className="fixed top-12 flex w-full items-center justify-center gap-4 bg-primary-50 py-3">
         <div
           className={`${
             isMyPost
-              ? "text-primary-600 border-b-2 border-primary-600"
+              ? "border-b-2 border-primary-600 text-primary-600"
               : "text-gray-400"
           } cursor-pointer font-bold`}
           onClick={() => setIsMyPost(true)}
@@ -47,18 +46,18 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
           className={`${
             isMyPost
               ? "text-gray-400"
-              : "text-primary-600 border-b-2 border-primary-600"
+              : "border-b-2 border-primary-600 text-primary-600"
           } cursor-pointer font-bold`}
           onClick={() => setIsMyPost(false)}
         >
           친구 기록 보기
         </div>
       </div>
-      <div className="flex flex-col gap-5 mt-8">
+      <div className="mt-8 flex flex-col gap-5">
         {isMyPost
           ? sortedMyPosts?.map((post) => {
-              const postDate = post.post_created_at.slice(0, 10);
-              const isSelected = postDate === selectedDate;
+              // const postDate = post.post_created_at.slice(0, 10);
+              // const isSelected = postDate === selectedDate;
 
               return (
                 // <div key={post.post_id} ref={isSelected ? selectedRef : null}>
