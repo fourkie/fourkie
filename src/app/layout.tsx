@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "Smookie",
     images: [
       {
-        url: "/images/Joy.png",
+        url: "/images/joy.png",
         width: 800,
         height: 600,
       },
