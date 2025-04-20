@@ -9,7 +9,7 @@ export const useGetUserPostByMonthQuery = (
 ) => {
   return useQuery({
     //키값: usrid, year, month
-    queryKey: [QUERY_KEY.USER, userId, year, month],
+    queryKey: [QUERY_KEY.USER, year, month],
     queryFn: () => getPostEmotionByUserId(userId, year, month),
   });
 };
