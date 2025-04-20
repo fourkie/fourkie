@@ -36,6 +36,7 @@ export type SpotifyPlaylistList = SpotifyPlaylistItem[];
 export interface EmotionSelectProps {
   value: Emotion;
   onChange: (value: Emotion) => void;
+  todayEmotion: Emotion;
 }
 
 export enum PlaylistTabProps {
