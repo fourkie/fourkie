@@ -11,8 +11,6 @@ export const TOAST_MESSAGE = {
     ACCESS_TOKEN_ERROR: "액세스 토큰을 가져오는 데 실패했습니다.",
   },
   MUSIC: {
-    USER_ERROR: "로그인이 필요합니다. 로그인 후 이용해주세요!",
-
     // 플레이리스트 관련 메시지
     PLAYLISTS_PENDING:
       "추천 플레이리스트를 불러오는 중입니다. 잠시만 기다려주세요.",
