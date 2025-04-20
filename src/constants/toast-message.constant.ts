@@ -62,6 +62,9 @@ export const TOAST_MESSAGE = {
     FETCH: {
       ERROR: "게시글을 불러오지 못했습니다.",
     },
+    TODAY: {
+      EXISTS: "오늘은 이미 게시글을 작성하셨습니다.",
+    },
   },
   MYPAGE: {
     SEARCH_ERROR: "유저 정보가 없습니다",

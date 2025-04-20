@@ -1,3 +1,4 @@
+import { getPostTodayEmotionById } from "@/services/post-service";
 import createClient from "@/services/supabase-server-service";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
@@ -15,6 +16,12 @@ const Posting = async () => {
   }
 
   const userId = user.id;
+
+  const todayPosts = await getPostTodayEmotionById(userId);
+
+  if (todayPosts && todayPosts.length > 0) {
+    redirect("/");
+  }
 
   dayjs.locale("ko");
   const date = dayjs().format("D");

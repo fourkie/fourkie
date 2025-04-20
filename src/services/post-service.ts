@@ -3,6 +3,8 @@ import {
   updatePostsByPostIdParams,
 } from "@/app/posting/type";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import dayjs from "dayjs";
+
 import createClient from "./supabase-client-service";
 
 export const getAllPosts = async () => {
@@ -43,6 +45,32 @@ export const getPostsByPostId = async ({ postId }: { postId?: string }) => {
   }
 };
 
+export const getPostTodayEmotionById = async (userId: string) => {
+  const supabaseClient = createClient();
+
+  const startOfTodaySeoul = dayjs()
+    .startOf("day")
+    .format("YYYY-MM-DD HH:mm:ss");
+
+  const endOfTodaySeoul = dayjs().endOf("day").format("YYYY-MM-DD HH:mm:ss");
+
+  try {
+    const { data, error } = await supabaseClient
+      .from("posts")
+      .select("post_emotion")
+      .eq("user_id", userId)
+      .gte("post_created_at", startOfTodaySeoul)
+      .lte("post_created_at", endOfTodaySeoul);
+
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : TOAST_MESSAGE.POST.TODAY.EXISTS;
+    throw new Error(errorMessage);
+  }
+};
+
 export const createPosts = async ({
   userId,
   title,
@@ -50,10 +78,16 @@ export const createPosts = async ({
   currentEmotion,
 }: CreatePostsParams) => {
   const supabaseClient = createClient();
+
+  const nowInKST = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Seoul",
+  });
+
   try {
     const { data } = await supabaseClient.from("posts").insert([
       {
         user_id: userId,
+        post_created_at: nowInKST,
         post_title: title,
         post_content: content,
         post_emotion: currentEmotion,
