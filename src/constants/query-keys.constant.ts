@@ -5,6 +5,7 @@ export const QUERY_KEY = {
   POSTS: "posts",
   FOLLOWS: "follows",
   POSTID: "postId",
+  BY_USER_AND_TODAY: "postsByUserAndToday",
   EMOTION_PLAYLISTS: "emotionPlaylists",
   SEARCH_USER: "searchUser",
   MY_FRIENDS: "myFriends",
