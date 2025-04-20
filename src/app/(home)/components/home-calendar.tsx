@@ -2,11 +2,12 @@
 
 import { QUERYDATA } from "@/constants/query-data.constant";
 import { useGetUserPostByMonthQuery } from "@/hooks/queries/use-get-user-posts-by-month-query";
+import { usePostStore } from "@/hooks/zustand/post-date-store";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
 import dayjs from "dayjs";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import HomeDate from "./home-date";
 
@@ -19,6 +20,9 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
 
   const nextMonth = currentDate.add(1, "month");
   const isNextMonthFuture = nextMonth.isAfter(dayjs(), "month");
+
+  const route = useRouter();
+  const setSelectedDate = usePostStore((state) => state.setSelectedDate);
 
   const {
     data: posts,
@@ -75,67 +79,80 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
           }`}
         />
       </div>
-      <Link href={"/list"}>
-        <div className="grid grid-cols-7 gap-2">
-          {["S", "M", "T", "W", "T", "F", "S"].map((d, index) =>
-            d === "S" ? (
-              index === 0 ? (
-                <div
-                  key={index}
-                  className="text-center font-semibold text-secondary-200"
-                >
-                  {d}
-                </div>
-              ) : (
-                <div
-                  key={index}
-                  className="text-center font-semibold text-primary-200"
-                >
-                  {d}
-                </div>
-              )
-            ) : (
-              <div key={index} className="text-center font-semibold">
+
+      <div className="grid grid-cols-7 gap-2">
+        {["S", "M", "T", "W", "T", "F", "S"].map((d, index) =>
+          d === "S" ? (
+            index === 0 ? (
+              <div
+                key={index}
+                className="text-center font-semibold text-secondary-200"
+              >
                 {d}
               </div>
-            ),
-          )}
-
-          {days.map((day, idx) => {
-            //미래면 true 아니면 false
-            const isFuture =
-              //day가 null이 아닌 경우에만 동작
-              day &&
-              //dayjs 형식(YYYY-M-D)으로 만들고 isAfter로 비교하기 미래 > true
-              dayjs(
-                `${currentDate.year()}-${currentDate.month() + 1}-${day}`,
-                "YYYY-M-D",
-              ).isAfter(dayjs(), "day");
-
-            return (
+            ) : (
               <div
-                key={idx}
-                className={`relative flex h-[3rem] items-center justify-center rounded-lg ${
-                  isFuture ? "text-grey-3" : ""
-                }`}
+                key={index}
+                className="text-center font-semibold text-primary-200"
               >
-                {day && (
-                  <>
-                    {images[day] ? (
+                {d}
+              </div>
+            )
+          ) : (
+            <div key={index} className="text-center font-semibold">
+              {d}
+            </div>
+          ),
+        )}
+
+        {days.map((day, idx) => {
+          const isFuture =
+            day &&
+            dayjs(
+              `${currentDate.year()}-${currentDate.month() + 1}-${day}`,
+              "YYYY-M-D",
+            ).isAfter(dayjs(), "day");
+
+          const handleClick = () => {
+            if (!day || isFuture) return;
+            //주스탄드 해결
+            const formattedDate = dayjs(
+              `${currentDate.year()}-${currentDate.month() + 1}-${day}`,
+              "YYYY-M-D",
+            ).format("YYYY-MM-DD");
+
+            setSelectedDate(formattedDate);
+            route.push("/list");
+          };
+
+          return (
+            <div
+              key={idx}
+              className={`relative flex h-[3rem] items-center justify-center rounded-lg ${
+                isFuture
+                  ? "cursor-not-allowed text-grey-3"
+                  : "cursor-pointer hover:bg-secondary-100"
+              }`}
+            >
+              {day && (
+                <>
+                  {images[day] ? (
+                    <div onClick={handleClick}>
+                      {" "}
                       <EmotionImage
                         src={checkEmotion(images[day])}
                         size={"xxs"}
                       />
-                    ) : (
-                      <span>{day}</span>
-                    )}
-                  </>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </Link>
+                    </div>
+                  ) : (
+                    <span>{day}</span>
+                  )}
+                </>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
