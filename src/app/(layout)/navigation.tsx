@@ -21,7 +21,7 @@ const Navigation = () => {
   }
 
   return (
-    <div className="fixed bottom-0 z-40 grid h-[106px] w-full grid-cols-5 items-center justify-evenly rounded-t-[28px] border-t border-grey-1 bg-white pb-[34px] text-black shadow-md">
+    <div className="fixed bottom-0 z-40 grid h-[90px] w-full grid-cols-5 items-center justify-evenly rounded-t-[28px] border-t border-grey-1 bg-white text-black shadow-md">
       <Link href="/">
         {pathname === "/" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
