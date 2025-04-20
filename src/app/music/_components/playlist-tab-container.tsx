@@ -18,22 +18,20 @@ const PlaylistTabContainer = ({
 
   return (
     <div className="flex flex-col gap-3 px-5">
-      <div className="flex items-center justify-center gap-[28px] my-2 pt-4">
+      <div className="my-2 flex items-center justify-center gap-10 pt-4 text-sm font-bold">
         <TabButton
           isActive={activeTab === PlaylistTabProps.RECOMMEND}
           onClick={() => setActiveTab(PlaylistTabProps.RECOMMEND)}
+          activeTab={activeTab}
         >
-          <div className="flex items-center font-bold">
-            추천 플리
-          </div>
+          <div className="flex items-center">추천 플리</div>
         </TabButton>
         <TabButton
           isActive={activeTab === PlaylistTabProps.BOOKMARK}
           onClick={() => setActiveTab(PlaylistTabProps.BOOKMARK)}
+          activeTab={activeTab}
         >
-          <div className="flex items-center font-bold">
-            즐겨찾기
-          </div>
+          <div className="flex items-center">즐겨찾기</div>
         </TabButton>
       </div>
 
@@ -48,11 +46,30 @@ const PlaylistTabContainer = ({
   );
 };
 
-const TabButton = ({ isActive, onClick, children }: TabButtonProps) => {
+const TabButton = ({
+  isActive,
+  onClick,
+  children,
+  activeTab,
+}: TabButtonProps) => {
+  const isRecommend = activeTab === PlaylistTabProps.RECOMMEND;
+  const isBookmark = activeTab === PlaylistTabProps.BOOKMARK;
+
+  const baseStyle = "border-b-2";
+  const recommendActiveStyle = "text-primary-600 border-primary-600";
+  const bookmarkActiveStyle = "text-secondary-200 border-secondary-200";
+  const unselectedStyle = "text-grey-4 border-transparent";
+
+  const activeStyle = isRecommend
+    ? recommendActiveStyle
+    : isBookmark
+      ? bookmarkActiveStyle
+      : "";
+
   return (
     <button
       onClick={onClick}
-      className={`${isActive ? "border-b-2 border-gray-600" : "border-b-2 text-gray-600"}`}
+      className={`${baseStyle} ${isActive ? activeStyle : unselectedStyle}`}
     >
       {children}
     </button>

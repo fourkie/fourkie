@@ -12,7 +12,7 @@ const EmotionSelect = ({
         <select
           value={value}
           onChange={(e) => onChange(e.target.value as Emotion)}
-          className="h-8 w-20 rounded-full border-[1px] bg-[#D5E5BD] py-1 pl-2 text-center text-sm font-bold"
+          className="h-6 w-24 rounded-xl border-b border-b-primary-300 bg-primary-100 px-2 py-1 text-center text-sm font-bold text-primary-700"
         >
           {Object.entries(EMOTION_DISPLAY_NAME).map(
             ([emotionKey, emotionDisplayName]) => (
@@ -22,12 +22,12 @@ const EmotionSelect = ({
             ),
           )}
         </select>
-        <p className="text-lg font-bold text-white">듣기 좋은</p>
+        <p className="text-xl font-bold text-white">듣기 좋은</p>
       </div>
-      <p className="text-lg font-bold text-white">
+      <p className="text-xl font-bold text-white">
         플레이리스트를 추천해 드릴게요!
       </p>
-      <p className="mt-6 text-sm text-white">
+      <p className="mt-6 text-xs text-grey-2">
         {!todayEmotion && (
           <span>
             일기를 작성하고

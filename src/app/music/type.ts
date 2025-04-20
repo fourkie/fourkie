@@ -53,6 +53,7 @@ export interface TabButtonProps {
   isActive: boolean;
   onClick: () => void;
   children: React.ReactNode;
+  activeTab: PlaylistTabProps;
 }
 
 export interface BookmarkMutationPayload {

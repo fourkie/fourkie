@@ -12,7 +12,7 @@ const RecommendPlaylists = ({ userId, emotion }: RecommendPlaylistsProps) => {
     useGetAllPlaylistsByQueryQuery(emotion);
 
   return (
-    <ul className="flex flex-col gap-[12px]">
+    <ul className="flex flex-col gap-3">
       {playlistsPending ? (
         <p>{TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING}</p>
       ) : (

@@ -39,43 +39,40 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   };
 
   return (
-    <div className="h-18">
-      <div className="justify-arround mt-4 flex h-[52px] items-center gap-3 border-b-[1px] border-b-grey-1 pb-6">
+    <div className="h-20 border-b border-b-grey-1">
+      <div className="justify-arround my-3 flex items-center gap-2">
         <button
           className="flex items-center justify-center"
           onClick={handleBookmarkToggle}
         >
           <Star
-            className={`h-[18px] ${
+            className={`${
               isBookmarked
-                ? "fill-yellow-400 text-yellow-400"
-                : "text-yellow-400"
+                ? "fill-secondary-400 text-secondary-200"
+                : "text-secondary-200"
             }`}
-            size={24}
+            size={18}
           />
         </button>
-        {/* 이미지 수정 */}
         <Link
           href={playlist.external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center justify-between gap-4 whitespace-nowrap"
+          className="flex w-full items-center gap-6 overflow-hidden whitespace-nowrap transition"
         >
-          <div className="flex h-[50px] w-12 items-center justify-center overflow-hidden">
+          <div className="h-12 w-14 overflow-hidden rounded-lg">
             <Image
-              src={playlist.images[0]?.url || "/default-image.jpg"}
+              src={playlist.images[0]?.url}
               alt={playlist.name}
-              width={52}
-              height={52}
-              className="object-fit rounded-l"
+              width={56}
+              height={48}
+              className="h-full w-full object-cover"
             />
           </div>
-          <p className="line-clamp-1 w-52 text-ellipsis whitespace-nowrap font-bold">
-            {playlist.name}
-          </p>
-          <p className="break-all text-sm text-grey-3">
-            {playlist.tracks.total}곡
-          </p>
+
+          <p className="flex-1 truncate text-base font-bold">{playlist.name}</p>
+
+          <p className="text-xs text-grey-5">{playlist.tracks.total}곡</p>
         </Link>
       </div>
     </div>

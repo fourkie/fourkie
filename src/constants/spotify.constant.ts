@@ -27,7 +27,7 @@ export const EMOTION_DISPLAY_NAME: Record<keyof typeof Emotion, string> = {
   GRATEFUL: "감사한 날",
   CALM: "평온한 날",
   LONELY: "외로운 날",
-  ANXIOUS: "긴장되는",
+  ANXIOUS: "긴장한 날",
   TIRED: "아픈 날",
   SAD: "슬픈 날",
   ANGRY: "화나는 날",
