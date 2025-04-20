@@ -50,10 +50,16 @@ export const createPosts = async ({
   currentEmotion,
 }: CreatePostsParams) => {
   const supabaseClient = createClient();
+
+  const nowInKST = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Seoul",
+  });
+
   try {
     const { data } = await supabaseClient.from("posts").insert([
       {
         user_id: userId,
+        post_created_at: nowInKST,
         post_title: title,
         post_content: content,
         post_emotion: currentEmotion,

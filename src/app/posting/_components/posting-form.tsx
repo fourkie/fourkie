@@ -1,15 +1,17 @@
 "use client";
 
 import { FORM_MESSAGE } from "@/constants/form-message.constant";
-import { useForm } from "react-hook-form";
-import { PostingFormValues, UserDateProps } from "../type";
 import { useGetAnalyzedPostEmotionMutation } from "@/hooks/mutations/use-get-analyzed-post-emotion-mutation";
-import PostingEmotionModal from "./posting-emotion-modal";
-import { useState, useEffect } from "react";
 import { useGetPostsByPostIdQuery } from "@/hooks/queries/use-get-posts-by-postId-query";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { PostingFormValues, UserDateProps } from "../type";
+import PostingEmotionModal from "./posting-emotion-modal";
 
 const PostingForm = ({ postId, userId }: UserDateProps) => {
+  const [isTitleFocused, setIsTitleFocused] = useState(false);
+  const [isContentFocused, setIsContentFocused] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // query, mutation 함수
@@ -55,33 +57,44 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col px-5 pt-2.5 gap-5"
+        className="flex flex-col gap-5 px-5 pt-2.5"
       >
-        <div className="flex flex-col gap-2">
+        <div className="relative flex flex-col gap-2">
           <h2 className="text-center text-xl font-bold text-grey-4">Title</h2>
+
+          {!inputTitle && !isTitleFocused && (
+            <div className="pointer-events-none absolute left-0 top-9 w-full text-center font-ownglyph text-xl leading-4p text-grey-2">
+              {FORM_MESSAGE.POST.TITLE}
+            </div>
+          )}
 
           <textarea
             {...register("inputTitle")}
-            placeholder={FORM_MESSAGE.POST.TITLE}
             maxLength={20}
-            className={`w-full text-xl text-center resize-none overflow-hidden whitespace-normal focus:outline-none font-ownglyph leading-4p ${
-              inputTitle ? "text-black" : "text-grey-2"
-            }`}
+            className="w-full resize-none overflow-hidden whitespace-normal bg-transparent text-center font-ownglyph text-xl leading-4p text-black focus:outline-none"
+            onFocus={() => setIsTitleFocused(true)}
+            onBlur={() => setIsTitleFocused(false)}
             onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
               handleAutoResize(e)
             }
           />
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="relative flex flex-col gap-2">
           <h2 className="text-center text-xl font-bold text-grey-4">Content</h2>
+
+          {!inputContent && !isContentFocused && (
+            <div className="pointer-events-none absolute left-0 top-9 w-full text-center font-ownglyph text-xl leading-4p text-grey-2">
+              {FORM_MESSAGE.POST.CONTENT}
+            </div>
+          )}
 
           <textarea
             {...register("inputContent")}
-            placeholder={FORM_MESSAGE.POST.CONTENT}
-            className={`w-full text-lg text-center resize-none overflow-hidden whitespace-pre-line focus:outline-none font-ownglyph leading-4p ${
-              inputContent ? "text-black" : "text-grey-2"
-            }`}
+            maxLength={1000}
+            className="w-full resize-none overflow-hidden whitespace-pre-line bg-transparent text-center font-ownglyph text-xl leading-4p text-black focus:outline-none"
+            onFocus={() => setIsContentFocused(true)}
+            onBlur={() => setIsContentFocused(false)}
             onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
               handleAutoResize(e)
             }
@@ -90,7 +103,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
 
         <button
           type="submit"
-          className="absolute top-3.5 right-5 px-2 py-1 bg-primary-700 text-secondary-50 rounded-lg font-medium text-sm z-50"
+          className="absolute right-5 top-3.5 z-50 rounded-lg bg-primary-700 px-2 py-1 text-sm font-medium text-secondary-50"
         >
           {isPending ? "처리 중..." : "게시"}
         </button>

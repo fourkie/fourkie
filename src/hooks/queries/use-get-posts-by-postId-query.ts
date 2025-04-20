@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetPostsByPostIdQuery = ({ postId }: { postId?: string }) => {
   return useQuery({
-    queryKey: [QUERY_KEY.POSTS, postId],
+    queryKey: [QUERY_KEY.POSTID, postId],
     queryFn: () => getPostsByPostId({ postId }),
     enabled: !!postId,
   });
