@@ -54,7 +54,7 @@ const MypageProfile = () => {
 
   return (
     <div className="mb-6 w-full rounded-xl border border-primary-100 bg-white py-6">
-      <div className="flex flex-col items-center gap-1">
+      <div className="flex flex-col items-center gap-1 border">
         <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="m" />
         <div className="flex items-center justify-center gap-1">
           {edit ? (
