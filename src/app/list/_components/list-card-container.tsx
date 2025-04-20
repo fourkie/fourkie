@@ -2,27 +2,32 @@
 
 import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-query";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
-import { useState } from "react";
+import { usePostStore } from "@/hooks/zustand/post-date-store";
+import { useEffect, useRef, useState } from "react";
 import ListCard from "./list-card";
 
 const ListCardContainer = ({ userId }: { userId: string }) => {
   const [isMyPost, setIsMyPost] = useState(true);
-  // const selectedRef = useRef<HTMLDivElement | null>(null);
+  const selectedDay = usePostStore((state) => state.selectedDate);
+  const selectedRef = useRef<HTMLDivElement | null>(null);
 
   const { data: posts } = useGetFriendPostsQuery({ userId });
-  const { data: myPosts } = useGetAllPostsByIdQuery({ userId });
+  
+  //그 달의 게시물만 가져와야 함
+  const { data: myPosts } = useGetAllPostsByIdQuery({ userId,  });
 
-  // const selectedDate = usePostStore((state) => state.selectedDate);
-  const sortedMyPosts = myPosts?.slice().reverse();
+const sortedMyPosts = myPosts
+?.slice()
+.sort((a, b) => new Date(a.post_created_at).getTime() - new Date(b.post_created_at).getTime());
 
-  // useEffect(() => {
-  //   if (selectedRef.current) {
-  //     selectedRef.current.scrollIntoView({
-  //       behavior: "smooth",
-  //       block: "center",
-  //     });
-  //   }
-  // }, [sortedMyPosts, selectedDate]);
+  useEffect(() => {
+    if (selectedRef.current) {
+      selectedRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [sortedMyPosts, selectedDay]);
 
   const now = new Date().toISOString();
   const friendPostsForToday = posts?.filter((post) => {
@@ -30,8 +35,8 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   });
 
   return (
-    <div className="flex h-full min-h-screen flex-col gap-4 bg-primary-50 px-5 pb-32 pt-4">
-      <div className="fixed top-12 flex w-full items-center justify-center gap-4 bg-primary-50 py-3">
+    <div className="flex relative h-full min-h-screen flex-col gap-4 bg-primary-50 px-5 pb-32 pt-4">
+      <div className="fixed left-0 top-12 flex w-full items-center justify-center gap-4 bg-primary-50 py-3">
         <div
           className={`${
             isMyPost
@@ -56,12 +61,11 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
       <div className="mt-8 flex flex-col gap-5">
         {isMyPost
           ? sortedMyPosts?.map((post) => {
-              // const postDate = post.post_created_at.slice(0, 10);
-              // const isSelected = postDate === selectedDate;
+            const postDate = post.post_created_at.slice(0, 10);
+            const isSelected = postDate === selectedDay;
 
               return (
-                // <div key={post.post_id} ref={isSelected ? selectedRef : null}>
-                <div key={post.post_id}>
+                <div key={post.post_id} ref={isSelected ? selectedRef : null}>
                   <ListCard post={post} isMyPost={isMyPost} />
                 </div>
               );
