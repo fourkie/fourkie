@@ -1,4 +1,7 @@
 "use client";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import { useGetPostsByUserIdAndTodayQuery } from "@/hooks/queries/use-get-posts-by-userId-and-today-query";
+import createClient from "@/services/supabase-client-service";
 import {
   CirclePlus,
   HeartHandshake,
@@ -7,11 +10,32 @@ import {
   UserRound,
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Navigation = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const [userId, setUserId] = useState("");
   //레이아웃 + 헤더 경로 상수화
+  const supabaseClient = createClient();
+
+  //오늘 날짜로 포스팅이 이미 있을 경우, /posting으로 진입하지 못함
+  useEffect(() => {
+    const getUser = async () => {
+      const {
+        data: { user },
+      } = await supabaseClient.auth.getUser();
+
+      if (user?.id) setUserId(user.id);
+    };
+
+    getUser();
+  }, []);
+
+  const { data: today } = useGetPostsByUserIdAndTodayQuery(userId);
+
   if (
     pathname.startsWith("/sign-in") ||
     pathname.startsWith("/sign-up") ||
@@ -21,16 +45,16 @@ const Navigation = () => {
   }
 
   return (
-    <div className="z-40 grid grid-cols-5 justify-evenly items-center text-black fixed bottom-0 w-full h-[106px] pb-[34px]  rounded-t-[28px] bg-white shadow-md border-t border-grey-1">
+    <div className="fixed bottom-0 z-40 grid h-[106px] w-full grid-cols-5 items-center justify-evenly rounded-t-[28px] border-t border-grey-1 bg-white pb-[34px] text-black shadow-md">
       <Link href="/">
         {pathname === "/" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
-            <House className="w-5 h-5" />
+            <House className="h-5 w-5" />
             <p>홈</p>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center text-center text-grey-3">
-            <House className="w-5 h-5" />
+            <House className="h-5 w-5" />
             <p>홈</p>
           </div>
         )}
@@ -38,28 +62,37 @@ const Navigation = () => {
       <Link href="/list">
         {pathname === "/list" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
-            <HeartHandshake className="w-5 h-5" />
+            <HeartHandshake className="h-5 w-5" />
             리스트
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center text-center text-grey-3">
-            <HeartHandshake className="w-5 h-5" />
+            <HeartHandshake className="h-5 w-5" />
             리스트
           </div>
         )}
       </Link>
-      <Link href="/posting">
-        <CirclePlus className="w-10 h-10 text-primary-400 mx-auto" />
-      </Link>
+      <div
+        onClick={() => {
+          if (today && today.length > 0) {
+            toast.warning(TOAST_MESSAGE.POST.TODAY.EXISTS);
+            return;
+          }
+          router.push("/posting");
+        }}
+        className="cursor-pointer"
+      >
+        <CirclePlus className="mx-auto h-10 w-10 text-primary-400" />
+      </div>
 
       <Link href="/music">
         {pathname === "/music" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
-            <Music4 className="w-5 h-5" /> 음악
+            <Music4 className="h-5 w-5" /> 음악
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center text-center text-grey-3">
-            <Music4 className="w-5 h-5" /> 음악
+            <Music4 className="h-5 w-5" /> 음악
           </div>
         )}
       </Link>
@@ -71,12 +104,12 @@ const Navigation = () => {
         pathname.startsWith("/smookie-makers") ||
         pathname.startsWith("/friends") ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
-            <UserRound className="w-5 h-5" />
+            <UserRound className="h-5 w-5" />
             마이
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center text-center text-grey-3">
-            <UserRound className="w-5 h-5" />
+            <UserRound className="h-5 w-5" />
             마이
           </div>
         )}
