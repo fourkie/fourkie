@@ -8,7 +8,7 @@ const Request = () => {
   const [tab, setTab] = useState<"received" | "sent">("received");
 
   return (
-    <div className="min-h-screen space-y-4 border bg-white px-4 py-6">
+    <div className="min-h-screen space-y-4 border bg-white px-4 py-6 pt-20">
       <div className="flex w-full items-center justify-center gap-10">
         <button
           onClick={() => setTab("received")}
