@@ -45,7 +45,7 @@ export const getPostsByPostId = async ({ postId }: { postId?: string }) => {
   }
 };
 
-export const getPostsByUserIdAndToday = async (userId: string) => {
+export const getPostTodayEmotionById = async (userId: string) => {
   const supabaseClient = createClient();
 
   const startOfTodaySeoul = dayjs()

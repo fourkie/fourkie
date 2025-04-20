@@ -1,6 +1,6 @@
 "use client";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
-import { useGetPostsByUserIdAndTodayQuery } from "@/hooks/queries/use-get-posts-by-userId-and-today-query";
+import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-today-emotion-by-id-query";
 import createClient from "@/services/supabase-client-service";
 import {
   CirclePlus,
@@ -34,7 +34,7 @@ const Navigation = () => {
     getUser();
   }, []);
 
-  const { data: today } = useGetPostsByUserIdAndTodayQuery(userId);
+  const { data: today } = useGetPostTodayEmotionByIdQuery(userId);
 
   if (
     pathname.startsWith("/sign-in") ||

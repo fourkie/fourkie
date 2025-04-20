@@ -1,14 +1,14 @@
 "use client";
 import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import { EMOTIONSMUSIC } from "@/constants/emotions-music.constant";
-import { useGetPostsByUserIdAndTodayQuery } from "@/hooks/queries/use-get-posts-by-userId-and-today-query";
+import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-today-emotion-by-id-query";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 const HomeMusic = ({ userId }: { userId: string }) => {
-  const { data: data1, isPending } = useGetPostsByUserIdAndTodayQuery(userId);
+  const { data: data1, isPending } = useGetPostTodayEmotionByIdQuery(userId);
 
   if (isPending || data1 === undefined) {
     return (
