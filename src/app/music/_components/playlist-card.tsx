@@ -40,7 +40,7 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
 
   return (
     <div className="h-18">
-      <div className="justify-arround mt-4 pb-6 flex h-[52px] items-center gap-3 border-b-[1px] border-b-grey-1">
+      <div className="justify-arround mt-4 flex h-[52px] items-center gap-3 border-b-[1px] border-b-grey-1 pb-6">
         <button
           className="flex items-center justify-center"
           onClick={handleBookmarkToggle}
@@ -59,22 +59,23 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
           href={playlist.external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
-          className="whitespace-nowrap flex items-center justify-between w-full gap-4"
+          className="flex w-full items-center justify-between gap-4 whitespace-nowrap"
         >
-        <div className="flex h-[50px] w-12 items-center justify-center overflow-hidden">
-          <Image
-            src={playlist.images[0]?.url || "/default-image.jpg"}
-            alt={playlist.name}
-            width={52}
-            height={52}
-            className="rounded-l object-fit"
-          />
-        </div>
-        <p className="w-52 font-bold line-clamp-1 whitespace-nowrap text-ellipsis">{playlist.name}</p>
-        <p className="break-all text-sm text-grey-3">
-          {playlist.tracks.total}곡
-        </p>
-
+          <div className="flex h-[50px] w-12 items-center justify-center overflow-hidden">
+            <Image
+              src={playlist.images[0]?.url || "/default-image.jpg"}
+              alt={playlist.name}
+              width={52}
+              height={52}
+              className="object-fit rounded-l"
+            />
+          </div>
+          <p className="line-clamp-1 w-52 text-ellipsis whitespace-nowrap font-bold">
+            {playlist.name}
+          </p>
+          <p className="break-all text-sm text-grey-3">
+            {playlist.tracks.total}곡
+          </p>
         </Link>
       </div>
     </div>
