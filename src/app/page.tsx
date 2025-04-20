@@ -14,7 +14,7 @@ const HomePage = async () => {
     <div className="px-5 pb-32 pt-16">
       <HomeCalendar userId={userId} />
       <HomeFriend userId={userId} />
-      <HomeMusic />
+      <HomeMusic userId={userId} />
     </div>
   );
 };
