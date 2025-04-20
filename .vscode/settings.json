@@ -1,5 +1,11 @@
 {
-  "cSpell.words": ["HUGGINGFACE", "Smookie", "supabase"],
+  "cSpell.words": [
+    "HUGGINGFACE",
+    "ownglyph",
+    "pretendard",
+    "Smookie",
+    "supabase"
+  ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit"
