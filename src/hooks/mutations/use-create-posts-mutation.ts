@@ -14,7 +14,10 @@ export const useCreatePostsMutation = () => {
 
     onSuccess: () => {
       toast.success(TOAST_MESSAGE.POST.POSTING.SUCCESS);
-      queryClient.invalidateQueries({queryKey: [QUERY_KEY.POSTS]})
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.POSTS] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.BY_USER_AND_TODAY],
+      });
       router.push("/music");
     },
 

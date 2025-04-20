@@ -1,4 +1,7 @@
 "use client";
+import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import { useGetPostsByUserIdAndTodayQuery } from "@/hooks/queries/use-get-posts-by-userId-and-today-query";
+import createClient from "@/services/supabase-client-service";
 import {
   CirclePlus,
   HeartHandshake,
@@ -7,11 +10,32 @@ import {
   UserRound,
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Navigation = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const [userId, setUserId] = useState("");
   //레이아웃 + 헤더 경로 상수화
+  const supabaseClient = createClient();
+
+  //오늘 날짜로 포스팅이 이미 있을 경우, /posting으로 진입하지 못함
+  useEffect(() => {
+    const getUser = async () => {
+      const {
+        data: { user },
+      } = await supabaseClient.auth.getUser();
+
+      if (user?.id) setUserId(user.id);
+    };
+
+    getUser();
+  }, []);
+
+  const { data: today } = useGetPostsByUserIdAndTodayQuery(userId);
+
   if (
     pathname.startsWith("/sign-in") ||
     pathname.startsWith("/sign-up") ||
@@ -48,9 +72,18 @@ const Navigation = () => {
           </div>
         )}
       </Link>
-      <Link href="/posting">
+      <div
+        onClick={() => {
+          if (today && today.length > 0) {
+            toast.warning(TOAST_MESSAGE.POST.TODAY.EXISTS);
+            return;
+          }
+          router.push("/posting");
+        }}
+        className="cursor-pointer"
+      >
         <CirclePlus className="mx-auto h-10 w-10 text-primary-400" />
-      </Link>
+      </div>
 
       <Link href="/music">
         {pathname === "/music" ? (
