@@ -47,7 +47,7 @@ const events: NoticeItem[] = [
   },
 ];
 
-export default function NoticePage() {
+const NoticePage = () => {
   const renderList = (title: string, items: NoticeItem[]) => (
     <section className="mb-8">
       <h2 className="mb-4 text-xl font-bold">{title}</h2>
@@ -72,4 +72,6 @@ export default function NoticePage() {
       {renderList("🎉 이벤트", events)}
     </main>
   );
-}
+};
+
+export default NoticePage;
