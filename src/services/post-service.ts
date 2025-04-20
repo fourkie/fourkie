@@ -45,7 +45,7 @@ export const getPostsByPostId = async ({ postId }: { postId?: string }) => {
   }
 };
 
-export const getPostsByUserIdAndToday = async (userId: string) => {
+export const getPostTodayEmotionById = async (userId: string) => {
   const supabaseClient = createClient();
 
   const startOfTodaySeoul = dayjs()
@@ -57,7 +57,7 @@ export const getPostsByUserIdAndToday = async (userId: string) => {
   try {
     const { data, error } = await supabaseClient
       .from("posts")
-      .select("post_created_at")
+      .select("post_emotion")
       .eq("user_id", userId)
       .gte("post_created_at", startOfTodaySeoul)
       .lte("post_created_at", endOfTodaySeoul);
