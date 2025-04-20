@@ -1,6 +1,6 @@
 "use client";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
-import { useGetPostsByUserIdAndTodayQuery } from "@/hooks/queries/use-get-posts-by-userId-and-today-query";
+import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-today-emotion-by-id-query";
 import createClient from "@/services/supabase-client-service";
 import {
   CirclePlus,
@@ -34,7 +34,7 @@ const Navigation = () => {
     getUser();
   }, []);
 
-  const { data: today } = useGetPostsByUserIdAndTodayQuery(userId);
+  const { data: today } = useGetPostTodayEmotionByIdQuery(userId);
 
   if (
     pathname.startsWith("/sign-in") ||
@@ -45,7 +45,7 @@ const Navigation = () => {
   }
 
   return (
-    <div className="fixed bottom-0 z-40 grid h-[106px] w-full grid-cols-5 items-center justify-evenly rounded-t-[28px] border-t border-grey-1 bg-white pb-[34px] text-black shadow-md">
+    <div className="fixed bottom-0 z-40 grid h-[90px] w-full grid-cols-5 items-center justify-evenly rounded-t-[28px] border-t border-grey-1 bg-white text-black shadow-md">
       <Link href="/">
         {pathname === "/" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
@@ -96,7 +96,7 @@ const Navigation = () => {
           </div>
         )}
       </Link>
-      <Link href="my-page">
+      <Link href="/my-page">
         {pathname.startsWith("/my-page") ||
         pathname.startsWith("/notice") ||
         pathname.startsWith("/version") ||

@@ -1,4 +1,4 @@
-import { getPostsByUserIdAndToday } from "@/services/post-service";
+import { getPostTodayEmotionById } from "@/services/post-service";
 import createClient from "@/services/supabase-server-service";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
@@ -17,7 +17,7 @@ const Posting = async () => {
 
   const userId = user.id;
 
-  const todayPosts = await getPostsByUserIdAndToday(userId);
+  const todayPosts = await getPostTodayEmotionById(userId);
 
   if (todayPosts && todayPosts.length > 0) {
     redirect("/");
