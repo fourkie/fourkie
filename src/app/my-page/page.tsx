@@ -4,7 +4,7 @@ import MypageProfile from "./components/mypage-profile";
 
 const MyPage = () => {
   return (
-    <div className="min-h-screen bg-white px-4 py-6 mb-32">
+    <div className="min-h-screen bg-white px-4 pb-28 pt-20">
       <MypageProfile />
       <MypageGraph />
       <MypageMenuList />
