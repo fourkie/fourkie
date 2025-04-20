@@ -17,6 +17,9 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const startDay = startOfMonth.day();
   const daysInMonth = currentDate.daysInMonth();
 
+  const nextMonth = currentDate.add(1, "month");
+  const isNextMonthFuture = nextMonth.isAfter(dayjs(), "month");
+
   const {
     data: posts,
     isPending,
@@ -30,8 +33,8 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   // 펜딩 or 에러일 때 크기 같게 유지하려고 min-h-500px 줬습니다.
   if (isPending || isError)
     return (
-      <div className="w-full max-w-md mx-auto shadow-[0_0_6px_0_rgba(0,0,0,0.10)] p-5 border border-secondary-100 rounded-xl my-5 min-h-[25rem] flex items-center justify-center ">
-        <span className="text-grey-3 text-lg">
+      <div className="mx-auto my-5 flex min-h-[25rem] w-full max-w-md items-center justify-center rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)]">
+        <span className="text-lg text-grey-3">
           {isPending ? QUERYDATA.ISPENDING : QUERYDATA.ISERROR}
         </span>
       </div>
@@ -49,8 +52,6 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const handlePrevMonth = () =>
     setCurrentDate(currentDate.subtract(1, "month"));
   const handleNextMonth = () => {
-    const nextMonth = currentDate.add(1, "month");
-    if (nextMonth.isAfter(dayjs(), "month")) return;
     setCurrentDate(nextMonth);
   };
 
@@ -59,11 +60,20 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   for (let i = 1; i <= daysInMonth; i++) days.push(i);
 
   return (
-    <div className="w-full max-w-md mx-auto shadow-[0_0_6px_0_rgba(0,0,0,0.10)] p-5 border border-secondary-100 rounded-xl my-5">
-      <div className="flex justify-between items-center ">
+    <div className="mx-auto my-5 w-full max-w-md rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)]">
+      <div className="flex items-center justify-between">
         <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
         <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
-        <ChevronRight onClick={handleNextMonth} className="cursor-pointer" />
+        <ChevronRight
+          onClick={() => {
+            if (!isNextMonthFuture) handleNextMonth();
+          }}
+          className={` ${
+            isNextMonthFuture
+              ? "cursor-not-allowed text-grey-2"
+              : "hover:text-primary cursor-pointer transition"
+          }`}
+        />
       </div>
       <Link href={"/list"}>
         <div className="grid grid-cols-7 gap-2">
@@ -105,7 +115,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
             return (
               <div
                 key={idx}
-                className={`h-[3rem] rounded-lg relative flex justify-center items-center ${
+                className={`relative flex h-[3rem] items-center justify-center rounded-lg ${
                   isFuture ? "text-grey-3" : ""
                 }`}
               >
