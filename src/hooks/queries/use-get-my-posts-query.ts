@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetAllPostsByIdQuery = ({ userId }: { userId: string }) => {
   return useQuery({
-    queryKey: [QUERY_KEY.POSTS],
+    queryKey: [QUERY_KEY.POSTS, userId],
     queryFn: () => getAllPostsById({ userId }),
     enabled: !!userId,
   });

@@ -38,13 +38,13 @@ const FriendList = ({
 
   if (searchUser && searchedUser) {
     return (
-      <div className="flex items-center justify-between py-3">
+      <div className="flex items-center justify-between py-3 w-full">
         <div
           onClick={() => setSelectedUser(searchedUser)}
-          className="flex cursor-pointer items-center gap-2 pl-3 text-lg font-medium text-grey-7"
+          className="flex cursor-pointer items-center gap-2 pl-3 text-lg w-full font-medium text-grey-7"
         >
           <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
-          {searchedUser.user_nickname}
+          <div className="flex-1 w-full">{searchedUser.user_nickname}</div>
         </div>
         {requestedAlready && (
           <button

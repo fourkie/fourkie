@@ -1,8 +1,8 @@
 "use client";
 
 import { FORM_MESSAGE } from "@/constants/form-message.constant";
-import { FriendSearchInputProps } from "../type";
 import { Search } from "lucide-react";
+import { FriendSearchInputProps } from "../type";
 
 const FriendSearchInput = ({
   searchKeyword,
