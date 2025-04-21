@@ -1,0 +1,62 @@
+"use client";
+
+import { TUTORIAL } from "@/constants/tutorial.constant";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import TutorialDescription from "./_components/tutorial-description";
+
+const Tutorial = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const router = useRouter();
+
+  /** 클릭 시 다음 페이지로 넘어감 */
+  const handleNext = () => {
+    if (currentStep < 2) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  /** 클릭 시 로그인 페이지로 넘어감 */
+  const handleLogin = () => {
+    document.cookie = "hasSeenTutorial=true; path=/; max-age=31536000";
+    router.push("/sign-in");
+  };
+
+  return (
+    <>
+      {currentStep === 0 && (
+        <TutorialDescription
+          title={TUTORIAL.TITLE.HOME}
+          description={TUTORIAL.DESCRIPTION.HOME}
+          image={TUTORIAL.IMAGE.HOME}
+          currentStep={currentStep}
+          onClick={handleNext}
+          buttonName={TUTORIAL.BUTTON.NEXT}
+        />
+      )}
+      {currentStep === 1 && (
+        <TutorialDescription
+          title={TUTORIAL.TITLE.LIST}
+          description={TUTORIAL.DESCRIPTION.LIST}
+          image={TUTORIAL.IMAGE.LIST}
+          currentStep={currentStep}
+          onClick={handleNext}
+          buttonName={TUTORIAL.BUTTON.NEXT}
+        />
+      )}
+      {currentStep === 2 && (
+        <TutorialDescription
+          title={TUTORIAL.TITLE.MUSIC}
+          description={TUTORIAL.DESCRIPTION.MUSIC}
+          image={TUTORIAL.IMAGE.MUSIC}
+          currentStep={currentStep}
+          onClick={handleLogin}
+          buttonName={TUTORIAL.BUTTON.LOGIN}
+        />
+      )}
+    </>
+  );
+};
+
+export default Tutorial;

@@ -59,6 +59,7 @@ const HomeHeader = () => {
   if (
     pathname.startsWith("/sign-in") ||
     pathname.startsWith("/sign-up") ||
+    pathname.startsWith("/tutorial") ||
     pathname.startsWith("/music")
   ) {
     return null;

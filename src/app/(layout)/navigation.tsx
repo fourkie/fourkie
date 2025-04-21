@@ -39,6 +39,7 @@ const Navigation = () => {
   if (
     pathname.startsWith("/sign-in") ||
     pathname.startsWith("/sign-up") ||
+    pathname.startsWith("/tutorial") ||
     pathname.startsWith("/posting")
   ) {
     return null;
