@@ -1,3 +1,4 @@
+import { SPOTIFY } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { FieldValues } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -47,6 +48,11 @@ export const signOut = async () => {
 
   try {
     await supabaseClient.auth.signOut();
+
+    await fetch(SPOTIFY.SIGNOUT_ROUTE, {
+      method: "POST",
+      credentials: "include",
+    });
   } catch (error) {
     console.error(error);
   }
