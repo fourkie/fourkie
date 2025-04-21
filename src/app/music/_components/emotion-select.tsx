@@ -1,4 +1,5 @@
-import { Emotion, EMOTION_DISPLAY_NAME } from "@/constants/spotify.constant";
+import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
+import { Emotion } from "@/constants/spotify.constant";
 import { EmotionSelectProps } from "../type";
 
 const EmotionSelect = ({
@@ -14,13 +15,11 @@ const EmotionSelect = ({
           onChange={(e) => onChange(e.target.value as Emotion)}
           className="h-6 w-24 rounded-xl border-b border-b-primary-300 bg-primary-100 px-2 py-1 text-center text-sm font-bold text-primary-700"
         >
-          {Object.entries(EMOTION_DISPLAY_NAME).map(
-            ([emotionKey, emotionDisplayName]) => (
-              <option key={emotionKey} value={emotionKey}>
-                {emotionDisplayName}
-              </option>
-            ),
-          )}
+          {Object.entries(EMOTIONS_QUERY).map(([emotionKey]) => (
+            <option key={emotionKey} value={emotionKey}>
+              {EMOTIONS_QUERY[emotionKey]}
+            </option>
+          ))}
         </select>
         <p className="text-xl font-bold text-white">듣기 좋은</p>
       </div>
