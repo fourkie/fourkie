@@ -7,12 +7,11 @@ import TutorialDescription from "./_components/tutorial-description";
 
 const Tutorial = () => {
   const [currentStep, setCurrentStep] = useState(0);
-
   const router = useRouter();
 
   /** 클릭 시 다음 페이지로 넘어감 */
   const handleNext = () => {
-    if (currentStep < 2) {
+    if (currentStep < 3) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -35,6 +34,7 @@ const Tutorial = () => {
           buttonName={TUTORIAL.BUTTON.NEXT}
         />
       )}
+
       {currentStep === 1 && (
         <TutorialDescription
           title={TUTORIAL.TITLE.LIST}
@@ -45,11 +45,23 @@ const Tutorial = () => {
           buttonName={TUTORIAL.BUTTON.NEXT}
         />
       )}
+
       {currentStep === 2 && (
         <TutorialDescription
           title={TUTORIAL.TITLE.MUSIC}
           description={TUTORIAL.DESCRIPTION.MUSIC}
           image={TUTORIAL.IMAGE.MUSIC}
+          currentStep={currentStep}
+          onClick={handleNext}
+          buttonName={TUTORIAL.BUTTON.NEXT}
+        />
+      )}
+
+      {currentStep === 3 && (
+        <TutorialDescription
+          title={TUTORIAL.TITLE.SMOOKIE}
+          description={TUTORIAL.DESCRIPTION.SMOOKIE}
+          image={TUTORIAL.IMAGE.SMOOKIE}
           currentStep={currentStep}
           onClick={handleLogin}
           buttonName={TUTORIAL.BUTTON.LOGIN}
