@@ -11,7 +11,7 @@ const MyPage = async () => {
 
   return (
     <div className="min-h-screen bg-white px-4 pb-28 pt-20">
-      <MypageProfile userId={user?.id} />
+      <MypageProfile userId={user!.id} />
       <MypageGraph />
       <MypageMenuList />
     </div>
