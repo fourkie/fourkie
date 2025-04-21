@@ -6,14 +6,9 @@ import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-a
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { SpotifyPlaylistItem } from "../type";
+import { PlaylistCardProps } from "../type";
 
-interface PlaylistCardProps {
-  playlist: SpotifyPlaylistItem;
-  userId: string;
-}
-
-export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
+const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   const musicPlaylistId = playlist.id || playlist.music_playlist_id;
 
   const { mutate: addBookmark } = useAddBookmarkMutation(userId);
@@ -69,9 +64,7 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
               className="h-full w-full object-cover"
             />
           </div>
-
           <p className="flex-1 truncate text-base font-bold">{playlist.name}</p>
-
           <p className="text-xs text-grey-5">{playlist.tracks.total}곡</p>
         </Link>
       </div>

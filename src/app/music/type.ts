@@ -64,3 +64,13 @@ export interface BookmarkMutationPayload {
   tracks: { href: string; total: number };
   uri: string;
 }
+
+export interface PlaylistCardProps {
+  playlist: SpotifyPlaylistItem;
+  userId: string;
+}
+
+export type RecommendPlaylistsProps = {
+  userId: string;
+  emotion: string;
+};

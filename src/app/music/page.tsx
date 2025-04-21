@@ -12,13 +12,16 @@ import PlaylistTabContainer from "./_components/playlist-tab-container";
 import { PlaylistTabProps } from "./type";
 
 const Music = () => {
-  const [userId, setUserId] = useState<string>("");
-  const [emotion, setEmotion] = useState(Emotion.JOY);
   const [isSelectedTab, setIsSelectedTab] = useState<PlaylistTabProps>(
     PlaylistTabProps.RECOMMEND,
   );
+  const [userId, setUserId] = useState<string>("");
 
-  const { playlists } = useGetAllPlaylistsByQueryQuery(emotion || Emotion.JOY);
+  const { data: todayEmotion } = useGetPostTodayEmotionByIdQuery(userId);
+
+  const initialEmotion = todayEmotion?.[0]?.post_emotion || Emotion.JOY;
+  const [emotion, setEmotion] = useState(initialEmotion);
+  const { playlists } = useGetAllPlaylistsByQueryQuery(emotion);
   const imageUrl = playlists[0]?.images[0]?.url;
 
   const supabaseClient = createClient();
@@ -37,16 +40,11 @@ const Music = () => {
     fetchUser();
   }, []);
 
-  const { data: todayEmotion } = useGetPostTodayEmotionByIdQuery(userId);
-
-  // 오늘 감정 조회
-  useEffect(() => {
-    if (todayEmotion?.[0]?.post_emotion) {
-      setEmotion(todayEmotion[0].post_emotion);
-    }
-  }, [todayEmotion]);
-
-  if (!userId) return TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR;
+  if (!userId)
+    return (
+      TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING ||
+      TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR
+    );
 
   return (
     <div>
@@ -66,7 +64,6 @@ const Music = () => {
           todayEmotion={todayEmotion?.[0]?.post_emotion}
         />
       </div>
-
       <PlaylistTabContainer
         userId={userId}
         emotion={emotion}

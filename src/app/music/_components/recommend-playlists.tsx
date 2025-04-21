@@ -1,11 +1,7 @@
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
+import { RecommendPlaylistsProps } from "../type";
 import PlaylistCard from "./playlist-card";
-
-type RecommendPlaylistsProps = {
-  userId: string;
-  emotion: string;
-};
 
 const RecommendPlaylists = ({ userId, emotion }: RecommendPlaylistsProps) => {
   const { playlists, playlistsPending } =
