@@ -35,8 +35,8 @@ const sortedMyPosts = myPosts
   });
 
   return (
-    <div className="flex relative h-full min-h-screen flex-col gap-4 bg-primary-50 px-5 pb-32 pt-4">
-      <div className="fixed left-0 top-12 flex w-full items-center justify-center gap-4 bg-primary-50 py-3">
+    <div className="flex relative h-full min-h-screen flex-col gap-4 bg-primary-50 px-5 pb-32 pt-24">
+      <div className="fixed left-0 top-12 flex w-full items-center justify-center gap-4 bg-primary-50 py-5">
         <div
           className={`${
             isMyPost
