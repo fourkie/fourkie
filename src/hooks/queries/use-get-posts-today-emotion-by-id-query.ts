@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetPostTodayEmotionByIdQuery = (userId: string) => {
   return useQuery({
-    queryKey: [QUERY_KEY.BY_USER_AND_TODAY, userId],
+    queryKey: [QUERY_KEY.BY_USER_AND_TODAY],
     queryFn: () => getPostTodayEmotionById(userId),
     enabled: !!userId,
   });
