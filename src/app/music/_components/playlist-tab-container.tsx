@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { PlaylistTabProps, TabButtonProps } from "../type";
+import { PlaylistTabProps } from "../type";
 import BookmarkedPlaylists from "./bookmarked-playlists";
 import RecommendPlaylists from "./recommend-playlists";
+import TabButton from "./tab-button";
 
 const PlaylistTabContainer = ({
   userId,
@@ -18,22 +19,20 @@ const PlaylistTabContainer = ({
 
   return (
     <div className="flex flex-col gap-3 px-5">
-      <div className="flex items-center justify-center gap-[28px] my-2 pt-4">
+      <div className="my-2 flex items-center justify-center gap-10 pt-4 text-sm font-bold">
         <TabButton
           isActive={activeTab === PlaylistTabProps.RECOMMEND}
           onClick={() => setActiveTab(PlaylistTabProps.RECOMMEND)}
+          activeTab={activeTab}
         >
-          <div className="flex items-center font-bold">
-            추천 플리
-          </div>
+          <div className="flex items-center">추천 플리</div>
         </TabButton>
         <TabButton
           isActive={activeTab === PlaylistTabProps.BOOKMARK}
           onClick={() => setActiveTab(PlaylistTabProps.BOOKMARK)}
+          activeTab={activeTab}
         >
-          <div className="flex items-center font-bold">
-            즐겨찾기
-          </div>
+          <div className="flex items-center">즐겨찾기</div>
         </TabButton>
       </div>
 
@@ -45,17 +44,6 @@ const PlaylistTabContainer = ({
         )}
       </div>
     </div>
-  );
-};
-
-const TabButton = ({ isActive, onClick, children }: TabButtonProps) => {
-  return (
-    <button
-      onClick={onClick}
-      className={`${isActive ? "border-b-2 border-gray-600" : "border-b-2 text-gray-600"}`}
-    >
-      {children}
-    </button>
   );
 };
 

@@ -1,18 +1,14 @@
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
+import { RecommendPlaylistsProps } from "../type";
 import PlaylistCard from "./playlist-card";
-
-type RecommendPlaylistsProps = {
-  userId: string;
-  emotion: string;
-};
 
 const RecommendPlaylists = ({ userId, emotion }: RecommendPlaylistsProps) => {
   const { playlists, playlistsPending } =
     useGetAllPlaylistsByQueryQuery(emotion);
 
   return (
-    <ul className="flex flex-col gap-[12px]">
+    <ul className="flex flex-col gap-3">
       {playlistsPending ? (
         <p>{TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING}</p>
       ) : (

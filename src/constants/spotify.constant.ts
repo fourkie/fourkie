@@ -7,32 +7,6 @@ export const SPOTIFY = {
   CALLBACK_ROUTE: "/api/spotify/callback",
 };
 
-export const EMOTIONS: Record<string, string> = {
-  JOY: "JOY",
-  EXCITED: "EXCITED",
-  BUTTERFLY: "BUTTERFLY",
-  GRATEFUL: "GRATEFUL",
-  CALM: "CALM",
-  LONELY: "LONELY",
-  ANXIOUS: "ANXIOUS",
-  TIRED: "TIRED",
-  SAD: "SAD",
-  ANGRY: "ANGRY",
-};
-
-export const EMOTION_DISPLAY_NAME: Record<keyof typeof Emotion, string> = {
-  JOY: "기쁜 날",
-  EXCITED: "신나는 날",
-  BUTTERFLY: "설레는 날",
-  GRATEFUL: "감사한 날",
-  CALM: "평온한 날",
-  LONELY: "외로운 날",
-  ANXIOUS: "긴장되는",
-  TIRED: "아픈 날",
-  SAD: "슬픈 날",
-  ANGRY: "화나는 날",
-};
-
 export enum Emotion {
   JOY = "happy upbeat energetic joyful content cheerful optimistic 기쁨 즐거움 행복 만족 신바람 유쾌 활기찬",
 
