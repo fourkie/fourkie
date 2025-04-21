@@ -11,7 +11,7 @@ export const useSendFriendRequestMutation = () => {
     mutationFn: sendFriendRequest,
     onSuccess: () => {
       toast.success(TOAST_MESSAGE.MYPAGE.FRIEND_REQUEST_SUCCESS);
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MY_FRIENDS] });
+      queryClient.invalidateQueries({ queryKey: ["sent-request"] });
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.POSTS, QUERY_KEY.MY_FRIENDS],
       });

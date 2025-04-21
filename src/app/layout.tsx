@@ -67,7 +67,7 @@ export default function RootLayout({
       >
         <Providers>
           <HeaderWithZustand />
-          <main className="pb-18">{children}</main>
+          <main>{children}</main>
           <Navigation />
         </Providers>
         <ToastContainer position="top-right" autoClose={3000} />

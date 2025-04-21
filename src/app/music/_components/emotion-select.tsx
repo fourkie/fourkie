@@ -13,7 +13,7 @@ const EmotionSelect = ({
         <select
           value={emotion}
           onChange={(e) => onChange(e.target.value as Emotion)}
-          className="h-6 w-24 rounded-xl border-b border-b-primary-300 bg-primary-100 px-2 py-1 text-center text-sm font-bold text-primary-700"
+          className="h-7 w-26 rounded-full border-b border-b-primary-300 bg-primary-100 px-2 py-1 text-center text-sm font-bold text-primary-700"
         >
           {Object.entries(EMOTIONS_QUERY).map(([emotionKey]) => {
             return (

@@ -14,7 +14,7 @@ type BookmarkedProps = {
 
 // 북마크 추가 뮤테이션 훅
 // 같은 music_playlist_id를 추가할 경우, 다른 사용자 껏도 추가됨
-export const useAddBookmarkMutation = (userId: string) => {
+export const useAddBookmarkMutation = () => {
   const queryClient = useQueryClient();
   const toastId = TOAST_MESSAGE.MUSIC.ADD_TOAST_ID;
 
@@ -29,7 +29,7 @@ export const useAddBookmarkMutation = (userId: string) => {
       }
 
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY.BOOKMARKED_PLAYLISTS, userId],
+        queryKey: [QUERY_KEY.BOOKMARKED_PLAYLISTS],
       });
     },
 
@@ -51,6 +51,9 @@ export const useRemoveBookmarkMutation = ({
     mutationFn: () => removeBookmarkedPlaylists(musicPlaylistId, userId),
 
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.BOOKMARKED_PLAYLISTS],
+      });
       if (!toast.isActive(toastId)) {
         toast.success(TOAST_MESSAGE.MUSIC.REMOVE_BOOKMARK_SUCCESS, {
           toastId, // 중복 방지용 ID

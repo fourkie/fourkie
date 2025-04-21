@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetFriendPostsQuery = ({ userId }: { userId: string }) => {
   return useQuery({
-    queryKey: [QUERY_KEY.POSTS, QUERY_KEY.MY_FRIENDS, userId],
+    queryKey: [QUERY_KEY.POSTS, QUERY_KEY.MY_FRIENDS],
     queryFn: () => getFriendsPosts({ userId }),
     enabled: !!userId,
   });

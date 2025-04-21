@@ -8,7 +8,7 @@ export const useGetUserNicknameByIdQuery = (
   //? 붙임 -> 선택적
 ) => {
   return useQuery({
-    queryKey: [QUERY_KEY.NICKNAME, userId],
+    queryKey: [QUERY_KEY.USER_NICKNAME, userId],
     queryFn: () => getUserNickname(userId),
     enabled: options?.enabled ?? true,
     //실행 설정 없으면(??) 실행
