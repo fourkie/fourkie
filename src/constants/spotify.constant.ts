@@ -5,6 +5,7 @@ export const SPOTIFY = {
   ACCESS_TOKEN: "spotify_access_token",
   PRODUCTION: "production",
   CALLBACK_ROUTE: "/api/spotify/callback",
+  SIGNOUT_ROUTE: "/api/spotify/sign-out",
 };
 
 export enum Emotion {
