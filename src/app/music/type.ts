@@ -34,7 +34,7 @@ export interface Musics extends SpotifyPlaylistItem {
 export type SpotifyPlaylistList = SpotifyPlaylistItem[];
 
 export interface EmotionSelectProps {
-  value: Emotion;
+  emotion: Emotion;
   onChange: (value: Emotion) => void;
   todayEmotion: Emotion;
 }

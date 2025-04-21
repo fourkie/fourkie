@@ -15,14 +15,14 @@ const Music = () => {
   const [isSelectedTab, setIsSelectedTab] = useState<PlaylistTabProps>(
     PlaylistTabProps.RECOMMEND,
   );
+
   const [userId, setUserId] = useState<string>("");
 
-  const { data: todayEmotion } = useGetPostTodayEmotionByIdQuery(userId);
-
-  const initialEmotion = todayEmotion?.[0]?.post_emotion || Emotion.JOY;
-  const [emotion, setEmotion] = useState(initialEmotion);
+  const [emotion, setEmotion] = useState<Emotion>(Emotion.JOY);
   const { playlists } = useGetAllPlaylistsByQueryQuery(emotion);
   const imageUrl = playlists[0]?.images[0]?.url;
+
+  const { data: todayEmotion } = useGetPostTodayEmotionByIdQuery(userId);
 
   const supabaseClient = createClient();
 
@@ -39,6 +39,13 @@ const Music = () => {
 
     fetchUser();
   }, []);
+
+  useEffect(() => {
+    const initialEmotion = todayEmotion?.[0]?.post_emotion;
+    if (initialEmotion) {
+      setEmotion(initialEmotion);
+    }
+  }, [todayEmotion]);
 
   if (!userId)
     return (
@@ -59,7 +66,7 @@ const Music = () => {
         </div>
         <div className="absolute inset-0 h-64 bg-black bg-opacity-80" />
         <EmotionSelect
-          value={emotion}
+          emotion={emotion}
           onChange={setEmotion}
           todayEmotion={todayEmotion?.[0]?.post_emotion}
         />

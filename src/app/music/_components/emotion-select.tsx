@@ -3,7 +3,7 @@ import { Emotion } from "@/constants/spotify.constant";
 import { EmotionSelectProps } from "../type";
 
 const EmotionSelect = ({
-  value,
+  emotion,
   onChange,
   todayEmotion,
 }: EmotionSelectProps) => {
@@ -11,15 +11,17 @@ const EmotionSelect = ({
     <div className="absolute left-5 top-16">
       <div className="mb-2 flex items-center gap-3">
         <select
-          value={value}
+          value={emotion}
           onChange={(e) => onChange(e.target.value as Emotion)}
           className="h-6 w-24 rounded-xl border-b border-b-primary-300 bg-primary-100 px-2 py-1 text-center text-sm font-bold text-primary-700"
         >
-          {Object.entries(EMOTIONS_QUERY).map(([emotionKey]) => (
-            <option key={emotionKey} value={emotionKey}>
-              {EMOTIONS_QUERY[emotionKey]}
-            </option>
-          ))}
+          {Object.entries(EMOTIONS_QUERY).map(([emotionKey]) => {
+            return (
+              <option key={emotionKey} value={emotionKey}>
+                {EMOTIONS_QUERY[emotionKey]} 날
+              </option>
+            );
+          })}
         </select>
         <p className="text-xl font-bold text-white">듣기 좋은</p>
       </div>
