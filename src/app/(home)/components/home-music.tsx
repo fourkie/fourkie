@@ -23,8 +23,10 @@ const HomeMusic = ({ userId }: { userId: string }) => {
             <ChevronRight className="cursor-pointer" />
           </div>
         </Link>
-        <div className="gap-4 rounded-xl border bg-primary-50 p-4">
-          플레이리스트를 불러오고 있습니다!
+        <div className="flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-4">
+          <div className="flex flex-1 flex-col justify-between">
+            플레이리스트를 불러오고 있습니다!
+          </div>
         </div>
       </div>
     );
@@ -42,33 +44,33 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           <ChevronRight className="cursor-pointer" />
         </div>
       </Link>
-      <div className="flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-4">
-        <div className="justify-arround flex h-[52px] items-center gap-3">
-          <Link
-            href={playlists[randomIndex].external_urls.spotify}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center justify-between gap-4 whitespace-nowrap"
-          >
-            <div className="flex h-[50px] w-12 items-center justify-center overflow-hidden">
-              <Image
-                src={
-                  playlists[randomIndex].images[0]?.url || "/default-image.jpg"
-                }
-                alt={playlists[randomIndex].name}
-                width={52}
-                height={52}
-                className="object-fit rounded-l"
-              />
-            </div>
-            <p className="line-clamp-1 w-52 text-ellipsis whitespace-nowrap font-bold">
-              {playlists[randomIndex].name}
-            </p>
-            <p className="break-all text-sm text-grey-3">
-              {playlists[randomIndex].tracks.total}곡
-            </p>
-          </Link>
-        </div>
+      <div className="flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-3">
+        <Link
+          href={playlists[randomIndex].external_urls.spotify}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex w-full items-center justify-between gap-4"
+        >
+          <div className="h-[52px] w-[62px] flex-shrink-0 overflow-hidden rounded-lg">
+            <Image
+              src={
+                playlists[randomIndex].images[0]?.url || "/default-image.jpg"
+              }
+              alt={playlists[randomIndex].name}
+              width={62}
+              height={52}
+              className="object-cover"
+            />
+          </div>
+
+          <p className="flex-1 truncate px-2 text-center font-bold">
+            {playlists[randomIndex].name}
+          </p>
+
+          <p className="flex-shrink-0 text-right text-sm text-grey-3">
+            {playlists[randomIndex].tracks.total}곡
+          </p>
+        </Link>
       </div>
     </div>
   );
