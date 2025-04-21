@@ -1,4 +1,3 @@
-import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import createClient from "./supabase-client-service";
 
 export const searchUserByNicknameOrEmail = async (searchKeyword: string) => {
@@ -9,9 +8,9 @@ export const searchUserByNicknameOrEmail = async (searchKeyword: string) => {
       .from("users")
       .select("user_uid, user_nickname, user_email")
       .or(`user_nickname.eq.${searchKeyword},user_email.eq.${searchKeyword}`)
-      .single();
+      .maybeSingle();
 
-    if (error) throw new Error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
+    if (error) return null;
     return data;
   } catch {
     return null;
