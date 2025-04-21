@@ -34,8 +34,9 @@ export interface Musics extends SpotifyPlaylistItem {
 export type SpotifyPlaylistList = SpotifyPlaylistItem[];
 
 export interface EmotionSelectProps {
-  value: Emotion;
+  emotion: Emotion;
   onChange: (value: Emotion) => void;
+  todayEmotion: Emotion;
 }
 
 export enum PlaylistTabProps {
@@ -52,6 +53,7 @@ export interface TabButtonProps {
   isActive: boolean;
   onClick: () => void;
   children: React.ReactNode;
+  activeTab: PlaylistTabProps;
 }
 
 export interface BookmarkMutationPayload {
@@ -62,3 +64,13 @@ export interface BookmarkMutationPayload {
   tracks: { href: string; total: number };
   uri: string;
 }
+
+export interface PlaylistCardProps {
+  playlist: SpotifyPlaylistItem;
+  userId: string;
+}
+
+export type RecommendPlaylistsProps = {
+  userId: string;
+  emotion: string;
+};

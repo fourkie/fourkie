@@ -27,14 +27,14 @@ const HomeFriend = ({ userId }: { userId: string }) => {
 
   if (isPending) {
     return (
-      <div className="flex flex-col my-4 gap-4">
-        <div className="flex justify-between items-center mt-2">
-          <div className=" font-bold">
+      <div className="my-4 flex flex-col gap-4">
+        <div className="mt-2 flex items-center justify-between">
+          <div className="font-bold">
             오늘 하루 내 친구들 기분을 살펴볼까요?
           </div>
           <ChevronRight className="cursor-pointer" />
         </div>
-        <div className="border rounded-xl bg-primary-50 flex flex-row items-center p-4">
+        <div className="border-3 flex flex-row items-center rounded-xl border border-primary-200 p-4">
           로딩 중...
         </div>
       </div>
@@ -45,14 +45,14 @@ const HomeFriend = ({ userId }: { userId: string }) => {
   if (!friendPostsForToday || friendPostsForToday.length === 0) {
     return (
       <Link href={"/list"}>
-        <div className="flex flex-col my-4 gap-4">
-          <div className="flex justify-between items-center mt-2">
-            <div className=" font-bold">
+        <div className="my-4 flex flex-col gap-4">
+          <div className="mt-2 flex items-center justify-between">
+            <div className="font-bold">
               오늘 하루 내 친구들 기분을 살펴볼까요?
             </div>
             <ChevronRight className="cursor-pointer" />
           </div>
-          <div className="border rounded-xl bg-primary-50 flex flex-row items-center gap-4 p-4">
+          <div className="border-3 flex flex-row items-center gap-4 rounded-xl border border-primary-200 p-4">
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.SAD} size="xs" />
             <div className="flex flex-col">
               <div className="font-bold">친구의 쿠키가 없네요!</div>
@@ -66,15 +66,15 @@ const HomeFriend = ({ userId }: { userId: string }) => {
 
   return (
     <Link href={"/list"}>
-      <div className="flex flex-col my-4 gap-4">
-        <div className="flex justify-between items-center mt-2">
-          <div className=" font-bold">
+      <div className="my-4 flex flex-col gap-4">
+        <div className="mt-2 flex items-center justify-between">
+          <div className="font-bold">
             오늘 하루 내 친구들 기분을 살펴볼까요?
           </div>
           <ChevronRight className="cursor-pointer" />
         </div>
 
-        <div className="border rounded-xl bg-primary-50 flex flex-row items-center gap-4 p-4">
+        <div className="flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-4">
           <EmotionImage
             src={checkEmotion(friendPostsForToday?.[0]?.post_emotion)}
             size="xs"

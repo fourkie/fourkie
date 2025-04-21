@@ -16,12 +16,17 @@ type BookmarkedProps = {
 // 같은 music_playlist_id를 추가할 경우, 다른 사용자 껏도 추가됨
 export const useAddBookmarkMutation = (userId: string) => {
   const queryClient = useQueryClient();
+  const toastId = TOAST_MESSAGE.MUSIC.ADD_TOAST_ID;
 
   return useMutation({
     mutationFn: addBookmarkedPlaylists,
 
     onSuccess: () => {
-      toast.success(TOAST_MESSAGE.MUSIC.ADD_BOOKMARK_SUCCESS);
+      if (!toast.isActive(toastId)) {
+        toast.success(TOAST_MESSAGE.MUSIC.ADD_BOOKMARK_SUCCESS, {
+          toastId, // 중복 방지용 ID
+        });
+      }
 
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.BOOKMARKED_PLAYLISTS, userId],
@@ -40,12 +45,17 @@ export const useRemoveBookmarkMutation = ({
   userId,
 }: BookmarkedProps) => {
   const queryClient = useQueryClient();
+  const toastId = TOAST_MESSAGE.MUSIC.REMOVE_TOAST_ID;
 
   return useMutation<void, Error, BookmarkedProps>({
     mutationFn: () => removeBookmarkedPlaylists(musicPlaylistId, userId),
 
     onSuccess: () => {
-      toast.success(TOAST_MESSAGE.MUSIC.REMOVE_BOOKMARK_SUCCESS);
+      if (!toast.isActive(toastId)) {
+        toast.success(TOAST_MESSAGE.MUSIC.REMOVE_BOOKMARK_SUCCESS, {
+          toastId, // 중복 방지용 ID
+        });
+      }
 
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.BOOKMARKED_PLAYLISTS, userId],

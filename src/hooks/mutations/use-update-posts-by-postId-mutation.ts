@@ -19,6 +19,10 @@ export const useUpdatePostsByPostIdMutation = () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.USER, year, month],
       });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.POSTS] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.BY_USER_AND_TODAY],
+      });
       router.push("/music");
     },
 

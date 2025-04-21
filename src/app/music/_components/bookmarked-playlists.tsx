@@ -17,10 +17,12 @@ const BookmarkedPlaylists = ({ userId }: { userId: string }) => {
   if (bookmarkedIsError) return TOAST_MESSAGE.MUSIC.BOOKMARK_ERROR;
 
   return (
-    <ul className="flex flex-col gap-[12px]">
-      {bookmarkedData?.map((playlist) => (
-        <PlaylistCard key={playlist.id} playlist={playlist} userId={userId} />
-      ))}
+    <ul className="flex flex-col gap-3">
+      {bookmarkedData?.map((playlist, index) => {
+        const key = playlist.id ?? `${playlist.name}-${index}`;
+
+        return <PlaylistCard key={key} playlist={playlist} userId={userId} />;
+      })}
     </ul>
   );
 };

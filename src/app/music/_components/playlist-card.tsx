@@ -6,14 +6,9 @@ import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-a
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { SpotifyPlaylistItem } from "../type";
+import { PlaylistCardProps } from "../type";
 
-interface PlaylistCardProps {
-  playlist: SpotifyPlaylistItem;
-  userId: string;
-}
-
-export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
+const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   const musicPlaylistId = playlist.id || playlist.music_playlist_id;
 
   const { mutate: addBookmark } = useAddBookmarkMutation(userId);
@@ -39,42 +34,38 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   };
 
   return (
-    <div className="h-18">
-      <div className="justify-arround mt-4 pb-6 flex h-[52px] items-center gap-3 border-b-[1px] border-b-grey-1">
+    <div className="h-20 border-b border-b-grey-1">
+      <div className="justify-arround my-3 flex items-center gap-2">
         <button
           className="flex items-center justify-center"
           onClick={handleBookmarkToggle}
         >
           <Star
-            className={`h-[18px] ${
+            className={`${
               isBookmarked
-                ? "fill-yellow-400 text-yellow-400"
-                : "text-yellow-400"
+                ? "fill-secondary-400 text-secondary-200"
+                : "text-secondary-200"
             }`}
-            size={24}
+            size={18}
           />
         </button>
-        {/* 이미지 수정 */}
         <Link
           href={playlist.external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
-          className="whitespace-nowrap flex items-center justify-between w-full gap-4"
+          className="flex w-full items-center gap-5 overflow-hidden whitespace-nowrap transition"
         >
-        <div className="flex h-[50px] w-12 items-center justify-center overflow-hidden">
-          <Image
-            src={playlist.images[0]?.url || "/default-image.jpg"}
-            alt={playlist.name}
-            width={52}
-            height={52}
-            className="rounded-l object-fit"
-          />
-        </div>
-        <p className="w-52 font-bold line-clamp-1 whitespace-nowrap text-ellipsis">{playlist.name}</p>
-        <p className="break-all text-sm text-grey-3">
-          {playlist.tracks.total}곡
-        </p>
-
+          <div className="h-12 w-14 overflow-hidden rounded-lg">
+            <Image
+              src={playlist.images[0].url}
+              alt={playlist.name}
+              width={56}
+              height={48}
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <p className="flex-1 truncate text-base font-bold">{playlist.name}</p>
+          <p className="text-xs text-grey-5">{playlist.tracks.total}곡</p>
         </Link>
       </div>
     </div>
