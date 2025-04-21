@@ -1,19 +1,19 @@
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
-import { sendFriendRequest } from "@/services/friend-request-service";
+import { cancelFriendRequest } from "@/services/friend-request-service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-export const useSendFriendRequestMutation = () => {
+export const useCancelFriendRequestMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: sendFriendRequest,
+    mutationFn: (requestId: number) => cancelFriendRequest(requestId),
     onSuccess: () => {
-      toast.success(TOAST_MESSAGE.MYPAGE.FRIEND_REQUEST_SUCCESS);
+      toast.success(TOAST_MESSAGE.MYPAGE.FRIEND_CANCEL_SUCCESS);
       queryClient.invalidateQueries({ queryKey: ["sent-request"] });
     },
     onError: () => {
-      toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_REQUEST_ERROR);
+      toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_CNACEL_ERROR);
     },
   });
 };

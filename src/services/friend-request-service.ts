@@ -56,6 +56,23 @@ export const checkExistFriendRequest = async ({
   }
 };
 
+// 보낸 요청 취소하기
+export const cancelFriendRequest = async (requestId: number) => {
+  const supabaseClient = createClient();
+
+  try {
+    const { error } = await supabaseClient
+      .from("friends")
+      .delete()
+      .eq("id", requestId);
+
+    if (error) throw new Error(TOAST_MESSAGE.MYPAGE.FRIEND_CNACEL_ERROR);
+  } catch {
+    toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_CNACEL_ERROR);
+    throw new Error();
+  }
+};
+
 // 받은 친구 요청 목록 조회
 export const getReceivedRequests = async (userId: string) => {
   const supabaseClient = createClient();

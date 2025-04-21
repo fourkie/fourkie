@@ -31,12 +31,15 @@ const MypageProfile = () => {
       return;
     }
 
-    if (newNickname !== nickname) {
-      const isDuplicate = await checkNicknameDuplicate(newNickname);
-      if (isDuplicate) {
-        toast.error(TOAST_MESSAGE.MYPAGE.EXIST_NICKNAME_ERROR);
-        return;
-      }
+    if (newNickname === nickname) {
+      toast.error(TOAST_MESSAGE.MYPAGE.SAME_NICKNAME_ERROR);
+      return;
+    }
+
+    const isDuplicate = await checkNicknameDuplicate(newNickname);
+    if (isDuplicate) {
+      toast.error(TOAST_MESSAGE.MYPAGE.EXIST_NICKNAME_ERROR);
+      return;
     }
 
     updateNickname(newNickname, {
@@ -57,24 +60,33 @@ const MypageProfile = () => {
       <div className="flex flex-col items-center gap-1">
         <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="m" />
         <div className="flex items-center justify-center gap-1">
-          {edit ? (
-            <Input
-              className="w-20 rounded-xl bg-grey-0 px-3 py-2"
-              value={newNickname}
-              onChange={(e) => setNewNickname(e.target.value)}
-            />
-          ) : (
-            <h2 className="text-xl font-medium">{nickname}</h2>
-          )}
-          <button
-            onClick={edit ? handleUpdateNickname : handleEditToggle}
-            disabled={isPending}
-          >
-            {edit ? <SquareCheckBig size={20} /> : <SquarePen size={20} />}
-          </button>
+          <div className="flex justify-center gap-1">
+            {edit ? (
+              <Input
+                className="h-10 w-20 rounded-xl bg-grey-0 px-3 py-2"
+                value={newNickname}
+                onChange={(e) => setNewNickname(e.target.value)}
+              />
+            ) : (
+              <h2 className="flex h-10 items-center text-xl font-medium">
+                {nickname}
+              </h2>
+            )}
+            <button
+              onClick={edit ? handleUpdateNickname : handleEditToggle}
+              disabled={isPending}
+              className="flex h-10 items-center justify-center"
+            >
+              {edit ? <SquareCheckBig size={20} /> : <SquarePen size={20} />}
+            </button>
+          </div>
         </div>
-        {!edit && <p className="text-sm text-grey-4">나의 프로필</p>}
       </div>
+      {!edit && (
+        <p className="flex items-center justify-center text-sm text-grey-4">
+          나의 프로필
+        </p>
+      )}
     </div>
   );
 };
