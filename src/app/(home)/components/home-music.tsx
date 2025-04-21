@@ -63,7 +63,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
             />
           </div>
 
-          <p className="flex-1 truncate px-2 text-center font-bold">
+          <p className="flex-1 truncate px-2 font-bold">
             {playlists[randomIndex].name}
           </p>
 
