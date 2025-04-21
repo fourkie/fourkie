@@ -62,7 +62,7 @@ export const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
         >
           <div className="h-12 w-14 overflow-hidden rounded-lg">
             <Image
-              src={playlist.images[0]?.url}
+              src={playlist.images[0].url}
               alt={playlist.name}
               width={56}
               height={48}
