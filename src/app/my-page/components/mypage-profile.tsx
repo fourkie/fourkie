@@ -31,12 +31,15 @@ const MypageProfile = () => {
       return;
     }
 
-    if (newNickname !== nickname) {
-      const isDuplicate = await checkNicknameDuplicate(newNickname);
-      if (isDuplicate) {
-        toast.error(TOAST_MESSAGE.MYPAGE.EXIST_NICKNAME_ERROR);
-        return;
-      }
+    if (newNickname === nickname) {
+      toast.error(TOAST_MESSAGE.MYPAGE.SAME_NICKNAME_ERROR);
+      return;
+    }
+
+    const isDuplicate = await checkNicknameDuplicate(newNickname);
+    if (isDuplicate) {
+      toast.error(TOAST_MESSAGE.MYPAGE.EXIST_NICKNAME_ERROR);
+      return;
     }
 
     updateNickname(newNickname, {
