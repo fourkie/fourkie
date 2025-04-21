@@ -53,7 +53,7 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
           href={playlist.external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center gap-6 overflow-hidden whitespace-nowrap transition"
+          className="flex w-full items-center gap-5 overflow-hidden whitespace-nowrap transition"
         >
           <div className="h-12 w-14 overflow-hidden rounded-lg">
             <Image
