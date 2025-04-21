@@ -64,8 +64,7 @@ export const addBookmarkedPlaylists = async ({
     if (error) {
       throw new Error(error.message || "북마크 추가 중 오류가 발생했습니다.");
     }
-  } catch (error) {
-    console.error("북마크 추가 실패 : ", error);
+  } catch {
     throw new Error("북마크를 추가하는 동안 문제가 발생했습니다.");
   }
 };
@@ -87,8 +86,7 @@ export const removeBookmarkedPlaylists = async (
     if (error) {
       throw new Error(error.message || "북마크 삭제 중 오류가 발생했습니다.");
     }
-  } catch (error) {
-    console.error("북마크 삭제 실패 : ", error);
+  } catch {
     throw new Error("북마크를 제거하는 동안 문제가 발생했습니다.");
   }
 };
