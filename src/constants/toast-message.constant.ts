@@ -24,10 +24,12 @@ export const TOAST_MESSAGE = {
       "북마크 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.",
 
     // 북마크 추가 메시지
+    ADD_TOAST_ID: "bookmark-add-success",
     ADD_BOOKMARK_SUCCESS: "즐겨찾기에 추가되었습니다.",
     ADD_BOOKMARK_ERROR: "즐겨찾기에 추가하지 못했습니다. 다시 시도해 주세요.",
 
     // 북마크 삭제 메시지
+    REMOVE_TOAST_ID: "bookmark-remove-success",
     REMOVE_BOOKMARK_SUCCESS: "즐겨찾기에서 삭제되었습니다.",
     REMOVE_BOOKMARK_ERROR:
       "즐겨찾기에서 삭제하지 못했습니다. 다시 시도해 주세요.",
