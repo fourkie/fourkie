@@ -18,9 +18,11 @@ const BookmarkedPlaylists = ({ userId }: { userId: string }) => {
 
   return (
     <ul className="flex flex-col gap-3">
-      {bookmarkedData?.map((playlist) => (
-        <PlaylistCard key={playlist.id} playlist={playlist} userId={userId} />
-      ))}
+      {bookmarkedData?.map((playlist, index) => {
+        const key = playlist.id ?? `${playlist.name}-${index}`;
+
+        return <PlaylistCard key={key} playlist={playlist} userId={userId} />;
+      })}
     </ul>
   );
 };
