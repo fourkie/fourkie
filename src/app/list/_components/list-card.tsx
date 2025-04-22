@@ -22,7 +22,10 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
     post_emotion,
   } = post;
   const { data: user } = useGetUserByIdQuery(user_id);
-  const { mutate: removePost } = useRemovePostMutation({ postId: post_id });
+  const { mutate: removePost } = useRemovePostMutation({
+    postId: post_id,
+    userId: user_id,
+  });
   const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
@@ -101,7 +104,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         <div className="flex flex-col items-center">
           <div className="text-xl font-bold">{post_title}</div>
           <div
-          ref={contentRef}
+            ref={contentRef}
             className={`w-full break-all text-center text-lg font-bold ${
               isExpanded ? "line-clamp-none" : "line-clamp-2"
             }`}

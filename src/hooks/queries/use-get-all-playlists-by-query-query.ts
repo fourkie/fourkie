@@ -13,7 +13,7 @@ export const useGetAllPlaylistsByQueryQuery = (query: string) => {
     error: playlistsError,
     isPending: playlistsPending,
   } = useQuery({
-    queryKey: [QUERY_KEY.SPOTIFY_PLAYLISTS, query],
+    queryKey: [QUERY_KEY.SPOTIFY_PLAYLISTS],
     queryFn: async () => {
       // 토큰 요청
       const tokenData = await fetchAccessToken();

@@ -131,14 +131,13 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
               className={`relative flex h-[3rem] items-center justify-center rounded-lg ${
                 isFuture
                   ? "cursor-not-allowed text-grey-3"
-                  : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-100"
+                  : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-50"
               }`}
             >
               {day && (
                 <>
                   {images[day] ? (
                     <div onClick={handleClick}>
-                      {" "}
                       <EmotionImage
                         src={checkEmotion(images[day])}
                         size={"xxs"}

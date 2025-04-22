@@ -1,11 +1,13 @@
 "use client";
 
 import { handleLogout } from "@/services/auth-service";
+import { useQueryClient } from "@tanstack/react-query";
 import { HeartHandshake, LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import MypageMenuItem from "./mypage-menu-item";
 
 const MypageMenuList = () => {
+  const queryClient = useQueryClient();
   const router = useRouter();
 
   return (
@@ -32,6 +34,7 @@ const MypageMenuList = () => {
             onClick={() =>
               handleLogout(() => {
                 router.push("/sign-in");
+                queryClient.clear();
               })
             }
             className="flex w-full items-center gap-2 px-4 py-3 text-left font-medium text-secondary-300"

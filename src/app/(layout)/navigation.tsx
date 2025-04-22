@@ -1,6 +1,7 @@
 "use client";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-today-emotion-by-id-query";
+import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import createClient from "@/services/supabase-client-service";
 import {
   CirclePlus,
@@ -20,6 +21,7 @@ const Navigation = () => {
   const [userId, setUserId] = useState("");
   //레이아웃 + 헤더 경로 상수화
   const supabaseClient = createClient();
+  const {setSelectedTab} = useTabStore();
 
   //오늘 날짜로 포스팅이 이미 있을 경우, /posting으로 진입하지 못함
   useEffect(() => {
@@ -60,7 +62,7 @@ const Navigation = () => {
           </div>
         )}
       </Link>
-      <Link href="/list">
+      <Link href="/list" onClick={() => setSelectedTab('my')}>
         {pathname === "/list" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
             <HeartHandshake className="h-5 w-5" />

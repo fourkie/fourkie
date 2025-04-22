@@ -6,6 +6,7 @@ import { useSendFriendRequestMutation } from "@/hooks/mutations/use-send-friend-
 import { checkExistFriendRequest } from "@/services/friend-request-service";
 import { getUserForClient } from "@/services/user-client-service";
 import EmotionImage from "@/ui/common/emotion-image.common";
+import Popup from "@/ui/common/popup";
 import { HeartHandshake, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -42,7 +43,7 @@ const FriendrequestPopUp = ({ user, onClose }: FriendRequestPopUpProps) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+    <Popup>
       <div className="relative w-80 rounded-2xl border bg-white p-6">
         <button onClick={onClose} className="absolute right-4 top-4 p-2">
           <X size={18} />
@@ -68,7 +69,7 @@ const FriendrequestPopUp = ({ user, onClose }: FriendRequestPopUpProps) => {
           친구 요청
         </button>
       </div>
-    </div>
+    </Popup>
   );
 };
 
