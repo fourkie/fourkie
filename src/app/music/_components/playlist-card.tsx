@@ -61,6 +61,7 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
               alt={playlist.name}
               width={56}
               height={48}
+              priority
               className="h-full w-full object-cover"
             />
           </div>
