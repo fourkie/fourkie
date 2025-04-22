@@ -1,6 +1,6 @@
 const TermsPage = () => {
   return (
-    <main className="mx-aut my-10 max-w-3xl px-4 py-8">
+    <main className="mx-aut my-10 max-w-3xl px-4 py-8 pb-20">
       <h1 className="mb-6 text-2xl font-bold">📄 서비스 이용약관</h1>
       <div className="space-y-6 text-sm text-gray-800">
         <section>

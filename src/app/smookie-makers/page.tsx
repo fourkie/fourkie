@@ -63,7 +63,7 @@ const Makers = () => {
       {/* 상단 소개 영역 */}
       <div className="space-y-4">
         <div className="text-center text-xl font-semibold text-grey-7">
-          Smookie Makers
+          Smookie Bakers
         </div>
         <div className="text-center text-sm text-grey-5">
           우리는 기술에 감성을 더하는 팀{" "}

@@ -8,19 +8,23 @@ import { useEffect, useRef, useState } from "react";
 import ListCard from "./list-card";
 
 const ListCardContainer = ({ userId }: { userId: string }) => {
-  const {selectedTab} = useTabStore();
-  const [isMyPost, setIsMyPost] = useState(selectedTab === 'my');
+  const { selectedTab } = useTabStore();
+  const [isMyPost, setIsMyPost] = useState(selectedTab === "my");
   const selectedDay = usePostStore((state) => state.selectedDate);
   const selectedRef = useRef<HTMLDivElement | null>(null);
 
   const { data: posts } = useGetFriendPostsQuery({ userId });
-  
-  //그 달의 게시물만 가져와야 함
-  const { data: myPosts } = useGetAllPostsByIdQuery({ userId,  });
 
-const sortedMyPosts = myPosts
-?.slice()
-.sort((a, b) => new Date(a.post_created_at).getTime() - new Date(b.post_created_at).getTime());
+  //그 달의 게시물만 가져와야 함
+  const { data: myPosts } = useGetAllPostsByIdQuery({ userId });
+
+  const sortedMyPosts = myPosts
+    ?.slice()
+    .sort(
+      (a, b) =>
+        new Date(a.post_created_at).getTime() -
+        new Date(b.post_created_at).getTime(),
+    );
 
   useEffect(() => {
     if (selectedRef.current) {
@@ -37,8 +41,8 @@ const sortedMyPosts = myPosts
   });
 
   return (
-    <div className="flex relative h-full min-h-screen flex-col gap-4 bg-primary-50 px-5 pb-32 pt-24">
-      <div className="fixed left-0 top-12 flex w-full items-center justify-center gap-4 bg-primary-50 py-5">
+    <div className="relative flex h-full min-h-screen flex-col gap-4 bg-primary-50 px-5 pb-32 pt-24">
+      <div className="fixed left-1/2 top-12 flex w-[393px] -translate-x-1/2 items-center justify-center gap-4 bg-primary-50 py-5 lg:w-full">
         <div
           className={`${
             isMyPost
@@ -63,8 +67,8 @@ const sortedMyPosts = myPosts
       <div className="mt-8 flex flex-col gap-5">
         {isMyPost
           ? sortedMyPosts?.map((post) => {
-            const postDate = post.post_created_at.slice(0, 10);
-            const isSelected = postDate === selectedDay;
+              const postDate = post.post_created_at.slice(0, 10);
+              const isSelected = postDate === selectedDay;
 
               return (
                 <div key={post.post_id} ref={isSelected ? selectedRef : null}>

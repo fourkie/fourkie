@@ -21,7 +21,7 @@ const Navigation = () => {
   const [userId, setUserId] = useState("");
   //레이아웃 + 헤더 경로 상수화
   const supabaseClient = createClient();
-  const {setSelectedTab} = useTabStore();
+  const { setSelectedTab } = useTabStore();
 
   //오늘 날짜로 포스팅이 이미 있을 경우, /posting으로 진입하지 못함
   useEffect(() => {
@@ -48,7 +48,7 @@ const Navigation = () => {
   }
 
   return (
-    <div className="fixed bottom-0 z-40 grid h-[90px] w-full grid-cols-5 items-center justify-evenly rounded-t-[28px] border-t border-grey-1 bg-white text-black shadow-md">
+    <div className="fixed bottom-0 left-1/2 z-40 grid h-[90px] w-[393px] -translate-x-1/2 grid-cols-5 items-center justify-evenly rounded-t-[28px] border-t border-grey-1 bg-white text-black shadow-md lg:w-full">
       <Link href="/">
         {pathname === "/" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
@@ -62,7 +62,7 @@ const Navigation = () => {
           </div>
         )}
       </Link>
-      <Link href="/list" onClick={() => setSelectedTab('my')}>
+      <Link href="/list" onClick={() => setSelectedTab("my")}>
         {pathname === "/list" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
             <HeartHandshake className="h-5 w-5" />

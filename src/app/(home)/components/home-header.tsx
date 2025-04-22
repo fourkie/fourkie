@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const headerPaths = [
   { path: "/my-page", title: "마이페이지", needsNickname: true },
   { path: "/friends", title: "내 친구", needsNickname: false },
-  { path: "/smookie-makers", title: "메이커스", needsNickname: false },
+  { path: "/smookie-makers", title: "스무키 베이커스", needsNickname: false },
   { path: "/term", title: "약관정책", needsNickname: false },
   { path: "/version", title: "버전정보", needsNickname: false },
   { path: "/notice", title: "공지사항", needsNickname: false },
@@ -28,7 +28,7 @@ const backIconPaths = [
 ];
 
 const baseHeaderClass =
-  "fixed top-0 z-50  w-full flex flex-row items-center justify-between bg-primary-50 p-3 h-[56px]";
+  "fixed top-0 z-50 w-[393px] left-1/2 -translate-x-1/2 lg:w-full flex flex-row items-center justify-between bg-primary-50 p-3 h-[56px]";
 
 const HomeHeader = () => {
   const pathname = usePathname();
@@ -102,10 +102,15 @@ const HomeHeader = () => {
 
   return (
     <div className={baseHeaderClass}>
-      {showBackIcon && (
-        <ChevronLeft className="cursor-pointer" onClick={handleBack} />
+      {showBackIcon ? (
+        <>
+          <ChevronLeft className="cursor-pointer" onClick={handleBack} />
+          <div className="mx-auto text-lg font-bold">{headertext}</div>
+          <div className="w-6"></div>
+        </>
+      ) : (
+        <div className="mx-auto text-lg font-bold">{headertext}</div>
       )}
-      <div className="mx-auto text-lg font-bold">{headertext}</div>
     </div>
   );
 };
