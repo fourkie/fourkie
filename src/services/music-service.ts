@@ -30,14 +30,14 @@ export const fetchAccessToken = async () => {
 // Spotify 플레이리스트 검색 함수
 export const fetchSpotifyPlaylistList = async (
   accessToken: string,
-  query: string,
+  emotionQuery: string,
 ) => {
   if (!accessToken) {
     throw new Error(TOAST_MESSAGE.SPOTIFY.ACCESS_TOKEN_ERROR);
   }
 
   const apiUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
-    query,
+    emotionQuery,
   )}&type=playlist&limit=50`;
 
   // accessToken을 받아 검색 요청하는 내부 함수

@@ -33,7 +33,7 @@ const Friends = () => {
   const { data: nickname, error } = useGetUserNicknameQuery();
 
   return (
-    <div className="min-h-screen bg-white px-4 pt-20">
+    <div className="min-h-screen space-y-2 bg-white px-4 pt-[72px]">
       {/* 유저 검색창 */}
       <FriendsSearchInput
         searchKeyword={searchKeyword}
