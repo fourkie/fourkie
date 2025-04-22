@@ -24,7 +24,7 @@ const FriendRequestButton = () => {
   return (
     <Link
       href="/friends/request"
-      className="flex w-full items-center justify-end gap-1 text-sm text-grey-5"
+      className="flex w-full items-center pr-4 justify-end gap-1 text-sm text-grey-5"
     >
       요청 목록
       {notification && (

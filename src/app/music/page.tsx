@@ -54,23 +54,21 @@ const Music = () => {
     );
 
   return (
-    <div>
-      <div className="flex gap-4">
-        <div style={{ position: "relative", width: "100%", height: "256px" }}>
-          <Image
-            src={imageUrl}
-            alt="imageUrl"
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div className="absolute inset-0 h-64 bg-black bg-opacity-80" />
-        <EmotionSelect
-          emotion={emotion}
-          onChange={setEmotion}
-          todayEmotion={todayEmotion?.[0]?.post_emotion}
+    <div className="pb-24">
+      <div style={{ position: "relative", width: "100%", height: "256px" }}>
+        <Image
+          src={imageUrl}
+          alt="imageUrl"
+          fill
+          style={{ objectFit: "cover" }}
         />
       </div>
+      <div className="absolute inset-0 h-64 bg-black bg-opacity-80" />
+      <EmotionSelect
+        emotion={emotion}
+        onChange={setEmotion}
+        todayEmotion={todayEmotion?.[0]?.post_emotion}
+      />
       <PlaylistTabContainer
         userId={userId}
         emotion={emotion}
