@@ -11,8 +11,10 @@ export const useAcceptFriendRequestMutation = () => {
     mutationFn: (requestId: number) => acceptFriendRequest(requestId),
     onSuccess: () => {
       toast.success(TOAST_MESSAGE.MYPAGE.FRIEND_ACCEPT_SUCCESS);
-      queryClient.invalidateQueries({ queryKey: ["received-requests"] });
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MY_FRIENDS] });
+      queryClient.invalidateQueries({ queryKey: ["received-request"] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.POSTS, QUERY_KEY.MY_FRIENDS],
+      });
     },
     onError: () => {
       toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_ACCEPT_ERROR);

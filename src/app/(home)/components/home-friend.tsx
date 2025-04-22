@@ -4,6 +4,7 @@ import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-query";
 import { useGetUserByIdQuery } from "@/hooks/queries/use-get-user-by-id-query";
+import { useTabStore } from "@/hooks/zustand/list-tab-store";
 
 import EmotionImage from "@/ui/common/emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
@@ -12,6 +13,8 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 const HomeFriend = ({ userId }: { userId: string }) => {
+  const {setSelectedTab} = useTabStore();
+  
   //친구 포스트 값 받아오기
   const { data: posts, isPending } = useGetFriendPostsQuery({ userId });
 
@@ -24,6 +27,10 @@ const HomeFriend = ({ userId }: { userId: string }) => {
   //가져온 첫 값만 띄워주기기
   const firstUserId = friendPostsForToday?.[0]?.user_id;
   const { data: user } = useGetUserByIdQuery(firstUserId);
+
+  const onClickHandler = () => {
+    setSelectedTab('friend')
+  }
 
   if (isPending) {
     return (
@@ -44,7 +51,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
   //친구가 없는 or 친구가 글을 안 써서 친구 포스트가 없는 경우
   if (!friendPostsForToday || friendPostsForToday.length === 0) {
     return (
-      <Link href={"/list"}>
+      <Link href={"/list"} onClick={onClickHandler}>
         <div className="my-4 flex flex-col gap-4">
           <div className="mt-2 flex items-center justify-between">
             <div className="font-bold">
@@ -65,7 +72,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
   }
 
   return (
-    <Link href={"/list"}>
+    <Link href={"/list"} onClick={onClickHandler}>
       <div className="my-4 flex flex-col gap-4">
         <div className="mt-2 flex items-center justify-between">
           <div className="font-bold">

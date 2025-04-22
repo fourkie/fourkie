@@ -2,12 +2,14 @@
 
 import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-query";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
+import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
 import { useEffect, useRef, useState } from "react";
 import ListCard from "./list-card";
 
 const ListCardContainer = ({ userId }: { userId: string }) => {
-  const [isMyPost, setIsMyPost] = useState(true);
+  const {selectedTab} = useTabStore();
+  const [isMyPost, setIsMyPost] = useState(selectedTab === 'my');
   const selectedDay = usePostStore((state) => state.selectedDate);
   const selectedRef = useRef<HTMLDivElement | null>(null);
 

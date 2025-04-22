@@ -11,7 +11,7 @@ import { PlaylistCardProps } from "../type";
 const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   const musicPlaylistId = playlist.id || playlist.music_playlist_id;
 
-  const { mutate: addBookmark } = useAddBookmarkMutation(userId);
+  const { mutate: addBookmark } = useAddBookmarkMutation();
   const { mutate: removeBookmark } = useRemoveBookmarkMutation({
     musicPlaylistId,
     userId,
