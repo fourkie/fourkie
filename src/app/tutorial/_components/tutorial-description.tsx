@@ -31,6 +31,7 @@ const TutorialDescription = ({
                 height={479}
                 className="object-contain"
               />
+
               {currentStep === 1 && (
                 <>
                   <Image
@@ -40,6 +41,7 @@ const TutorialDescription = ({
                     height={116}
                     className="animate-list2 absolute bottom-1/4 right-1/4 -translate-x-2/4 -translate-y-1/4 object-contain"
                   />
+
                   <Image
                     src={TUTORIAL.IMAGE.LIST3}
                     alt="list3"
@@ -49,6 +51,7 @@ const TutorialDescription = ({
                   />
                 </>
               )}
+
               {currentStep === 2 && (
                 <Image
                   src={TUTORIAL.IMAGE.MUSIC2}
@@ -69,6 +72,7 @@ const TutorialDescription = ({
               height={140}
               className="object-contain"
             />
+
             <div className="flex flex-col items-center py-8">
               <h1 className="my-4 text-3xl font-bold">{title}</h1>
 
@@ -90,7 +94,7 @@ const TutorialDescription = ({
 
         <button
           onClick={onClick}
-          className="w-full rounded-2xl bg-primary-100 py-4 text-lg font-bold text-primary-800"
+          className={`w-full rounded-2xl py-4 text-lg font-bold ${currentStep === 3 ? "bg-primary-300" : "bg-primary-100"} "text-primary-800"`}
         >
           {buttonName}
         </button>
