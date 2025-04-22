@@ -26,7 +26,7 @@ const MypageMenuList = () => {
         <MypageMenuItem href="/terms" label="약관정책" />
       </li>
       <li>
-        <MypageMenuItem href="/smookie-makers" label="베이커스" />
+        <MypageMenuItem href="/smookie-makers" label="스무키 베이커스" />
       </li>
       <li>
         <div className="transition-all duration-300 hover:pl-1">

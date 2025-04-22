@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        ownglyph: "var(--font-own-glyph)",
+        omyu: ["omyu_pretty", "sans-serif"],
         pretendard: "var(--font-pretendard)",
       },
       lineHeight: {
@@ -52,6 +52,33 @@ const config: Config = {
           8: "var(--color-grey-8)",
           9: "var(--color-grey-9)",
         },
+      },
+      keyframes: {
+        list2: {
+          "0%": { transform: "translate(-4rem, 6rem) scale(0.6)" },
+          "60%": { transform: "translate(-4rem, 6rem) scale(1.2)" },
+          "100%": { transform: "translate(-4rem, 6rem) scale(1)" },
+        },
+        list3: {
+          "0%": { transform: "translate(4rem, 8rem) scale(0.6)" },
+          "60%": { transform: "translate(4rem, 8rem) scale(1.2)" },
+          "100%": { transform: "translate(4rem, 8rem) scale(1)" },
+        },
+        music2: {
+          "0%": {
+            height: "0px",
+            opacity: "0",
+          },
+          "100%": {
+            height: "109px",
+            opacity: "1",
+          },
+        },
+      },
+      animation: {
+        list2: "list2 0.4s ease-in-out",
+        list3: "list3 0.4s ease-in-out",
+        music2: "music2 0.5s ease-out",
       },
     },
   },

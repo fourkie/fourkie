@@ -13,8 +13,8 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 const HomeFriend = ({ userId }: { userId: string }) => {
-  const {setSelectedTab} = useTabStore();
-  
+  const { setSelectedTab } = useTabStore();
+
   //친구 포스트 값 받아오기
   const { data: posts, isPending } = useGetFriendPostsQuery({ userId });
 
@@ -29,8 +29,8 @@ const HomeFriend = ({ userId }: { userId: string }) => {
   const { data: user } = useGetUserByIdQuery(firstUserId);
 
   const onClickHandler = () => {
-    setSelectedTab('friend')
-  }
+    setSelectedTab("friend");
+  };
 
   if (isPending) {
     return (

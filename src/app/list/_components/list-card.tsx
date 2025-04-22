@@ -58,7 +58,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 rounded-xl bg-white p-3 px-5 py-4 font-ownglyph leading-4p text-black">
+    <div className="flex flex-col items-center gap-4 rounded-xl bg-white p-3 px-5 py-4 font-omyu leading-4p text-black">
       <div className="flex w-full items-center justify-between">
         <div className="w-[80px] text-sm font-bold">{date}</div>
         <div className="text-center font-bold">
@@ -91,9 +91,9 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       </div>
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
       {!isMyPost && (
-        <div className="text-center font-ownglyph font-bold leading-4p">
+        <div className="text-center font-omyu font-bold leading-4p">
           오늘
-          <span className="font-ownglyph leading-4p text-secondary-200">
+          <span className="font-omyu leading-4p text-secondary-200">
             {user?.user_nickname}
           </span>
           님! <br /> {EMOTIONS_QUERY[post_emotion]}

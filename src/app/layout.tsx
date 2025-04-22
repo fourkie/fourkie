@@ -1,33 +1,9 @@
 import Providers from "@/providers/RQProviders";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { ToastContainer } from "react-toastify";
 import HeaderWithZustand from "./(home)/components/home-zustand";
 import Navigation from "./(layout)/navigation";
 import "./globals.css";
-
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// });
-
-const ownGlyph = localFont({
-  src: "./fonts/ownglyph.ttf",
-  variable: "--font-own-glyph",
-  weight: "100",
-});
-
-const pretendard = localFont({
-  src: "./fonts/PretendardVariable.woff2",
-  variable: "--font-pretendard",
-  weight: "400 700",
-});
 
 export const metadata: Metadata = {
   title: "Smookie",
@@ -62,12 +38,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body
-        className={`${pretendard.variable} ${ownGlyph.variable} antialiased`}
-      >
+      <body className="font-pretendard antialiased">
         <Providers>
           <HeaderWithZustand />
-          <main>{children}</main>
+          <main className="mx-auto w-[393px] lg:w-[1224px]">{children}</main>
           <Navigation />
         </Providers>
         <ToastContainer position="top-right" autoClose={3000} />

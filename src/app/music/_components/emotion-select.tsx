@@ -8,7 +8,7 @@ const EmotionSelect = ({
   todayEmotion,
 }: EmotionSelectProps) => {
   return (
-    <div className="absolute left-5 top-16">
+    <div className="absolute left-2/1 pl-6 top-16">
       <div className="mb-2 flex items-center gap-3">
         <select
           value={emotion}

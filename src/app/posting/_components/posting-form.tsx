@@ -54,16 +54,17 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
   };
 
   return (
-    <div>
+    <>
       <form
+        id="posting"
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-5 px-5 pt-2.5"
+        className="flex w-full flex-col gap-5 px-5 pt-2.5"
       >
         <div className="relative flex flex-col gap-2">
           <h2 className="text-center text-xl font-bold text-grey-4">Title</h2>
 
           {!inputTitle && !isTitleFocused && (
-            <div className="pointer-events-none absolute left-0 top-9 w-full text-center font-ownglyph text-xl leading-4p text-grey-2">
+            <div className="font-omyu pointer-events-none absolute left-0 top-9 w-full text-center text-xl leading-4p text-grey-2">
               {FORM_MESSAGE.POST.TITLE}
             </div>
           )}
@@ -71,7 +72,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           <textarea
             {...register("inputTitle")}
             maxLength={20}
-            className="w-full resize-none overflow-hidden whitespace-normal bg-transparent text-center font-ownglyph text-xl leading-4p text-black focus:outline-none"
+            className="font-omyu w-full resize-none overflow-hidden whitespace-normal bg-transparent text-center text-xl leading-4p text-black focus:outline-none"
             onFocus={() => setIsTitleFocused(true)}
             onBlur={() => setIsTitleFocused(false)}
             onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
@@ -84,7 +85,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           <h2 className="text-center text-xl font-bold text-grey-4">Content</h2>
 
           {!inputContent && !isContentFocused && (
-            <div className="pointer-events-none absolute left-0 top-9 w-full text-center font-ownglyph text-xl leading-4p text-grey-2">
+            <div className="font-omyu pointer-events-none absolute left-0 top-9 w-full text-center text-xl leading-4p text-grey-2">
               {FORM_MESSAGE.POST.CONTENT}
             </div>
           )}
@@ -92,7 +93,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           <textarea
             {...register("inputContent")}
             maxLength={1000}
-            className="w-full resize-none overflow-hidden whitespace-pre-line bg-transparent text-center font-ownglyph text-xl leading-4p text-black focus:outline-none"
+            className="font-omyu w-full resize-none overflow-hidden whitespace-pre-line bg-transparent text-center text-xl leading-4p text-black focus:outline-none"
             onFocus={() => setIsContentFocused(true)}
             onBlur={() => setIsContentFocused(false)}
             onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
@@ -100,13 +101,6 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
             }
           />
         </div>
-
-        <button
-          type="submit"
-          className="absolute right-5 top-3.5 z-50 rounded-lg bg-primary-700 px-2 py-1 text-sm font-medium text-secondary-50"
-        >
-          {isPending ? "처리 중..." : "게시"}
-        </button>
       </form>
 
       <PostingEmotionModal
@@ -119,7 +113,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
       />
-    </div>
+    </>
   );
 };
 
