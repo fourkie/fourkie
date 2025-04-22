@@ -15,7 +15,10 @@ export const TUTORIAL = {
   IMAGE: {
     HOME: "/images/home-tutorial.png",
     LIST: "/images/list-tutorial.png",
+    LIST2: "/images/list-tutorial2.png",
+    LIST3: "/images/list-tutorial3.png",
     MUSIC: "/images/music-tutorial.png",
+    MUSIC2: "/images/music-tutorial2.png",
     SMOOKIE: "/images/smookie-tutorial.png",
   },
   BUTTON: {
