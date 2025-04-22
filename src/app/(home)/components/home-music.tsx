@@ -49,17 +49,18 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           href={playlists[randomIndex].external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center justify-between gap-4"
+          className="flex w-full items-center justify-between gap-5"
         >
-          <div className="h-[52px] w-[62px] flex-shrink-0 overflow-hidden rounded-lg">
+          <div className="h-12 w-14 overflow-hidden rounded-lg">
             <Image
               src={
                 playlists[randomIndex].images[0]?.url || "/default-image.jpg"
               }
               alt={playlists[randomIndex].name}
-              width={62}
-              height={52}
-              className="object-cover"
+              width={56}
+              height={48}
+              priority
+              className="h-full w-full object-cover"
             />
           </div>
 
