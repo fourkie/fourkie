@@ -18,13 +18,34 @@ const HomePage = async () => {
   if (!userId) {
     redirect("/sign-in");
   }
+
   return (
     <div className="px-5 pb-32 pt-16">
-      <HomeCalendar userId={userId} />
-      <HomeFriend userId={userId} />
-      <HomeMusic userId={userId} />
+      <div className="flex flex-col lg:flex-row lg:items-start lg:gap-8">
+        <div className="flex hidden w-[30%] flex-col gap-5 lg:flex">
+          {/* <HomeExtraWidget userId={userId} /> */}
+          <div className="flex-[2]">
+            <HomeFriend userId={userId} />
+          </div>
+          <div className="flex-[3]">
+            <HomeFriend userId={userId} />
+          </div>
+          <div className="flex-[1]">
+            <HomeMusic userId={userId} />
+          </div>
+        </div>
+
+        <div className="w-full flex-1 lg:w-[70%]">
+          <HomeCalendar userId={userId} />
+
+          {/* 모바일 */}
+          <div className="mt-5 flex flex-col gap-5 lg:hidden">
+            <HomeFriend userId={userId} />
+            <HomeMusic userId={userId} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
-
 export default HomePage;

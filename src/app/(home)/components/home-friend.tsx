@@ -74,7 +74,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
           <ChevronRight className="cursor-pointer" />
         </div>
 
-        <div className="flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-4">
+        <div className="flex flex-row items-center gap-4 rounded-xl border border-primary-200 p-4">
           <EmotionImage
             src={checkEmotion(friendPostsForToday?.[0]?.post_emotion)}
             size="xs"
