@@ -55,14 +55,14 @@ const config: Config = {
       },
       keyframes: {
         list2: {
-          "0%": { transform: "translate(-50%, -25%) scale(0.6)" },
-          "60%": { transform: "translate(-50%, -25%) scale(1.2)" },
-          "100%": { transform: "translate(-50%, -25%) scale(1)" },
+          "0%": { transform: "translate(-4rem, 6rem) scale(0.6)" },
+          "60%": { transform: "translate(-4rem, 6rem) scale(1.2)" },
+          "100%": { transform: "translate(-4rem, 6rem) scale(1)" },
         },
         list3: {
-          "0%": { transform: "translate(50%, 75%) scale(0.6)" },
-          "60%": { transform: "translate(50%, 75%) scale(1.2)" },
-          "100%": { transform: "translate(50%, 75%) scale(1)" },
+          "0%": { transform: "translate(4rem, 8rem) scale(0.6)" },
+          "60%": { transform: "translate(4rem, 8rem) scale(1.2)" },
+          "100%": { transform: "translate(4rem, 8rem) scale(1)" },
         },
         music2: {
           "0%": {

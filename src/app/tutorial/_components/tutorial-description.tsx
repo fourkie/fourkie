@@ -12,9 +12,9 @@ const TutorialDescription = ({
 }: DescriptionProps) => {
   return (
     <div
-      className={`flex h-screen flex-col justify-center ${currentStep !== 3 ? "bg-white" : "bg-primary-50"} px-5 font-pretendard`}
+      className={`flex min-h-screen flex-col justify-center ${currentStep !== 3 ? "bg-white" : "bg-primary-50"} px-5 py-5 font-pretendard`}
     >
-      <div className="flex flex-col items-center gap-5">
+      <div className="flex flex-1 flex-col items-center justify-center gap-5">
         {currentStep !== 3 ? (
           <>
             <h1 className="text-3xl font-bold">{title}</h1>
@@ -30,6 +30,7 @@ const TutorialDescription = ({
                 width={236}
                 height={479}
                 className="object-contain"
+                priority
               />
 
               {currentStep === 1 && (
@@ -39,7 +40,8 @@ const TutorialDescription = ({
                     alt="list2"
                     width={160}
                     height={116}
-                    className="animate-list2 absolute bottom-1/4 right-1/4 -translate-x-2/4 -translate-y-1/4 object-contain"
+                    className="animate-list2 absolute right-1/4 top-1/4 -translate-x-16 translate-y-24 object-contain"
+                    priority
                   />
 
                   <Image
@@ -47,7 +49,8 @@ const TutorialDescription = ({
                     alt="list3"
                     width={160}
                     height={135}
-                    className="animate-list3 absolute bottom-3/4 left-1/4 translate-x-2/4 translate-y-3/4 object-contain"
+                    className="animate-list3 absolute bottom-3/4 left-1/4 translate-x-16 translate-y-32 object-contain"
+                    priority
                   />
                 </>
               )}
@@ -59,6 +62,7 @@ const TutorialDescription = ({
                   width={230}
                   height={105}
                   className="animate-music2 absolute left-1/2 top-1/4 -translate-x-16 -translate-y-10 object-contain"
+                  priority
                 />
               )}
             </div>
@@ -71,6 +75,7 @@ const TutorialDescription = ({
               width={140}
               height={140}
               className="object-contain"
+              priority
             />
 
             <div className="flex flex-col items-center py-8">
