@@ -12,9 +12,9 @@ const TutorialDescription = ({
 }: DescriptionProps) => {
   return (
     <div
-      className={`flex h-screen flex-col justify-center ${currentStep !== 3 ? "bg-white" : "bg-primary-50"} px-5 py-10 font-pretendard`}
+      className={`flex h-screen flex-col justify-center ${currentStep !== 3 ? "bg-white" : "bg-primary-50"} px-5 font-pretendard`}
     >
-      <div className="flex flex-col items-center gap-5 overflow-y-auto">
+      <div className="flex flex-col items-center gap-5">
         {currentStep !== 3 ? (
           <>
             <h1 className="text-3xl font-bold">{title}</h1>
