@@ -55,12 +55,12 @@ const config: Config = {
       },
       keyframes: {
         list2: {
-          "0%": { transform: "translate(-50%, -25%) scale(0.8)" },
+          "0%": { transform: "translate(-50%, -25%) scale(0.6)" },
           "60%": { transform: "translate(-50%, -25%) scale(1.2)" },
           "100%": { transform: "translate(-50%, -25%) scale(1)" },
         },
         list3: {
-          "0%": { transform: "translate(50%, 75%) scale(0.8)" },
+          "0%": { transform: "translate(50%, 75%) scale(0.6)" },
           "60%": { transform: "translate(50%, 75%) scale(1.2)" },
           "100%": { transform: "translate(50%, 75%) scale(1)" },
         },
@@ -76,8 +76,8 @@ const config: Config = {
         },
       },
       animation: {
-        list2: "list2 0.4s ease-out",
-        list3: "list3 0.4s ease-out",
+        list2: "list2 0.4s ease-in-out",
+        list3: "list3 0.4s ease-in-out",
         music2: "music2 0.5s ease-out",
       },
     },
