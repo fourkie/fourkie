@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        ownglyph: "var(--font-own-glyph)",
+        omyu: ["omyu_pretty", "sans-serif"],
         pretendard: "var(--font-pretendard)",
       },
       lineHeight: {
