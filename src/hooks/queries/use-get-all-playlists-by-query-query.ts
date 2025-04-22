@@ -6,14 +6,14 @@ import {
 } from "@/services/music-service";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetAllPlaylistsByQueryQuery = (query: string) => {
+export const useGetAllPlaylistsByQueryQuery = (emotionQuery: string) => {
   // 토큰과 플레이리스트 요청을 하나의 useQuery 훅으로 처리
   const {
     data: playlistsData,
     error: playlistsError,
     isPending: playlistsPending,
   } = useQuery({
-    queryKey: [QUERY_KEY.SPOTIFY_PLAYLISTS, query],
+    queryKey: [QUERY_KEY.SPOTIFY_PLAYLISTS, emotionQuery],
     queryFn: async () => {
       // 토큰 요청
       const tokenData = await fetchAccessToken();
@@ -24,9 +24,9 @@ export const useGetAllPlaylistsByQueryQuery = (query: string) => {
       }
 
       // 받은 토큰으로 플레이리스트 요청
-      return fetchSpotifyPlaylistList(accessToken, query);
+      return fetchSpotifyPlaylistList(accessToken, emotionQuery);
     },
-    enabled: !!query,
+    enabled: !!emotionQuery,
   });
 
   return {

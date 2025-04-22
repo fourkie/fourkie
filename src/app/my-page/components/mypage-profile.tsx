@@ -13,9 +13,9 @@ import { SquareCheckBig, SquarePen } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const MypageProfile = () => {
+const MypageProfile = ({ userId }: { userId: string }) => {
   const { data: nickname, isPending } = useGetUserNicknameQuery();
-  const { mutate: updateNickname } = useUpdateNicknameMutation();
+  const { mutate: updateNickname } = useUpdateNicknameMutation({ userId });
   const [edit, setEdit] = useState(false);
   const [newNickname, setNewNickname] = useState(nickname);
   const queryClient = useQueryClient();
