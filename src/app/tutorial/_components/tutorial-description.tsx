@@ -36,16 +36,16 @@ const TutorialDescription = ({
                   <Image
                     src={TUTORIAL.IMAGE.LIST2}
                     alt="list2"
-                    width={140}
-                    height={106}
-                    className="absolute right-1/2 top-1/2 -translate-x-1/4 -translate-y-4 object-contain"
+                    width={160}
+                    height={116}
+                    className="animate-list2 absolute bottom-1/4 right-1/4 -translate-x-2/4 -translate-y-1/4 object-contain"
                   />
                   <Image
                     src={TUTORIAL.IMAGE.LIST3}
                     alt="list3"
-                    width={140}
-                    height={125}
-                    className="absolute bottom-1/2 left-1/2 -translate-y-1 translate-x-1/4 object-contain"
+                    width={160}
+                    height={135}
+                    className="animate-list3 absolute bottom-3/4 left-1/4 translate-x-2/4 translate-y-3/4 object-contain"
                   />
                 </>
               )}
@@ -53,9 +53,9 @@ const TutorialDescription = ({
                 <Image
                   src={TUTORIAL.IMAGE.MUSIC2}
                   alt="music1"
-                  width={220}
+                  width={230}
                   height={105}
-                  className="absolute left-1/2 top-1/4 -translate-x-16 -translate-y-10 object-contain"
+                  className="animate-music2 absolute left-1/2 top-1/4 -translate-x-16 -translate-y-10 object-contain"
                 />
               )}
             </div>
