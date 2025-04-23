@@ -11,10 +11,9 @@ const HomeMusic = ({ userId }: { userId: string }) => {
 
   const emotion: string = data?.[0]?.post_emotion ?? "JOY";
 
-  const { playlists, playlistsPending } =
-    useGetAllPlaylistsByQueryQuery(emotion);
+  const { playlists, isPending } = useGetAllPlaylistsByQueryQuery(emotion);
 
-  if (playlistsPending) {
+  if (isPending) {
     return (
       <div className="flex flex-col gap-4">
         <Link href={"/music"}>
