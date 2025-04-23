@@ -17,6 +17,7 @@ export const useRemovePostMutation = ({
 
   return useMutation({
     mutationFn: () => removePost(postId),
+
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.POSTS, userId] });
       queryClient.invalidateQueries({
@@ -37,6 +38,7 @@ export const useRemovePostMutation = ({
 
       toast.success("일기가 삭제되었습니다");
     },
+
     onError: (error) => {
       toast.error(error.message);
     },

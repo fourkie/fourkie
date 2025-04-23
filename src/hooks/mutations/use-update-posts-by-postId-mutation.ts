@@ -3,11 +3,9 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { updatePostsByPostId } from "@/services/post-service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 export const useUpdatePostsByPostIdMutation = () => {
-  const router = useRouter();
   const queryClient = useQueryClient();
   const year = dayjs().year();
   const month = dayjs().month() + 1;
@@ -23,7 +21,6 @@ export const useUpdatePostsByPostIdMutation = () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.BY_USER_AND_TODAY],
       });
-      router.push("/music");
     },
 
     onError: () => {

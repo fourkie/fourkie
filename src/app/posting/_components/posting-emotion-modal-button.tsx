@@ -1,5 +1,6 @@
 import { useCreatePostsMutation } from "@/hooks/mutations/use-create-posts-mutation";
 import { useUpdatePostsByPostIdMutation } from "@/hooks/mutations/use-update-posts-by-postId-mutation";
+import { useRouter } from "next/navigation";
 import { PostingEmotionModalButtonProps } from "../type";
 
 const PostingEmotionModalButton = ({
@@ -11,27 +12,29 @@ const PostingEmotionModalButton = ({
   onClose,
 }: PostingEmotionModalButtonProps) => {
   // mutation 함수
-  const { mutate: createPostsMutate, isPending: createPostsPending } =
-    useCreatePostsMutation();
-  const { mutate: updatePostMutate, isPending: UpdatePostsPending } =
-    useUpdatePostsByPostIdMutation();
+  const {
+    mutate: createPostsMutate,
+    isPending: createPostsPending,
+    isError: createPostsError,
+  } = useCreatePostsMutation();
+  const {
+    mutate: updatePostMutate,
+    isPending: UpdatePostsPending,
+    isError: updatePostsError,
+  } = useUpdatePostsByPostIdMutation();
+
+  const router = useRouter();
 
   // 버튼 클릭 시 게시글 저장
   const handleSave = () => {
     if (postId) {
-      updatePostMutate(
-        { postId, title, content, currentEmotion },
-        {
-          onSuccess: onClose,
-        },
-      );
+      updatePostMutate({ postId, title, content, currentEmotion });
     } else {
-      createPostsMutate(
-        { userId, title, content, currentEmotion },
-        {
-          onSuccess: onClose,
-        },
-      );
+      createPostsMutate({ userId, title, content, currentEmotion });
+    }
+
+    if (!createPostsError || !updatePostsError) {
+      router.push("music");
     }
   };
 
