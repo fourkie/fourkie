@@ -19,11 +19,12 @@ export const useRemovePostMutation = ({
     mutationFn: () => removePost(postId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.POSTS, userId] });
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY.USER, year, month],
-      });
+
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.POSTID, postId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.USER, year, month],
       });
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.BY_USER_AND_TODAY],
