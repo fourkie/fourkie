@@ -12,6 +12,7 @@ const config: Config = {
       fontFamily: {
         omyu: ["omyu_pretty", "sans-serif"],
         pretendard: "var(--font-pretendard)",
+        minsans: ["MinSans-Regular", "sans-serif"],
       },
       lineHeight: {
         "4p": "1.04",

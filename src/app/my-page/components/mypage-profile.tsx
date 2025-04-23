@@ -63,12 +63,12 @@ const MypageProfile = ({ userId }: { userId: string }) => {
           <div className="flex justify-center gap-2">
             {edit ? (
               <Input
-                className="h-10 w-20 rounded-xl bg-grey-0 px-3 py-2"
+                className="font-minsans h-10 w-20 rounded-xl bg-grey-0 px-3 py-2"
                 value={newNickname}
                 onChange={(e) => setNewNickname(e.target.value)}
               />
             ) : (
-              <h2 className="flex h-10 items-center text-xl font-medium">
+              <h2 className="font-minsans flex h-10 items-center text-lg font-semibold text-grey-6">
                 {nickname}
               </h2>
             )}

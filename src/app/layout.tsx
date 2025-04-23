@@ -38,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="font-pretendard antialiased">
+      <body className="font-minsans antialiased">
         <Providers>
           <HeaderWithZustand />
           <main className="mx-auto w-[393px] lg:w-[1224px]">{children}</main>

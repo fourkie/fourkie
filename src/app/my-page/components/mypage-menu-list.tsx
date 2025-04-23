@@ -26,6 +26,9 @@ const MypageMenuList = () => {
         <MypageMenuItem href="/terms" label="약관정책" />
       </li>
       <li>
+        <MypageMenuItem href="/tutorial?from=my-page" label="스무키 사용법" />
+      </li>
+      <li>
         <MypageMenuItem href="/smookie-makers" label="스무키 베이커스" />
       </li>
       <li>
