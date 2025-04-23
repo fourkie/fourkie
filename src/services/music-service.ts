@@ -1,4 +1,4 @@
-import { SpotifyPlaylistItem, SpotifyPlaylistList } from "@/app/music/type";
+import { SpotifyPlaylistItem } from "@/app/music/type";
 import { SPOTIFY } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
@@ -63,10 +63,11 @@ export const fetchSpotifyPlaylistList = async (
     }
 
     // 유효한 플레이리스트 필터링
-    const filteredPlaylists: SpotifyPlaylistList = data.playlists.items.filter(
-      (item: SpotifyPlaylistItem) =>
-        item && item.images && item.images.length > 0,
-    );
+    const filteredPlaylists: SpotifyPlaylistItem[] =
+      data.playlists.items.filter(
+        (item: SpotifyPlaylistItem) =>
+          item && item.images && item.images.length > 0,
+      );
 
     return filteredPlaylists;
   };
