@@ -40,7 +40,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
 
   // 게시글 수정 시 내가 작성한 게시글인지 확인하고 폼 초기화
   useEffect(() => {
-    if (!postId || !postData || !postData[0]) return;
+    if (!postData || !postData[0]) return;
 
     const isOwner = postData[0].user_id === userId;
     if (isOwner) {
@@ -70,10 +70,10 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
         className="flex w-full flex-col gap-5 px-5 pt-2.5"
       >
         <div className="relative flex flex-col gap-2">
-          <h2 className="text-center text-xl font-bold text-grey-4">Title</h2>
+          <h2 className="text-center text-xl font-bold text-grey-5">Title</h2>
 
           {!inputTitle && !isTitleFocused && (
-            <div className="font-omyu pointer-events-none absolute left-0 top-9 w-full text-center text-xl leading-4p text-grey-2">
+            <div className="pointer-events-none absolute left-0 top-9 w-full text-center font-omyu text-xl leading-4p text-grey-3">
               {FORM_MESSAGE.POST.TITLE}
             </div>
           )}
@@ -81,17 +81,17 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           <textarea
             {...register("inputTitle")}
             maxLength={20}
-            className="font-omyu w-full resize-none overflow-hidden whitespace-normal bg-transparent text-center text-xl leading-4p text-black focus:outline-none"
+            className="w-full resize-none overflow-hidden whitespace-normal bg-transparent text-center font-omyu text-xl leading-4p text-grey-7 focus:outline-none"
             onFocus={() => setIsTitleFocused(true)}
             onBlur={() => setIsTitleFocused(false)}
           />
         </div>
 
         <div className="relative flex flex-col gap-2">
-          <h2 className="text-center text-xl font-bold text-grey-4">Content</h2>
+          <h2 className="text-center text-xl font-bold text-grey-5">Content</h2>
 
           {!inputContent && !isContentFocused && (
-            <div className="font-omyu pointer-events-none absolute left-0 top-9 w-full text-center text-xl leading-4p text-grey-2">
+            <div className="pointer-events-none absolute left-0 top-9 w-full text-center font-omyu text-xl leading-4p text-grey-3">
               {FORM_MESSAGE.POST.CONTENT}
             </div>
           )}
@@ -99,7 +99,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           <textarea
             {...register("inputContent")}
             maxLength={1000}
-            className="font-omyu w-full resize-none overflow-hidden whitespace-pre-line bg-transparent text-center text-xl leading-4p text-black focus:outline-none"
+            className="w-full resize-none overflow-hidden whitespace-pre-line bg-transparent text-center font-omyu text-xl leading-4p text-grey-7 focus:outline-none"
             onFocus={() => setIsContentFocused(true)}
             onBlur={() => setIsContentFocused(false)}
           />
