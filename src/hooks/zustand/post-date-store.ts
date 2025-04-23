@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
 interface PostDate {
-  selectedDate: string;
-  setSelectedDate: (date: string) => void;
+  selectedDate: string | null;
+  setSelectedDate: (date: string | null) => void;
 }
 
 export const usePostStore = create<PostDate>((set) => ({
-  selectedDate: new Date().toISOString().split("T")[0],
-  setSelectedDate: (date: string) => set({ selectedDate: date }),
+  selectedDate: null,
+  setSelectedDate: (date: string | null) => set({ selectedDate: date }),
 }));
