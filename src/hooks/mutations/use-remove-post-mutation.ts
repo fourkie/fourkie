@@ -19,7 +19,6 @@ export const useRemovePostMutation = ({
     mutationFn: () => removePost(postId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.POSTS, userId] });
-
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.POSTID, postId],
       });
