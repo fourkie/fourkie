@@ -92,7 +92,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
       {!isMyPost && (
         <div className="text-center font-omyu font-bold leading-4p">
-          오늘
+          오늘 &nbsp;
           <span className="font-omyu leading-4p text-secondary-200">
             {user?.user_nickname}
           </span>
