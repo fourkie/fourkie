@@ -1,4 +1,5 @@
 import { Emotion } from "@/constants/spotify.constant";
+import { Dispatch, SetStateAction } from "react";
 
 export interface SpotifyImage {
   url: string;
@@ -20,12 +21,17 @@ export interface SpotifyPlaylistItem {
   uri: string;
 }
 
-export type SpotifyPlaylistList = SpotifyPlaylistItem[];
-
 export interface EmotionSelectProps {
   emotion: keyof typeof Emotion;
   onChange: (emotion: keyof typeof Emotion) => void;
   todayEmotion?: keyof typeof Emotion | null;
+}
+
+export interface PlaylistTabContainerProps {
+  userId: string;
+  emotion: keyof typeof Emotion;
+  activeTab: PlaylistTabProps;
+  onTabChange: Dispatch<SetStateAction<PlaylistTabProps>>;
 }
 
 export enum PlaylistTabProps {
@@ -40,12 +46,18 @@ export interface TabButtonProps {
   activeTab: PlaylistTabProps;
 }
 
+export interface PlaylistContentProps {
+  userId: string;
+  activeTab: PlaylistTabProps;
+  emotion?: keyof typeof Emotion;
+}
+
 export interface PlaylistCardProps {
   playlist: SpotifyPlaylistItem;
   userId: string;
 }
 
-export type RecommendPlaylistsProps = {
+export type BookmarkedProps = {
+  musicPlaylistId: string;
   userId: string;
-  emotion: keyof typeof Emotion;
 };
