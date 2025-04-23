@@ -51,7 +51,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
   //친구가 없는 or 친구가 글을 안 써서 친구 포스트가 없는 경우
   if (!friendPostsForToday || friendPostsForToday.length === 0) {
     return (
-      <Link href={"/list"} onClick={onClickHandler}>
+      <Link href={"/friends"} onClick={onClickHandler}>
         <div className="my-4 flex flex-col gap-4">
           <div className="mt-2 flex items-center justify-between">
             <div className="font-bold">
@@ -63,7 +63,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.SAD} size="xs" />
             <div className="flex flex-col">
               <div className="font-bold">친구의 쿠키가 없네요!</div>
-              <div>친구를 추가해보는 건 어떨까요?</div>
+              <div>친구를 더 추가해보는 건 어떨까요?</div>
             </div>
           </div>
         </div>
