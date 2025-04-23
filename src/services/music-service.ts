@@ -36,8 +36,6 @@ export const fetchSpotifyPlaylistList = async (
     emotionQuery,
   )}&type=playlist&limit=50`;
 
-  console.log(emotionQuery);
-
   // accessToken을 받아 검색 요청하는 내부 함수
   const fetchWithToken = async (accessToken: string) => {
     const response = await fetch(apiUrl, {
