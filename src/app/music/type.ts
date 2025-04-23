@@ -33,9 +33,11 @@ export enum PlaylistTabProps {
   BOOKMARK = "bookmark",
 }
 
-export interface TabButtonsProps {
-  activeTab: PlaylistTabProps | undefined;
-  onTabChange: (tab: PlaylistTabProps) => void;
+export interface TabButtonProps {
+  isActive: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+  activeTab: PlaylistTabProps;
 }
 
 export interface PlaylistCardProps {
