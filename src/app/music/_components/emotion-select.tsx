@@ -8,12 +8,12 @@ const EmotionSelect = ({
   todayEmotion,
 }: EmotionSelectProps) => {
   return (
-    <div className="absolute left-2/1 pl-6 top-16">
+    <div className="left-2/1 absolute top-16 pl-6">
       <div className="mb-2 flex items-center gap-3">
         <select
           value={emotion}
-          onChange={(e) => onChange(e.target.value as Emotion)}
-          className="h-7 w-26 rounded-full border-b border-b-primary-300 bg-primary-100 px-2 py-1 text-center text-sm font-bold text-primary-700"
+          onChange={(e) => onChange(e.target.value as keyof typeof Emotion)}
+          className="w-26 h-7 rounded-full border-b border-b-primary-300 bg-primary-100 px-2 py-1 text-center text-sm font-bold text-primary-700"
         >
           {Object.entries(EMOTIONS_QUERY).map(([emotionKey]) => {
             return (

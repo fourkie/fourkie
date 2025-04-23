@@ -18,8 +18,11 @@ const Music = () => {
 
   const [userId, setUserId] = useState<string>("");
 
-  const [emotion, setEmotion] = useState<Emotion>(Emotion.JOY);
-  const { playlists } = useGetAllPlaylistsByQueryQuery(emotion);
+  const [emotion, setEmotion] = useState<keyof typeof Emotion>("JOY");
+  const emotionQuery = Emotion[emotion];
+
+  const { playlists } = useGetAllPlaylistsByQueryQuery(emotionQuery);
+
   const imageUrl = playlists[0]?.images[0]?.url;
 
   const { data: todayEmotion } = useGetPostTodayEmotionByIdQuery(userId);
@@ -63,7 +66,7 @@ const Music = () => {
           style={{ objectFit: "cover" }}
         />
       </div>
-      <div className="absolute inset-0 h-64 bg-black bg-opacity-80  w-[393px] left-1/2 -translate-x-1/2 lg:w-full " />
+      <div className="absolute inset-0 left-1/2 h-64 w-[393px] -translate-x-1/2 bg-black bg-opacity-80 lg:w-full" />
       <EmotionSelect
         emotion={emotion}
         onChange={setEmotion}

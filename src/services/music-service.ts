@@ -1,8 +1,4 @@
-import {
-  SpotifyAccessToken,
-  SpotifyPlaylistItem,
-  SpotifyPlaylistList,
-} from "@/app/music/type";
+import { SpotifyPlaylistItem, SpotifyPlaylistList } from "@/app/music/type";
 import { SPOTIFY } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
@@ -15,7 +11,7 @@ export const fetchAccessToken = async () => {
       throw new Error(TOAST_MESSAGE.SPOTIFY.ACCESS_TOKEN_ERROR);
     }
 
-    const accessToken: SpotifyAccessToken = await response.json();
+    const accessToken = await response.json();
 
     return accessToken;
   } catch (error) {
@@ -39,6 +35,8 @@ export const fetchSpotifyPlaylistList = async (
   const apiUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
     emotionQuery,
   )}&type=playlist&limit=50`;
+
+  console.log(emotionQuery);
 
   // accessToken을 받아 검색 요청하는 내부 함수
   const fetchWithToken = async (accessToken: string) => {

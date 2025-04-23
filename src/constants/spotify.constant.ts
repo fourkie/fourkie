@@ -21,7 +21,7 @@ export enum Emotion {
 
   LONELY = "lonely isolated abandoned solitary forlorn 외로움 고독 고립 쓸쓸함 버려짐 소외",
 
-  ANXIOUS = "anxious nervous worried jittery tense uneasy stressed 초조 불안 걱정 긴장 당황 스트레스 충격 부끄러움 혼란 두려움 조심 당혹",
+  ANXIOUS = "명상 힐링되는 릴렉스 편안한",
 
   TIRED = "tired weary exhausted drained fatigued 피로 지침 탈진 무기력 허약",
 

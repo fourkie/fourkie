@@ -1,11 +1,5 @@
 import { Emotion } from "@/constants/spotify.constant";
 
-export interface SpotifyAccessToken {
-  accessToken: string;
-  expiresIn: number;
-  success: boolean;
-}
-
 export interface SpotifyImage {
   url: string;
 }
@@ -26,17 +20,12 @@ export interface SpotifyPlaylistItem {
   uri: string;
 }
 
-export interface Musics extends SpotifyPlaylistItem {
-  userId: string;
-  music_playlist_id: string;
-}
-
 export type SpotifyPlaylistList = SpotifyPlaylistItem[];
 
 export interface EmotionSelectProps {
-  emotion: Emotion;
-  onChange: (value: Emotion) => void;
-  todayEmotion: Emotion;
+  emotion: keyof typeof Emotion;
+  onChange: (emotion: keyof typeof Emotion) => void;
+  todayEmotion?: keyof typeof Emotion | null;
 }
 
 export enum PlaylistTabProps {
@@ -49,22 +38,6 @@ export interface TabButtonsProps {
   onTabChange: (tab: PlaylistTabProps) => void;
 }
 
-export interface TabButtonProps {
-  isActive: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-  activeTab: PlaylistTabProps;
-}
-
-export interface BookmarkMutationPayload {
-  music_playlist_id: string;
-  name: string;
-  external_urls: { spotify: string };
-  images: { url: string }[];
-  tracks: { href: string; total: number };
-  uri: string;
-}
-
 export interface PlaylistCardProps {
   playlist: SpotifyPlaylistItem;
   userId: string;
@@ -72,5 +45,5 @@ export interface PlaylistCardProps {
 
 export type RecommendPlaylistsProps = {
   userId: string;
-  emotion: string;
+  emotion: keyof typeof Emotion;
 };
