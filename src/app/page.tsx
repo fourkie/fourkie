@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import HomeCalendar from "./(home)/components/home-calendar";
 import HomeFriend from "./(home)/components/home-friend";
 import HomeMusic from "./(home)/components/home-music";
+import HomePosting from "./(home)/components/home-posting";
 
 const HomePage = async () => {
   const cookieStore = cookies();
@@ -23,7 +24,6 @@ const HomePage = async () => {
     <div className="px-5 pb-32 pt-16">
       <div className="flex flex-col lg:flex-row lg:items-start lg:gap-8">
         <div className="flex hidden w-[30%] flex-col gap-5 lg:flex">
-          {/* <HomeExtraWidget userId={userId} /> */}
           <div className="flex-[2]">
             <HomeFriend userId={userId} />
           </div>
@@ -36,6 +36,7 @@ const HomePage = async () => {
         </div>
 
         <div className="w-full flex-1 lg:w-[70%]">
+          <HomePosting userId={userId} />
           <HomeCalendar userId={userId} />
 
           {/* 모바일 */}
