@@ -113,7 +113,7 @@ const HomeHeader = () => {
               type="submit"
               className="absolute right-5 top-4 z-50 rounded-lg bg-primary-700 px-2 py-1 text-sm font-medium text-secondary-50"
             >
-              게시
+              확인
             </button>
           )}
         </>
