@@ -57,10 +57,10 @@ const MypageProfile = ({ userId }: { userId: string }) => {
 
   return (
     <div className="mb-6 w-full rounded-xl border border-primary-100 bg-white py-6">
-      <div className="flex flex-col items-center gap-1">
+      <div className="flex flex-col items-center gap-2">
         <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="m" />
-        <div className="flex items-center justify-center gap-1">
-          <div className="flex justify-center gap-1">
+        <div className="flex items-center justify-center">
+          <div className="flex justify-center gap-2">
             {edit ? (
               <Input
                 className="h-10 w-20 rounded-xl bg-grey-0 px-3 py-2"
