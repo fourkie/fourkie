@@ -34,7 +34,7 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   };
 
   return (
-    <div className="h-20 border-b border-b-grey-1">
+    <div className="h-20 border-b border-b-grey-1 last:border-none">
       <div className="justify-arround my-3 flex items-center gap-2">
         <button
           className="flex items-center justify-center"
