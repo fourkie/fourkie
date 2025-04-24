@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   },
 };
 
+//반응형 기준 360 720 1024
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -43,7 +44,9 @@ export default function RootLayout({
         <Providers>
           <HeaderWithZustand />
           <HeaderDesk />
-          <main className="mx-auto w-[393px] lg:w-[1224px]">{children}</main>
+          <main className="mx-auto w-full min-w-[360px] max-w-[1024px]">
+            {children}
+          </main>
           <Navigation />
         </Providers>
         <ToastContainer position="top-right" autoClose={3000} />
