@@ -3,6 +3,7 @@
 import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import { useGetAnalyzedPostEmotionMutation } from "@/hooks/mutations/use-get-analyzed-post-emotion-mutation";
 import { useGetPostsByPostIdQuery } from "@/hooks/queries/use-get-posts-by-postId-query";
+import { usePostingStore } from "@/hooks/zustand/posting-store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -10,6 +11,11 @@ import { PostingFormValues, UserDateProps } from "../type";
 import PostingEmotionModal from "./posting-emotion-modal";
 
 const PostingForm = ({ postId, userId }: UserDateProps) => {
+  const inputTitle = usePostingStore((state) => state.inputTitle);
+  const inputContent = usePostingStore((state) => state.inputContent);
+  const setInputTitle = usePostingStore((state) => state.setInputTitle);
+  const setInputContent = usePostingStore((state) => state.setInputContent);
+
   const [isTitleFocused, setIsTitleFocused] = useState(false);
   const [isContentFocused, setIsContentFocused] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,10 +28,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
   const { data: postData } = useGetPostsByPostIdQuery({ postId });
 
   // react-hook-form을 사용하여 폼 상태 관리
-  const { register, handleSubmit, watch, setValue } =
-    useForm<PostingFormValues>();
-  const inputTitle = watch("inputTitle");
-  const inputContent = watch("inputContent");
+  const { register, handleSubmit, setValue } = useForm<PostingFormValues>();
 
   const router = useRouter();
 
@@ -79,7 +82,9 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           )}
 
           <textarea
-            {...register("inputTitle")}
+            {...register("inputTitle", {
+              onChange: (e) => setInputTitle(e.target.value),
+            })}
             maxLength={20}
             className="w-full resize-none overflow-hidden whitespace-normal bg-transparent text-center font-omyu text-xl leading-4p text-grey-7 focus:outline-none"
             onFocus={() => setIsTitleFocused(true)}
@@ -97,7 +102,9 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           )}
 
           <textarea
-            {...register("inputContent")}
+            {...register("inputContent", {
+              onChange: (e) => setInputContent(e.target.value),
+            })}
             maxLength={1000}
             className="w-full resize-none overflow-hidden whitespace-pre-line bg-transparent text-center font-omyu text-xl leading-4p text-grey-7 focus:outline-none"
             onFocus={() => setIsContentFocused(true)}
