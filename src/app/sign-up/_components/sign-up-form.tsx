@@ -31,7 +31,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-primary-50 px-6">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-primary-50 px-10">
       <div className="mb-10 flex flex-col items-center">
         <div className="mb-4 flex items-center justify-center rounded-full">
           <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="l" />
@@ -42,7 +42,7 @@ const SignUpForm = () => {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xs">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
         <Input
           {...register("email", EMAIL_VALIDATION)}
           type="email"
