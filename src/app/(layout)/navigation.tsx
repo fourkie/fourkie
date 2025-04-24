@@ -67,7 +67,7 @@ const Navigation = () => {
       <Link
         href="/list"
         onClick={() => {
-          setSelectedTab("my");
+          setSelectedTab("firstTab");
           setSelectedDate(null);
         }}
       >
