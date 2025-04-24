@@ -91,25 +91,35 @@ const HomeFriend = ({ userId }: { userId: string }) => {
         {userQueries.map((query, index) => {
           const post = friendPostsForToday?.[index];
           const user = query.data;
-          //첫번째만 보이게
           const isShow = index === 0 ? "" : "hidden lg:flex";
-
-          if (!post) return null;
-          if (query.isPending) return <div key={post.id}>로딩 중...</div>;
-          if (query.isError) return <div key={post.id}>에러!</div>;
-
+          const key = post ? `post-${post.id}` : `no-post-${index}`;
           return (
-            <div key={post.id - index}>
-              <div className={`m-3 flex flex-row items-center gap-2 ${isShow}`}>
-                <EmotionImage src={checkEmotion(post.post_emotion)} size="xs" />
-                <div className="flex flex-col">
-                  <div className="font-bold lg:hidden">오늘 내 친구들은?</div>
-                  <div className="lg:text-md text-sm lg:font-bold">
-                    {user?.user_nickname} 님은{" "}
-                    {EMOTIONS_QUERY[post.post_emotion]} 하루를 보냈어요.
+            <div key={`${key}`}>
+              {(() => {
+                if (!post) return null;
+                if (query.isPending) return <div>로딩 중...</div>;
+                if (query.isError) return <div>에러!</div>;
+
+                return (
+                  <div
+                    className={`m-3 flex flex-row items-center gap-2 ${isShow}`}
+                  >
+                    <EmotionImage
+                      src={checkEmotion(post.post_emotion)}
+                      size="xs"
+                    />
+                    <div className="flex flex-col">
+                      <div className="font-bold lg:hidden">
+                        오늘 내 친구들은?
+                      </div>
+                      <div className="lg:text-md text-sm lg:font-bold">
+                        {user?.user_nickname} 님은{" "}
+                        {EMOTIONS_QUERY[post.post_emotion]} 하루를 보냈어요.
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                );
+              })()}
             </div>
           );
         })}

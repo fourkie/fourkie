@@ -125,7 +125,6 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
 
           const handleClick = () => {
             if (!day || isFuture) return;
-            //주스탄드 해결
             const formattedDate = dayjs(
               `${currentDate.year()}-${currentDate.month() + 1}-${day}`,
               "YYYY-M-D",
@@ -141,7 +140,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
               className={`relative flex h-[3rem] items-center justify-center rounded-lg lg:h-[6rem] xl:h-[7.5rem] ${
                 isFuture || day === null
                   ? "text-grey-3"
-                  : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-50 lg:hover:bg-primary-50"
+                  : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-50 lg:hover:bg-[#F7FAF2]"
               }`}
             >
               {day && (
