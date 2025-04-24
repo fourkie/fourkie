@@ -19,23 +19,32 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
   const [isTitleFocused, setIsTitleFocused] = useState(false);
   const [isContentFocused, setIsContentFocused] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
 
-  // 감정 분석 API 호출을 위한 mutation
   const { mutate, data, isPending } =
     useGetAnalyzedPostEmotionMutation(setIsModalOpen);
 
-  // 게시글 데이터를 가져오는 query
   const { data: postData } = useGetPostsByPostIdQuery({ postId });
 
+  const { register, handleSubmit, watch, setValue } =
+    useForm<PostingFormValues>({
+      defaultValues: {
+        inputTitle,
+        inputContent,
+      },
+    });
+
   // react-hook-form을 사용하여 폼 상태 관리
-  const { register, handleSubmit, setValue } = useForm<PostingFormValues>();
+  useEffect(() => {
+    const subscription = watch((value) => {
+      setInputTitle(value.inputTitle || "");
+      setInputContent(value.inputContent || "");
+    });
 
-  const router = useRouter();
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
-  /**
-   * 폼 제출 시 호출되는 함수
-   * 제목과 내용이 비어있지 않은 경우 감정 분석 API를 호출
-   */
+  /** 제목과 내용이 비어있지 않은 경우 감정 분석 API를 호출 */
   const onSubmit = ({ inputTitle, inputContent }: PostingFormValues) => {
     if (!inputTitle.trim() || !inputContent.trim()) return;
     mutate(inputContent);
@@ -43,7 +52,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
 
   // 게시글 수정 시 내가 작성한 게시글인지 확인하고 폼 초기화
   useEffect(() => {
-    if (!postData || !postData[0]) return;
+    if (!postId || !postData || !postData[0]) return;
 
     const isOwner = postData[0].user_id === userId;
     if (isOwner) {
@@ -82,9 +91,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           )}
 
           <textarea
-            {...register("inputTitle", {
-              onChange: (e) => setInputTitle(e.target.value),
-            })}
+            {...register("inputTitle")}
             maxLength={20}
             className="w-full resize-none overflow-hidden whitespace-normal bg-transparent text-center font-omyu text-xl leading-4p text-grey-7 focus:outline-none"
             onFocus={() => setIsTitleFocused(true)}
@@ -102,9 +109,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           )}
 
           <textarea
-            {...register("inputContent", {
-              onChange: (e) => setInputContent(e.target.value),
-            })}
+            {...register("inputContent")}
             maxLength={1000}
             className="w-full resize-none overflow-hidden whitespace-pre-line bg-transparent text-center font-omyu text-xl leading-4p text-grey-7 focus:outline-none"
             onFocus={() => setIsContentFocused(true)}
@@ -115,8 +120,6 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
 
       <PostingEmotionModal
         userId={userId}
-        title={inputTitle}
-        content={inputContent}
         emotion={data}
         postId={postId}
         isPending={isPending}
