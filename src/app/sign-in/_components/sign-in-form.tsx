@@ -66,9 +66,9 @@ const SignInForm = () => {
       </form>
 
       <div className="mt-10 w-full border border-grey-2" />
-      <div className="m-4 text-grey-3">
-        <Link href="/sign-up">회원가입하기</Link>
-      </div>
+      <Link href="/sign-up" className="m-4 text-grey-3">
+        회원가입하기
+      </Link>
     </div>
   );
 };

@@ -60,7 +60,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   return (
     <div className="flex flex-col items-center gap-4 rounded-xl bg-white p-3 px-5 py-4 font-omyu leading-4p text-black">
       <div className="flex w-full items-center justify-between">
-        <div className="w-[80px] text-sm font-bold">{date}</div>
+        <div className="w-24 text-grey-5 font-bold">{date}</div>
         <div className="text-center font-bold">
           {EMOTIONS_QUERY[post_emotion]}
         </div>
@@ -71,7 +71,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
           </div>
         ) : (
           <div
-            className="w-[80px] cursor-pointer text-right font-pretendard text-xs"
+            className="w-24 cursor-pointer text-grey-5 text-right font-pretendard"
             onClick={() => setOpenPopup(!openPopup)}
           >
             프로필 보러가기

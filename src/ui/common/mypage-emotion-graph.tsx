@@ -33,7 +33,7 @@ const MypageEmotionGraph = ({ userId }: { userId: string }) => {
 
   return (
     <div className="mb-6 w-full rounded-xl border border-primary-100 bg-white p-4">
-      <div className="mb-4 w-full text-right text-xs text-gray-400">
+      <div className="mb-4 w-full text-right text-sm text-gray-400">
         * 최근 3개월 통계
       </div>
       <div className="flex w-full items-end justify-between">
