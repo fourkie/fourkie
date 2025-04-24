@@ -2,6 +2,7 @@ import Providers from "@/providers/RQProviders";
 import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 import HeaderWithZustand from "./(home)/components/home-zustand";
+import HeaderDesk from "./(layout)/header-desk";
 import Navigation from "./(layout)/navigation";
 import "./globals.css";
 
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body className="font-pretendard antialiased">
         <Providers>
           <HeaderWithZustand />
+          <HeaderDesk />
           <main className="mx-auto w-[393px] lg:w-[1224px]">{children}</main>
           <Navigation />
         </Providers>

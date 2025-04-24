@@ -28,7 +28,7 @@ const backIconPaths = [
 ];
 
 const baseHeaderClass =
-  "fixed top-0 z-50 w-[393px] left-1/2 -translate-x-1/2 lg:w-full flex flex-row items-center justify-between bg-primary-50 p-3 h-[56px]";
+  "lg:hidden fixed top-0 z-50 w-[393px] left-1/2 -translate-x-1/2 lg:w-full flex flex-row items-center justify-between bg-primary-50 p-3 h-[56px]";
 
 const HomeHeader = () => {
   const pathname = usePathname();
