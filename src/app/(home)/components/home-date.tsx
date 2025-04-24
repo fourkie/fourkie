@@ -1,9 +1,9 @@
 "use client";
 
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 
 import dayjs from "dayjs";
 
@@ -95,12 +95,16 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
                   width: "130px",
                   height: "50px",
                   fontSize: "0.875rem",
+                  caretColor: "transparent",
                   "& .MuiOutlinedInput-notchedOutline": {
                     border: "none",
                   },
-                  backgroundColor: colors.background,
-                  borderRadius: "12px",
-                  caretColor: "transparent",
+                  "& .MuiInputBase-root": {
+                    backgroundColor: {
+                      lg: "#F7FAF2",
+                    },
+                    borderRadius: "12px",
+                  },
                 },
               },
             }}

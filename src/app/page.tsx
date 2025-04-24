@@ -24,7 +24,7 @@ const HomePage = async () => {
   return (
     <div className="px-5 pb-32 pt-16">
       <div className="flex flex-col lg:flex-row lg:items-start lg:gap-8">
-        <div className="flex hidden w-[30%] flex-col gap-5 lg:flex">
+        <div className="mt-[2.5rem] flex hidden w-[30%] flex-col gap-5 lg:flex">
           <div className="flex-[2]">
             <HomeStack userId={userId} />
           </div>

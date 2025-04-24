@@ -6,6 +6,8 @@ import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+const common =
+  "lg:border-2 lg:border-dashed lg:border-primary-200 lg:rounded-xl lg:p-5 lg:bg-white";
 const HomeMusic = ({ userId }: { userId: string }) => {
   const { data } = useGetPostTodayEmotionByIdQuery(userId);
 
@@ -23,7 +25,9 @@ const HomeMusic = ({ userId }: { userId: string }) => {
             <ChevronRight className="cursor-pointer" />
           </div>
         </Link>
-        <div className="flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-4">
+        <div
+          className={`flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-4 ${common}`}
+        >
           <div className="flex flex-1 flex-col justify-between">
             플레이리스트를 불러오고 있습니다!
           </div>
@@ -44,14 +48,16 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           <ChevronRight className="cursor-pointer" />
         </div>
       </Link>
-      <div className="flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-3">
+      <div
+        className={`flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-3 ${common}`}
+      >
         <Link
           href={playlists[randomIndex].external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
           className="flex w-full items-center justify-between gap-5"
         >
-          <div className="h-12 w-14 overflow-hidden rounded-lg">
+          <div className="lg:h-30 lg:w-30 h-12 w-14 overflow-hidden rounded-lg">
             <Image
               src={
                 playlists[randomIndex].images[0]?.url || "/default-image.jpg"

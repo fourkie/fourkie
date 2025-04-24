@@ -13,6 +13,7 @@ const HomeStack = ({ userId }: { userId: string }) => {
     return <div className={`${common}`}>로딩 중이예요!</div>;
   }
 
+  //1200으로 잡고 w? h? 100%로 잡기
   //최신 순으로 받아온 거 오래된 순으로 바꾸기
   const posts = [...myPosts].reverse();
 
@@ -24,7 +25,7 @@ const HomeStack = ({ userId }: { userId: string }) => {
               <div key={post.post_id}>
                 <EmotionImage
                   src={checkEmotion(post.post_emotion)}
-                  size={"s"}
+                  size={"xs"}
                 />
               </div>
             );
@@ -34,7 +35,7 @@ const HomeStack = ({ userId }: { userId: string }) => {
               <div key={post.post_id}>
                 <EmotionImage
                   src={checkEmotion(post.post_emotion)}
-                  size={"s"}
+                  size={"xs"}
                 />
               </div>
             );

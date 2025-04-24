@@ -11,7 +11,7 @@ const HomePosting = ({ userId }: { userId: string }) => {
   const route = useRouter();
   return (
     <div
-      className="flex-right flex cursor-pointer flex-row justify-end py-2"
+      className="flex cursor-pointer flex-row justify-end py-2"
       onClick={() => {
         if (today && today.length > 0) {
           toast.warning(TOAST_MESSAGE.POST.TODAY.EXISTS);

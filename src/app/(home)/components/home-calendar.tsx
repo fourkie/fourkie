@@ -11,6 +11,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import HomeDate from "./home-date";
 
+const changeStyle =
+  "lg:max-w-2xl xl:max-w-4xl lg:border-primary-200 lg:border-2 lg:border-dashed lg:bg-[#F7FAF2]";
+
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const [currentDate, setCurrentDate] = useState(dayjs());
 
@@ -37,7 +40,9 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   // 펜딩 or 에러일 때 크기 같게 유지하려고 min-h-500px 줬습니다.
   if (isPending || isError)
     return (
-      <div className="mx-auto my-5 flex min-h-[25rem] w-full max-w-md items-center justify-center rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] lg:max-w-2xl xl:max-w-4xl">
+      <div
+        className={`mx-auto flex min-h-[25rem] w-full max-w-md items-center justify-center rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
+      >
         <span className="text-lg text-grey-3">
           {isPending ? QUERYDATA.ISPENDING : QUERYDATA.ISERROR}
         </span>
@@ -64,7 +69,9 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   for (let i = 1; i <= daysInMonth; i++) days.push(i);
 
   return (
-    <div className="mx-auto my-5 rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] lg:max-w-2xl xl:max-w-4xl">
+    <div
+      className={`mx-auto rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
+    >
       <div className="flex items-center justify-between">
         <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
         <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
@@ -132,9 +139,9 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
             <div
               key={idx}
               className={`relative flex h-[3rem] items-center justify-center rounded-lg lg:h-[6rem] xl:h-[7.5rem] ${
-                isFuture
-                  ? "cursor-not-allowed text-grey-3"
-                  : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-50"
+                isFuture || day === null
+                  ? "text-grey-3"
+                  : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-50 lg:hover:bg-primary-50"
               }`}
             >
               {day && (
