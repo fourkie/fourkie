@@ -36,11 +36,12 @@ const SignUpForm = () => {
         <div className="mb-4 flex items-center justify-center rounded-full">
           <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="l" />
         </div>
-        <h1 className="mb-1 text-xl font-bold text-grey-6">Smookie</h1>
+        <strong className="mb-1 text-xl text-grey-6">Smookie</strong>
         <p className="text-center text-grey-6">
           하루의 끝, 마음을 조용히 들여다보고 싶을 때
         </p>
       </div>
+
       <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xs">
         <Input
           {...register("email", EMAIL_VALIDATION)}
@@ -69,9 +70,9 @@ const SignUpForm = () => {
         <Button
           type="submit"
           disabled={!isValid}
-          classname="w-full bg-primary-300 text-primary-800 font-semibold py-3 rounded-xl mt-6"
+          classname="w-full bg-primary-300 text-primary-800 py-3 rounded-xl mt-6"
         >
-          회원가입
+          <strong>회원가입</strong>
         </Button>
       </form>
 

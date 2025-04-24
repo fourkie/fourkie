@@ -95,8 +95,6 @@ export const fetchSpotifyPlaylistList = async (
           !filteredWord(item.name),
       );
 
-    console.log(`${emotionQuery} : ${filteredPlaylists?.length}`);
-
     return filteredPlaylists;
   };
 
