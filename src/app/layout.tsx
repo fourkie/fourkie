@@ -39,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="font-pretendard antialiased">
+      <body className="font-minsans antialiased">
         <Providers>
           <HeaderWithZustand />
           <HeaderDesk />

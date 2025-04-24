@@ -10,7 +10,7 @@ const MyPage = async () => {
   } = await supabaseClient.auth.getUser();
 
   return (
-    <div className="min-h-screen bg-white px-4 pb-28 pt-20">
+    <div className="flex w-full flex-col justify-center border px-4 pb-28 pt-20">
       <MypageProfile userId={user!.id} />
       <MypageGraph />
       <MypageMenuList />
