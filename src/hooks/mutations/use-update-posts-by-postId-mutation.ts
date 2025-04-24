@@ -5,7 +5,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
 
-export const useUpdatePostsByPostIdMutation = () => {
+export const useUpdatePostsByPostIdMutation = ({
+  postId,
+}: {
+  postId?: string;
+}) => {
   const queryClient = useQueryClient();
   const year = dayjs().year();
   const month = dayjs().month() + 1;
@@ -18,6 +22,9 @@ export const useUpdatePostsByPostIdMutation = () => {
         queryKey: [QUERY_KEY.USER, year, month],
       });
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.POSTS] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.POSTID, postId],
+      });
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.BY_USER_AND_TODAY],
       });
