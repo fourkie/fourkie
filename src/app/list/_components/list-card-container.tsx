@@ -10,7 +10,6 @@ import ListCard from "./list-card";
 
 const ListCardContainer = ({ userId }: { userId: string }) => {
   const { selectedTab } = useTabStore();
-  const [isMyPost, setIsMyPost] = useState(selectedTab === "my");
   const selectedDay = usePostStore((state) => state.selectedDate);
   const selectedRef = useRef<HTMLDivElement | null>(null);
 
@@ -24,7 +23,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
     { id: "secondTab", label: "친구 기록 보기" },
   ];
 
-  const [activeTab, setActiveTab] = useState(tabs[0].id);
+  const [activeTab, setActiveTab] = useState(selectedTab);
 
   const sortedMyPosts = myPosts
     ?.slice()
@@ -59,13 +58,17 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
 
               return (
                 <div key={post.post_id} ref={isSelected ? selectedRef : null}>
-                  <ListCard post={post} isMyPost={isMyPost} />
+                  <ListCard post={post} isMyPost={activeTab === "firstTab"} />
                 </div>
               );
             })
           : friendPostsForToday?.map((post) => {
               return (
-                <ListCard key={post.post_id} post={post} isMyPost={isMyPost} />
+                <ListCard
+                  key={post.post_id}
+                  post={post}
+                  isMyPost={activeTab === "firstTab"}
+                />
               );
             })}
       </div>
