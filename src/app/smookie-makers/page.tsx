@@ -111,9 +111,9 @@ const Makers = () => {
 
                     {/* 텍스트 영역 */}
                     <div className="flex w-full flex-col items-center justify-center text-center lg:mt-0 lg:items-start lg:text-left">
-                      <h1 className="mb-2 text-2xl font-bold text-grey-7">
+                      <strong className="mb-2 text-2xl text-grey-7">
                         {card.name}
-                      </h1>
+                      </strong>
                       <h3 className="font-semibold text-grey-3">
                         {card.address}
                       </h3>

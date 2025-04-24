@@ -11,8 +11,10 @@ const MyPage = async () => {
 
   return (
     <div className="flex w-full flex-col justify-center border border-red-500 px-4 pb-28 pt-20">
-      <MypageProfile userId={user!.id} />
-      <MypageGraph />
+      <div className="flex border border-red-500">
+        <MypageProfile userId={user!.id} />
+        <MypageGraph />
+      </div>
       <MypageMenuList />
     </div>
   );
