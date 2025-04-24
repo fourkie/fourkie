@@ -37,7 +37,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
   });
 
   const onClickHandler = () => {
-    setSelectedTab("friend");
+    setSelectedTab("secondTab");
   };
 
   if (isPending) {
