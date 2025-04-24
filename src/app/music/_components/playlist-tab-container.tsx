@@ -10,7 +10,7 @@ const PlaylistTabContainer = ({
 }: PlaylistTabContainerProps) => {
   return (
     <div className="flex flex-col gap-3 px-5">
-      <div className="fixed left-1/2 top-64 z-50 flex min-w-[393px] -translate-x-1/2 transform items-center justify-center gap-10 bg-white py-2 pt-4 text-sm font-bold lg:w-full lg:min-w-0">
+      <strong className="fixed left-1/2 top-64 z-50 flex min-w-[393px] -translate-x-1/2 transform items-center justify-center gap-10 bg-white py-2 pt-4 text-sm lg:w-full lg:min-w-0">
         <TabButton
           isActive={activeTab === PlaylistTabProps.RECOMMEND}
           onClick={() => onTabChange(PlaylistTabProps.RECOMMEND)}
@@ -25,7 +25,7 @@ const PlaylistTabContainer = ({
         >
           <div className="flex items-center">즐겨찾기</div>
         </TabButton>
-      </div>
+      </strong>
 
       <PlaylistContent
         userId={userId}

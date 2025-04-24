@@ -14,7 +14,7 @@ const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${classname}`}
+      className={`cursor-pointer ${classname}`}
     >
       <div className="mx-auto">
         {icon && iconPosition === "left" && <>{icon}</>}

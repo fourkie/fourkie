@@ -64,7 +64,7 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
               className="h-full w-full object-cover"
             />
           </div>
-          <p className="flex-1 truncate text-base font-bold">{playlist.name}</p>
+          <strong className="flex-1 truncate text-base">{playlist.name}</strong>
           <p className="text-xs text-grey-5">{playlist.tracks.total}곡</p>
         </a>
       </div>

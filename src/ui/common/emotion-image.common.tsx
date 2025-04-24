@@ -1,19 +1,6 @@
 import { Img } from "@/types/img-component.type";
 import Image from "next/image";
 
-/* 
-사용법 
-<CommonEmotionImage 
-    src={이미지url string 타입}  //상수화 되어 있을 겁니다.
-    size={"~" } //string 타입입니다. xs, s, m, l, xl 중에 골라주세요. 그 외의 값은 막힙니다.
-/>
-
-사용 예시
-<CommonEmotionImage
-    src={EMOTION_URL.JOY} // 여기 바뀌었습니다.
-    size={"xl"}
-/>
- */
 const EmotionImage = ({ src, size }: Img) => {
   const sizeClasses: Record<"xxs" | "xs" | "s" | "m" | "l" | "xl", number> = {
     xxs: 30, // 아주 작은 사이즈
@@ -27,11 +14,26 @@ const EmotionImage = ({ src, size }: Img) => {
   const imageSize =
     sizeClasses[size as keyof typeof sizeClasses] || sizeClasses["xs"];
 
+  if (size === "xxs") {
+    return (
+      //부모 컴포넌트에 따라 커지게 relative 적용, 정사각형 유지 사이즈 별로 크기 지정
+      <div className="relative aspect-square w-[30px] lg:w-[60px]">
+        <Image
+          src={src}
+          alt="Emotion"
+          fill
+          className="rounded object-cover"
+          sizes="(max-width: 640px) 30px,  (max-width: 1024px) 60px"
+        />
+      </div>
+    );
+  }
+
   return (
     <Image
       src={src}
       alt="Emotion"
-      className={`rounded object-cover`}
+      className="rounded object-cover"
       width={imageSize}
       height={imageSize}
     />

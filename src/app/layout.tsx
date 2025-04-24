@@ -2,6 +2,7 @@ import Providers from "@/providers/RQProviders";
 import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 import HeaderWithZustand from "./(home)/components/home-zustand";
+import HeaderDesk from "./(layout)/header-desk";
 import Navigation from "./(layout)/navigation";
 import "./globals.css";
 
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
   },
 };
 
+//반응형 기준 360 720 1024
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,10 +40,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="font-pretendard antialiased">
+      <body className="font-minsans antialiased">
         <Providers>
           <HeaderWithZustand />
-          <main className="mx-auto w-[393px] lg:w-[1224px]">{children}</main>
+          <HeaderDesk />
+          <main className="mx-auto w-full min-w-[360px] max-w-[1024px]">
+            {children}
+          </main>
           <Navigation />
         </Providers>
         <ToastContainer position="top-right" autoClose={3000} />
