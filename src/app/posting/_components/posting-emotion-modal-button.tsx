@@ -1,16 +1,18 @@
 import { useCreatePostsMutation } from "@/hooks/mutations/use-create-posts-mutation";
 import { useUpdatePostsByPostIdMutation } from "@/hooks/mutations/use-update-posts-by-postId-mutation";
+import { usePostingStore } from "@/hooks/zustand/posting-store";
 import { useRouter } from "next/navigation";
 import { PostingEmotionModalButtonProps } from "../type";
 
 const PostingEmotionModalButton = ({
   userId,
-  title,
-  content,
   currentEmotion,
   postId,
   onClose,
 }: PostingEmotionModalButtonProps) => {
+  const title = usePostingStore((state) => state.inputTitle);
+  const content = usePostingStore((state) => state.inputContent);
+
   // mutation 함수
   const {
     mutate: createPostsMutate,
@@ -21,7 +23,7 @@ const PostingEmotionModalButton = ({
     mutate: updatePostMutate,
     isPending: UpdatePostsPending,
     isError: updatePostsError,
-  } = useUpdatePostsByPostIdMutation();
+  } = useUpdatePostsByPostIdMutation({ postId });
 
   const router = useRouter();
 
@@ -34,7 +36,7 @@ const PostingEmotionModalButton = ({
     }
 
     if (!createPostsError || !updatePostsError) {
-      router.push("music");
+      router.push("/music");
     }
   };
 
