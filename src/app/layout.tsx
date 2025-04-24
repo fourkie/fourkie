@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
 };
 
-//반응형 기준 360 720 1024
+// 반응형 기준 : sm-360 / md-768 / lg-1024
 export default function RootLayout({
   children,
 }: Readonly<{
