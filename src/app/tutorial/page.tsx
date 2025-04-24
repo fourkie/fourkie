@@ -27,7 +27,7 @@ const Tutorial = () => {
   };
 
   return (
-    <>
+    <div>
       {currentStep === 0 && (
         <TutorialDescription
           title={TUTORIAL.TITLE.HOME}
@@ -73,7 +73,7 @@ const Tutorial = () => {
           }
         />
       )}
-    </>
+    </div>
   );
 };
 
