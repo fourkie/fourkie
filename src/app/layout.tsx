@@ -44,7 +44,7 @@ export default function RootLayout({
         <Providers>
           <HeaderWithZustand />
           <HeaderDesk />
-          <main className="mx-auto w-full min-w-[360px] max-w-[1024px]">
+          <main className="mx-auto min-w-[360px] max-w-[1024px]">
             {children}
           </main>
           <Navigation />
