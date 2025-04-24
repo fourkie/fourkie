@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const common =
-  "lg:border-2 lg:border-dashed lg:border-primary-200 lg:rounded-xl lg:p-5 lg:bg-white";
+  "md:border-2 md:border-dashed md:border-primary-200 md:rounded-xl md:p-5 md:bg-white";
 const HomeMusic = ({ userId }: { userId: string }) => {
   const { data } = useGetPostTodayEmotionByIdQuery(userId);
 
@@ -20,7 +20,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
       <div className="flex flex-col gap-4">
         <Link href={"/music"}>
           <div className="mt-2 flex items-center justify-between">
-            <div className="font-bold">오늘 추천 음악</div>
+            <strong>오늘 추천 음악</strong>
             <ChevronRight className="cursor-pointer" />
           </div>
         </Link>
@@ -41,22 +41,20 @@ const HomeMusic = ({ userId }: { userId: string }) => {
     <div className="flex flex-col gap-4">
       <Link href={"/music"}>
         <div className="mt-2 flex items-center justify-between">
-          <div className="font-bold">
-            {EMOTIONS_QUERY[emotion]} 날 추천하는 노래
-          </div>
+          <strong>{EMOTIONS_QUERY[emotion]} 날 추천하는 노래</strong>
           <ChevronRight className="cursor-pointer" />
         </div>
       </Link>
       <div
         className={`flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-3 ${common}`}
       >
-        <Link
+        <a
           href={playlists[randomIndex].external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
           className="flex w-full items-center justify-between gap-5"
         >
-          <div className="lg:h-30 lg:w-30 h-12 w-14 overflow-hidden rounded-lg">
+          <div className="md:h-30 md:w-30 h-12 w-14 overflow-hidden rounded-md">
             <Image
               src={
                 playlists[randomIndex].images[0]?.url || "/default-image.jpg"
@@ -69,14 +67,14 @@ const HomeMusic = ({ userId }: { userId: string }) => {
             />
           </div>
 
-          <p className="flex-1 truncate px-2 font-bold">
+          <strong className="flex-1 truncate px-2">
             {playlists[randomIndex].name}
-          </p>
+          </strong>
 
           <p className="flex-shrink-0 text-right text-sm text-grey-3">
             {playlists[randomIndex].tracks.total}곡
           </p>
-        </Link>
+        </a>
       </div>
     </div>
   );

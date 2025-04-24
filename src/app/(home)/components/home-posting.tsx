@@ -21,9 +21,9 @@ const HomePosting = ({ userId }: { userId: string }) => {
       }}
     >
       <CirclePlus className="h-1.5rem w-1.5rem text-secondary-400" />
-      <div className="my-auto font-bold text-primary-600">
+      <strong className="my-auto text-primary-600">
         오늘 기록 남기러 가기
-      </div>
+      </strong>
     </div>
   );
 };

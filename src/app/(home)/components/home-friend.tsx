@@ -44,9 +44,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
     return (
       <div className="my-4 flex flex-col gap-4">
         <div className="mt-2 flex items-center justify-between">
-          <div className="font-bold">
-            오늘 하루 내 친구들 기분을 살펴볼까요?
-          </div>
+          <strong>오늘 하루 내 친구들 기분을 살펴볼까요?</strong>
           <ChevronRight className="cursor-pointer" />
         </div>
         <div className="border-3 flex flex-row items-center rounded-xl border border-primary-200 p-4">
@@ -62,15 +60,13 @@ const HomeFriend = ({ userId }: { userId: string }) => {
       <Link href={"/friends"} onClick={onClickHandler}>
         <div className="my-4 flex flex-col gap-4">
           <div className="mt-2 flex items-center justify-between">
-            <div className="font-bold">
-              오늘 하루 내 친구들 기분을 살펴볼까요?
-            </div>
+            <strong>오늘 하루 내 친구들 기분을 살펴볼까요?</strong>
             <ChevronRight className="cursor-pointer" />
           </div>
           <div className="border-3 flex flex-row items-center gap-4 rounded-xl border border-primary-200 p-4">
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.SAD} size="xs" />
             <div className="flex flex-col">
-              <div className="font-bold">친구의 쿠키가 없네요!</div>
+              <strong>친구의 쿠키가 없네요!</strong>
               <div>친구를 더 추가해보는 건 어떨까요?</div>
             </div>
           </div>
@@ -82,16 +78,14 @@ const HomeFriend = ({ userId }: { userId: string }) => {
   return (
     <Link href={"/list"} onClick={onClickHandler}>
       <div className="flex items-center justify-between">
-        <div className="mb-2 font-bold">
-          오늘 하루 내 친구들 기분을 살펴볼까요?
-        </div>
+        <strong className="mb-2">오늘 하루 내 친구들 기분을 살펴볼까요?</strong>
         <ChevronRight className="cursor-pointer" />
       </div>
-      <div className="item-center flex flex-col rounded-xl border border-primary-200 p-4 lg:border-dashed">
+      <div className="item-center flex flex-col rounded-xl border border-primary-200 p-4 md:border-dashed">
         {userQueries.map((query, index) => {
           const post = friendPostsForToday?.[index];
           const user = query.data;
-          const isShow = index === 0 ? "" : "hidden lg:flex";
+          const isShow = index === 0 ? "" : "hidden md:flex";
           const key = post ? `post-${post.id}` : `no-post-${index}`;
           return (
             <div key={`${key}`}>
@@ -109,10 +103,8 @@ const HomeFriend = ({ userId }: { userId: string }) => {
                       size="xs"
                     />
                     <div className="flex flex-col">
-                      <div className="font-bold lg:hidden">
-                        오늘 내 친구들은?
-                      </div>
-                      <div className="lg:text-md text-sm lg:font-bold">
+                      <strong className="md:hidden">오늘 내 친구들은?</strong>
+                      <div className="md:text-md text-sm md:font-bold">
                         {user?.user_nickname} 님은{" "}
                         {EMOTIONS_QUERY[post.post_emotion]} 하루를 보냈어요.
                       </div>
