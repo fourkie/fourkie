@@ -12,7 +12,7 @@ const Request = () => {
       <div className="flex w-full items-center justify-center gap-10">
         <button
           onClick={() => setTab("received")}
-          className={`px-4 py-2 ${
+          className={`px-2 py-1 ${
             tab === "received"
               ? "border-b-2 border-grey-5 font-semibold text-grey-6"
               : "text-grey-3"
@@ -22,7 +22,7 @@ const Request = () => {
         </button>
         <button
           onClick={() => setTab("sent")}
-          className={`px-4 py-2 ${
+          className={`px-2 py-1 ${
             tab === "sent"
               ? "border-b-2 border-grey-5 font-semibold text-grey-6"
               : "text-grey-3"

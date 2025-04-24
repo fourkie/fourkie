@@ -1,11 +1,9 @@
 "use client";
 
-import { ALERT_MESSAGE } from "@/constants/alert-message";
 import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-query";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
-import Alert from "@/ui/common/alert";
 import { useEffect, useRef, useState } from "react";
 import ListCard from "./list-card";
 
@@ -49,7 +47,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
           className={`${
             isMyPost
               ? "border-b-2 border-primary-600 text-primary-600"
-              : "text-gray-400"
+              : "text-grey-3"
           } cursor-pointer font-bold`}
           onClick={() => setIsMyPost(true)}
         >
@@ -58,7 +56,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
         <div
           className={`${
             isMyPost
-              ? "text-gray-400"
+              ? "text-grey-3"
               : "border-b-2 border-primary-600 text-primary-600"
           } cursor-pointer font-bold`}
           onClick={() => setIsMyPost(false)}
@@ -84,7 +82,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
               );
             })}
       </div>
-      <Alert title="알람" contents={ALERT_MESSAGE.LIST.DELETE}></Alert>
+      {/* <Alert title="알람" contents={ALERT_MESSAGE.LIST.DELETE}></Alert> */}
     </div>
   );
 };
