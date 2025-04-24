@@ -29,15 +29,17 @@ const EmotionSelect = ({
         {/* 드롭다운 버튼 */}
         <button
           onClick={() => setOpen((prev) => !prev)}
-          className={`flex h-[30px] max-w-72 items-center justify-center gap-1 px-2 py-1 text-center text-sm font-bold ${
+          className={`${
             whiteText ? "text-white" : "text-primary-700"
           } ${open ? "rounded-tl-[15px] rounded-tr-[15px]" : "rounded-full"}`}
           style={{
             backgroundColor: `var(--color-${EMOTION_COLOR[emotion]})`,
           }}
         >
-          {EMOTIONS_QUERY[emotion]} 날
-          {open ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+          <strong className="flex h-[30px] max-w-72 items-center justify-center gap-1 px-2 py-1 text-center text-sm">
+            <p>{EMOTIONS_QUERY[emotion]} 날</p>
+            <p>{open ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</p>
+          </strong>
         </button>
 
         {/* 드롭다운 목록 */}
@@ -51,7 +53,7 @@ const EmotionSelect = ({
                 <button
                   key={key}
                   onClick={() => handleSelect(key)}
-                  className={`rounded-full border px-2 py-1 text-sm font-bold ${
+                  className={`rounded-full border px-2 py-1 text-sm ${
                     isWhiteOption ? "text-white" : "text-primary-700"
                   }`}
                   style={{
@@ -59,18 +61,18 @@ const EmotionSelect = ({
                     borderColor: `var(--color-${EMOTION_BORDER_COLOR[key]})`,
                   }}
                 >
-                  {EMOTIONS_QUERY[key]}
+                  <strong>{EMOTIONS_QUERY[key]}</strong>
                 </button>
               );
             })}
           </div>
         )}
 
-        <p className="text-2xl font-bold text-white">듣기 좋은</p>
+        <strong className="text-2xl text-white">듣기 좋은</strong>
       </div>
-      <p className="text-2xl font-bold text-white">
+      <strong className="text-2xl text-white">
         플레이리스트를 추천해 드릴게요!
-      </p>
+      </strong>
       <p className="mt-6 text-grey-2">
         {!todayEmotion && (
           <span>
