@@ -23,7 +23,7 @@ const Tutorial = () => {
   /** 클릭 시 로그인 페이지로 넘어감 */
   const handleTutorialEnd = () => {
     document.cookie = "hasSeenTutorial=true; path=/; max-age=31536000";
-    router.push(isFromMypage ? "/my-page" : "/sign-in");
+    router.push(isFromMypage ? "/my-page" : "/sign-up");
   };
 
   return (
