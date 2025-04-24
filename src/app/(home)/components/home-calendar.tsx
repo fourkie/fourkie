@@ -12,7 +12,7 @@ import { useState } from "react";
 import HomeDate from "./home-date";
 
 const changeStyle =
-  "lg:max-w-2xl lg:max-h-[700px] xl:max-w-4xl lg:border-primary-200 lg:border-2 lg:border-dashed lg:bg-[#F7FAF2] ";
+  "md:max-w-2xl md:max-h-[700px] xl:max-w-4xl md:border-primary-200 md:border-2 md:border-dashed md:bg-[#F7FAF2] ";
 
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const [currentDate, setCurrentDate] = useState(dayjs());
@@ -43,7 +43,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
       <div
         className={`mx-auto flex min-h-[25rem] w-full max-w-md items-center justify-center rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
       >
-        <span className="text-lg text-grey-3">
+        <span className="text-md text-grey-3">
           {isPending ? QUERYDATA.ISPENDING : QUERYDATA.ISERROR}
         </span>
       </div>
@@ -93,14 +93,14 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
             index === 0 ? (
               <div
                 key={index}
-                className="text-center font-semibold text-secondary-200 lg:text-lg xl:text-xl"
+                className="md:text-md text-center font-semibold text-secondary-200 xl:text-xl"
               >
                 {d}
               </div>
             ) : (
               <div
                 key={index}
-                className="text-center font-semibold text-primary-200 lg:text-lg xl:text-xl"
+                className="md:text-md text-center font-semibold text-primary-200 xl:text-xl"
               >
                 {d}
               </div>
@@ -108,7 +108,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
           ) : (
             <div
               key={index}
-              className="text-center font-semibold lg:text-lg xl:text-xl"
+              className="md:text-md text-center font-semibold xl:text-xl"
             >
               {d}
             </div>
@@ -137,10 +137,10 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
           return (
             <div
               key={idx}
-              className={`relative flex h-[3rem] items-center justify-center rounded-lg lg:h-[5rem] xl:h-[6rem] ${
+              className={`relative flex h-[3rem] items-center justify-center rounded-md md:h-[5rem] lg:h-[6.5rem] xl:h-[7rem] ${
                 isFuture || day === null
                   ? "text-grey-3"
-                  : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-50 lg:hover:bg-[#F7FAF2]"
+                  : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-50 md:hover:bg-[#F7FAF2]"
               }`}
             >
               {day && (
@@ -153,7 +153,9 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
                       />
                     </div>
                   ) : (
-                    <span className="lg:text-lg xl:text-xl">{day}</span>
+                    <span className="md:text-md lg:text-lg xl:text-xl">
+                      {day}
+                    </span>
                   )}
                 </>
               )}

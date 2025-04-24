@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const common =
-  "lg:border-2 lg:border-dashed lg:border-primary-200 lg:rounded-xl lg:p-5 lg:bg-white";
+  "md:border-2 md:border-dashed md:border-primary-200 md:rounded-xl md:p-5 md:bg-white";
 const HomeMusic = ({ userId }: { userId: string }) => {
   const { data } = useGetPostTodayEmotionByIdQuery(userId);
 
@@ -54,7 +54,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           rel="noopener noreferrer"
           className="flex w-full items-center justify-between gap-5"
         >
-          <div className="lg:h-30 lg:w-30 h-12 w-14 overflow-hidden rounded-lg">
+          <div className="md:h-30 md:w-30 h-12 w-14 overflow-hidden rounded-md">
             <Image
               src={
                 playlists[randomIndex].images[0]?.url || "/default-image.jpg"

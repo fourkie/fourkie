@@ -81,11 +81,11 @@ const HomeFriend = ({ userId }: { userId: string }) => {
         <strong className="mb-2">오늘 하루 내 친구들 기분을 살펴볼까요?</strong>
         <ChevronRight className="cursor-pointer" />
       </div>
-      <div className="item-center flex flex-col rounded-xl border border-primary-200 p-4 lg:border-dashed">
+      <div className="item-center flex flex-col rounded-xl border border-primary-200 p-4 md:border-dashed">
         {userQueries.map((query, index) => {
           const post = friendPostsForToday?.[index];
           const user = query.data;
-          const isShow = index === 0 ? "" : "hidden lg:flex";
+          const isShow = index === 0 ? "" : "hidden md:flex";
           const key = post ? `post-${post.id}` : `no-post-${index}`;
           return (
             <div key={`${key}`}>
@@ -103,8 +103,8 @@ const HomeFriend = ({ userId }: { userId: string }) => {
                       size="xs"
                     />
                     <div className="flex flex-col">
-                      <strong className="lg:hidden">오늘 내 친구들은?</strong>
-                      <div className="lg:text-md text-sm lg:font-bold">
+                      <strong className="md:hidden">오늘 내 친구들은?</strong>
+                      <div className="md:text-md text-sm md:font-bold">
                         {user?.user_nickname} 님은{" "}
                         {EMOTIONS_QUERY[post.post_emotion]} 하루를 보냈어요.
                       </div>
