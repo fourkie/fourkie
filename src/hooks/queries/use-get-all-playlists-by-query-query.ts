@@ -6,16 +6,11 @@ import {
 } from "@/services/music-service";
 import { useQuery } from "@tanstack/react-query";
 
+// 유저의 감정 기반 플레이리스트 조회
 export const useGetAllPlaylistsByQueryQuery = (emotionQuery: string) => {
-  // 토큰과 플레이리스트 요청을 하나의 useQuery 훅으로 처리
-  const {
-    data: playlistsData,
-    error: playlistsError,
-    isPending: playlistsPending,
-  } = useQuery({
+  const { data, error, isPending } = useQuery({
     queryKey: [QUERY_KEY.SPOTIFY_PLAYLISTS, emotionQuery],
     queryFn: async () => {
-      // 토큰 요청
       const tokenData = await fetchAccessToken();
       const accessToken: string = tokenData?.accessToken;
 
@@ -23,15 +18,14 @@ export const useGetAllPlaylistsByQueryQuery = (emotionQuery: string) => {
         throw new Error(TOAST_MESSAGE.SPOTIFY.ACCESS_TOKEN_ERROR);
       }
 
-      // 받은 토큰으로 플레이리스트 요청
       return fetchSpotifyPlaylistList(accessToken, emotionQuery);
     },
     enabled: !!emotionQuery,
   });
 
   return {
-    playlists: playlistsData || [],
-    playlistsError,
-    playlistsPending,
+    playlists: data || [],
+    error,
+    isPending,
   };
 };
