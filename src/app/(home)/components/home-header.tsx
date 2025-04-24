@@ -28,7 +28,7 @@ const backIconPaths = [
 ];
 
 const baseHeaderClass =
-  "lg:hidden fixed top-0 z-40 min-w-[320px] w-full left-1/2 -translate-x-1/2 lg:w-full flex flex-row items-center justify-between bg-primary-50 p-3 h-[56px]";
+  "header-mobile fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-3 z-40 h-[56px] min-w-[360px]";
 
 const HomeHeader = () => {
   const pathname = usePathname();
@@ -111,7 +111,7 @@ const HomeHeader = () => {
             <button
               form="posting"
               type="submit"
-              className="absolute right-5 top-4 z-50 rounded-lg bg-primary-700 px-2 py-1 text-sm font-medium text-secondary-50"
+              className="absolute right-5 top-4 rounded-lg bg-primary-700 px-2 py-1 text-sm font-medium text-secondary-50"
             >
               게시
             </button>

@@ -69,7 +69,7 @@ const TutorialContainer = () => {
           currentStep={currentStep}
           onClick={handleTutorialEnd}
           buttonName={
-            isFromMypage ? "마이페이지로 돌아가기" : TUTORIAL.BUTTON.LOGIN
+            isFromMypage ? "마이페이지로 돌아가기" : TUTORIAL.BUTTON.SIGN_UP
           }
         />
       )}
