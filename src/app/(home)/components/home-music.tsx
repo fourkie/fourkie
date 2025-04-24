@@ -48,7 +48,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
       <div
         className={`flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-3 ${common}`}
       >
-        <Link
+        <a
           href={playlists[randomIndex].external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
@@ -74,7 +74,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           <p className="flex-shrink-0 text-right text-sm text-grey-3">
             {playlists[randomIndex].tracks.total}곡
           </p>
-        </Link>
+        </a>
       </div>
     </div>
   );
