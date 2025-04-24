@@ -20,7 +20,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
       <div className="flex flex-col gap-4">
         <Link href={"/music"}>
           <div className="mt-2 flex items-center justify-between">
-            <div className="font-bold">오늘 추천 음악</div>
+            <strong>오늘 추천 음악</strong>
             <ChevronRight className="cursor-pointer" />
           </div>
         </Link>
@@ -41,9 +41,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
     <div className="flex flex-col gap-4">
       <Link href={"/music"}>
         <div className="mt-2 flex items-center justify-between">
-          <div className="font-bold">
-            {EMOTIONS_QUERY[emotion]} 날 추천하는 노래
-          </div>
+          <strong>{EMOTIONS_QUERY[emotion]} 날 추천하는 노래</strong>
           <ChevronRight className="cursor-pointer" />
         </div>
       </Link>
@@ -69,9 +67,9 @@ const HomeMusic = ({ userId }: { userId: string }) => {
             />
           </div>
 
-          <p className="flex-1 truncate px-2 font-bold">
+          <strong className="flex-1 truncate px-2">
             {playlists[randomIndex].name}
-          </p>
+          </strong>
 
           <p className="flex-shrink-0 text-right text-sm text-grey-3">
             {playlists[randomIndex].tracks.total}곡
