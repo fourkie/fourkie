@@ -15,8 +15,6 @@ export type UserDateProps = {
 
 export type PostingResultModalProps = {
   userId: string;
-  title: string;
-  content: string;
   emotion: string;
   postId?: string;
   isPending: boolean;
@@ -32,8 +30,6 @@ export type PostingEmotionModalSlideProps = {
 
 export type PostingEmotionModalButtonProps = {
   userId: string;
-  title: string;
-  content: string;
   currentEmotion: string;
   postId?: string;
   onClose: () => void;

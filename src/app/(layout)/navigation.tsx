@@ -3,6 +3,7 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-today-emotion-by-id-query";
 import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
+import { usePostingStore } from "@/hooks/zustand/posting-store";
 import createClient from "@/services/supabase-client-service";
 import {
   CirclePlus,
@@ -24,6 +25,8 @@ const Navigation = () => {
   const supabaseClient = createClient();
   const { setSelectedTab } = useTabStore();
   const { setSelectedDate } = usePostStore();
+  const setInputTitle = usePostingStore((state) => state.setInputTitle);
+  const setInputContent = usePostingStore((state) => state.setInputContent);
 
   //오늘 날짜로 포스팅이 이미 있을 경우, /posting으로 진입하지 못함
   useEffect(() => {
@@ -50,7 +53,7 @@ const Navigation = () => {
   }
 
   return (
-    <div className="fixed bottom-0 left-1/2 z-40 grid h-[90px] w-[393px] -translate-x-1/2 grid-cols-5 items-center justify-evenly rounded-t-[28px] border-t border-grey-1 bg-white text-black shadow-md lg:hidden lg:w-full">
+    <div className="fixed bottom-0 z-40 grid h-[90px] w-full min-w-[360px] grid-cols-5 items-center justify-evenly rounded-t-[28px] border border-grey-1 bg-white text-black md:hidden">
       <Link href="/">
         {pathname === "/" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">
@@ -90,12 +93,13 @@ const Navigation = () => {
             return;
           }
           router.push("/posting");
+          setInputTitle("");
+          setInputContent("");
         }}
         className="cursor-pointer"
       >
-        <CirclePlus className="mx-auto h-10 w-10 text-primary-400" />
+        <CirclePlus className="mx-auto h-11 w-10 text-primary-400" />
       </div>
-
       <Link href="/music">
         {pathname === "/music" ? (
           <div className="flex flex-col items-center justify-center text-center text-black">

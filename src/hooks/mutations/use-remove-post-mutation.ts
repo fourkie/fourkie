@@ -17,6 +17,7 @@ export const useRemovePostMutation = ({
 
   return useMutation({
     mutationFn: () => removePost(postId),
+
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.POSTS, userId] });
       queryClient.invalidateQueries({
@@ -31,8 +32,13 @@ export const useRemovePostMutation = ({
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.SPOTIFY_PLAYLISTS],
       });
+
+      queryClient.setQueryData([QUERY_KEY.POSTID, postId], null);
+      queryClient.setQueryData([QUERY_KEY.BY_USER_AND_TODAY], null);
+
       toast.success("일기가 삭제되었습니다");
     },
+
     onError: (error) => {
       toast.error(error.message);
     },
