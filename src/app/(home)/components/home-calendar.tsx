@@ -12,7 +12,7 @@ import { useState } from "react";
 import HomeDate from "./home-date";
 
 const changeStyle =
-  "lg:max-w-2xl xl:max-w-4xl lg:border-primary-200 lg:border-2 lg:border-dashed lg:bg-[#F7FAF2]";
+  "lg:max-w-2xl lg:max-h-[700px] xl:max-w-4xl lg:border-primary-200 lg:border-2 lg:border-dashed lg:bg-[#F7FAF2] ";
 
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const [currentDate, setCurrentDate] = useState(dayjs());
@@ -70,7 +70,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
 
   return (
     <div
-      className={`mx-auto rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
+      className={`mx-auto min-w-[250px] max-w-[400px] rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
     >
       <div className="flex items-center justify-between">
         <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
@@ -137,7 +137,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
           return (
             <div
               key={idx}
-              className={`relative flex h-[3rem] items-center justify-center rounded-lg lg:h-[6rem] xl:h-[7.5rem] ${
+              className={`relative flex h-[3rem] items-center justify-center rounded-lg lg:h-[5rem] xl:h-[6rem] ${
                 isFuture || day === null
                   ? "text-grey-3"
                   : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-50 lg:hover:bg-[#F7FAF2]"
