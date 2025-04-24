@@ -1,37 +1,22 @@
 "use client";
 
+import Tab from "@/ui/common/tab";
 import { useState } from "react";
 import ReceivedFriendList from "./components/friend-request-received-friend-list";
 import SentFriendList from "./components/friend-request-sent-friend-list";
 
 const Request = () => {
-  const [tab, setTab] = useState<"received" | "sent">("received");
+  const tabs = [
+    { id: "firstTab", label: "받은 요청" },
+    { id: "secondTab", label: "보낸 요청" },
+  ];
+
+  const [activeTab, setActiveTab] = useState(tabs[0].id);
 
   return (
     <div className="min-h-screen space-y-4 border bg-white px-4 py-6 pt-20">
-      <div className="flex w-full items-center justify-center gap-10">
-        <button
-          onClick={() => setTab("received")}
-          className={`px-2 py-1 ${
-            tab === "received"
-              ? "border-b-2 border-grey-5 font-semibold text-grey-6"
-              : "text-grey-3"
-          }`}
-        >
-          받은 요청
-        </button>
-        <button
-          onClick={() => setTab("sent")}
-          className={`px-2 py-1 ${
-            tab === "sent"
-              ? "border-b-2 border-grey-5 font-semibold text-grey-6"
-              : "text-grey-3"
-          }`}
-        >
-          보낸 요청
-        </button>
-      </div>
-      {tab === "received" ? <ReceivedFriendList /> : <SentFriendList />}
+      <Tab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+      {activeTab === "firstTab" ? <ReceivedFriendList /> : <SentFriendList />}
     </div>
   );
 };
