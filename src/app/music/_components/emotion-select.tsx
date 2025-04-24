@@ -31,7 +31,7 @@ const EmotionSelect = ({
           onClick={() => setOpen((prev) => !prev)}
           className={`flex h-[30px] max-w-72 items-center justify-center gap-1 px-2 py-1 text-center text-sm font-bold ${
             whiteText ? "text-white" : "text-primary-700"
-          } ${open ? "rounded-tl-[12px] rounded-tr-[12px]" : "rounded-xl"}`}
+          } ${open ? "rounded-tl-[15px] rounded-tr-[15px]" : "rounded-full"}`}
           style={{
             backgroundColor: `var(--color-${EMOTION_COLOR[emotion]})`,
           }}
@@ -42,7 +42,7 @@ const EmotionSelect = ({
 
         {/* 드롭다운 목록 */}
         {open && (
-          <div className="absolute top-[30px] grid max-w-72 grid-cols-3 gap-4 rounded-bl-[12px] rounded-br-[12px] rounded-tr-[12px] bg-[#ECF3E2E5] p-4">
+          <div className="absolute top-[30px] grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4">
             {emotionKeys.map((key) => {
               if (emotion === key) return null;
               const isWhiteOption = key === "SAD" || key === "ANGRY";

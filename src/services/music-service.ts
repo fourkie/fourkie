@@ -1,5 +1,9 @@
 import { SpotifyPlaylistItem } from "@/app/music/type";
-import { SPOTIFY } from "@/constants/spotify.constant";
+import {
+  BANNED_WORDS,
+  EMOTION_EXCLUDE_WORDS,
+  SPOTIFY,
+} from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
 // Spotify accessToken 요청 함수
@@ -60,12 +64,38 @@ export const fetchSpotifyPlaylistList = async (
       throw new Error(errorMessage);
     }
 
+    // 키워드 체크
+    const filteredWord = (title: string) => {
+      const titleInLowerCase = title.toLowerCase();
+
+      // 금지어 필터링
+      const containsBannedWord = BANNED_WORDS.some((word) =>
+        titleInLowerCase.includes(word),
+      );
+
+      // 감정과 상반되는 키워드 필터링
+      const emotionMismatchKeywords =
+        EMOTION_EXCLUDE_WORDS[emotionQuery.toUpperCase()];
+
+      // 해당 키워드 포함 필터링
+      const containsMismatchKeyword = emotionMismatchKeywords?.some((word) =>
+        titleInLowerCase.includes(word.toLowerCase()),
+      );
+
+      return containsBannedWord || containsMismatchKeyword;
+    };
+
     // 유효한 플레이리스트 필터링
     const filteredPlaylists: SpotifyPlaylistItem[] =
       data.playlists.items.filter(
         (item: SpotifyPlaylistItem) =>
-          item && item.images && item.images.length > 0,
+          item &&
+          item.images &&
+          item.images.length > 0 &&
+          !filteredWord(item.name),
       );
+
+    console.log(`${emotionQuery} : ${filteredPlaylists?.length}`);
 
     return filteredPlaylists;
   };
