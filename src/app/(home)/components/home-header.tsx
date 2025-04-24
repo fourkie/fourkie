@@ -29,7 +29,7 @@ const backIconPaths = [
 ];
 
 const baseHeaderClass =
-  "lg:hidden fixed top-0 z-40 min-w-[320px] w-full left-1/2 -translate-x-1/2 lg:w-full flex flex-row items-center justify-between bg-primary-50 p-3 h-[56px]";
+  "header-mobile fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-3 z-40 h-[56px] min-w-[360px]";
 
 const HomeHeader = () => {
   const inputTitle = usePostingStore((state) => state.inputTitle);
