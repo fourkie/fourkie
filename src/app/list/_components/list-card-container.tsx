@@ -4,6 +4,7 @@ import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-que
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
+import Tab from "@/ui/common/tab";
 import { useEffect, useRef, useState } from "react";
 import ListCard from "./list-card";
 
@@ -17,6 +18,13 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
 
   //그 달의 게시물만 가져와야 함
   const { data: myPosts } = useGetAllPostsByIdQuery({ userId });
+
+  const tabs = [
+    { id: "firstTab", label: "내 기록 보기" },
+    { id: "secondTab", label: "친구 기록 보기" },
+  ];
+
+  const [activeTab, setActiveTab] = useState(tabs[0].id);
 
   const sortedMyPosts = myPosts
     ?.slice()
@@ -41,31 +49,10 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   });
 
   return (
-    <div className="relative flex h-full min-h-screen flex-col gap-4 bg-primary-50 px-5 pb-32 pt-24">
-      <div className="fixed left-1/2 top-12 flex w-[393px] -translate-x-1/2 items-center justify-center gap-4 bg-primary-50 py-5 lg:w-full">
-        <div
-          className={`${
-            isMyPost
-              ? "border-b-2 border-primary-600 text-primary-600"
-              : "text-grey-3"
-          } cursor-pointer font-bold`}
-          onClick={() => setIsMyPost(true)}
-        >
-          내 기록 보기
-        </div>
-        <div
-          className={`${
-            isMyPost
-              ? "text-grey-3"
-              : "border-b-2 border-primary-600 text-primary-600"
-          } cursor-pointer font-bold`}
-          onClick={() => setIsMyPost(false)}
-        >
-          친구 기록 보기
-        </div>
-      </div>
-      <div className="mt-8 flex flex-col gap-5">
-        {isMyPost
+    <div className="relative flex h-full min-h-screen flex-col gap-4 bg-primary-50 px-5 pb-32">
+      <Tab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+      <div className="flex flex-col gap-5">
+        {activeTab === "firstTab"
           ? sortedMyPosts?.map((post) => {
               const postDate = post.post_created_at.slice(0, 10);
               const isSelected = postDate === selectedDay;

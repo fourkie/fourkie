@@ -14,7 +14,7 @@ const Request = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
 
   return (
-    <div className="min-h-screen space-y-4 border bg-white px-4 py-6 pt-20">
+    <div className="min-h-screen space-y-4 border px-4 pb-6">
       <Tab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTab === "firstTab" ? <ReceivedFriendList /> : <SentFriendList />}
     </div>

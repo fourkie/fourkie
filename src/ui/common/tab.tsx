@@ -4,7 +4,7 @@ type TabType = {
   id: string;
   label: string;
 };
-//tabs 인자로 받아야 함
+
 const Tab = ({
   tabs,
   activeTab,
@@ -15,7 +15,7 @@ const Tab = ({
   setActiveTab: (tab: string) => void;
 }) => {
   return (
-    <div className="relative flex justify-center space-x-10">
+    <div className="relative flex justify-center space-x-10 pt-16">
       {tabs.map((tab) => (
         <button
           key={tab.id}
