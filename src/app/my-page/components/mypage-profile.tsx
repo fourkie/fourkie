@@ -56,19 +56,19 @@ const MypageProfile = ({ userId }: { userId: string }) => {
   if (isPending) return <div>쿠키 주문하신 분?</div>;
 
   return (
-    <div className="mb-6 w-full rounded-xl border border-primary-100 bg-white py-6 md:w-1/2 md:max-w-[400px]">
-      <div className="flex flex-col items-center gap-2 md:items-start">
+    <div className="mb-6 w-full rounded-xl border border-primary-100 bg-white py-6">
+      <div className="flex flex-col items-center gap-2">
         <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="m" />
-        <div className="flex items-center justify-center md:justify-start">
+        <div className="flex items-center justify-center">
           <div className="flex justify-center gap-2">
             {edit ? (
               <Input
-                className="font-minsans h-10 w-20 rounded-xl bg-grey-0 px-3 py-2"
+                className="h-10 w-20 rounded-xl bg-grey-0 px-3 py-2 font-minsans"
                 value={newNickname}
                 onChange={(e) => setNewNickname(e.target.value)}
               />
             ) : (
-              <h2 className="font-minsans flex h-10 items-center justify-center text-lg font-semibold text-grey-6">
+              <h2 className="flex h-10 items-center justify-center font-minsans text-lg font-semibold text-grey-6">
                 {nickname}
               </h2>
             )}
