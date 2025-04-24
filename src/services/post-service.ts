@@ -23,7 +23,8 @@ export const getAllPostsById = async ({ userId }: { userId: string }) => {
     const { data } = await supabaseClient
       .from("posts")
       .select("*")
-      .eq("user_id", userId);
+      .eq("user_id", userId)
+      .order("post_created_at", { ascending: false });
     return data;
   } catch (error) {
     console.error(error);

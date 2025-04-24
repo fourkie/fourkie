@@ -14,6 +14,7 @@ export const useDeleteFriendMutation = () => {
         queryKey: [QUERY_KEY.POSTS, QUERY_KEY.MY_FRIENDS],
       });
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MY_FRIENDS] });
+      queryClient.setQueryData([QUERY_KEY.MY_FRIENDS], null);
     },
     onError: () => {
       toast.error("친구 삭제 실패");
