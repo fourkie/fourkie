@@ -1,6 +1,6 @@
 "use client";
 
-import Tab from "@/ui/common/tab";
+import Tab from "@/ui/common/tab.common";
 import { useState } from "react";
 import ReceivedFriendList from "./components/friend-request-received-friend-list";
 import SentFriendList from "./components/friend-request-sent-friend-list";
