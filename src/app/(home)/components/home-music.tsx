@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const common =
   "md:border-2 md:border-dashed md:border-primary-200 md:rounded-xl md:p-3 md:bg-white w-full max-w-[400px] mx-auto";
-const commonTitle = "mx-auto flex max-w-[400px] flex-row gap-4 mt-2";
+const commonTitle = "mx-auto flex max-w-[400px] flex-row gap-4 mt-2 w-full";
 const HomeMusic = ({ userId }: { userId: string }) => {
   const { data } = useGetPostTodayEmotionByIdQuery(userId);
 
@@ -18,7 +18,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
 
   if (isPending) {
     return (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <Link href={"/music"}>
           <div className={`${commonTitle}`}>
             <strong>오늘 추천 음악</strong>
@@ -39,7 +39,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
   const randomIndex = playNum > 0 ? Math.floor(Math.random() * playNum) : 1;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <Link href={"/music"}>
         <div className={`${commonTitle}`}>
           <strong>{EMOTIONS_QUERY[emotion]} 날 추천하는 노래</strong>
