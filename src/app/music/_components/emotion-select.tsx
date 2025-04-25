@@ -24,7 +24,7 @@ const EmotionSelect = ({
   const emotionKeys = Object.keys(EMOTIONS_QUERY) as (keyof typeof Emotion)[];
 
   return (
-    <div className="absolute left-5 top-14">
+    <div className="absolute left-5 top-14 min-w-[360px]">
       <div className="mb-3 flex items-center gap-2">
         {/* 드롭다운 버튼 */}
         <button
@@ -44,7 +44,7 @@ const EmotionSelect = ({
 
         {/* 드롭다운 목록 */}
         {open && (
-          <div className="absolute top-[30px] grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4">
+          <div className="absolute top-[30px] z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4">
             {emotionKeys.map((key) => {
               if (emotion === key) return null;
               const isWhiteOption = key === "SAD" || key === "ANGRY";

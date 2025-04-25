@@ -16,6 +16,12 @@ export const PASSWORD_VALIDATION = {
   },
 };
 
+export const PASSWORD_CONFIRM_VALIDATION = (password: string) => ({
+  required: { value: true, message: FORM_MESSAGE.PASSWORD_CONFIRM },
+  validate: (value: string) =>
+    value === password || "비밀번호가 일치하지 않습니다.",
+});
+
 export const NICKNAME_VALIDATION = {
   required: { value: true, message: FORM_MESSAGE.NICKNAME },
   maxLength: {

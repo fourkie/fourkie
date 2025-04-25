@@ -17,6 +17,9 @@ const config: Config = {
       lineHeight: {
         "4p": "1.04",
       },
+      screens: {
+        sm: '360px',
+      },
       colors: {
         primary: {
           50: "var(--color-primary-50)",

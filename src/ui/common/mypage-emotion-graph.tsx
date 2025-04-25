@@ -32,11 +32,9 @@ const MypageEmotionGraph = ({ userId }: { userId: string }) => {
   };
 
   return (
-    <div className="mb-6 w-full rounded-xl border border-primary-100 bg-white p-4">
-      <div className="mb-4 w-full text-right text-xs text-gray-400">
-        * 최근 3개월 통계
-      </div>
-      <div className="flex w-full items-end justify-between">
+    <div className="flex flex-col gap-3 rounded-2xl border border-primary-50 p-3">
+      <div className="text-right text-md text-grey-3">* 최근 3개월 통계</div>
+      <div className="flex items-end justify-between">
         {emotions.map((e, i) => {
           const percentageValue = parseFloat(e.percentage.replace("%", ""));
           const barHeight = Math.max(
@@ -47,7 +45,7 @@ const MypageEmotionGraph = ({ userId }: { userId: string }) => {
           return (
             <div
               key={i}
-              className="flex flex-col items-center justify-end gap-2 text-xs"
+              className="flex flex-col items-center justify-end gap-3 text-xs md:h-56"
             >
               <div
                 className="w-4 rounded-t-lg border px-7"
@@ -57,8 +55,8 @@ const MypageEmotionGraph = ({ userId }: { userId: string }) => {
                 }}
               ></div>
               <EmotionImage src={checkEmotion(e.emotion)} size="s" />
-              <div className="mt-1">{EMOTIONS_QUERY[e.emotion]}</div>
-              <div className="mt-1">{Math.floor(Number(percentageValue))}%</div>
+              <div>{EMOTIONS_QUERY[e.emotion]}</div>
+              <div>{Math.floor(Number(percentageValue))}%</div>
             </div>
           );
         })}

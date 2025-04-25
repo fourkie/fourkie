@@ -5,6 +5,7 @@ import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import {
   EMAIL_VALIDATION,
   NICKNAME_VALIDATION,
+  PASSWORD_CONFIRM_VALIDATION,
   PASSWORD_VALIDATION,
 } from "@/constants/validations.constant";
 import { useSignupMutation } from "@/hooks/mutations/auth-mutation";
@@ -20,6 +21,7 @@ const SignUpForm = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
+    watch,
   } = useForm<FormData>({
     mode: "onBlur",
   });
@@ -31,13 +33,13 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-primary-50 px-10">
-      <div className="mb-10 flex flex-col items-center">
+    <div className="mx-auto flex max-w-[360px] flex-col items-center justify-center gap-10 px-5">
+      <div className="flex flex-col items-center">
         <div className="mb-4 flex items-center justify-center rounded-full">
-          <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="l" />
+          <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.EXCITED} size="l" />
         </div>
-        <strong className="mb-1 text-xl text-grey-6">Smookie</strong>
-        <p className="text-center text-grey-6">
+        <strong className="mb-1 text-xl text-grey-8">Smookie</strong>
+        <p className="text-center text-sm text-grey-5">
           하루의 끝, 마음을 조용히 들여다보고 싶을 때
         </p>
       </div>
@@ -48,15 +50,6 @@ const SignUpForm = () => {
           type="email"
           placeholder={FORM_MESSAGE.EMAIL}
           error={errors.email?.message}
-          className="w-full rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
-        />
-
-        <Input
-          {...register("password", PASSWORD_VALIDATION)}
-          type="password"
-          placeholder={FORM_MESSAGE.PASSWORD}
-          error={errors.password?.message}
-          className="w-full rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
         />
 
         <Input
@@ -64,21 +57,36 @@ const SignUpForm = () => {
           type="text"
           placeholder={FORM_MESSAGE.NICKNAME}
           error={errors.nickname?.message}
-          className="w-full rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
         />
 
-        <Button
-          type="submit"
-          disabled={!isValid}
-          classname="w-full bg-primary-300 text-primary-800 py-3 rounded-xl mt-6"
-        >
-          <strong>회원가입</strong>
+        <Input
+          {...register("password", PASSWORD_VALIDATION)}
+          type="password"
+          placeholder={FORM_MESSAGE.PASSWORD}
+          error={errors.password?.message}
+        />
+
+        <Input
+          {...register(
+            "passwordConfirm",
+            PASSWORD_CONFIRM_VALIDATION(watch("password")),
+          )}
+          type="password"
+          placeholder={FORM_MESSAGE.PASSWORD_CONFIRM}
+          error={errors.passwordConfirm?.message}
+        />
+
+        <Button type="submit" disabled={!isValid}>
+          회원가입
         </Button>
       </form>
 
-      <div className="mt-10 w-full border border-grey-3" />
-      <div className="m-4 text-grey-3">
-        <Link href="/sign-in">이미 계정이 있으신가요?</Link>
+      <div className="flex w-full items-center gap-3 text-grey-3">
+        <div className="flex-grow border-b border-grey-3" />
+        <Link href="/sign-in" className="whitespace-nowrap text-sm">
+          이미 계정이 있으신가요?
+        </Link>
+        <div className="flex-grow border-b border-grey-3" />
       </div>
     </div>
   );

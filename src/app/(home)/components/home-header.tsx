@@ -1,7 +1,7 @@
 "use client";
 
+import PostingButton from "@/app/posting/_components/posting-button";
 import { useGetUserNicknameByIdQuery } from "@/hooks/queries/use-get-user-nickname-by-id-query";
-import { usePostingStore } from "@/hooks/zustand/posting-store";
 import { getUserIdClient } from "@/services/home-client-service";
 import { ChevronLeft } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -29,12 +29,9 @@ const backIconPaths = [
 ];
 
 const baseHeaderClass =
-  "header-mobile fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-3 z-40 h-[56px] min-w-[360px]";
+  "header-mobile fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-5 z-40 h-[56px] min-w-[360px]";
 
 const HomeHeader = () => {
-  const inputTitle = usePostingStore((state) => state.inputTitle);
-  const inputContent = usePostingStore((state) => state.inputContent);
-
   const pathname = usePathname();
   const [userId, setUserId] = useState<string | undefined>(undefined);
 
@@ -110,15 +107,7 @@ const HomeHeader = () => {
         <>
           <ChevronLeft className="cursor-pointer" onClick={handleBack} />
           <div className="mx-auto text-lg font-bold">{headertext}</div>
-          {pathname.startsWith("/posting") && (
-            <button
-              form="posting"
-              type="submit"
-              className={`bg-primary-50 px-2 py-1 text-base font-bold ${inputTitle && inputContent ? "text-primary-500" : "text-grey-3"}`}
-            >
-              완료
-            </button>
-          )}
+          {pathname.startsWith("/posting") && <PostingButton />}
         </>
       ) : (
         <div className="mx-auto text-lg font-bold">{headertext}</div>

@@ -1,6 +1,8 @@
 "use client";
 
+import { COOKIE_ALERT } from "@/constants/cookie-alert.constant";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
+import CookieAlert from "@/ui/common/cookie-alert.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
 
@@ -13,8 +15,14 @@ const HomeStack = ({ userId }: { userId: string }) => {
     return <div className={`${common}`}>로딩 중이예요!</div>;
   }
 
-  //1200으로 잡고 w? h? 100%로 잡기
-  //최신 순으로 받아온 거 오래된 순으로 바꾸기
+  if (myPosts.length === 0) {
+    return (
+      <div className="flex h-[200px] items-center justify-center rounded-xl border-2 border-dashed border-primary-200">
+        <CookieAlert text={COOKIE_ALERT.LIST.EMPTY_MY} isContent={true} />
+      </div>
+    );
+  }
+
   const posts = [...myPosts].reverse();
 
   return (

@@ -79,45 +79,36 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
       <form
         id="posting"
         onSubmit={handleSubmit(onSubmit)}
-        className="flex w-full flex-col gap-5 px-5 pt-2.5"
+        className="flex w-full flex-col gap-10"
       >
+        {/* Title */}
         <div className="relative flex flex-col gap-2">
-          <h2 className="text-center text-xl font-bold text-grey-5">Title</h2>
-
-          {!inputTitle && !isTitleFocused && (
-            <div className="pointer-events-none absolute left-0 top-9 w-full text-center font-omyu text-xl leading-4p text-grey-3">
-              {FORM_MESSAGE.POST.TITLE}
-            </div>
-          )}
-
+          <strong className="text-center text-xl text-grey-5">Title</strong>
           <textarea
             {...register("inputTitle")}
             maxLength={20}
-            className="w-full resize-none overflow-hidden whitespace-normal bg-transparent text-center font-omyu text-xl leading-4p text-grey-7 focus:outline-none"
+            placeholder={isTitleFocused ? "" : `${FORM_MESSAGE.POST.TITLE}`}
+            className="h-5 w-full resize-none text-center font-omyu text-lg leading-4 text-grey-8 placeholder-grey-3 focus:outline-none"
             onFocus={() => setIsTitleFocused(true)}
             onBlur={() => setIsTitleFocused(false)}
           />
         </div>
 
+        {/* Content */}
         <div className="relative flex flex-col gap-2">
-          <h2 className="text-center text-xl font-bold text-grey-5">Content</h2>
-
-          {!inputContent && !isContentFocused && (
-            <div className="pointer-events-none absolute left-0 top-9 w-full text-center font-omyu text-xl leading-4p text-grey-3">
-              {FORM_MESSAGE.POST.CONTENT}
-            </div>
-          )}
-
+          <strong className="text-center text-xl text-grey-5">Content</strong>
           <textarea
             {...register("inputContent")}
             maxLength={1000}
-            className="w-full resize-none overflow-hidden whitespace-pre-line bg-transparent text-center font-omyu text-xl leading-4p text-grey-7 focus:outline-none"
+            placeholder={isContentFocused ? "" : `${FORM_MESSAGE.POST.CONTENT}`}
+            className="h-5 w-full resize-none text-center font-omyu text-lg leading-4 text-grey-8 placeholder-grey-3 focus:outline-none"
             onFocus={() => setIsContentFocused(true)}
             onBlur={() => setIsContentFocused(false)}
           />
         </div>
       </form>
 
+      {/* 감정 분석 모달 */}
       <PostingEmotionModal
         userId={userId}
         emotion={data}

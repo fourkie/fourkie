@@ -6,7 +6,7 @@ interface ListTab {
 }
 
 export const useTabStore = create<ListTab>((set) => ({
-  selectedTab: 'my',
+  selectedTab: 'firstTab',
   setSelectedTab: (tab: string) => set({ selectedTab: tab }),
 }));
 
