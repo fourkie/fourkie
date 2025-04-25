@@ -25,9 +25,9 @@ export const useSignupMutation = () => {
     },
     onError: (error) => {
       if (error.message === "User already registered") {
-        toast.error(TOAST_MESSAGE.SIGNUP.DUPLICATE_EMAIL);
+        toast.warning(TOAST_MESSAGE.SIGNUP.DUPLICATE_EMAIL);
       } else if (error.message === "Database error saving new user") {
-        toast.error(TOAST_MESSAGE.SIGNUP.DUPLICATE_NICKNAME);
+        toast.warning(TOAST_MESSAGE.SIGNUP.DUPLICATE_NICKNAME);
       } else {
         toast.error(TOAST_MESSAGE.SIGNUP.SIGNUP_ERROR);
       }
@@ -52,7 +52,7 @@ export const useSignInMutation = () => {
     },
     onError: (error) => {
       if (error.message === "Invalid login credentials") {
-        toast.error(TOAST_MESSAGE.SIGNIN.ERROR);
+        toast.warning(TOAST_MESSAGE.SIGNIN.ERROR);
       } else {
         toast.error(TOAST_MESSAGE.SIGNIN.SIGNIN_ERROR);
       }
