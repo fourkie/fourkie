@@ -28,8 +28,8 @@ const Posting = async () => {
   const day = dayjs().format("dddd");
 
   return (
-    <div className="ml-5 mr-6">
-      <div className="flex gap-2 pt-4 font-bold">
+    <div className="ml-5 mr-6 mt-14">
+      <div className="flex gap-2 pt-4 font-bold text-grey-7">
         <span className="text-xl">{date}</span>
         <span className="text-lg">{day}</span>
       </div>

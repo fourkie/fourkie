@@ -1,10 +1,5 @@
 import { Emotion } from "@/constants/spotify.constant";
-
-export interface SpotifyAccessToken {
-  accessToken: string;
-  expiresIn: number;
-  success: boolean;
-}
+import { Dispatch, SetStateAction } from "react";
 
 export interface SpotifyImage {
   url: string;
@@ -26,27 +21,22 @@ export interface SpotifyPlaylistItem {
   uri: string;
 }
 
-export interface Musics extends SpotifyPlaylistItem {
-  userId: string;
-  music_playlist_id: string;
+export interface EmotionSelectProps {
+  emotion: keyof typeof Emotion;
+  onChange: (emotion: keyof typeof Emotion) => void;
+  todayEmotion?: keyof typeof Emotion | null;
 }
 
-export type SpotifyPlaylistList = SpotifyPlaylistItem[];
-
-export interface EmotionSelectProps {
-  emotion: Emotion;
-  onChange: (value: Emotion) => void;
-  todayEmotion: Emotion;
+export interface PlaylistTabContainerProps {
+  userId: string;
+  emotion: keyof typeof Emotion;
+  activeTab: PlaylistTabProps;
+  onTabChange: Dispatch<SetStateAction<PlaylistTabProps>>;
 }
 
 export enum PlaylistTabProps {
   RECOMMEND = "recommend",
   BOOKMARK = "bookmark",
-}
-
-export interface TabButtonsProps {
-  activeTab: PlaylistTabProps | undefined;
-  onTabChange: (tab: PlaylistTabProps) => void;
 }
 
 export interface TabButtonProps {
@@ -56,13 +46,10 @@ export interface TabButtonProps {
   activeTab: PlaylistTabProps;
 }
 
-export interface BookmarkMutationPayload {
-  music_playlist_id: string;
-  name: string;
-  external_urls: { spotify: string };
-  images: { url: string }[];
-  tracks: { href: string; total: number };
-  uri: string;
+export interface PlaylistContentProps {
+  userId: string;
+  activeTab: PlaylistTabProps;
+  emotion?: keyof typeof Emotion;
 }
 
 export interface PlaylistCardProps {
@@ -70,7 +57,7 @@ export interface PlaylistCardProps {
   userId: string;
 }
 
-export type RecommendPlaylistsProps = {
+export type BookmarkedProps = {
+  musicPlaylistId: string;
   userId: string;
-  emotion: string;
 };

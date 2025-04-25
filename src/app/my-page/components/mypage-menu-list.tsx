@@ -16,7 +16,7 @@ const MypageMenuList = () => {
         <MypageMenuItem
           href="/friends"
           label="내 친구"
-          icon={<HeartHandshake size={18} />}
+          icon={<HeartHandshake size={20} />}
         />
       </li>
       <li>
@@ -24,6 +24,9 @@ const MypageMenuList = () => {
       </li>
       <li>
         <MypageMenuItem href="/terms" label="약관정책" />
+      </li>
+      <li>
+        <MypageMenuItem href="/tutorial?from=my-page" label="스무키 사용법" />
       </li>
       <li>
         <MypageMenuItem href="/smookie-makers" label="스무키 베이커스" />
@@ -37,7 +40,7 @@ const MypageMenuList = () => {
                 queryClient.clear();
               })
             }
-            className="flex w-full items-center gap-2 px-4 py-3 text-left font-medium text-secondary-300"
+            className="flex w-full items-center gap-2 py-3 text-left font-medium text-secondary-300"
           >
             <LogOut size={18} />
             로그아웃

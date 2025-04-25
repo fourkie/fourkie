@@ -1,8 +1,8 @@
 import createClient from "@/services/supabase-server-service";
-import PostingForm from "../_components/posting-form";
-import { redirect } from "next/navigation";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
+import { redirect } from "next/navigation";
+import PostingForm from "../_components/posting-form";
 
 const Edit = async ({ params }: { params: { id: string } }) => {
   const { id: postId } = params;
@@ -23,12 +23,13 @@ const Edit = async ({ params }: { params: { id: string } }) => {
   const day = dayjs().format("dddd");
 
   return (
-    <div className="ml-5 mr-6">
-      <div className="flex gap-2 pt-4 font-bold">
+    <div className="ml-5 mr-6 mt-14">
+      <div className="flex gap-2 pt-4 font-bold text-grey-7">
         <span className="text-xl">{date}</span>
         <span className="text-lg">{day}</span>
       </div>
-      <hr className="my-2.5 w-full border-grey-0 " />
+      <hr className="my-2.5 w-full border-grey-0" />
+
       <PostingForm postId={postId} userId={userId} />
     </div>
   );

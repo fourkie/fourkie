@@ -3,6 +3,7 @@
 import { FORM_MESSAGE } from "@/constants/form-message.constant";
 import { useGetAnalyzedPostEmotionMutation } from "@/hooks/mutations/use-get-analyzed-post-emotion-mutation";
 import { useGetPostsByPostIdQuery } from "@/hooks/queries/use-get-posts-by-postId-query";
+import { usePostingStore } from "@/hooks/zustand/posting-store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -10,30 +11,46 @@ import { PostingFormValues, UserDateProps } from "../type";
 import PostingEmotionModal from "./posting-emotion-modal";
 
 const PostingForm = ({ postId, userId }: UserDateProps) => {
+  const inputTitle = usePostingStore((state) => state.inputTitle);
+  const inputContent = usePostingStore((state) => state.inputContent);
+  const setInputTitle = usePostingStore((state) => state.setInputTitle);
+  const setInputContent = usePostingStore((state) => state.setInputContent);
+
   const [isTitleFocused, setIsTitleFocused] = useState(false);
   const [isContentFocused, setIsContentFocused] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // query, mutation 함수
-  const { mutate, data, isPending } =
-    useGetAnalyzedPostEmotionMutation(setIsModalOpen);
-  const { data: postData } = useGetPostsByPostIdQuery({ postId });
-
-  // react-hook-form을 사용하여 폼 상태 관리
-  const { register, handleSubmit, watch, setValue } =
-    useForm<PostingFormValues>();
-  const inputTitle = watch("inputTitle");
-  const inputContent = watch("inputContent");
-
   const router = useRouter();
 
-  // 감정 분석 결과를 처리하는 함수
+  const { mutate, data, isPending } =
+    useGetAnalyzedPostEmotionMutation(setIsModalOpen);
+
+  const { data: postData } = useGetPostsByPostIdQuery({ postId });
+
+  const { register, handleSubmit, watch, setValue } =
+    useForm<PostingFormValues>({
+      defaultValues: {
+        inputTitle,
+        inputContent,
+      },
+    });
+
+  // react-hook-form을 사용하여 폼 상태 관리
+  useEffect(() => {
+    const subscription = watch((value) => {
+      setInputTitle(value.inputTitle || "");
+      setInputContent(value.inputContent || "");
+    });
+
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
+  /** 제목과 내용이 비어있지 않은 경우 감정 분석 API를 호출 */
   const onSubmit = ({ inputTitle, inputContent }: PostingFormValues) => {
     if (!inputTitle.trim() || !inputContent.trim()) return;
     mutate(inputContent);
   };
 
-  // 게시글 수정 시 내가 작성한 게시글인지 확인
+  // 게시글 수정 시 내가 작성한 게시글인지 확인하고 폼 초기화
   useEffect(() => {
     if (!postId || !postData || !postData[0]) return;
 
@@ -47,11 +64,15 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
   }, [postData, userId, setValue, router]);
 
   // textarea 높이 자동 조절 함수
-  const handleAutoResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const target = e.target;
-    target.style.height = "auto";
-    target.style.height = `${target.scrollHeight}px`;
-  };
+  useEffect(() => {
+    const textarea = document.querySelector(
+      "textarea[name='inputContent']",
+    ) as HTMLTextAreaElement;
+    if (textarea) {
+      textarea.style.height = "auto";
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+  }, [inputContent]);
 
   return (
     <>
@@ -61,10 +82,10 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
         className="flex w-full flex-col gap-5 px-5 pt-2.5"
       >
         <div className="relative flex flex-col gap-2">
-          <h2 className="text-center text-xl font-bold text-grey-4">Title</h2>
+          <h2 className="text-center text-xl font-bold text-grey-5">Title</h2>
 
           {!inputTitle && !isTitleFocused && (
-            <div className="font-omyu pointer-events-none absolute left-0 top-9 w-full text-center text-xl leading-4p text-grey-2">
+            <div className="pointer-events-none absolute left-0 top-9 w-full text-center font-omyu text-xl leading-4p text-grey-3">
               {FORM_MESSAGE.POST.TITLE}
             </div>
           )}
@@ -72,20 +93,17 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           <textarea
             {...register("inputTitle")}
             maxLength={20}
-            className="font-omyu w-full resize-none overflow-hidden whitespace-normal bg-transparent text-center text-xl leading-4p text-black focus:outline-none"
+            className="w-full resize-none overflow-hidden whitespace-normal bg-transparent text-center font-omyu text-xl leading-4p text-grey-7 focus:outline-none"
             onFocus={() => setIsTitleFocused(true)}
             onBlur={() => setIsTitleFocused(false)}
-            onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              handleAutoResize(e)
-            }
           />
         </div>
 
         <div className="relative flex flex-col gap-2">
-          <h2 className="text-center text-xl font-bold text-grey-4">Content</h2>
+          <h2 className="text-center text-xl font-bold text-grey-5">Content</h2>
 
           {!inputContent && !isContentFocused && (
-            <div className="font-omyu pointer-events-none absolute left-0 top-9 w-full text-center text-xl leading-4p text-grey-2">
+            <div className="pointer-events-none absolute left-0 top-9 w-full text-center font-omyu text-xl leading-4p text-grey-3">
               {FORM_MESSAGE.POST.CONTENT}
             </div>
           )}
@@ -93,20 +111,15 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           <textarea
             {...register("inputContent")}
             maxLength={1000}
-            className="font-omyu w-full resize-none overflow-hidden whitespace-pre-line bg-transparent text-center text-xl leading-4p text-black focus:outline-none"
+            className="w-full resize-none overflow-hidden whitespace-pre-line bg-transparent text-center font-omyu text-xl leading-4p text-grey-7 focus:outline-none"
             onFocus={() => setIsContentFocused(true)}
             onBlur={() => setIsContentFocused(false)}
-            onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              handleAutoResize(e)
-            }
           />
         </div>
       </form>
 
       <PostingEmotionModal
         userId={userId}
-        title={inputTitle}
-        content={inputContent}
         emotion={data}
         postId={postId}
         isPending={isPending}

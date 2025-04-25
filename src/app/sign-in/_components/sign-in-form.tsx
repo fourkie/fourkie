@@ -28,17 +28,18 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-primary-50 px-6">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-primary-50 px-10">
       <div className="mb-10 flex flex-col items-center">
         <div className="mb-4 flex items-center justify-center rounded-full">
           <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="l" />
         </div>
-        <h1 className="mb-1 text-xl font-bold text-grey-6">Smookie</h1>
+        <strong className="mb-1 text-xl text-grey-6">Smookie</strong>
         <p className="text-center text-grey-6">
           하루의 끝, 마음을 조용히 들여다보고 싶을 때
         </p>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xs">
+
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
         <Input
           {...register("email", EMAIL_VALIDATION)}
           type="email"
@@ -46,6 +47,7 @@ const SignInForm = () => {
           error={errors.email?.message}
           className="w-full rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
         />
+
         <Input
           {...register("password", PASSWORD_VALIDATION)}
           type="password"
@@ -53,14 +55,16 @@ const SignInForm = () => {
           error={errors.password?.message}
           className="w-full rounded-xl border-none bg-white px-4 py-3 shadow-sm focus:outline-none"
         />
+
         <Button
           type="submit"
           disabled={!isValid}
-          classname="w-full bg-primary-300 text-primary-800 font-semibold py-3 rounded-xl mt-6"
+          classname="w-full bg-primary-300 text-primary-800 py-3 rounded-xl mt-6"
         >
-          로그인
+          <strong>로그인</strong>
         </Button>
       </form>
+
       <div className="mt-10 w-full border border-grey-2" />
       <Link href="/sign-up" className="m-4 text-grey-3">
         회원가입하기

@@ -1,17 +1,15 @@
 "use client";
 
-import { PostingResultModalProps } from "../type";
-import { useEffect, useState } from "react";
-import { convertEmotions } from "@/utils/emotion-convert";
 import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
-import PostingEmotionModalSlide from "./posting-emotion-modal-slice";
+import { convertEmotions } from "@/utils/emotion-convert";
+import { useEffect, useState } from "react";
+import { PostingResultModalProps } from "../type";
 import PostingEmotionModalButton from "./posting-emotion-modal-button";
 import PostingEmotionModalLoading from "./posting-emotion-modal-loading";
+import PostingEmotionModalSlide from "./posting-emotion-modal-slice";
 
 const PostingEmotionModal = ({
   userId,
-  title,
-  content,
   emotion,
   postId,
   isPending,
@@ -40,9 +38,9 @@ const PostingEmotionModal = ({
   return (
     <>
       {emotion && isModalOpen && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50">
-          <div className="flex flex-col gap-5 bg-white rounded-2xl w-full mx-5 px-12 py-6 shadow-lg">
-            <h2 className="text-xl font-bold text-center text-grey-7">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90">
+          <div className="mx-5 flex w-full flex-col gap-5 rounded-2xl bg-white px-12 py-6 shadow-lg">
+            <h2 className="text-center text-xl font-bold text-grey-7">
               {EMOTIONS_QUERY[currentEmotionKey]}
             </h2>
 
@@ -52,7 +50,7 @@ const PostingEmotionModal = ({
               setSlideIndex={setSlideIndex}
             />
 
-            <p className="text-center font-medium text-sm text-grey-5">
+            <p className="text-center text-sm font-medium text-grey-5">
               선택된 감정에 어울리는
               <br />
               플레이 리스트를 추천해드릴게요!
@@ -61,8 +59,6 @@ const PostingEmotionModal = ({
             <PostingEmotionModalButton
               onClose={() => setIsModalOpen(false)}
               userId={userId}
-              title={title}
-              content={content}
               currentEmotion={currentEmotionKey}
               postId={postId}
             />

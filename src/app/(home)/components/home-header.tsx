@@ -1,6 +1,7 @@
 "use client";
 
 import { useGetUserNicknameByIdQuery } from "@/hooks/queries/use-get-user-nickname-by-id-query";
+import { usePostingStore } from "@/hooks/zustand/posting-store";
 import { getUserIdClient } from "@/services/home-client-service";
 import { ChevronLeft } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -28,9 +29,12 @@ const backIconPaths = [
 ];
 
 const baseHeaderClass =
-  "fixed top-0 z-50 w-[393px] left-1/2 -translate-x-1/2 lg:w-full flex flex-row items-center justify-between bg-primary-50 p-3 h-[56px]";
+  "header-mobile fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-5 z-40 h-[56px] min-w-[360px]";
 
 const HomeHeader = () => {
+  const inputTitle = usePostingStore((state) => state.inputTitle);
+  const inputContent = usePostingStore((state) => state.inputContent);
+
   const pathname = usePathname();
   const [userId, setUserId] = useState<string | undefined>(undefined);
 
@@ -82,8 +86,8 @@ const HomeHeader = () => {
   if (pathname === "/") {
     return (
       <div className={baseHeaderClass}>
-        <div className="mx-auto text-lg font-bold">
-          {nickname?.user_nickname}
+        <div className="mx-auto text-lg">
+          <strong>{nickname?.user_nickname}</strong>
         </div>
       </div>
     );
@@ -106,14 +110,13 @@ const HomeHeader = () => {
         <>
           <ChevronLeft className="cursor-pointer" onClick={handleBack} />
           <div className="mx-auto text-lg font-bold">{headertext}</div>
-          <div className="w-6"></div>
           {pathname.startsWith("/posting") && (
             <button
               form="posting"
               type="submit"
-              className="absolute right-5 top-4 z-50 rounded-lg bg-primary-700 px-2 py-1 text-sm font-medium text-secondary-50"
+              className={`bg-primary-50 px-2 py-1 text-base font-bold ${inputTitle && inputContent ? "text-primary-500" : "text-grey-3"}`}
             >
-              게시
+              완료
             </button>
           )}
         </>

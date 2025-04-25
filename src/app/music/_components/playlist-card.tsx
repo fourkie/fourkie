@@ -5,7 +5,6 @@ import {
 import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
 import { Star } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { PlaylistCardProps } from "../type";
 
 const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
@@ -34,7 +33,7 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   };
 
   return (
-    <div className="h-20 border-b border-b-grey-1">
+    <div className="h-20 border-b border-b-grey-1 last:border-none">
       <div className="justify-arround my-3 flex items-center gap-2">
         <button
           className="flex items-center justify-center"
@@ -49,7 +48,7 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
             size={18}
           />
         </button>
-        <Link
+        <a
           href={playlist.external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
@@ -65,9 +64,9 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
               className="h-full w-full object-cover"
             />
           </div>
-          <p className="flex-1 truncate text-base font-bold">{playlist.name}</p>
+          <strong className="flex-1 truncate text-base">{playlist.name}</strong>
           <p className="text-xs text-grey-5">{playlist.tracks.total}곡</p>
-        </Link>
+        </a>
       </div>
     </div>
   );

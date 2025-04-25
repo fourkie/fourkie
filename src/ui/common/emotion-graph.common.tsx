@@ -46,17 +46,17 @@ const EmotionGraph = ({
   if (!openPopup) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center w-full bg-white p-5 font-pretendard rounded-xl">
+    <div className="flex w-full flex-col items-center justify-center rounded-xl bg-white p-5 font-pretendard">
       {page === "list" && (
-        <div className="flex justify-between items-center w-full border-grey-1 border-b-2 pb-4 mb-1">
-          <div className="text-xl font-bold">{nickname}</div>
+        <div className="mb-1 flex w-full items-center justify-between border-b-2 border-grey-1 pb-4">
+          <strong className="text-xl">{nickname}</strong>
           <X className="cursor-pointer" onClick={setOpenPopup} />
         </div>
       )}
-      <div className="text-xs w-full text-right mb-2 text-grey-2 mt-2">
+      <div className="mb-2 mt-2 w-full text-right text-xs text-grey-2">
         * 최근 3개월 통계
       </div>
-      <div className="flex items-end justify-end text-xs gap-2">
+      <div className="flex items-end justify-end gap-2 text-xs">
         {emotions.map((e, i) => {
           const percentageValue = parseFloat(e.percentage.replace("%", ""));
           const barHeight = Math.max(
@@ -67,10 +67,10 @@ const EmotionGraph = ({
           return (
             <div
               key={i}
-              className="flex flex-col items-center justify-end text-xs gap-2"
+              className="flex flex-col items-center justify-end gap-2 text-xs"
             >
               <div
-                className="w-4 border rounded-t-lg px-7"
+                className="w-4 rounded-t-lg border px-7"
                 style={{
                   height: `${barHeight}px`,
                   backgroundColor: `var(--color-${color[e.emotion]})`,

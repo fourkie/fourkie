@@ -11,6 +11,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import HomeDate from "./home-date";
 
+const changeStyle =
+  "md:max-w-2xl md:max-h-[700px] lg:max-w-4xl lg:max-h-[800px] md:border-primary-200 md:border-2 md:border-dashed md:bg-[#F7FAF2] ";
+
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const [currentDate, setCurrentDate] = useState(dayjs());
 
@@ -37,8 +40,10 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   // 펜딩 or 에러일 때 크기 같게 유지하려고 min-h-500px 줬습니다.
   if (isPending || isError)
     return (
-      <div className="mx-auto flex min-h-[23rem] items-center justify-center rounded-xl border border-secondary-100 shadow-[0_0_6px_0_rgba(0,0,0,0.10)]">
-        <span className="text-lg text-grey-3">
+      <div
+        className={`mx-auto flex min-h-[25rem] w-full max-w-md items-center justify-center rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
+      >
+        <span className="text-md text-grey-3">
           {isPending ? QUERYDATA.ISPENDING : QUERYDATA.ISERROR}
         </span>
       </div>
@@ -64,7 +69,9 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   for (let i = 1; i <= daysInMonth; i++) days.push(i);
 
   return (
-    <div className="mx-auto my-5 w-full max-w-md rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)]">
+    <div
+      className={`mx-auto min-w-[250px] max-w-[400px] rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
+    >
       <div className="flex items-center justify-between">
         <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
         <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
@@ -86,20 +93,23 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
             index === 0 ? (
               <div
                 key={index}
-                className="text-center font-semibold text-secondary-200"
+                className="md:text-md text-center font-semibold text-secondary-200 xl:text-xl"
               >
                 {d}
               </div>
             ) : (
               <div
                 key={index}
-                className="text-center font-semibold text-primary-200"
+                className="md:text-md text-center font-semibold text-primary-200 xl:text-xl"
               >
                 {d}
               </div>
             )
           ) : (
-            <div key={index} className="text-center font-semibold">
+            <div
+              key={index}
+              className="md:text-md text-center font-semibold xl:text-xl"
+            >
               {d}
             </div>
           ),
@@ -115,7 +125,6 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
 
           const handleClick = () => {
             if (!day || isFuture) return;
-            //주스탄드 해결
             const formattedDate = dayjs(
               `${currentDate.year()}-${currentDate.month() + 1}-${day}`,
               "YYYY-M-D",
@@ -128,10 +137,10 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
           return (
             <div
               key={idx}
-              className={`relative flex h-[3rem] items-center justify-center rounded-lg ${
-                isFuture
-                  ? "cursor-not-allowed text-grey-3"
-                  : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-50"
+              className={`relative flex h-[3rem] items-center justify-center rounded-md md:h-[5rem] lg:h-[6.5rem] xl:h-[7rem] ${
+                isFuture || day === null
+                  ? "text-grey-3"
+                  : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-50 md:hover:bg-[#F7FAF2]"
               }`}
             >
               {day && (
@@ -144,7 +153,9 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
                       />
                     </div>
                   ) : (
-                    <span>{day}</span>
+                    <span className="md:text-md lg:text-lg xl:text-xl">
+                      {day}
+                    </span>
                   )}
                 </>
               )}
