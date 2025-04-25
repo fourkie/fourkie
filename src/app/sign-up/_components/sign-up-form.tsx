@@ -36,7 +36,7 @@ const SignUpForm = () => {
     <div className="flex min-h-screen flex-col items-center justify-center bg-primary-50 px-10">
       <div className="mb-10 flex flex-col items-center">
         <div className="mb-4 flex items-center justify-center rounded-full">
-          <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="l" />
+          <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.EXCITED} size="l" />
         </div>
         <strong className="mb-1 text-xl text-grey-6">Smookie</strong>
         <p className="text-center text-grey-6">
