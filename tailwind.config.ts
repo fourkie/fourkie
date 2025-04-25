@@ -75,11 +75,22 @@ const config: Config = {
             opacity: "1",
           },
         },
+        friend2: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(-10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
       },
       animation: {
         list2: "list2 0.4s ease-in-out",
         list3: "list3 0.4s ease-in-out",
         music2: "music2 0.5s ease-out",
+        friend2: "friend2 0.4s ease-in-out forwards",
       },
     },
   },
