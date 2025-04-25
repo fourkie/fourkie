@@ -9,8 +9,8 @@ const PlaylistTabContainer = ({
   onTabChange,
 }: PlaylistTabContainerProps) => {
   return (
-    <div className="flex flex-col gap-3 px-5">
-      <strong className="fixed left-1/2 top-64 z-50 flex min-w-[393px] -translate-x-1/2 transform items-center justify-center gap-10 bg-white py-2 pt-4 text-sm lg:w-full lg:min-w-0">
+    <div className="absolute left-0 top-0 z-30 flex w-full flex-col">
+      <strong className="sticky left-0 top-40 z-30 flex items-center justify-center gap-10 bg-white p-4 text-sm md:top-52">
         <TabButton
           isActive={activeTab === PlaylistTabProps.RECOMMEND}
           onClick={() => onTabChange(PlaylistTabProps.RECOMMEND)}
