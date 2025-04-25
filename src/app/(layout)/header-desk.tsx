@@ -28,7 +28,7 @@ const HeaderDesk = () => {
   return (
     <>
       <div className="header-desk fixed top-0 z-40 hidden h-[56px] w-full bg-primary-50 md:block">
-        <div className="mx-auto flex h-full w-full max-w-[1024px] items-center justify-between p-5 text-grey-6">
+        <div className="mx-auto flex h-full w-full max-w-[1024px] items-center justify-between p-5 text-grey-8">
           <Link href="/" className="flex items-center gap-2">
             <Image src="/images/joy.png" width={39} height={39} alt="조이" />
             <strong className="text-xl">Smookie</strong>

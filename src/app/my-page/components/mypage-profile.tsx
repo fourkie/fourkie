@@ -67,7 +67,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
               onChange={(e) => setNewNickname(e.target.value)}
             />
           ) : (
-            <strong className="flex items-center justify-center text-xl text-grey-7">
+            <strong className="flex items-center justify-center text-xl text-grey-8">
               {nickname}
             </strong>
           )}
