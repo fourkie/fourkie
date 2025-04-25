@@ -9,7 +9,7 @@ export const signUp = async (data: FieldValues) => {
   const supabaseClient = createClient();
 
   try {
-    await supabaseClient.auth.signUp({
+    const { error } = await supabaseClient.auth.signUp({
       email,
       password,
       options: {
@@ -18,6 +18,8 @@ export const signUp = async (data: FieldValues) => {
         },
       },
     });
+
+    if (error) throw error;
   } catch (error) {
     throw error;
   }
