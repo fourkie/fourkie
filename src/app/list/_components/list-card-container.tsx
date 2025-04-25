@@ -18,11 +18,6 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   //그 달의 게시물만 가져와야 함
   const { data: myPosts } = useGetAllPostsByIdQuery({ userId });
 
-  const tabs = [
-    { id: "firstTab", label: "내 기록 보기" },
-    { id: "secondTab", label: "친구 기록 보기" },
-  ];
-
   const [activeTab, setActiveTab] = useState(selectedTab);
 
   const sortedMyPosts = myPosts
@@ -49,7 +44,12 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
 
   return (
     <div className="relative flex h-full min-h-screen flex-col gap-4 bg-primary-50 px-5 pb-32">
-      <Tab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Tab
+        firstTab="내 기록 보기"
+        secondTab="친구 기록 보기"
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
       <div className="flex flex-col gap-5">
         {activeTab === "firstTab"
           ? sortedMyPosts?.map((post) => {
