@@ -1,6 +1,6 @@
 "use client";
 
-import Tab from "@/ui/common/tab";
+import Tab from "@/ui/common/tab.common";
 import { useState } from "react";
 import ReceivedFriendList from "./components/friend-request-received-friend-list";
 import SentFriendList from "./components/friend-request-sent-friend-list";
@@ -15,7 +15,7 @@ const Request = () => {
 
   return (
     <div className="min-h-screen space-y-4 border px-4 pb-6">
-      <Tab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Tab firstTab="받은 요청" secondTab="보낸 요청" activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTab === "firstTab" ? <ReceivedFriendList /> : <SentFriendList />}
     </div>
   );

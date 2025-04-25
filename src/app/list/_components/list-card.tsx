@@ -4,9 +4,9 @@ import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import { useRemovePostMutation } from "@/hooks/mutations/use-remove-post-mutation";
 import { useGetUserByIdQuery } from "@/hooks/queries/use-get-user-by-id-query";
 import { Posts } from "@/types/posts.type";
-import EmotionGraph from "@/ui/common/emotion-graph";
+import EmotionGraph from "@/ui/common/emotion-graph.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
-import Popup from "@/ui/common/popup";
+import Popup from "@/ui/common/popup-bg.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
 import { ChevronDown, ChevronUp, Pencil, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -58,12 +58,12 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 rounded-xl bg-white p-3 px-5 py-4 font-omyu leading-4p text-black">
+    <div className="flex flex-col items-center text-grey-8 gap-4 rounded-xl bg-white p-3 px-5 py-4 font-omyu leading-4p text-black">
       <div className="flex w-full items-center justify-between">
-        <div className="w-24 text-grey-5 font-bold">{date}</div>
-        <div className="text-center font-bold">
+        <strong className="w-24 text-grey-5">{date}</strong>
+        <strong className="text-center">
           {EMOTIONS_QUERY[post_emotion]}
-        </div>
+        </strong>
         {isMyPost ? (
           <div className="flex w-[80px] justify-end gap-3">
             <Pencil className="w-5 cursor-pointer" onClick={handleEdit} />
@@ -91,26 +91,26 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       </div>
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
       {!isMyPost && (
-        <div className="text-center font-omyu font-bold leading-4p">
+        <strong className="text-center font-omyu leading-4p">
           오늘 &nbsp;
           <span className="font-omyu leading-4p text-secondary-200">
             {user?.user_nickname}
           </span>
           님! <br /> {EMOTIONS_QUERY[post_emotion]}
           날이시네요!
-        </div>
+        </strong>
       )}
       {isMyPost && (
         <div className="flex flex-col items-center">
-          <div className="text-xl font-bold">{post_title}</div>
-          <div
+          <strong className="text-xl">{post_title}</strong>
+          <strong
             ref={contentRef}
-            className={`w-full break-all text-center text-lg font-bold ${
+            className={`w-full break-all text-center text-lg ${
               isExpanded ? "line-clamp-none" : "line-clamp-2"
             }`}
           >
             {post_content}
-          </div>
+          </strong>
         </div>
       )}
 
