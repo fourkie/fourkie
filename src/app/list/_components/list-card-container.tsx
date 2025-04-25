@@ -78,7 +78,6 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
           <CookieAlert text={COOKIE_ALERT.LIST.EMPTY_FRIEND} />
         )}
       </div>
-      {/* <Alert title="알람" contents={ALERT_MESSAGE.LIST.DELETE}></Alert> */}
     </div>
   );
 };

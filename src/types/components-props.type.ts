@@ -8,6 +8,7 @@ export interface ButtonProps {
   icon?: ReactNode; // 아이콘
   iconPosition?: "left" | "right"; // 아이콘 위치
   classname?: string;
+  backgroundColor?: string; // 배경색
 }
 
 export interface InputProps {
