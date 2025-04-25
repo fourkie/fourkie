@@ -1,12 +1,15 @@
 "use client";
 
+import { ALERT_MESSAGE } from "@/constants/alert-message";
 import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import { useRemovePostMutation } from "@/hooks/mutations/use-remove-post-mutation";
 import { useGetUserByIdQuery } from "@/hooks/queries/use-get-user-by-id-query";
 import { Posts } from "@/types/posts.type";
-import EmotionGraph from "@/ui/common/emotion-graph";
+import Alert from "@/ui/common/alert.common";
+import Button from "@/ui/common/button.common";
+import EmotionGraph from "@/ui/common/emotion-graph.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
-import Popup from "@/ui/common/popup";
+import Popup from "@/ui/common/popup-bg.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
 import { ChevronDown, ChevronUp, Pencil, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -28,7 +31,8 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   });
   const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(false);
-  const [openPopup, setOpenPopup] = useState(false);
+  const [openGraphPopup, setOpenGraphPopup] = useState(false);
+  const [openDeletePopup, setOpenDeletePopup] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
 
   const contentRef = useRef<HTMLDivElement>(null);
@@ -49,8 +53,13 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
 
   const date = post_created_at.split("T")[0];
 
+  const handleDeleteButton = () => {
+    setOpenDeletePopup(true);
+  };
+
   const handleDelete = () => {
     removePost();
+    setOpenDeletePopup(false);
   };
 
   const handleEdit = () => {
@@ -58,31 +67,32 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 rounded-xl bg-white p-3 px-5 py-4 font-omyu leading-4p text-black">
+    <div className="font-omyu flex flex-col items-center gap-4 rounded-xl bg-white p-3 px-5 py-4 leading-4p text-black text-grey-8">
       <div className="flex w-full items-center justify-between">
-        <div className="w-24 text-grey-5 font-bold">{date}</div>
-        <div className="text-center font-bold">
-          {EMOTIONS_QUERY[post_emotion]}
-        </div>
+        <strong className="w-24 text-grey-5">{date}</strong>
+        <strong className="text-center">{EMOTIONS_QUERY[post_emotion]}</strong>
         {isMyPost ? (
           <div className="flex w-[80px] justify-end gap-3">
             <Pencil className="w-5 cursor-pointer" onClick={handleEdit} />
-            <Trash2 className="w-5 cursor-pointer" onClick={handleDelete} />
+            <Trash2
+              className="w-5 cursor-pointer"
+              onClick={handleDeleteButton}
+            />
           </div>
         ) : (
           <div
-            className="w-24 cursor-pointer text-grey-5 text-right font-pretendard"
-            onClick={() => setOpenPopup(!openPopup)}
+            className="w-24 cursor-pointer text-right font-pretendard text-grey-5"
+            onClick={() => setOpenGraphPopup(!openGraphPopup)}
           >
             프로필 보러가기
           </div>
         )}
-        {openPopup && (
+        {openGraphPopup && (
           <Popup>
             <EmotionGraph
-              page="list"
-              openPopup={openPopup}
-              setOpenPopup={() => setOpenPopup(!openPopup)}
+              isListPage={true}
+              openPopup={openGraphPopup}
+              setOpenPopup={() => setOpenGraphPopup(!openGraphPopup)}
               userId={user_id}
               nickname={user?.user_nickname}
             />
@@ -91,26 +101,26 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       </div>
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
       {!isMyPost && (
-        <div className="text-center font-omyu font-bold leading-4p">
+        <strong className="font-omyu text-center leading-4p">
           오늘 &nbsp;
           <span className="font-omyu leading-4p text-secondary-200">
             {user?.user_nickname}
           </span>
           님! <br /> {EMOTIONS_QUERY[post_emotion]}
           날이시네요!
-        </div>
+        </strong>
       )}
       {isMyPost && (
         <div className="flex flex-col items-center">
-          <div className="text-xl font-bold">{post_title}</div>
-          <div
+          <strong className="text-xl">{post_title}</strong>
+          <strong
             ref={contentRef}
-            className={`w-full break-all text-center text-lg font-bold ${
+            className={`w-full break-all text-center text-lg ${
               isExpanded ? "line-clamp-none" : "line-clamp-2"
             }`}
           >
             {post_content}
-          </div>
+          </strong>
         </div>
       )}
 
@@ -121,6 +131,20 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         >
           {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </div>
+      )}
+      {openDeletePopup && (
+        <Alert title="알람" contents={ALERT_MESSAGE.LIST.DELETE}>
+          <Button
+            type="button"
+            onClick={() => setOpenDeletePopup(false)}
+            backgroundColor="sub"
+          >
+            취소
+          </Button>
+          <Button type="button" onClick={() => handleDelete()}>
+            삭제
+          </Button>
+        </Alert>
       )}
     </div>
   );

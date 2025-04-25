@@ -3,6 +3,7 @@ import createClient from "@/services/supabase-server-service";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import { redirect } from "next/navigation";
+import PostingButton from "./_components/posting-button";
 import PostingForm from "./_components/posting-form";
 
 const Posting = async () => {
@@ -28,13 +29,15 @@ const Posting = async () => {
   const day = dayjs().format("dddd");
 
   return (
-    <div className="ml-5 mr-6 mt-14">
-      <div className="flex gap-2 pt-4 font-bold text-grey-7">
-        <span className="text-xl">{date}</span>
-        <span className="text-lg">{day}</span>
-      </div>
+    <div className="py-4">
+      <strong className="flex items-center justify-between text-grey-8">
+        <p className="flex gap-2">
+          <span className="text-xl">{date}</span>
+          <span className="text-xl">{day}</span>
+        </p>
+        <PostingButton className={"hidden h-7 md:block"} />
+      </strong>
       <hr className="my-2.5 w-full border-grey-0" />
-
       <PostingForm userId={userId} />
     </div>
   );
