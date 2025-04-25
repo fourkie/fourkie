@@ -12,23 +12,23 @@ const MypageMenuList = () => {
 
   return (
     <ul>
-      <li className="border-b border-grey-1">
+      <li>
         <MypageMenuItem
           href="/friends"
           label="내 친구"
           icon={<HeartHandshake size={20} />}
         />
       </li>
-      <li className="border-b border-grey-1">
+      <li>
         <MypageMenuItem href="/notice" label="공지사항" />
       </li>
-      <li className="border-b border-grey-1">
+      <li>
         <MypageMenuItem href="/terms" label="약관정책" />
       </li>
-      <li className="border-b border-grey-1">
+      <li>
         <MypageMenuItem href="/tutorial?from=my-page" label="스무키 사용법" />
       </li>
-      <li className="border-b border-grey-1">
+      <li>
         <MypageMenuItem href="/smookie-makers" label="스무키 베이커스" />
       </li>
       <li>

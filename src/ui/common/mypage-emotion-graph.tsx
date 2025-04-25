@@ -32,7 +32,7 @@ const MypageEmotionGraph = ({ userId }: { userId: string }) => {
   };
 
   return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-primary-50 p-3 md:border-none">
+    <div className="flex flex-col gap-3 rounded-2xl border border-primary-50 p-3">
       <div className="text-right text-xs text-grey-3">* 최근 3개월 통계</div>
       <div className="flex items-end justify-between">
         {emotions.map((e, i) => {

@@ -44,7 +44,7 @@ export default function RootLayout({
         <Providers>
           <HeaderWithZustand />
           <HeaderDesk />
-          <main className="mx-auto min-w-[360px] max-w-[1024px]">
+          <main className="mx-auto min-w-[360px] max-w-[1024px] px-5 pb-36 pt-[76px] md:py-24">
             {children}
           </main>
           <Navigation />
