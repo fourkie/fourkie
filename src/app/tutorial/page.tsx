@@ -4,7 +4,9 @@ import TutorialContainer from "./_components/tutorial-container";
 const Tutorial = () => {
   return (
     <Suspense>
-      <TutorialContainer />
+      <div className="fixed inset-0 z-50 bg-white">
+        <TutorialContainer />
+      </div>
     </Suspense>
   );
 };

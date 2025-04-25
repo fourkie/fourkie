@@ -13,12 +13,11 @@ const TutorialDescription = ({
 }: DescriptionProps) => {
   return (
     <div
-      className={`flex min-h-screen flex-col justify-center ${currentStep !== 4 ? "bg-white" : "bg-primary-50"} font-minsans`}
+      className={`flex min-h-screen min-w-[360px] items-center justify-center ${currentStep !== 4 ? "bg-white" : "bg-primary-50"} font-minsans`}
     >
-      <div className="flex flex-1 flex-col items-center justify-center gap-5">
-        {/* 로그인으로 이동시키는 버튼 */}
+      <div className="flex w-full max-w-[360px] flex-col items-center justify-center gap-5 px-4">
         {currentStep === 4 ? (
-          <div className="my-32 flex flex-col items-center">
+          <div className="flex flex-col items-center">
             <Image
               src={image}
               alt={title}
@@ -92,7 +91,7 @@ const TutorialDescription = ({
                   alt="FRIEND2"
                   width={353}
                   height={231}
-                  className="animate-friend2 absolute left-1/3 top-1/4 -translate-x-16 -translate-y-10 object-contain drop-shadow-md"
+                  className="absolute left-1/3 top-1/4 -translate-x-16 -translate-y-10 animate-friend2 object-contain drop-shadow-md"
                   priority
                 />
               )}
