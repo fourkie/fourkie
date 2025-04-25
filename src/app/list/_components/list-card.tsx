@@ -67,10 +67,12 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   };
 
   return (
-    <div className="font-omyu flex flex-col items-center gap-4 rounded-xl bg-white p-3 px-5 py-4 leading-4p text-black text-grey-8">
+    <div className="flex flex-col items-center gap-4 rounded-xl bg-white p-3 px-5 py-4 font-omyu leading-4p text-black text-grey-8">
       <div className="flex h-6 w-full items-center justify-between">
         <strong className="w-24 text-grey-5">{date}</strong>
-        <strong className="text-center text-lg">{EMOTIONS_QUERY[post_emotion]}</strong>
+        <strong className="text-center text-lg">
+          {EMOTIONS_QUERY[post_emotion]}
+        </strong>
         {isMyPost ? (
           <div className="flex w-24 justify-end gap-3">
             <Pencil className="w-5 cursor-pointer" onClick={handleEdit} />
@@ -101,7 +103,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       </div>
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
       {!isMyPost && (
-        <strong className="font-omyu text-center text-lg leading-5">
+        <strong className="text-center font-omyu text-lg leading-5">
           오늘 &nbsp;
           <span className="font-omyu text-secondary-200">
             {user?.user_nickname}
@@ -133,16 +135,17 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         </div>
       )}
       {openDeletePopup && (
-        <Alert title="알람" contents={ALERT_MESSAGE.LIST.DELETE}>
-          <Button
-            type="button"
-            onClick={() => setOpenDeletePopup(false)}
-            backgroundColor="sub"
-          >
+        <Alert title={ALERT_MESSAGE.LIST.DELETE_TITLE} contents={ALERT_MESSAGE.LIST.DELETE_CONTENT}>
+          <Button type="button" onClick={() => setOpenDeletePopup(false)}>
             취소
           </Button>
-          <Button type="button" onClick={() => handleDelete()}>
-            삭제
+
+          <Button
+            type="button"
+            backgroundColor="sub"
+            onClick={() => handleDelete()}
+          >
+            확인
           </Button>
         </Alert>
       )}
