@@ -1,9 +1,11 @@
 "use client";
 
+import { COOKIE_ALERT } from "@/constants/cookie-alert.constant";
 import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-query";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
+import CookieAlert from "@/ui/common/cookie-alert";
 import Tab from "@/ui/common/tab";
 import { useEffect, useRef, useState } from "react";
 import ListCard from "./list-card";
@@ -51,26 +53,30 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
         setActiveTab={setActiveTab}
       />
       <div className="flex flex-col gap-5">
-        {activeTab === "firstTab"
-          ? sortedMyPosts?.map((post) => {
-              const postDate = post.post_created_at.slice(0, 10);
-              const isSelected = postDate === selectedDay;
+        {activeTab === "firstTab" ? (
+          sortedMyPosts?.map((post) => {
+            const postDate = post.post_created_at.slice(0, 10);
+            const isSelected = postDate === selectedDay;
 
-              return (
-                <div key={post.post_id} ref={isSelected ? selectedRef : null}>
-                  <ListCard post={post} isMyPost={activeTab === "firstTab"} />
-                </div>
-              );
-            })
-          : friendPostsForToday?.map((post) => {
-              return (
-                <ListCard
-                  key={post.post_id}
-                  post={post}
-                  isMyPost={activeTab === "firstTab"}
-                />
-              );
-            })}
+            return (
+              <div key={post.post_id} ref={isSelected ? selectedRef : null}>
+                <ListCard post={post} isMyPost={activeTab === "firstTab"} />
+              </div>
+            );
+          })
+        ) : friendPostsForToday!.length >= 1 ? (
+          friendPostsForToday?.map((post) => {
+            return (
+              <ListCard
+                key={post.post_id}
+                post={post}
+                isMyPost={activeTab === "firstTab"}
+              />
+            );
+          })
+        ) : (
+          <CookieAlert text={COOKIE_ALERT.LIST.EMPTY_FRIEND} />
+        )}
       </div>
       {/* <Alert title="알람" contents={ALERT_MESSAGE.LIST.DELETE}></Alert> */}
     </div>
