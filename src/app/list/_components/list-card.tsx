@@ -115,7 +115,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
           <strong className="text-lg">{post_title}</strong>
           <strong
             ref={contentRef}
-            className={`w-full break-all text-center leading-5 ${
+            className={`w-full max-w-96 break-all text-center leading-5 ${
               isExpanded ? "line-clamp-none" : "line-clamp-2"
             }`}
           >
