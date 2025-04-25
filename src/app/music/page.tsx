@@ -55,17 +55,22 @@ const Music = () => {
     );
 
   return (
-    <div className="relative">
-      <div className="fixed left-1/2 top-0 z-50 h-64 min-w-[393px] -translate-x-1/2 transform lg:min-w-full">
-        <Image src={imageUrl} alt={imageUrl} fill className="object-cover" />
-        <div className="absolute left-0 top-0 h-64 w-full bg-black bg-opacity-60" />
+    <div className="relative min-w-[360px] max-w-5xl">
+      <div className="fixed left-0 z-30 h-64 w-full max-w-5xl md:top-14 lg:left-1/2 lg:-translate-x-1/2">
+        <Image
+          src={imageUrl}
+          alt={imageUrl}
+          fill
+          className="min-w-[360px] object-cover"
+        />
+        <div className="absolute left-0 top-0 h-64 w-full bg-black bg-opacity-60 px-5" />
         <EmotionSelect
           emotion={emotion}
           onChange={setEmotion}
           todayEmotion={todayEmotionData?.[0]?.post_emotion}
         />
       </div>
-      <div className="absolute left-0 top-[302px] w-full pb-24">
+      <div className="absolute left-0 top-64 h-full w-full md:top-[312px]">
         <PlaylistTabContainer
           userId={userId}
           emotion={emotion}

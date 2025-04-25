@@ -6,7 +6,7 @@ import { useSendFriendRequestMutation } from "@/hooks/mutations/use-send-friend-
 import { checkExistFriendRequest } from "@/services/friend-request-service";
 import { getUserForClient } from "@/services/user-client-service";
 import EmotionImage from "@/ui/common/emotion-image.common";
-import Popup from "@/ui/common/popup";
+import Popup from "@/ui/common/popup-bg.common";
 import { HeartHandshake, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";

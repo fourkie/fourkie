@@ -1,10 +1,12 @@
 "use client";
 
+import { COOKIE_ALERT } from "@/constants/cookie-alert.constant";
 import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-query";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
-import Tab from "@/ui/common/tab";
+import CookieAlert from "@/ui/common/cookie-alert.common";
+import Tab from "@/ui/common/tab.common";
 import { useEffect, useRef, useState } from "react";
 import ListCard from "./list-card";
 
@@ -17,11 +19,6 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
 
   //그 달의 게시물만 가져와야 함
   const { data: myPosts } = useGetAllPostsByIdQuery({ userId });
-
-  const tabs = [
-    { id: "firstTab", label: "내 기록 보기" },
-    { id: "secondTab", label: "친구 기록 보기" },
-  ];
 
   const [activeTab, setActiveTab] = useState(selectedTab);
 
@@ -49,28 +46,37 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
 
   return (
     <div className="relative flex h-full min-h-screen flex-col gap-4 bg-primary-50 px-5 pb-32">
-      <Tab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Tab
+        firstTab="내 기록 보기"
+        secondTab="친구 기록 보기"
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
       <div className="flex flex-col gap-5">
-        {activeTab === "firstTab"
-          ? sortedMyPosts?.map((post) => {
-              const postDate = post.post_created_at.slice(0, 10);
-              const isSelected = postDate === selectedDay;
+        {activeTab === "firstTab" ? (
+          sortedMyPosts?.map((post) => {
+            const postDate = post.post_created_at.slice(0, 10);
+            const isSelected = postDate === selectedDay;
 
-              return (
-                <div key={post.post_id} ref={isSelected ? selectedRef : null}>
-                  <ListCard post={post} isMyPost={activeTab === "firstTab"} />
-                </div>
-              );
-            })
-          : friendPostsForToday?.map((post) => {
-              return (
-                <ListCard
-                  key={post.post_id}
-                  post={post}
-                  isMyPost={activeTab === "firstTab"}
-                />
-              );
-            })}
+            return (
+              <div key={post.post_id} ref={isSelected ? selectedRef : null}>
+                <ListCard post={post} isMyPost={activeTab === "firstTab"} />
+              </div>
+            );
+          })
+        ) : friendPostsForToday!.length >= 1 ? (
+          friendPostsForToday?.map((post) => {
+            return (
+              <ListCard
+                key={post.post_id}
+                post={post}
+                isMyPost={activeTab === "firstTab"}
+              />
+            );
+          })
+        ) : (
+          <CookieAlert text={COOKIE_ALERT.LIST.EMPTY_FRIEND} />
+        )}
       </div>
       {/* <Alert title="알람" contents={ALERT_MESSAGE.LIST.DELETE}></Alert> */}
     </div>

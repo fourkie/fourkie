@@ -1,4 +1,4 @@
-import Popup from "./popup";
+import Popup from "./popup-bg.common";
 
 type AlertProps = {
   children?: React.ReactNode;
