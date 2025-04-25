@@ -7,6 +7,7 @@ const Button = ({
   type,
   icon,
   iconPosition,
+  backgroundColor,
   classname,
 }: ButtonProps) => {
   return (
@@ -14,13 +15,13 @@ const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`cursor-pointer ${classname}`}
+      className={`w-full cursor-pointer rounded-2xl py-4 bg-${backgroundColor === "sub" ? "primary-200" : "primary-500 text-white"} ${classname}`}
     >
-      <div className="mx-auto">
+      <strong className="mx-auto">
         {icon && iconPosition === "left" && <>{icon}</>}
         {children}
         {icon && iconPosition === "right" && <>{icon}</>}
-      </div>
+      </strong>
     </button>
   );
 };
