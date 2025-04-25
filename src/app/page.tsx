@@ -22,7 +22,7 @@ const HomePage = async () => {
   }
 
   return (
-    <div className="px-5 pb-32 pt-16">
+    <div>
       <div className="flex flex-col md:flex-row md:items-start md:gap-8">
         <div className="mt-[2.5rem] flex hidden w-[30%] flex-col gap-5 md:flex">
           <div className="flex-[2]">
