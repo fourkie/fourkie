@@ -47,8 +47,8 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   return (
     <div className="relative flex h-full flex-col gap-4">
       <Tab
-        firstTab="내 기록 보기"
-        secondTab="친구 기록 보기"
+        firstTab="나의 기록"
+        secondTab="친구 기록"
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />

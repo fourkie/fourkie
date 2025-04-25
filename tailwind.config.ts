@@ -11,14 +11,15 @@ const config: Config = {
     extend: {
       fontFamily: {
         omyu: ["omyu_pretty", "sans-serif"],
-        pretendard: "var(--font-pretendard)",
+        pretendard: ["Pretendard", "sans-serif"],
         minsans: ["MinSans-Regular", "sans-serif"],
+        ownda: ["Ownglyph_ParkDaHyun", "sans-serif"],
       },
       lineHeight: {
         "4p": "1.04",
       },
       screens: {
-        sm: '360px',
+        sm: "360px",
       },
       colors: {
         primary: {
