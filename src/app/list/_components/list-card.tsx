@@ -68,11 +68,11 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
 
   return (
     <div className="font-omyu flex flex-col items-center gap-4 rounded-xl bg-white p-3 px-5 py-4 leading-4p text-black text-grey-8">
-      <div className="flex w-full items-center justify-between">
+      <div className="flex h-6 w-full items-center justify-between">
         <strong className="w-24 text-grey-5">{date}</strong>
-        <strong className="text-center">{EMOTIONS_QUERY[post_emotion]}</strong>
+        <strong className="text-center text-lg">{EMOTIONS_QUERY[post_emotion]}</strong>
         {isMyPost ? (
-          <div className="flex w-[80px] justify-end gap-3">
+          <div className="flex w-24 justify-end gap-3">
             <Pencil className="w-5 cursor-pointer" onClick={handleEdit} />
             <Trash2
               className="w-5 cursor-pointer"
@@ -101,9 +101,9 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       </div>
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
       {!isMyPost && (
-        <strong className="font-omyu text-center leading-4p">
+        <strong className="font-omyu text-center text-lg leading-5">
           오늘 &nbsp;
-          <span className="font-omyu leading-4p text-secondary-200">
+          <span className="font-omyu text-secondary-200">
             {user?.user_nickname}
           </span>
           님! <br /> {EMOTIONS_QUERY[post_emotion]}
@@ -112,10 +112,10 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       )}
       {isMyPost && (
         <div className="flex flex-col items-center">
-          <strong className="text-xl">{post_title}</strong>
+          <strong className="text-lg">{post_title}</strong>
           <strong
             ref={contentRef}
-            className={`w-full break-all text-center text-lg ${
+            className={`w-full break-all text-center leading-5 ${
               isExpanded ? "line-clamp-none" : "line-clamp-2"
             }`}
           >

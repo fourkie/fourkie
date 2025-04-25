@@ -17,7 +17,7 @@ const Tab = ({
   ];
 
   return (
-    <div className="relative flex justify-center space-x-10 pt-16">
+    <div className="relative flex justify-center space-x-10">
       {tabs.map((tab) => (
         <button
           key={tab.id}
