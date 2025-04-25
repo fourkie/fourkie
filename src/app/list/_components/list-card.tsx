@@ -80,7 +80,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         {openPopup && (
           <Popup>
             <EmotionGraph
-              page="list"
+              isListPage={true}
               openPopup={openPopup}
               setOpenPopup={() => setOpenPopup(!openPopup)}
               userId={user_id}
