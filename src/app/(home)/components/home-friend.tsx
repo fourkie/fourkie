@@ -14,9 +14,9 @@ import { useQueries } from "@tanstack/react-query";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
-const commonTitle = "mx-auto flex max-w-[400px] flex-row gap-4 mt-2 w-full";
+const commonTitle = "mx-auto flex max-w-[400px] flex-row gap-4  w-full";
 const commonContext =
-  "mx-auto min-w-[250px] min-h-[70px] max-w-[400px] item-center flex flex-row rounded-xl border border-primary-200 p-2 md:border-dashed";
+  "mx-auto min-w-[250px] min-h-[70px] w-full max-w-[400px] item-center flex flex-row rounded-xl border-2 border-primary-200 px-4 md:border-dashed";
 const HomeFriend = ({ userId }: { userId: string }) => {
   const { setSelectedTab } = useTabStore();
 
@@ -45,7 +45,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
 
   if (isPending) {
     return (
-      <div className="my-4 flex flex-col gap-4">
+      <div className="my-4 flex flex-col gap-2">
         <div className={`${commonTitle}`}>
           <strong>오늘 하루 내 친구들 기분을 살펴볼까요?</strong>
           <ChevronRight className="cursor-pointer" />
@@ -62,13 +62,17 @@ const HomeFriend = ({ userId }: { userId: string }) => {
   //친구가 없는 or 친구가 글을 안 써서 친구 포스트가 없는 경우
   if (!friendPostsForToday || friendPostsForToday.length === 0) {
     return (
-      <Link href={"/friends"} onClick={onClickHandler} className="gap-4">
+      <Link
+        href={"/friends"}
+        onClick={onClickHandler}
+        className="flex flex-col gap-2"
+      >
         <div className={`${commonTitle}`}>
           <strong>오늘 하루 내 친구들 기분을 살펴볼까요?</strong>
           <ChevronRight className="cursor-pointer" />
         </div>
         <div className={`${commonContext}`}>
-          <div className="m-3 flex flex-row items-center gap-2">
+          <div className="flex w-full flex-row items-center gap-4">
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.SAD} size="xs" />
             <div className="flex flex-col">
               <strong>친구의 쿠키가 없네요!</strong>
@@ -83,9 +87,13 @@ const HomeFriend = ({ userId }: { userId: string }) => {
   }
 
   return (
-    <Link href={"/list"} onClick={onClickHandler} className="gap-4">
+    <Link
+      href={"/list"}
+      onClick={onClickHandler}
+      className="flex flex-col gap-2"
+    >
       <div className={`${commonTitle}`}>
-        <strong className="mb-2">오늘 하루 내 친구들 기분을 살펴볼까요?</strong>
+        <strong>오늘 하루 내 친구들 기분을 살펴볼까요?</strong>
         <ChevronRight className="cursor-pointer" />
       </div>
       <div className="item-center mx-auto flex min-h-[80px] min-w-[250px] max-w-[400px] flex-col rounded-xl border border-primary-200 p-2 md:border-dashed">

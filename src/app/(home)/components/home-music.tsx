@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const common =
   "md:border-2 md:border-dashed md:border-primary-200 md:rounded-xl md:p-3 md:bg-white w-full max-w-[400px] mx-auto";
-const commonTitle = "mx-auto flex max-w-[400px] flex-row gap-4 mt-2 w-full";
+const commonTitle = "mx-auto flex max-w-[400px] flex-row gap-4  w-full";
 const HomeMusic = ({ userId }: { userId: string }) => {
   const { data } = useGetPostTodayEmotionByIdQuery(userId);
 
