@@ -5,7 +5,7 @@ export const FORM_MESSAGE = {
   NICKNAME: "닉네임을 입력해주세요.",
   POST: {
     TITLE: "오늘의 감정을 한 문장으로",
-    CONTENT: `오늘 감정을 바탕으로\n내용을 입력해주세요!`,
+    CONTENT: `오늘 감정을 바탕으로 내용을 입력해주세요!`,
   },
   PLACEHOLDER_USER_SEARCH: "이메일 또는 닉네임으로 친구 검색하기",
 };
