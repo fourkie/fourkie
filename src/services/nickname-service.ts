@@ -1,6 +1,6 @@
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
-import createClient from "./supabase-client-service";
 import { toast } from "react-toastify";
+import createClient from "./supabase-client-service";
 
 export const getUserNickname = async () => {
   const supabaseClient = createClient();
@@ -69,7 +69,10 @@ export const checkNicknameDuplicate = async (nickname: string) => {
       .single();
 
     return !!data;
-  } catch {
+  } catch (error: any) {
+    if (error?.status === 406) {
+      return false;
+    }
     toast.error(TOAST_MESSAGE.MYPAGE.EXIST_NICKNAME_ERROR);
     return true;
   }
