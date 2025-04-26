@@ -11,7 +11,7 @@ const MyPage = async () => {
 
   return (
     <div className="flex w-full flex-col justify-center gap-5">
-      <div className="flex flex-col gap-5 md:flex-row md:items-center md:gap-11 md:pb-5">
+      <div className="flex flex-col gap-5 md:mb-5 md:flex-row md:items-center md:gap-11">
         <MypageProfile userId={user!.id} />
         <MypageGraph />
       </div>

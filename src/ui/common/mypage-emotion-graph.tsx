@@ -32,8 +32,8 @@ const MypageEmotionGraph = ({ userId }: { userId: string }) => {
   };
 
   return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-primary-50 p-3">
-      <div className="text-right text-md text-grey-3">* 최근 3개월 통계</div>
+    <div className="flex flex-col gap-3 rounded-2xl border border-primary-50 px-10 py-5">
+      <div className="text-md text-right text-grey-3">* 최근 3개월 통계</div>
       <div className="flex items-end justify-between">
         {emotions.map((e, i) => {
           const percentageValue = parseFloat(e.percentage.replace("%", ""));
