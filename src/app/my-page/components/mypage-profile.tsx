@@ -7,7 +7,6 @@ import { useUpdateNicknameMutation } from "@/hooks/mutations/use-update-nickname
 import { useGetUserNicknameQuery } from "@/hooks/queries/use-get-user-nickname-query";
 import { checkNicknameDuplicate } from "@/services/nickname-service";
 import EmotionImage from "@/ui/common/emotion-image.common";
-import Input from "@/ui/common/input.common";
 import { useQueryClient } from "@tanstack/react-query";
 import { SquareCheckBig, SquarePen } from "lucide-react";
 import { useState } from "react";
@@ -18,11 +17,28 @@ const MypageProfile = ({ userId }: { userId: string }) => {
   const { mutate: updateNickname } = useUpdateNicknameMutation({ userId });
   const [edit, setEdit] = useState(false);
   const [newNickname, setNewNickname] = useState(nickname);
+  const [isDuplicate, setIsDuplicate] = useState(false);
   const queryClient = useQueryClient();
 
   const handleEditToggle = () => {
     setEdit((prev) => !prev);
     setNewNickname(nickname);
+    setIsDuplicate(false);
+  };
+
+  const handleNicknameChange = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const nicknameInput = e.target.value;
+    setNewNickname(nicknameInput);
+
+    if (!nicknameInput.trim()) {
+      setIsDuplicate(false);
+      return;
+    }
+
+    const duplicate = await checkNicknameDuplicate(nicknameInput);
+    setIsDuplicate(duplicate);
   };
 
   const handleUpdateNickname = async () => {
@@ -32,13 +48,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
     }
 
     if (newNickname === nickname) {
-      toast.error(TOAST_MESSAGE.MYPAGE.SAME_NICKNAME_ERROR);
-      return;
-    }
-
-    const isDuplicate = await checkNicknameDuplicate(newNickname);
-    if (isDuplicate) {
-      toast.error(TOAST_MESSAGE.MYPAGE.EXIST_NICKNAME_ERROR);
+      toast.info(TOAST_MESSAGE.MYPAGE.SAME_NICKNAME_ERROR);
       return;
     }
 
@@ -61,13 +71,13 @@ const MypageProfile = ({ userId }: { userId: string }) => {
         <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="m" />
         <div className="flex h-10 items-center justify-center gap-2">
           {edit ? (
-            <Input
-              className="mt-6 flex h-10 w-20 rounded-xl bg-grey-0 text-center"
+            <input
+              className="flex h-10 w-20 rounded-xl bg-grey-0 text-center outline-none focus:border-primary-300"
               value={newNickname}
-              onChange={(e) => setNewNickname(e.target.value)}
+              onChange={handleNicknameChange}
             />
           ) : (
-            <strong className="flex items-center justify-center text-xl text-grey-8">
+            <strong className="flex items-center justify-center text-xl text-grey-7">
               {nickname}
             </strong>
           )}
@@ -79,8 +89,14 @@ const MypageProfile = ({ userId }: { userId: string }) => {
             {edit ? <SquareCheckBig size={20} /> : <SquarePen size={20} />}
           </button>
         </div>
-        {!edit && (
-          <strong className="text-sm text-[#818181]">나의 프로필</strong>
+        {edit ? (
+          <p
+            className={`h-5 text-xs ${isDuplicate ? "text-secondary-300" : "text-primary-300"}`}
+          >
+            {isDuplicate ? "중복된 닉네임입니다" : "사용 가능한 닉네임입니다"}
+          </p>
+        ) : (
+          <strong className="text-sm text-grey-3">나의 프로필</strong>
         )}
       </div>
     </div>
