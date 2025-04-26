@@ -13,6 +13,10 @@ import { SelectedUserType } from "./type";
 
 const Friends = () => {
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const checkUser = async () => {
       const supabaseServer = createClient();
 
@@ -33,7 +37,7 @@ const Friends = () => {
   const { data: nickname, error } = useGetUserNicknameQuery();
 
   return (
-    <div className="min-h-screen space-y-2 bg-white px-4 pt-[72px]">
+    <div className="space-y-2 bg-white">
       {/* 유저 검색창 */}
       <FriendsSearchInput
         searchKeyword={searchKeyword}

@@ -50,7 +50,7 @@ const events: NoticeItem[] = [
 const NoticePage = () => {
   const renderList = (title: string, items: NoticeItem[]) => (
     <section className="mb-10 w-full rounded-xl bg-primary-50 px-10 py-5">
-      <strong className="mb-5 flex w-full justify-center text-2xl font-bold">
+      <strong className="mb-5 flex w-full justify-center text-xl">
         {title}
       </strong>
       <div className="grid gap-4">
@@ -72,8 +72,8 @@ const NoticePage = () => {
 
   return (
     <main className="mx-auto min-w-[360px] max-w-[1024px] text-grey-7">
-      {renderList("📢 공지사항", notices)}
-      {renderList("🎉 이벤트", events)}
+      {renderList("공지사항", notices)}
+      {renderList("이벤트", events)}
     </main>
   );
 };
