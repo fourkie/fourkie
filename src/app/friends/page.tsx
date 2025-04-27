@@ -16,6 +16,10 @@ const Friends = () => {
   const supabaseClient = createClient();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const checkUser = async () => {
       const {
         data: { user },
@@ -36,7 +40,7 @@ const Friends = () => {
   const { data: nickname, error } = useGetUserNicknameQuery();
 
   return (
-    <div className="min-h-screen space-y-2 bg-white px-4 pt-[72px]">
+    <div className="space-y-2 bg-white">
       {/* 유저 검색창 */}
       <FriendsSearchInput
         searchKeyword={searchKeyword}
