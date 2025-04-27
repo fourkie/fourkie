@@ -11,7 +11,7 @@ const PlaylistContent = ({
 }: {
   userId: string;
   activeTab: string;
-  emotion: string;
+  emotion: keyof typeof Emotion;
 }) => {
   // 추천 플리
   const {
