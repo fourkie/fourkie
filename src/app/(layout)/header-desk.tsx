@@ -2,6 +2,7 @@
 
 import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
+import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -21,6 +22,9 @@ const HeaderDesk = () => {
       <div className="fixed top-0 hidden h-[56px] w-full bg-primary-50 md:flex">
         <div className="mx-auto flex h-full w-full max-w-[1024px] items-center justify-between py-5 text-grey-6">
           <div className="flex items-center gap-2">
+            <Link href={"/my-page"}>
+              <ChevronLeft className="cursor-pointer" />
+            </Link>
             <Image src="/images/joy.png" width={39} height={39} alt="조이" />
             <strong className="text-xl">Smookie</strong>
           </div>
