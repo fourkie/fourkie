@@ -47,6 +47,7 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
                 : "text-secondary-200"
             }`}
             size={18}
+            aria-hidden="true"
           />
         </button>
         <a
