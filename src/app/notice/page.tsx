@@ -1,3 +1,6 @@
+import createClient from "@/services/supabase-server-service";
+import { redirect } from "next/navigation";
+
 type NoticeItem = {
   title: string;
   date: string;
@@ -47,7 +50,16 @@ const events: NoticeItem[] = [
   },
 ];
 
-const NoticePage = () => {
+const NoticePage = async () => {
+  const supabaseClient = createClient();
+  const {
+    data: { user },
+    error,
+  } = await supabaseClient.auth.getUser();
+  if (error || !user) {
+    redirect("/sign-in");
+  }
+
   const renderList = (title: string, items: NoticeItem[]) => (
     <section className="mb-8">
       <h2 className="mb-4 text-xl font-bold">{title}</h2>

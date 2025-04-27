@@ -11,11 +11,7 @@ const SignUp = async () => {
     redirect("/");
   }
 
-  return (
-    <div>
-      <SignUpForm />
-    </div>
-  );
+  return <SignUpForm />;
 };
 
 export default SignUp;
