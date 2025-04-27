@@ -13,21 +13,20 @@ import EmotionSelect from "./_components/emotion-select";
 import PlaylistContent from "./_components/playlist-content";
 
 const Music = () => {
-  const [isSelectedTab, setIsSelectedTab] = useState("firstTab");
-  const router = useRouter();
-
   const [userId, setUserId] = useState<string>("");
-
   const [emotion, setEmotion] = useState<keyof typeof Emotion>("JOY");
+  const [isSelectedTab, setIsSelectedTab] = useState("firstTab");
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const { data: todayEmotionData } = useGetPostTodayEmotionByIdQuery(userId);
+
   const emotionQuery = Emotion[emotion];
   const { playlists } = useGetAllPlaylistsByQueryQuery(emotionQuery);
   const imageUrl = playlists[0]?.images[0]?.url;
 
-  const { data: todayEmotionData } = useGetPostTodayEmotionByIdQuery(userId);
-
   const supabaseClient = createClient();
+  const router = useRouter();
 
-  // 유저 정보 조회
   useEffect(() => {
     const fetchUser = async () => {
       const {
@@ -54,10 +53,6 @@ const Music = () => {
     }
   }, [todayEmotionData]);
 
-  //
-
-  const [isScrolled, setIsScrolled] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -68,12 +63,11 @@ const Music = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  //
 
   if (!userId)
     return (
@@ -83,26 +77,28 @@ const Music = () => {
 
   return (
     <div className="relative mx-auto min-w-[360px] max-w-5xl">
-      {/* 상단 이미지 영역 */}
-      <div
-        className="sticky top-0 z-30 w-full max-w-5xl transition-all duration-300"
+      {/* 플레이리스트 이미지 영역 */}
+      <section
+        className="sticky top-0 z-30 w-full max-w-5xl transition-all duration-300 md:top-14"
         style={{
-          height: isScrolled ? 144 : 256, // 스크롤 전: 256, 스크롤 후: 144
+          height: isScrolled ? 156 : 256, // 스크롤 전 : 256, 스크롤 후 : 156
         }}
       >
         <div className="relative h-full min-w-[360px]">
           <Image src={imageUrl} alt={imageUrl} fill className="object-cover" />
-          <div className="absolute inset-0 bg-black/60 px-5">
+          <div className="absolute inset-0 bg-black/60">
             <EmotionSelect
               emotion={emotion}
               onChange={setEmotion}
               todayEmotion={todayEmotionData?.[0]?.post_emotion}
+              scrolled={isScrolled}
             />
           </div>
         </div>
-      </div>
-      <div className="sticky top-[144px] z-20 w-full bg-white px-5">
-        {/* scrolledImageHeight가 줄어들면 top 값도 조정해야 함. */}
+      </section>
+
+      {/* isScrolled 값에 따라 top 값 조정 필수 !! */}
+      <div className="sticky top-[156px] z-20 w-full bg-white px-5">
         <Tab
           firstTab="추천 플리"
           secondTab="즐겨찾기"
@@ -111,15 +107,12 @@ const Music = () => {
         />
       </div>
 
-      {/* 아래 스크롤되는 컨텐츠 */}
-      <div className="px-5">
-        <PlaylistContent
-          userId={userId}
-          activeTab={isSelectedTab}
-          emotion={emotion}
-        />
-      </div>
-      {/* 추가 콘텐츠가 있으면 여기 이어서 */}
+      {/* 스크롤 되는 PlaylistContent */}
+      <PlaylistContent
+        userId={userId}
+        activeTab={isSelectedTab}
+        emotion={emotion}
+      />
     </div>
   );
 };
