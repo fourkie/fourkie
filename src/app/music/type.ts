@@ -32,13 +32,6 @@ export enum PlaylistTabProps {
   BOOKMARK = "즐겨찾기",
 }
 
-export interface TabButtonProps {
-  isActive: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-  activeTab: PlaylistTabProps;
-}
-
 export interface PlaylistCardProps {
   playlist: SpotifyPlaylistItem;
   userId: string;
