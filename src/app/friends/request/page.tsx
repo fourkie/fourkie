@@ -14,8 +14,13 @@ const Request = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
 
   return (
-    <div className="min-h-screen space-y-4 border px-4 pb-6">
-      <Tab firstTab="받은 요청" secondTab="보낸 요청" activeTab={activeTab} setActiveTab={setActiveTab} />
+    <div className="min-h-screen space-y-4 px-4 pb-6">
+      <Tab
+        firstTab="받은 요청"
+        secondTab="보낸 요청"
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
       {activeTab === "firstTab" ? <ReceivedFriendList /> : <SentFriendList />}
     </div>
   );

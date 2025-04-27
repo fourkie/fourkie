@@ -53,6 +53,12 @@ const MypageProfile = ({ userId }: { userId: string }) => {
       return;
     }
 
+    if (newNickname !== nickname && isDuplicate) {
+      toast.warn(TOAST_MESSAGE.MYPAGE.EXIST_NICKNAME_ERROR);
+      setEdit(true);
+      return;
+    }
+
     updateNickname(newNickname, {
       onSuccess: () => {
         if (newNickname === nickname) {
