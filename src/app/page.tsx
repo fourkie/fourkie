@@ -1,4 +1,5 @@
 import { getUserId } from "@/services/home-service";
+import ScrollZero from "@/ui/common/scrollzero.common";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import HomeCalendar from "./(home)/components/home-calendar";
@@ -23,6 +24,7 @@ const HomePage = async () => {
 
   return (
     <div>
+      <ScrollZero />
       <div className="flex flex-col md:flex-row md:items-start md:gap-8">
         <div className="mt-[3rem] flex hidden w-[32%] flex-col gap-10 md:flex">
           <div className="flex-[2]">
