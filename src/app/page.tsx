@@ -25,25 +25,25 @@ const HomePage = async () => {
   return (
     <div>
       <ScrollZero />
-      <div className="flex flex-col md:flex-row md:items-start md:gap-8">
-        <div className="mt-[3rem] flex hidden w-[32%] flex-col gap-10 md:flex">
-          <div className="flex-[2]">
-            <HomeStack userId={userId} />
-          </div>
-          <div className="flex-[3]">
-            <HomeFriend userId={userId} />
-          </div>
-          <div className="flex-[1]">
-            <HomeMusic userId={userId} />
+      <div className="flex flex-col md:max-h-[702px] md:flex-row md:gap-10">
+        <div className="mt-[3rem] hidden h-full w-[32%] flex-col md:flex md:max-w-[334px]">
+          <div className="flex flex-col justify-between gap-3">
+            <div className="flex flex-col gap-3">
+              <HomeStack userId={userId} />
+              <HomeFriend userId={userId} />
+            </div>
+            <div>
+              <HomeMusic userId={userId} />
+            </div>
           </div>
         </div>
 
-        <div className="w-full flex-1 md:w-[68%]">
+        <div className="w-full flex-1 md:max-h-[702px] md:w-[68%] md:max-w-[620px]">
           <HomePosting userId={userId} />
           <HomeCalendar userId={userId} />
 
           {/* 모바일 */}
-          <div className="mt-4 flex flex-col gap-4 md:hidden">
+          <div className="mt-5 flex flex-col gap-5 md:hidden">
             <HomeFriend userId={userId} />
             <HomeMusic userId={userId} />
           </div>
@@ -52,4 +52,5 @@ const HomePage = async () => {
     </div>
   );
 };
+
 export default HomePage;

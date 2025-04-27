@@ -70,6 +70,7 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
         e.preventDefault();
         e.stopPropagation();
       }}
+      className="item-center h-100% w-100% flex justify-center"
     >
       <ThemeProvider theme={customTheme}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -93,8 +94,7 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
                 },
                 sx: {
                   width: "130px",
-                  height: "50px",
-                  fontSize: "0.875rem",
+                  height: "75px",
                   caretColor: "transparent",
                   "& .MuiOutlinedInput-notchedOutline": {
                     border: "none",
@@ -104,6 +104,14 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
                       md: "#F7FAF2",
                     },
                     borderRadius: "12px",
+                    width: {
+                      md: "150px",
+                    },
+                  },
+                  "& .MuiInputBase-input": {
+                    fontSize: {
+                      md: "1.5rem",
+                    },
                   },
                 },
               },
