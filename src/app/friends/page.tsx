@@ -40,7 +40,7 @@ const Friends = () => {
   const { data: nickname, error } = useGetUserNicknameQuery();
 
   return (
-    <div className="space-y-2 bg-white">
+    <div className="bg-white">
       {/* 유저 검색창 */}
       <FriendsSearchInput
         searchKeyword={searchKeyword}

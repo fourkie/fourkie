@@ -49,10 +49,10 @@ export const checkExistFriendRequest = async ({
 
     if (error) throw new Error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
 
-    return !!data;
+    return data;
   } catch {
     toast.error(TOAST_MESSAGE.MYPAGE.SEARCH_ERROR);
-    return false;
+    return null;
   }
 };
 
