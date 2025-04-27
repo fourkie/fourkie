@@ -1,4 +1,5 @@
 import createClient from "@/services/supabase-server-service";
+import { redirect } from "next/navigation";
 import MypageGraph from "./components/mypage-graph";
 import MypageMenuList from "./components/mypage-menu-list";
 import MypageProfile from "./components/mypage-profile";
@@ -7,7 +8,11 @@ const MyPage = async () => {
   const supabaseClient = createClient();
   const {
     data: { user },
+    error,
   } = await supabaseClient.auth.getUser();
+  if (error || !user) {
+    redirect("/sign-in");
+  }
 
   return (
     <div className="flex w-full flex-col justify-center gap-5">
