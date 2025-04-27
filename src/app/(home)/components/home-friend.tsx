@@ -16,7 +16,7 @@ import Link from "next/link";
 
 const commonTitle = "mx-auto flex max-w-[400px] flex-row gap-4  w-full";
 const commonContext =
-  "mx-auto min-w-[250px] min-h-[70px] w-full max-w-[400px] item-center flex flex-row rounded-xl border-2 border-grey-0 md:border-primary-200 md:border-dashed";
+  "mx-auto min-w-[250px] min-h-[70px] w-full max-w-[400px] item-center rounded-xl border-2 border-grey-0 md:border-primary-200 md:border-dashed";
 const HomeFriend = ({ userId }: { userId: string }) => {
   const { setSelectedTab } = useTabStore();
 
@@ -71,7 +71,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
           <strong>오늘 하루 내 친구들 기분을 살펴볼까요?</strong>
           <ChevronRight className="cursor-pointer" />
         </div>
-        <div className={`${commonContext}`}>
+        <div className={`${commonContext} flex flex-row`}>
           <div className="flex w-full flex-row items-center gap-2">
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.SAD} size="xs" />
             <div className="flex flex-col">
@@ -98,7 +98,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
         </strong>
         <ChevronRight className="cursor-pointer" />
       </div>
-      <div className={`${commonContext}`}>
+      <div className={`${commonContext} flex flex-col`}>
         {userQueries.map((query, index) => {
           const post = friendPostsForToday?.[index];
           const user = query.data;
