@@ -24,7 +24,7 @@ const HomePage = async () => {
   return (
     <div>
       <div className="flex flex-col md:flex-row md:items-start md:gap-8">
-        <div className="mt-[3rem] flex hidden w-[30%] flex-col gap-10 md:flex">
+        <div className="mt-[3rem] flex hidden w-[32%] flex-col gap-10 md:flex">
           <div className="flex-[2]">
             <HomeStack userId={userId} />
           </div>
@@ -36,12 +36,12 @@ const HomePage = async () => {
           </div>
         </div>
 
-        <div className="w-full flex-1 md:w-[70%]">
+        <div className="w-full flex-1 md:w-[68%]">
           <HomePosting userId={userId} />
           <HomeCalendar userId={userId} />
 
           {/* 모바일 */}
-          <div className="mt-5 flex flex-col gap-5 md:hidden">
+          <div className="mt-4 flex flex-col gap-4 md:hidden">
             <HomeFriend userId={userId} />
             <HomeMusic userId={userId} />
           </div>

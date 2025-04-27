@@ -16,7 +16,7 @@ import Link from "next/link";
 
 const commonTitle = "mx-auto flex max-w-[400px] flex-row gap-4  w-full";
 const commonContext =
-  "mx-auto min-w-[250px] min-h-[70px] w-full max-w-[400px] item-center flex flex-row rounded-xl border-2 border-primary-200 px-4 md:border-dashed";
+  "mx-auto min-w-[250px] min-h-[70px] w-full max-w-[400px] item-center flex flex-row rounded-xl border-2 border-grey-0 md:border-primary-200 md:border-dashed";
 const HomeFriend = ({ userId }: { userId: string }) => {
   const { setSelectedTab } = useTabStore();
 
@@ -72,7 +72,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
           <ChevronRight className="cursor-pointer" />
         </div>
         <div className={`${commonContext}`}>
-          <div className="flex w-full flex-row items-center gap-4">
+          <div className="flex w-full flex-row items-center gap-2">
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.SAD} size="xs" />
             <div className="flex flex-col">
               <strong>친구의 쿠키가 없네요!</strong>
@@ -93,10 +93,12 @@ const HomeFriend = ({ userId }: { userId: string }) => {
       className="flex flex-col gap-2"
     >
       <div className={`${commonTitle}`}>
-        <strong>오늘 하루 내 친구들 기분을 살펴볼까요?</strong>
+        <strong className="whitespace-nowrap">
+          오늘 친구들 기분을 살펴볼까요?
+        </strong>
         <ChevronRight className="cursor-pointer" />
       </div>
-      <div className="item-center mx-auto flex min-h-[80px] min-w-[250px] max-w-[400px] flex-col rounded-xl border border-primary-200 p-2 md:border-dashed">
+      <div className={`${commonContext}`}>
         {userQueries.map((query, index) => {
           const post = friendPostsForToday?.[index];
           const user = query.data;
@@ -119,12 +121,11 @@ const HomeFriend = ({ userId }: { userId: string }) => {
                     />
                     <div className="flex flex-col">
                       <strong className="md:hidden">오늘 내 친구들은?</strong>
-                      <div className="md:text-md flex flex-row text-sm md:font-bold">
+                      <div className="lg:text-md flex flex-row text-sm md:font-bold">
                         <div className="text-secondary-500">
                           {user?.user_nickname}
                         </div>{" "}
-                        님은 {EMOTIONS_QUERY[post.post_emotion]} 하루를
-                        보냈어요.
+                        님은 {EMOTIONS_QUERY[post.post_emotion]} 하루네요!
                       </div>
                     </div>
                   </div>
