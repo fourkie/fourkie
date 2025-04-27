@@ -35,8 +35,8 @@ export interface PlaylistTabContainerProps {
 }
 
 export enum PlaylistTabProps {
-  RECOMMEND = "recommend",
-  BOOKMARK = "bookmark",
+  RECOMMEND = "추천 플리",
+  BOOKMARK = "즐겨찾기",
 }
 
 export interface TabButtonProps {

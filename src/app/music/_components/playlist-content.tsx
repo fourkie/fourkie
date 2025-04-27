@@ -2,14 +2,17 @@ import { Emotion } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
-import { PlaylistContentProps, PlaylistTabProps } from "../type";
 import PlaylistCard from "./playlist-card";
 
 const PlaylistContent = ({
   userId,
   activeTab,
   emotion,
-}: PlaylistContentProps) => {
+}: {
+  userId: string;
+  activeTab: string;
+  emotion: string;
+}) => {
   // 추천 플리
   const {
     playlists: playlistsData,
@@ -25,13 +28,13 @@ const PlaylistContent = ({
   } = useGetAllBookmarkedPlaylistsByIdQuery(userId);
 
   // 추천 플리 탭
-  if (activeTab === PlaylistTabProps.RECOMMEND) {
+  if (activeTab === "firstTab") {
     if (playlistsIsPending)
       return <p>{TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING}</p>;
     if (playlistsError) return <p>{TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR}</p>;
 
     return (
-      <ul className="grid grid-cols-1 gap-x-10 gap-y-3 bg-white px-5 md:grid-cols-2">
+      <ul className="grid grid-cols-1 gap-x-10 gap-y-3 bg-white md:grid-cols-2">
         {playlistsData.map((playlist) => (
           <PlaylistCard key={playlist.id} userId={userId} playlist={playlist} />
         ))}
@@ -40,7 +43,7 @@ const PlaylistContent = ({
   }
 
   // 즐겨찾기 탭
-  if (activeTab === PlaylistTabProps.BOOKMARK) {
+  if (activeTab === "secondTab") {
     if (bookmarkedIsPending)
       return <p>{TOAST_MESSAGE.MUSIC.BOOKMARK_PENDING}</p>;
 
