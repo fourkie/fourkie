@@ -69,10 +69,7 @@ export const checkNicknameDuplicate = async (nickname: string) => {
       .single();
 
     return !!data;
-  } catch (error: any) {
-    if (error?.status === 406) {
-      return false;
-    }
+  } catch (error) {
     toast.error(TOAST_MESSAGE.MYPAGE.EXIST_NICKNAME_ERROR);
     return true;
   }
