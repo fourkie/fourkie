@@ -22,7 +22,7 @@ const Tab = ({
         <button
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
-          className={`relative px-1 py-1.5 ${tab.id === activeTab ? "text-primary-600" : "text-grey-3"}`}
+          className={`relative px-3 pb-[6px] ${tab.id === activeTab ? "text-primary-600" : "text-grey-3"}`}
           style={{
             WebkitTapHighlightColor: "transparent",
           }}

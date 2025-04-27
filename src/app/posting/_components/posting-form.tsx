@@ -59,7 +59,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
       setValue("inputTitle", postData[0].post_title);
       setValue("inputContent", postData[0].post_content);
     } else {
-      router.push("/");
+      router.replace("/");
     }
   }, [postData, userId, setValue, router]);
 

@@ -1,8 +1,10 @@
 "use client";
 
+import createClient from "@/services/supabase-client-service";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const memberCards = [
   {
@@ -48,6 +50,23 @@ const memberCards = [
 ];
 
 const Makers = () => {
+  const router = useRouter();
+  const supabaseServer = createClient();
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { user },
+        error,
+      } = await supabaseServer.auth.getUser();
+      if (error || !user) {
+        router.replace("/sign-in");
+      }
+    };
+
+    checkUser();
+  }, []);
+
   const [view, setView] = useState(0);
 
   const handlePrev = () => {

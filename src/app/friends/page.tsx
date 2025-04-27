@@ -3,7 +3,7 @@
 import { useGetUserNicknameQuery } from "@/hooks/queries/use-get-user-nickname-query";
 import createClient from "@/services/supabase-client-service";
 import { HeartHandshake } from "lucide-react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import FriendList from "./components/friend-list";
 import FriendRequestButton from "./components/friend-request-button";
@@ -12,18 +12,21 @@ import FriendsSearchInput from "./components/friend-search-input";
 import { SelectedUserType } from "./type";
 
 const Friends = () => {
+  const router = useRouter();
+  const supabaseServer = createClient();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
     const checkUser = async () => {
-      const supabaseServer = createClient();
-
-      const { data, error } = await supabaseServer.auth.getUser();
-
-      if (error || !data?.user) {
-        redirect("/sign-in");
+      const {
+        data: { user },
+        error,
+      } = await supabaseServer.auth.getUser();
+      if (error || !user) {
+        router.replace("/sign-in");
       }
     };
 

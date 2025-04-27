@@ -6,6 +6,7 @@ import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-play
 import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-today-emotion-by-id-query";
 import createClient from "@/services/supabase-client-service";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import EmotionSelect from "./_components/emotion-select";
 import PlaylistTabContainer from "./_components/playlist-tab-container";
@@ -15,6 +16,7 @@ const Music = () => {
   const [isSelectedTab, setIsSelectedTab] = useState<PlaylistTabProps>(
     PlaylistTabProps.RECOMMEND,
   );
+  const router = useRouter();
 
   const [userId, setUserId] = useState<string>("");
 
@@ -30,8 +32,14 @@ const Music = () => {
   // 유저 정보 조회
   useEffect(() => {
     const fetchUser = async () => {
-      const { data } = await supabaseClient.auth.getUser();
-      const userId = data.user?.id;
+      const {
+        data: { user },
+        error,
+      } = await supabaseClient.auth.getUser();
+      const userId = user?.id;
+      if (error || !user) {
+        router.replace("/sign-in");
+      }
 
       if (userId) {
         setUserId(userId);

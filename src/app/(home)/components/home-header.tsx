@@ -54,7 +54,13 @@ const HomeHeader = () => {
 
   //뒤로 가는 로직
   const route = useRouter();
-  const handleBack = () => route.back();
+  const handleBack = () => {
+    if (pathname.startsWith("/posting")) {
+      route.push("/list");
+    } else {
+      route.push("/my-page");
+    }
+  };
 
   //헤더가 필요없는 경우
   if (
@@ -75,24 +81,10 @@ const HomeHeader = () => {
   if (nowPath?.needsNickname && (!nickname || isLoading || isError)) {
     return <div className={baseHeaderClass}></div>;
   }
-  if (!nickname || isLoading || isError)
-    return (
-      <div className="flex h-[56px] flex-row items-center justify-between bg-primary-50 p-3"></div>
-    );
-
-  if (pathname === "/") {
-    return (
-      <div className={baseHeaderClass}>
-        <div className="mx-auto text-lg">
-          <strong>{nickname?.user_nickname}</strong>
-        </div>
-      </div>
-    );
-  }
 
   const headertext = nowPath
     ? nowPath.needsNickname
-      ? `${nickname.user_nickname}님의 ${nowPath.title}`
+      ? `${nickname?.user_nickname}님의 ${nowPath.title}`
       : nowPath.title
     : nickname && !isLoading && !isError
       ? `${nickname.user_nickname}님`
