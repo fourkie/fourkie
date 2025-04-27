@@ -24,7 +24,7 @@ const Edit = async ({ params }: { params: { id: string } }) => {
   const day = dayjs().format("dddd");
 
   return (
-    <div className="py-4">
+    <>
       <strong className="flex items-center justify-between text-grey-8">
         <p className="flex gap-2">
           <span className="text-xl">{date}</span>
@@ -34,7 +34,7 @@ const Edit = async ({ params }: { params: { id: string } }) => {
       </strong>
       <hr className="my-2.5 w-full border-grey-0" />
       <PostingForm postId={postId} userId={userId} />
-    </div>
+    </>
   );
 };
 

@@ -79,7 +79,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
   if (isPending) return <div>쿠키 주문하신 분?</div>;
 
   return (
-    <div className="w-full rounded-2xl border border-primary-50 bg-white py-5 md:flex md:h-[302px] md:w-96 md:items-center md:justify-center">
+    <div className="w-full rounded-2xl border border-primary-50 bg-white py-5 md:flex md:h-[330px] md:w-96 md:items-center md:justify-center">
       <div className="flex flex-col items-center gap-2">
         <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="m" />
 

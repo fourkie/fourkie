@@ -82,7 +82,13 @@ const EmotionSelect = ({
       <strong className="text-2xl text-white">
         플레이리스트를 추천해 드릴게요!
       </strong>
-      <p className={`mt-6 text-grey-2 ${scrolled ? `hidden` : "block"}`}>
+      <p
+        className={`mt-6 overflow-hidden text-grey-2 transition-all duration-300`}
+        style={{
+          opacity: scrolled ? 0 : 1,
+          height: scrolled ? 0 : "auto",
+        }}
+      >
         {!todayEmotion && (
           <span>
             오늘의 일기를 작성하면,

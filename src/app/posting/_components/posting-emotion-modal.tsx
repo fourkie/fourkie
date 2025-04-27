@@ -1,6 +1,7 @@
 "use client";
 
 import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
+import Popup from "@/ui/common/popup-bg.common";
 import { convertEmotions } from "@/utils/emotion-convert";
 import { useEffect, useState } from "react";
 import { PostingResultModalProps } from "../type";
@@ -38,8 +39,8 @@ const PostingEmotionModal = ({
   return (
     <>
       {emotion && isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90">
-          <div className="mx-5 flex w-full flex-col gap-5 rounded-2xl bg-white px-12 py-6 shadow-lg">
+        <Popup>
+          <div className="mx-5 flex w-full max-w-[380px] flex-col gap-5 rounded-2xl bg-white px-12 py-6 shadow-lg">
             <h2 className="text-center text-xl font-bold text-grey-7">
               {EMOTIONS_QUERY[currentEmotionKey]}
             </h2>
@@ -63,7 +64,7 @@ const PostingEmotionModal = ({
               postId={postId}
             />
           </div>
-        </div>
+        </Popup>
       )}
     </>
   );
