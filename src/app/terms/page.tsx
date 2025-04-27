@@ -1,4 +1,16 @@
-const TermsPage = () => {
+import createClient from "@/services/supabase-server-service";
+import { redirect } from "next/navigation";
+
+const TermsPage = async () => {
+  const supabaseClient = createClient();
+  const {
+    data: { user },
+    error,
+  } = await supabaseClient.auth.getUser();
+  if (error || !user) {
+    redirect("/sign-in");
+  }
+
   return (
     <main className="mx-aut my-10 max-w-3xl px-4 py-8 pb-20">
       <h1 className="mb-6 text-2xl font-bold">📄 서비스 이용약관</h1>

@@ -136,16 +136,17 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
         </div>
       )}
       {openDeletePopup && (
-        <Alert title="알람" contents={ALERT_MESSAGE.LIST.DELETE}>
-          <Button
-            type="button"
-            onClick={() => setOpenDeletePopup(false)}
-            backgroundColor="sub"
-          >
+        <Alert title={ALERT_MESSAGE.LIST.DELETE_TITLE} contents={ALERT_MESSAGE.LIST.DELETE_CONTENT}>
+          <Button type="button" onClick={() => setOpenDeletePopup(false)}>
             취소
           </Button>
-          <Button type="button" onClick={() => handleDelete()}>
-            삭제
+
+          <Button
+            type="button"
+            backgroundColor="sub"
+            onClick={() => handleDelete()}
+          >
+            확인
           </Button>
         </Alert>
       )}
