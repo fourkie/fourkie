@@ -4,7 +4,7 @@ import PostingButton from "@/app/posting/_components/posting-button";
 import { useGetUserNicknameByIdQuery } from "@/hooks/queries/use-get-user-nickname-by-id-query";
 import { getUserIdClient } from "@/services/home-client-service";
 import { ChevronLeft } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const headerPaths = [
@@ -35,6 +35,9 @@ const HomeHeader = () => {
   const pathname = usePathname();
   const [userId, setUserId] = useState<string | undefined>(undefined);
 
+  const searchParams = useSearchParams();
+  const fromParam = searchParams.get("from");
+
   useEffect(() => {
     const fetchUser = async () => {
       const userid = await getUserIdClient();
@@ -58,6 +61,17 @@ const HomeHeader = () => {
     route.back();
   };
 
+  //마이페이지 튜토리얼
+  if (fromParam === "my-page") {
+    return (
+      <div className={baseHeaderClass}>
+        <div className="flex flex-row">
+          <ChevronLeft className="cursor-pointer" onClick={handleBack} />
+          <strong>마이페이지로 돌아가기</strong>
+        </div>
+      </div>
+    );
+  }
   //헤더가 필요없는 경우
   if (
     pathname.startsWith("/sign-in") ||
