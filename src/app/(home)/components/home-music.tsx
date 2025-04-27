@@ -7,8 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const common =
-  "md:border-2 md:border-dashed md:border-primary-200 md:rounded-xl md:p-3 md:bg-white w-full max-w-[400px] mx-auto";
-const commonTitle = "mx-auto flex max-w-[400px] flex-row gap-4 mt-2 w-full";
+  "p-2 border-2 border-grey-0 md:border-2 md:border-dashed md:border-primary-200 md:rounded-xl md:p-3 md:bg-white w-full max-w-[400px] mx-auto";
+const commonTitle = "mx-auto flex max-w-[400px] flex-row gap-4  w-full";
 const HomeMusic = ({ userId }: { userId: string }) => {
   const { data } = useGetPostTodayEmotionByIdQuery(userId);
 
@@ -26,7 +26,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           </div>
         </Link>
         <div
-          className={`flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-4 ${common}`}
+          className={`flex flex-row items-center gap-4 rounded-xl ${common}`}
         >
           <div className="flex flex-1 flex-col justify-between">
             플레이리스트를 불러오고 있습니다!
@@ -46,9 +46,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           <ChevronRight className="cursor-pointer" />
         </div>
       </Link>
-      <div
-        className={`flex flex-row items-center gap-4 rounded-xl border bg-primary-50 p-4 ${common}`}
-      >
+      <div className={`flex flex-row items-center gap-4 rounded-xl ${common}`}>
         <a
           href={playlists[randomIndex].external_urls.spotify}
           target="_blank"

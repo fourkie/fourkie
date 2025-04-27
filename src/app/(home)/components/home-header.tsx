@@ -46,7 +46,7 @@ const HomeHeader = () => {
   }, []);
   const {
     data: nickname,
-    isLoading,
+    isPending,
     isError,
   } = useGetUserNicknameByIdQuery(userId, {
     enabled: Boolean(userId),
@@ -55,11 +55,7 @@ const HomeHeader = () => {
   //뒤로 가는 로직
   const route = useRouter();
   const handleBack = () => {
-    if (pathname.startsWith("/posting")) {
-      route.push("/list");
-    } else {
-      route.push("/my-page");
-    }
+    route.back();
   };
 
   //헤더가 필요없는 경우
@@ -78,7 +74,7 @@ const HomeHeader = () => {
   );
 
   //이후는 닉네임 필요한 로직
-  if (nowPath?.needsNickname && (!nickname || isLoading || isError)) {
+  if (nowPath?.needsNickname && (!nickname || isPending || isError)) {
     return <div className={baseHeaderClass}></div>;
   }
 
@@ -86,7 +82,7 @@ const HomeHeader = () => {
     ? nowPath.needsNickname
       ? `${nickname?.user_nickname}님의 ${nowPath.title}`
       : nowPath.title
-    : nickname && !isLoading && !isError
+    : nickname && !isPending && !isError
       ? `${nickname.user_nickname}님`
       : "";
 

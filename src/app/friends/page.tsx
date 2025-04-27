@@ -13,14 +13,14 @@ import { SelectedUserType } from "./type";
 
 const Friends = () => {
   const router = useRouter();
-  const supabaseServer = createClient();
+  const supabaseClient = createClient();
 
   useEffect(() => {
     const checkUser = async () => {
       const {
         data: { user },
         error,
-      } = await supabaseServer.auth.getUser();
+      } = await supabaseClient.auth.getUser();
       if (error || !user) {
         router.replace("/sign-in");
       }

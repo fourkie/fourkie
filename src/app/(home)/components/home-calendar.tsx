@@ -37,11 +37,10 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
     currentDate.month() + 1,
   );
 
-  // 펜딩 or 에러일 때 크기 같게 유지하려고 min-h-500px 줬습니다.
   if (isPending || isError)
     return (
       <div
-        className={`mx-auto flex min-h-[25rem] w-full max-w-md items-center justify-center rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
+        className={`mx-auto flex min-h-[25rem] w-full max-w-md items-center justify-center rounded-xl border border-secondary-100 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
       >
         <span className="text-md text-grey-3">
           {isPending ? QUERYDATA.ISPENDING : QUERYDATA.ISERROR}
@@ -72,7 +71,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
     <div
       className={`mx-auto min-w-[250px] max-w-[400px] rounded-xl border border-secondary-100 p-5 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between px-3 lg:px-5">
         <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
         <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
         <ChevronRight
@@ -153,9 +152,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
                       />
                     </div>
                   ) : (
-                    <span className="md:text-md lg:text-lg xl:text-xl">
-                      {day}
-                    </span>
+                    <span className="md:text-lg lg:text-xl">{day}</span>
                   )}
                 </>
               )}
