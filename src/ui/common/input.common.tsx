@@ -10,7 +10,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           {...props}
-          className="w-full rounded-xl border-none bg-white px-4 py-3 shadow-sm placeholder:text-sm focus:outline-none"
+          className="w-full rounded-xl border-none bg-white px-4 py-4 shadow-sm placeholder:text-sm focus:outline-none"
         />
 
         {error ? (

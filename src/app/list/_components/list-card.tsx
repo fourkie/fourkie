@@ -67,23 +67,22 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 rounded-xl bg-white p-3 px-5 py-4 font-omyu leading-4p text-black text-grey-8">
-      <div className="flex h-6 w-full items-center justify-between">
-        <strong className="w-24 text-grey-5">{date}</strong>
-        <strong className="text-center text-lg">
-          {EMOTIONS_QUERY[post_emotion]}
-        </strong>
+    <div className="mx-auto flex w-full max-w-[624px] flex-col items-center gap-4 rounded-2xl bg-white p-3 px-5 py-4 font-omyu tracking-wide text-black text-grey-8">
+      <div className="mb-[2px] flex h-6 w-full items-center justify-between">
+        <strong className="w-24 text-sm text-grey-5">{date}</strong>
+        <strong className="text-center">{EMOTIONS_QUERY[post_emotion]}</strong>
         {isMyPost ? (
-          <div className="flex w-24 justify-end gap-3">
-            <Pencil className="w-5 cursor-pointer" onClick={handleEdit} />
+          <div className="flex w-24 justify-end gap-2">
+            <Pencil size={14} className="cursor-pointer" onClick={handleEdit} />
             <Trash2
-              className="w-5 cursor-pointer"
+              size={14}
+              className="cursor-pointer"
               onClick={handleDeleteButton}
             />
           </div>
         ) : (
           <div
-            className="w-24 cursor-pointer text-right font-pretendard text-grey-5"
+            className="w-24 cursor-pointer text-right font-pretendard text-sm text-primary-600"
             onClick={() => setOpenGraphPopup(!openGraphPopup)}
           >
             프로필 보러가기
@@ -103,35 +102,37 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       </div>
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
       {!isMyPost && (
-        <strong className="text-center font-omyu text-lg leading-5">
+        <strong className="text-center leading-5">
           오늘 &nbsp;
-          <span className="font-omyu text-secondary-200">
-            {user?.user_nickname}
-          </span>
-          님! <br /> {EMOTIONS_QUERY[post_emotion]}
-          날이시네요!
+          <span className="text-secondary-500">{user?.user_nickname}</span>
+          &nbsp; 님! <br /> {EMOTIONS_QUERY[post_emotion]}
+          &nbsp; 날이시네요!
         </strong>
       )}
       {isMyPost && (
-        <div className="flex flex-col items-center">
-          <strong className="text-lg">{post_title}</strong>
+        <>
+          <strong className="text-xl">{post_title}</strong>
           <strong
             ref={contentRef}
-            className={`w-full max-w-96 break-all text-center leading-5 ${
+            className={`w-full max-w-96 break-all px-12 text-center leading-5 ${
               isExpanded ? "line-clamp-none" : "line-clamp-2"
             }`}
           >
             {post_content}
           </strong>
-        </div>
+        </>
       )}
 
       {isMyPost && isOverflowing && (
         <div
           onClick={() => setIsExpanded(!isExpanded)}
-          className="mx-auto mt-1 w-fit cursor-pointer"
+          className="mx-auto mt-3 w-fit cursor-pointer"
         >
-          {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          {isExpanded ? (
+            <ChevronUp size={18} className="text-grey-6" />
+          ) : (
+            <ChevronDown size={18} className="text-grey-6" />
+          )}
         </div>
       )}
       {openDeletePopup && (

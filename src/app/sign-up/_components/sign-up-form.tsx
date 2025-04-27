@@ -33,7 +33,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="mx-auto flex max-w-[360px] flex-col items-center justify-center gap-10 px-5">
+    <div className="mx-auto flex max-w-[360px] flex-col items-center justify-center gap-14 px-5">
       <div className="flex flex-col items-center">
         <div className="mb-4 flex items-center justify-center rounded-full">
           <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.EXCITED} size="l" />
@@ -76,7 +76,7 @@ const SignUpForm = () => {
           error={errors.passwordConfirm?.message}
         />
 
-        <Button type="submit" disabled={!isValid}>
+        <Button type="submit" disabled={!isValid} classname="mt-8">
           회원가입
         </Button>
       </form>

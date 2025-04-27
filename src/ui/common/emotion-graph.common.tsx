@@ -47,20 +47,20 @@ const EmotionGraph = ({
   if (!openPopup) return null;
 
   return (
-    <div className="flex w-full max-w-[548px] flex-col items-center justify-center rounded-xl bg-white p-5 font-pretendard">
+    <div className="flex w-full max-w-[548px] flex-col items-center justify-center rounded-2xl bg-white p-5 font-pretendard">
       {isListPage && (
         <div className="mb-1 flex w-full items-center justify-between border-b-2 border-grey-1 pb-2">
           <div className="flex items-center gap-3">
-            <strong className="text-xl">{nickname}</strong>
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.EXCITED} size="xs" />
+            <strong className="text-xl">{nickname}</strong>
           </div>
           <X className="cursor-pointer" onClick={setOpenPopup} />
         </div>
       )}
-      <div className="text-md mb-2 mt-2 w-full text-right text-grey-2">
+      <div className="mb-2 mt-2 w-full text-right text-xs text-grey-2">
         * 최근 3개월 통계
       </div>
-      <div className="flex w-full max-w-[548px] items-end justify-between">
+      <div className="flex w-full items-end justify-between">
         {emotions.map((e, i) => {
           const percentageValue = parseFloat(e.percentage.replace("%", ""));
           const barHeight = Math.max(
@@ -71,18 +71,22 @@ const EmotionGraph = ({
           return (
             <div
               key={i}
-              className="flex w-[15%] flex-col items-center justify-end gap-2"
+              className="flex w-[17%] flex-col items-center justify-end gap-[6px] font-medium"
             >
               <div
-                className="rounded-t-lg border px-[60%]"
+                className="mb-[2px] rounded-t-xl border px-[50%]"
                 style={{
                   height: `${barHeight}px`,
                   backgroundColor: `var(--color-${color[e.emotion]})`,
                 }}
               ></div>
               <EmotionImage src={checkEmotion(e.emotion)} size="s" />
-              <strong className="mt-1">{EMOTIONS_QUERY[e.emotion]}</strong>
-              <div className="mt-1">{Math.floor(parseInt(e.percentage))}%</div>
+              <div className="text-sm text-grey-6">
+                {EMOTIONS_QUERY[e.emotion]}
+              </div>
+              <div className="text-xs">
+                {Math.floor(parseInt(e.percentage))}%
+              </div>
             </div>
           );
         })}

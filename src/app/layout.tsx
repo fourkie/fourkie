@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 import HeaderWithZustand from "./(home)/components/home-zustand";
 import HeaderDesk from "./(layout)/header-desk";
+import MainContentContainer from "./(layout)/main-content-container";
 import Navigation from "./(layout)/navigation";
 import "./globals.css";
 
@@ -40,13 +41,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="font-minsans antialiased">
+      <body className="font-minsans text-grey-7 antialiased">
         <Providers>
           <HeaderWithZustand />
           <HeaderDesk />
-          <main className="mx-auto min-w-[360px] max-w-[1024px] px-5 pb-36 pt-[76px] md:py-24">
-            {children}
-          </main>
+          <MainContentContainer>{children}</MainContentContainer>
           <Navigation />
         </Providers>
         <ToastContainer position="top-right" autoClose={3000} />
