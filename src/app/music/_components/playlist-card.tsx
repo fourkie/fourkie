@@ -38,6 +38,7 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
         <button
           className="flex items-center justify-center"
           onClick={handleBookmarkToggle}
+          aria-pressed={isBookmarked}
         >
           <Star
             className={`${
@@ -52,6 +53,7 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
           href={playlist.external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`${playlist.name} 스포티파이 링크 (새 창 열림)`}
           className="flex w-full items-center gap-5 overflow-hidden whitespace-nowrap transition"
         >
           <div className="h-12 w-14 overflow-hidden rounded-lg">

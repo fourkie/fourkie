@@ -23,6 +23,8 @@ const TabButton = ({
   return (
     <button
       onClick={onClick}
+      role="tab"
+      aria-selected={isActive}
       className={`${baseStyle} ${isActive ? activeStyle : unselectedStyle}`}
     >
       {children}

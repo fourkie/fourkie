@@ -30,6 +30,9 @@ const EmotionSelect = ({
         {/* 드롭다운 버튼 */}
         <button
           onClick={() => setOpen((prev) => !prev)}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-label="감정 선택 드롭다운"
           className={`${
             whiteText ? "text-white" : "text-primary-700"
           } ${open ? "rounded-tl-[15px] rounded-tr-[15px]" : "rounded-full"}`}
@@ -45,7 +48,11 @@ const EmotionSelect = ({
 
         {/* 드롭다운 목록 */}
         {open && (
-          <div className="absolute top-[30px] z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4">
+          <div
+            className="absolute top-[30px] z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4"
+            role="listbox"
+            aria-label="감정 선택 목록"
+          >
             {emotionKeys.map((key) => {
               if (emotion === key) return null;
               const isWhiteOption = key === "SAD" || key === "ANGRY";
@@ -54,6 +61,7 @@ const EmotionSelect = ({
                 <button
                   key={key}
                   onClick={() => handleSelect(key)}
+                  aria-label={`${EMOTIONS_QUERY[key]} 감정 선택`}
                   className={`rounded-full border px-2 py-1 text-sm ${
                     isWhiteOption ? "text-white" : "text-primary-700"
                   }`}
