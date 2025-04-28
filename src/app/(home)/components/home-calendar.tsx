@@ -152,7 +152,6 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
                       />
                     </div>
                   ) : (
-                    //이미지 없는 와중에 토요일이나 일요일
                     <span className="md:text-lg lg:text-[26px] lg:font-bold">
                       {day}
                     </span>
