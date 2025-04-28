@@ -19,52 +19,78 @@ const FriendList = ({
   const { data: searchedUser } = useSearchUserQuery(searchUser);
   const { data: friendList } = useGetMyFriendsQuery();
   const [userId, setUserId] = useState<string>("");
+
   const { mutate: deleteFriend } = useDeleteFriendMutation();
+  const { mutate: cancelRequest } = useCancelFriendRequestMutation();
 
   useEffect(() => {
     const fetchUserId = async () => {
       const result = await getUserForClient();
       if (result) setUserId(result.userId);
     };
-
     fetchUserId();
   }, []);
 
-  const { data: sentReuests } = useGetSentRequestsQuery(userId);
-  const { mutate: cancelRequest } = useCancelFriendRequestMutation();
+  const { data: sentRequests } = useGetSentRequestsQuery(userId);
 
-  const requestedAlready = sentReuests?.find(
-    (request) => request.receiver_uid === searchedUser?.user_uid,
-  );
+  if (searchUser) {
+    if (searchedUser && searchedUser.length > 0) {
+      return (
+        <div className="flex flex-col gap-3 py-3">
+          {searchedUser.map((user) => {
+            const isFriend = friendList?.some(
+              (friend) => friend.user_uid === user.user_uid,
+            );
+            const alreadyRequested = sentRequests?.find(
+              (request) => request.receiver_uid === user.user_uid,
+            );
 
-  if (searchUser && searchedUser) {
-    return (
-      <div className="flex w-full items-center justify-between py-3">
-        <div
-          onClick={() => setSelectedUser(searchedUser)}
-          className="flex w-full cursor-pointer items-center gap-2 pl-3 text-lg font-medium text-grey-7"
-        >
-          <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
-          <div className="w-full flex-1">{searchedUser.user_nickname}</div>
+            return (
+              <div
+                key={user.user_uid}
+                className="flex w-full items-center justify-between px-3 py-3"
+              >
+                <div className="flex w-full cursor-pointer items-center gap-2 text-lg font-medium text-grey-7">
+                  <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
+                  <div className="w-full flex-1">{user.user_nickname}</div>
+                </div>
+
+                {isFriend ? (
+                  <button
+                    onClick={() =>
+                      deleteFriend({ userId, friendUid: user.user_uid })
+                    }
+                    className="w-20 rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
+                  >
+                    친구 끊기
+                  </button>
+                ) : alreadyRequested ? (
+                  <button
+                    onClick={() => cancelRequest(alreadyRequested.id)}
+                    className="w-20 rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
+                  >
+                    요청 취소
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setSelectedUser(user)}
+                    className="w-20 rounded-full border border-primary-300 px-2 py-1 text-sm text-primary-300 transition-all duration-300 hover:bg-primary-300 hover:text-white"
+                  >
+                    친구 요청
+                  </button>
+                )}
+              </div>
+            );
+          })}
         </div>
-        {requestedAlready && (
-          <button
-            onClick={() => cancelRequest(requestedAlready.id)}
-            className="w-20 rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
-          >
-            요청취소
-          </button>
-        )}
-      </div>
-    );
-  }
-
-  if (searchUser && !searchedUser) {
-    return (
-      <div className="flex items-center justify-center py-6 text-sm text-grey-4">
-        해당 닉네임 혹은 이메일을 가진 유저가 없습니다.
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="flex items-center justify-center py-6 text-sm text-grey-4">
+          해당 닉네임 혹은 이메일을 가진 유저가 없습니다.
+        </div>
+      );
+    }
   }
 
   return (

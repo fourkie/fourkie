@@ -27,6 +27,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
   };
 
   const handleCancelEdit = () => {
+    toast.info(TOAST_MESSAGE.MYPAGE.SAME_NICKNAME_ERROR);
     setEdit(false);
     setNewNickname(nickname);
     setIsDuplicate(false);
@@ -79,10 +80,9 @@ const MypageProfile = ({ userId }: { userId: string }) => {
   if (isPending) return <div>쿠키 주문하신 분?</div>;
 
   return (
-    <div className="w-full rounded-2xl border border-primary-50 bg-white py-5 md:flex md:h-[330px] md:w-96 md:items-center md:justify-center">
+    <div className="relative w-full rounded-2xl border border-primary-50 bg-white py-5 md:flex md:h-[330px] md:w-[600px] md:items-center md:justify-center">
       <div className="flex flex-col items-center gap-2">
-        <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="m" />
-
+        <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="s" />
         <div className="flex h-10 items-center justify-center gap-2">
           {edit ? (
             <>
@@ -101,7 +101,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
               <button
                 onClick={handleCancelEdit}
                 disabled={isPending}
-                className="flex items-center justify-center"
+                className="absolute right-4 top-4 z-10"
               >
                 <X size={20} />
               </button>

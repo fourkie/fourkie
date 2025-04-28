@@ -19,15 +19,15 @@ const FriendSearchInput = ({
   };
 
   return (
-    <div className="w-full relative">
-      <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-grey-3 w-5 h-5" />
+    <div className="relative mt-5 w-full">
+      <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-grey-3" />
       <input
         type="text"
         value={searchKeyword}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         placeholder={FORM_MESSAGE.PLACEHOLDER_USER_SEARCH}
-        className="w-full h-12 pl-12 pr-4 py-2 rounded-2xl bg-grey-0 text-sm border-none placeholder:text-grey-3"
+        className="h-12 w-full rounded-2xl border-none bg-grey-0 py-2 pl-12 pr-4 text-sm placeholder:text-grey-3"
       />
     </div>
   );
