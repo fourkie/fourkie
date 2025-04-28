@@ -1,8 +1,8 @@
 import Providers from "@/providers/RQProviders";
 import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
-import HeaderWithZustand from "./(home)/components/home-zustand";
 import HeaderDesk from "./(layout)/header-desk";
+import HeaderWithZustand from "./(layout)/header-zustand";
 import MainContentContainer from "./(layout)/main-content-container";
 import Navigation from "./(layout)/navigation";
 import "./globals.css";
