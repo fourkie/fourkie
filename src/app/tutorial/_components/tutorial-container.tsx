@@ -37,6 +37,7 @@ const TutorialContainer = () => {
           onClick={handleNext}
           onDotClick={setCurrentStep}
           buttonName={TUTORIAL.BUTTON.NEXT}
+          isFromMypage={isFromMypage}
         />
       )}
 
@@ -49,6 +50,7 @@ const TutorialContainer = () => {
           onClick={handleNext}
           onDotClick={setCurrentStep}
           buttonName={TUTORIAL.BUTTON.NEXT}
+          isFromMypage={isFromMypage}
         />
       )}
 
@@ -61,6 +63,7 @@ const TutorialContainer = () => {
           onClick={handleNext}
           onDotClick={setCurrentStep}
           buttonName={TUTORIAL.BUTTON.NEXT}
+          isFromMypage={isFromMypage}
         />
       )}
 
@@ -73,6 +76,7 @@ const TutorialContainer = () => {
           onClick={handleNext}
           onDotClick={setCurrentStep}
           buttonName={TUTORIAL.BUTTON.NEXT}
+          isFromMypage={isFromMypage}
         />
       )}
 

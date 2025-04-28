@@ -7,7 +7,7 @@ import EmotionImage from "@/ui/common/emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
 
 const common =
-  " grid grid-cols-5 gap-3 border-2 border-dashed border-primary-200 rounded-xl p-5 ";
+  " grid grid-cols-5 gap-3 border-2 border-dashed border-primary-200 rounded-[28px] p-4 ";
 
 const HomeStack = ({ userId }: { userId: string }) => {
   const { data: myPosts, isPending } = useGetAllPostsByIdQuery({ userId });
@@ -33,7 +33,7 @@ const HomeStack = ({ userId }: { userId: string }) => {
               <div key={post.post_id}>
                 <EmotionImage
                   src={checkEmotion(post.post_emotion)}
-                  size={"xs"}
+                  size={"xss"}
                 />
               </div>
             );
@@ -43,7 +43,7 @@ const HomeStack = ({ userId }: { userId: string }) => {
               <div key={post.post_id}>
                 <EmotionImage
                   src={checkEmotion(post.post_emotion)}
-                  size={"xs"}
+                  size={"xss"}
                 />
               </div>
             );
