@@ -12,7 +12,7 @@ import { useState } from "react";
 import HomeDate from "./home-date";
 
 const changeStyle =
-  "md:max-w-2xl md:max-h-[700px] lg:max-w-[620px] lg:max-h-[702px] md:border-primary-200 md:border-2 md:border-dashed md:bg-[#F7FAF2] ";
+  "md:max-w-2xl md:max-h-[700px] lg:max-w-[620px] lg:max-h-[720px] md:border-primary-200 md:border-2 md:border-dashed md:bg-[#F7FAF2] ";
 
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const [currentDate, setCurrentDate] = useState(dayjs());
@@ -73,7 +73,9 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
     >
       <div className="flex items-center justify-between px-3 lg:px-5">
         <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
-        <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
+        <div className="flex flex-1 justify-center overflow-hidden pb-1 md:justify-center">
+          <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
+        </div>
         <ChevronRight
           onClick={() => {
             if (!isNextMonthFuture) handleNextMonth();
@@ -136,9 +138,9 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
           return (
             <div
               key={idx}
-              className={`relative flex h-[2.7rem] items-center justify-center rounded-md md:h-[5rem] lg:h-[6.5rem] ${
+              className={`relative flex h-[2.3rem] items-center justify-center rounded-md md:h-[5rem] lg:h-[5.8rem] ${
                 isFuture || day === null
-                  ? "text-grey-3"
+                  ? "text-grey-2"
                   : "cursor-pointer transition-all duration-200 ease-in-out hover:bg-secondary-50 md:hover:bg-[#F7FAF2]"
               }`}
             >
@@ -152,7 +154,15 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
                       />
                     </div>
                   ) : (
-                    <span className="md:text-lg lg:text-[26px] lg:font-bold">
+                    <span
+                      className={`md:text-lg lg:text-[26px] lg:font-bold ${
+                        idx % 7 === 6
+                          ? "text-primary-500"
+                          : idx % 7 === 0
+                            ? "text-secondary-400"
+                            : ""
+                      }`}
+                    >
                       {day}
                     </span>
                   )}
