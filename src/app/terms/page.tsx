@@ -12,8 +12,10 @@ const TermsPage = async () => {
   }
 
   return (
-    <main className="max-w-3xl">
-      <h1 className="mb-6 text-2xl font-bold">📄 서비스 이용약관</h1>
+    <main className="mb-5 flex w-full flex-col pb-10 pt-5">
+      <h1 className="mb-10 mt-3 flex justify-center text-2xl font-bold">
+        서비스 이용약관
+      </h1>
       <div className="space-y-6 text-sm text-gray-800">
         <section>
           <h2 className="font-semibold">제1조 목적</h2>
