@@ -30,6 +30,7 @@ export interface PlaylistTabContainerProps {
   activeTab: PlaylistTabProps;
   onTabChange: Dispatch<SetStateAction<PlaylistTabProps>>;
 }
+
 export enum PlaylistTabProps {
   RECOMMEND = "추천 플리",
   BOOKMARK = "즐겨찾기",
