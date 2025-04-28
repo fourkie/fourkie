@@ -22,7 +22,7 @@ const HeaderDesk = () => {
       <div className="fixed top-0 hidden h-[56px] w-full bg-primary-50 px-5 md:flex">
         <div className="mx-auto flex h-full w-full max-w-[1024px] items-center justify-between py-5 text-grey-6">
           <div className="flex items-center gap-2">
-            <Image src="/images/joy.png" width={39} height={39} alt="조이" />
+            <Image src="/images/Fluffy.png" width={39} height={39} alt="신나" />
             <strong className="text-xl">Smookie</strong>
           </div>
         </div>
@@ -36,7 +36,7 @@ const HeaderDesk = () => {
       <div className="header-desk fixed top-0 z-40 hidden h-[56px] w-full bg-primary-50 px-5 md:block">
         <div className="mx-auto flex h-full w-full max-w-[1024px] items-center justify-between py-5 text-grey-8">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/images/joy.png" width={39} height={39} alt="조이" />
+            <Image src="/images/Fluffy.png" width={39} height={39} alt="신나" />
             <strong className="text-xl">Smookie</strong>
           </Link>
           <div className="flex gap-4">

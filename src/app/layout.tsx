@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "Smookie",
     images: [
       {
-        url: "/images/joy.png",
+        url: "/images/Fluffy.png",
         width: 800,
         height: 600,
       },
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/images/joy.ico", type: "image/x-icon" },
-      { url: "/images/joy.png", type: "image/png", sizes: "32x32" },
+      { url: "/images/fluffy.ico", type: "image/x-icon" },
+      { url: "/images/Fluffy.png", type: "image/png", sizes: "32x32" },
     ],
   },
 };
