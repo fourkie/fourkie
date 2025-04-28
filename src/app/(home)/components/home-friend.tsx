@@ -77,7 +77,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
           <ChevronRight className="ml-auto cursor-pointer" />
         </div>
         <div className={`${commonContext} flex flex-row`}>
-          <div className="flex w-full flex-row items-center gap-4">
+          <div className="m-3 flex w-full flex-row items-center gap-4">
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.SAD} size="xs" />
             <div className="flex flex-col">
               <strong>친구의 쿠키가 없네요!</strong>

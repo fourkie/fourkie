@@ -4,7 +4,7 @@ import PostingButton from "@/app/posting/_components/posting-button";
 import { useGetUserNicknameByIdQuery } from "@/hooks/queries/use-get-user-nickname-by-id-query";
 import { getUserIdClient } from "@/services/home-client-service";
 import { ChevronLeft } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const headerPaths = [
@@ -18,7 +18,6 @@ const headerPaths = [
   { path: "/posting", title: "기록", needsNickname: true },
 ];
 
-//뒤로가기 필요 목록
 const backIconPaths = [
   "/friends",
   "/smookie-makers",
@@ -33,20 +32,19 @@ const baseHeaderClass =
 
 const HomeHeader = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const [userId, setUserId] = useState<string | undefined>(undefined);
-
-  const searchParams = useSearchParams();
-  const fromParam = searchParams.get("from");
 
   useEffect(() => {
     const fetchUser = async () => {
-      const userid = await getUserIdClient();
-      if (userid) {
-        setUserId(userid);
+      const userId = await getUserIdClient();
+      if (userId) {
+        setUserId(userId);
       }
     };
     fetchUser();
   }, []);
+
   const {
     data: nickname,
     isPending,
@@ -55,24 +53,10 @@ const HomeHeader = () => {
     enabled: Boolean(userId),
   });
 
-  //뒤로 가는 로직
-  const route = useRouter();
   const handleBack = () => {
-    route.back();
+    router.back();
   };
 
-  //마이페이지 튜토리얼
-  if (fromParam === "my-page") {
-    return (
-      <div className={baseHeaderClass}>
-        <div className="flex flex-row">
-          <ChevronLeft className="cursor-pointer" onClick={handleBack} />
-          <strong>마이페이지로 돌아가기</strong>
-        </div>
-      </div>
-    );
-  }
-  //헤더가 필요없는 경우
   if (
     pathname.startsWith("/sign-in") ||
     pathname.startsWith("/sign-up") ||
@@ -82,17 +66,15 @@ const HomeHeader = () => {
     return null;
   }
 
-  // 현재 경로에 맞는 라우트 찾기
   const nowPath = headerPaths.find((headerpath) =>
     pathname.startsWith(headerpath.path),
   );
 
-  //이후는 닉네임 필요한 로직
   if (nowPath?.needsNickname && (!nickname || isPending || isError)) {
     return <div className={baseHeaderClass}></div>;
   }
 
-  const headertext = nowPath
+  const headerText = nowPath
     ? nowPath.needsNickname
       ? `${nickname?.user_nickname}님의 ${nowPath.title}`
       : nowPath.title
@@ -108,11 +90,11 @@ const HomeHeader = () => {
       {showBackIcon ? (
         <>
           <ChevronLeft className="cursor-pointer" onClick={handleBack} />
-          <div className="mx-auto text-lg font-bold">{headertext}</div>
+          <div className="mx-auto text-lg font-bold">{headerText}</div>
           {pathname.startsWith("/posting") && <PostingButton />}
         </>
       ) : (
-        <div className="mx-auto text-lg font-bold">{headertext}</div>
+        <div className="mx-auto text-lg font-bold">{headerText}</div>
       )}
     </div>
   );
