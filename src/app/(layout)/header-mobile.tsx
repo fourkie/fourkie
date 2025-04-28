@@ -30,7 +30,7 @@ const backIconPaths = [
 const baseHeaderClass =
   "header-mobile fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-5 z-40 h-[56px] min-w-[360px]";
 
-const HomeHeader = () => {
+const HeaderMobile = () => {
   const pathname = usePathname();
   const router = useRouter();
   const [userId, setUserId] = useState<string | undefined>(undefined);
@@ -100,4 +100,4 @@ const HomeHeader = () => {
   );
 };
 
-export default HomeHeader;
+export default HeaderMobile;

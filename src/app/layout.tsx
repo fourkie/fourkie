@@ -1,8 +1,8 @@
 import Providers from "@/providers/RQProviders";
 import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
-import HeaderWithZustand from "./(home)/components/home-zustand";
 import HeaderDesk from "./(layout)/header-desk";
+import HeaderWithZustand from "./(layout)/header-zustand";
 import MainContentContainer from "./(layout)/main-content-container";
 import Navigation from "./(layout)/navigation";
 import "./globals.css";
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "Smookie",
     images: [
       {
-        url: "/images/joy.png",
+        url: "/images/Fluffy.png",
         width: 800,
         height: 600,
       },
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/images/joy.ico", type: "image/x-icon" },
-      { url: "/images/joy.png", type: "image/png", sizes: "32x32" },
+      { url: "/images/fluffy.ico", type: "image/x-icon" },
+      { url: "/images/Fluffy.png", type: "image/png", sizes: "32x32" },
     ],
   },
 };
