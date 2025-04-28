@@ -5,6 +5,7 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-today-emotion-by-id-query";
 import createClient from "@/services/supabase-client-service";
+import CookieAlert from "@/ui/common/cookie-alert.common";
 import Tab from "@/ui/common/tab.common";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -70,7 +71,7 @@ const Music = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 64) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -86,8 +87,12 @@ const Music = () => {
 
   if (!userId)
     return (
-      TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING ||
-      TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR
+      <CookieAlert
+        text={
+          TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING ||
+          TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR
+        }
+      />
     );
 
   return (
