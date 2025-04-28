@@ -61,13 +61,18 @@ const NoticePage = async () => {
   }
 
   const renderList = (title: string, items: NoticeItem[]) => (
-    <section className="mb-8">
-      <h2 className="mb-4 text-xl font-bold">{title}</h2>
+    <section className="mb-10 w-full rounded-xl bg-primary-50 px-10 py-5">
+      <strong className="mb-5 flex w-full justify-center text-xl">
+        {title}
+      </strong>
       <div className="grid gap-4">
         {items.map((item, idx) => (
-          <div key={idx} className="rounded-2xl p-4 shadow hover:bg-primary-50">
+          <div
+            key={idx}
+            className="cursor-pointer rounded-2xl bg-white p-4 shadow transition-all duration-300 hover:scale-105"
+          >
             <div className="space-y-1">
-              <h3 className="text-lg font-semibold">{item.title}</h3>
+              <strong className="text-lg font-semibold">{item.title}</strong>
               <p className="text-sm text-gray-500">{item.date}</p>
               <p className="text-sm text-gray-700">{item.content}</p>
             </div>
@@ -78,10 +83,9 @@ const NoticePage = async () => {
   );
 
   return (
-    <main className="mx-auto my-10 max-w-2xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold">공지사항 및 이벤트</h1>
-      {renderList("📢 공지사항", notices)}
-      {renderList("🎉 이벤트", events)}
+    <main className="mx-auto min-w-[360px] max-w-[1024px] text-grey-7">
+      {renderList("공지사항", notices)}
+      {renderList("이벤트", events)}
     </main>
   );
 };

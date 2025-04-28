@@ -12,6 +12,7 @@ const EmotionSelect = ({
   emotion,
   onChange,
   todayEmotion,
+  scrolled,
 }: EmotionSelectProps) => {
   const [open, setOpen] = useState(false);
 
@@ -24,11 +25,14 @@ const EmotionSelect = ({
   const emotionKeys = Object.keys(EMOTIONS_QUERY) as (keyof typeof Emotion)[];
 
   return (
-    <div className="absolute left-5 top-14 min-w-[360px]">
+    <div className="absolute left-5 top-14 z-40 min-w-[360px]">
       <div className="mb-3 flex items-center gap-2">
         {/* 드롭다운 버튼 */}
         <button
           onClick={() => setOpen((prev) => !prev)}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-label="감정 선택 드롭다운"
           className={`${
             whiteText ? "text-white" : "text-primary-700"
           } ${open ? "rounded-tl-[15px] rounded-tr-[15px]" : "rounded-full"}`}
@@ -44,7 +48,11 @@ const EmotionSelect = ({
 
         {/* 드롭다운 목록 */}
         {open && (
-          <div className="absolute top-[30px] z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4">
+          <div
+            className="absolute top-[30px] z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4"
+            role="listbox"
+            aria-label="감정 선택 목록"
+          >
             {emotionKeys.map((key) => {
               if (emotion === key) return null;
               const isWhiteOption = key === "SAD" || key === "ANGRY";
@@ -53,6 +61,7 @@ const EmotionSelect = ({
                 <button
                   key={key}
                   onClick={() => handleSelect(key)}
+                  aria-label={`${EMOTIONS_QUERY[key]} 감정 선택`}
                   className={`rounded-full border px-2 py-1 text-sm ${
                     isWhiteOption ? "text-white" : "text-primary-700"
                   }`}
@@ -73,7 +82,13 @@ const EmotionSelect = ({
       <strong className="text-2xl text-white">
         플레이리스트를 추천해 드릴게요!
       </strong>
-      <p className="mt-6 text-grey-2">
+      <p
+        className={`mt-6 overflow-hidden text-grey-2 transition-all duration-300`}
+        style={{
+          opacity: scrolled ? 0 : 1,
+          height: scrolled ? 0 : "auto",
+        }}
+      >
         {!todayEmotion && (
           <span>
             오늘의 일기를 작성하면,

@@ -43,7 +43,7 @@ const SentFriendList = () => {
       {data.map((request) => (
         <div
           key={request.id}
-          className="flex w-full items-center justify-between border-b p-4"
+          className="flex w-full items-center justify-between p-4"
         >
           <div className="flex items-center justify-start gap-2">
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />

@@ -33,11 +33,12 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   };
 
   return (
-    <div className="h-20 border-b border-b-grey-1 last:border-none">
-      <div className="justify-arround my-3 flex items-center gap-2">
+    <div className="h-20 border-b border-b-grey-1">
+      <div className="justify-arround my-3 flex items-center gap-2 md:flex-row-reverse">
         <button
           className="flex items-center justify-center"
           onClick={handleBookmarkToggle}
+          aria-pressed={isBookmarked}
         >
           <Star
             className={`${
@@ -46,12 +47,14 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
                 : "text-secondary-200"
             }`}
             size={18}
+            aria-hidden="true"
           />
         </button>
         <a
           href={playlist.external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`${playlist.name} 스포티파이 링크 (새 창 열림)`}
           className="flex w-full items-center gap-5 overflow-hidden whitespace-nowrap transition"
         >
           <div className="h-12 w-14 overflow-hidden rounded-lg">

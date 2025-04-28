@@ -31,27 +31,27 @@ const ReceivedFriendList = () => {
 
   if (!data || data.length === 0)
     return (
-      <div className="flex justify-center items-center text-base text-grey-3 px-4">
+      <div className="flex items-center justify-center px-4 text-base text-grey-3">
         {UI_TEXT.MYPAGE.EMPTY_FRIEND_RECEIVED_ALT}
       </div>
     );
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="flex w-full flex-col">
       {data.map((request) => (
         <div
           key={request.id}
-          className="border-b p-4 w-full flex justify-between items-center"
+          className="flex w-full items-center justify-between p-4"
         >
-          <div className="flex justify-start items-center gap-2">
+          <div className="flex items-center justify-start gap-2">
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
-            <p className="flex items-center gap-2 font-medium text-lg text-grey-7">
+            <p className="flex items-center gap-2 text-lg font-medium text-grey-7">
               {request.users.user_nickname}
             </p>
           </div>
           <button
             onClick={() => acceptRequest(request.id)}
-            className="text-sm text-primary-400 border border-primary-300 rounded-full px-2 py-1 hover:bg-primary-300 hover:text-white transition-all duration-300"
+            className="rounded-full border border-primary-300 px-2 py-1 text-sm text-primary-400 transition-all duration-300 hover:bg-primary-300 hover:text-white"
           >
             수락하기
           </button>

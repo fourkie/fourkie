@@ -78,14 +78,14 @@ const Makers = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-white px-6 pb-28 pt-20">
+    <div className="flex min-h-full flex-col items-center justify-center bg-white">
       {/* 상단 소개 영역 */}
       <div className="space-y-4">
         <div className="text-center text-xl font-semibold text-grey-7">
           Smookie Bakers
         </div>
         <div className="text-center text-sm text-grey-5">
-          우리는 기술에 감성을 더하는 팀{" "}
+          우리는 기술에 감성을 더하는 팀 &nbsp;
           <span className="font-semibold text-primary-300">FOURKIE</span>
           입니다.
         </div>
@@ -130,9 +130,9 @@ const Makers = () => {
 
                     {/* 텍스트 영역 */}
                     <div className="flex w-full flex-col items-center justify-center text-center lg:mt-0 lg:items-start lg:text-left">
-                      <h1 className="mb-2 text-2xl font-bold text-grey-7">
+                      <strong className="mb-2 text-2xl text-grey-7">
                         {card.name}
-                      </h1>
+                      </strong>
                       <h3 className="font-semibold text-grey-3">
                         {card.address}
                       </h3>
