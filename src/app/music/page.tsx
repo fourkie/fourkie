@@ -20,28 +20,13 @@ const Music = () => {
 
   const router = useRouter();
   const supabaseClient = createClient();
-  const router = useRouter();
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const emotionQuery = Emotion[emotion];
   const { playlists } = useGetAllPlaylistsByQueryQuery(emotionQuery);
   const { data: todayEmotionData } = useGetPostTodayEmotionByIdQuery(userId);
   const imageUrl = playlists[0]?.images[0]?.url;
 
+  // 유저 정보 조회
   useEffect(() => {
     const fetchUser = async () => {
       const {
@@ -80,7 +65,6 @@ const Music = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
