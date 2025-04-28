@@ -27,6 +27,21 @@ const Music = () => {
   const supabaseClient = createClient();
   const router = useRouter();
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     const fetchUser = async () => {
       const {
@@ -98,7 +113,12 @@ const Music = () => {
       </section>
 
       {/* isScrolled 값에 따라 top 값 조정 필수 !! */}
-      <div className="sticky top-[156px] z-20 w-full bg-white px-5">
+      <div
+        className="sticky top-[156px] z-20 w-full bg-white px-5 md:top-[212px]"
+        style={{
+          top: isScrolled ? (isMobile ? 156 : 212) : isMobile ? 256 : 312,
+        }}
+      >
         <Tab
           firstTab="추천 플리"
           secondTab="즐겨찾기"
@@ -106,7 +126,11 @@ const Music = () => {
           setActiveTab={setIsSelectedTab}
         />
       </div>
-
+      <div
+        style={{
+          height: isScrolled ? (isMobile ? 0 : 48) : isMobile ? 0 : 48,
+        }}
+      />
       {/* 스크롤 되는 PlaylistContent */}
       <PlaylistContent
         userId={userId}
