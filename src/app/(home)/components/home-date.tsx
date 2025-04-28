@@ -94,7 +94,7 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
                 },
                 sx: {
                   width: "130px",
-                  height: "75px",
+                  height: "60px",
                   caretColor: "transparent",
                   "& .MuiOutlinedInput-notchedOutline": {
                     border: "none",
