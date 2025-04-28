@@ -7,12 +7,13 @@ export const searchUserByNicknameOrEmail = async (searchKeyword: string) => {
     const { data, error } = await supabaseClient
       .from("users")
       .select("user_uid, user_nickname, user_email")
-      .or(`user_nickname.eq.${searchKeyword},user_email.eq.${searchKeyword}`)
-      .maybeSingle();
+      .or(
+        `user_nickname.ilike.%${searchKeyword}%,user_email.ilike.%${searchKeyword}%`,
+      );
 
-    if (error) return null;
+    if (error) return [];
     return data;
   } catch {
-    return null;
+    return [];
   }
 };

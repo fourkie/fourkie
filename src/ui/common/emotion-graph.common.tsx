@@ -16,10 +16,10 @@ const EmotionGraph = ({
   nickname,
 }: {
   isListPage: boolean;
-  openPopup?: boolean;
+  openPopup: boolean;
   setOpenPopup?: () => void;
   userId: string;
-  nickname: string;
+  nickname?: string;
 }) => {
   const { data: posts } = useGetAllPostsByIdQuery({ userId });
   if (!posts) return null;
@@ -47,7 +47,9 @@ const EmotionGraph = ({
   if (!openPopup) return null;
 
   return (
-    <div className="flex w-full max-w-[548px] flex-col items-center justify-center rounded-2xl bg-white p-5 font-pretendard">
+    <div
+      className={`flex w-full ${isListPage ? "max-w-[548px]" : ""} flex-col items-center justify-center rounded-2xl bg-white ${isListPage ? "" : "border border-primary-50 px-5 md:px-10"} p-5 font-pretendard`}
+    >
       {isListPage && (
         <div className="mb-1 flex w-full items-center justify-between border-b-2 border-grey-1 pb-2">
           <div className="flex items-center gap-3">

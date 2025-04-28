@@ -15,7 +15,7 @@ const TutorialContainer = () => {
 
   /** 클릭 시 다음 페이지로 넘어감 */
   const handleNext = () => {
-    if (currentStep < 3) {
+    if (currentStep < 4) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -35,7 +35,9 @@ const TutorialContainer = () => {
           image={TUTORIAL.IMAGE.HOME}
           currentStep={currentStep}
           onClick={handleNext}
+          onDotClick={setCurrentStep}
           buttonName={TUTORIAL.BUTTON.NEXT}
+          isFromMypage={isFromMypage}
         />
       )}
 
@@ -46,7 +48,9 @@ const TutorialContainer = () => {
           image={TUTORIAL.IMAGE.LIST}
           currentStep={currentStep}
           onClick={handleNext}
+          onDotClick={setCurrentStep}
           buttonName={TUTORIAL.BUTTON.NEXT}
+          isFromMypage={isFromMypage}
         />
       )}
 
@@ -57,17 +61,33 @@ const TutorialContainer = () => {
           image={TUTORIAL.IMAGE.MUSIC}
           currentStep={currentStep}
           onClick={handleNext}
+          onDotClick={setCurrentStep}
           buttonName={TUTORIAL.BUTTON.NEXT}
+          isFromMypage={isFromMypage}
         />
       )}
 
       {currentStep === 3 && (
+        <TutorialDescription
+          title={TUTORIAL.TITLE.FRIEND}
+          description={TUTORIAL.DESCRIPTION.FRIEND}
+          image={TUTORIAL.IMAGE.FRIEND}
+          currentStep={currentStep}
+          onClick={handleNext}
+          onDotClick={setCurrentStep}
+          buttonName={TUTORIAL.BUTTON.NEXT}
+          isFromMypage={isFromMypage}
+        />
+      )}
+
+      {currentStep === 4 && (
         <TutorialDescription
           title={TUTORIAL.TITLE.SMOOKIE}
           description={TUTORIAL.DESCRIPTION.SMOOKIE}
           image={TUTORIAL.IMAGE.SMOOKIE}
           currentStep={currentStep}
           onClick={handleTutorialEnd}
+          onDotClick={setCurrentStep}
           buttonName={
             isFromMypage ? "마이페이지로 돌아가기" : TUTORIAL.BUTTON.SIGN_UP
           }

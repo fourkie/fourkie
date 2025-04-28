@@ -29,8 +29,8 @@ const Posting = async () => {
   const day = dayjs().format("dddd");
 
   return (
-    <div className="py-4">
-      <strong className="flex items-center justify-between text-grey-8">
+    <>
+      <strong className="flex items-center justify-between">
         <p className="flex gap-2">
           <span className="text-xl">{date}</span>
           <span className="text-xl">{day}</span>
@@ -39,7 +39,7 @@ const Posting = async () => {
       </strong>
       <hr className="my-2.5 w-full border-grey-0" />
       <PostingForm userId={userId} />
-    </div>
+    </>
   );
 };
 

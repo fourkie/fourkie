@@ -43,7 +43,7 @@ const SentFriendList = () => {
       {data.map((request) => (
         <div
           key={request.id}
-          className="flex w-full items-center justify-between border-b p-4"
+          className="flex w-full items-center justify-between p-4"
         >
           <div className="flex items-center justify-start gap-2">
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
@@ -53,7 +53,7 @@ const SentFriendList = () => {
           </div>
           <button
             onClick={() => cancelRequest(request.id)}
-            className="rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
+            className="rounded-full border border-amber-300 px-2 py-1 text-sm text-amber-400 transition-all duration-300 hover:bg-amber-300 hover:text-white"
           >
             요청취소
           </button>

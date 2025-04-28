@@ -18,7 +18,6 @@ const headerPaths = [
   { path: "/posting", title: "기록", needsNickname: true },
 ];
 
-//뒤로가기 필요 목록
 const backIconPaths = [
   "/friends",
   "/smookie-makers",
@@ -31,38 +30,33 @@ const backIconPaths = [
 const baseHeaderClass =
   "header-mobile fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-5 z-40 h-[56px] min-w-[360px]";
 
-const HomeHeader = () => {
+const HeaderMobile = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const [userId, setUserId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const userid = await getUserIdClient();
-      if (userid) {
-        setUserId(userid);
+      const userId = await getUserIdClient();
+      if (userId) {
+        setUserId(userId);
       }
     };
     fetchUser();
   }, []);
+
   const {
     data: nickname,
-    isLoading,
+    isPending,
     isError,
   } = useGetUserNicknameByIdQuery(userId, {
     enabled: Boolean(userId),
   });
 
-  //뒤로 가는 로직
-  const route = useRouter();
   const handleBack = () => {
-    if (pathname.startsWith("/posting")) {
-      route.push("/list");
-    } else {
-      route.push("/my-page");
-    }
+    router.back();
   };
 
-  //헤더가 필요없는 경우
   if (
     pathname.startsWith("/sign-in") ||
     pathname.startsWith("/sign-up") ||
@@ -72,21 +66,19 @@ const HomeHeader = () => {
     return null;
   }
 
-  // 현재 경로에 맞는 라우트 찾기
   const nowPath = headerPaths.find((headerpath) =>
     pathname.startsWith(headerpath.path),
   );
 
-  //이후는 닉네임 필요한 로직
-  if (nowPath?.needsNickname && (!nickname || isLoading || isError)) {
+  if (nowPath?.needsNickname && (!nickname || isPending || isError)) {
     return <div className={baseHeaderClass}></div>;
   }
 
-  const headertext = nowPath
+  const headerText = nowPath
     ? nowPath.needsNickname
       ? `${nickname?.user_nickname}님의 ${nowPath.title}`
       : nowPath.title
-    : nickname && !isLoading && !isError
+    : nickname && !isPending && !isError
       ? `${nickname.user_nickname}님`
       : "";
 
@@ -98,14 +90,14 @@ const HomeHeader = () => {
       {showBackIcon ? (
         <>
           <ChevronLeft className="cursor-pointer" onClick={handleBack} />
-          <div className="mx-auto text-lg font-bold">{headertext}</div>
+          <div className="mx-auto text-lg font-bold">{headerText}</div>
           {pathname.startsWith("/posting") && <PostingButton />}
         </>
       ) : (
-        <div className="mx-auto text-lg font-bold">{headertext}</div>
+        <div className="mx-auto text-lg font-bold">{headerText}</div>
       )}
     </div>
   );
 };
 
-export default HomeHeader;
+export default HeaderMobile;

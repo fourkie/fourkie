@@ -79,7 +79,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
       <form
         id="posting"
         onSubmit={handleSubmit(onSubmit)}
-        className="flex w-full flex-col gap-10"
+        className="flex w-full flex-col gap-10 px-12"
       >
         {/* Title */}
         <div className="relative flex flex-col gap-2">

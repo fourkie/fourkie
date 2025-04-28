@@ -2,9 +2,13 @@ import { Img } from "@/types/img-component.type";
 import Image from "next/image";
 
 const EmotionImage = ({ src, size }: Img) => {
-  const sizeClasses: Record<"xxs" | "xs" | "s" | "m" | "l" | "xl", number> = {
+  const sizeClasses: Record<
+    "xxs" | "xs" | "xss" | "s" | "m" | "l" | "xl",
+    number
+  > = {
     xxs: 30, // 아주 작은 사이즈
     xs: 40,
+    xss: 44,
     s: 50, // 작은 사이즈
     m: 60, // 보통 사이즈
     l: 100, // 큰 사이즈

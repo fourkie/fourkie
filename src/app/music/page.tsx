@@ -26,7 +26,6 @@ const Music = () => {
   const { data: todayEmotionData } = useGetPostTodayEmotionByIdQuery(userId);
   const imageUrl = playlists[0]?.images[0]?.url;
 
-  // 유저 정보 조회
   useEffect(() => {
     const fetchUser = async () => {
       const {
@@ -55,7 +54,6 @@ const Music = () => {
   }, [todayEmotionData]);
 
   // 스크롤 감지
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -66,6 +64,7 @@ const Music = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

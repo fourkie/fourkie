@@ -1,6 +1,6 @@
 import createClient from "@/services/supabase-server-service";
+import EmotionGraph from "@/ui/common/emotion-graph.common";
 import { redirect } from "next/navigation";
-import MypageGraph from "./components/mypage-graph";
 import MypageMenuList from "./components/mypage-menu-list";
 import MypageProfile from "./components/mypage-profile";
 
@@ -15,10 +15,12 @@ const MyPage = async () => {
   }
 
   return (
-    <div className="flex w-full flex-col justify-center gap-5">
-      <div className="flex flex-col gap-5 md:flex-row md:items-center md:gap-11 md:pb-5">
+    <div className="mt-5 flex w-full flex-col justify-center gap-5">
+      <div className="flex flex-col items-center gap-5 md:mb-5 md:flex-row md:gap-14">
         <MypageProfile userId={user!.id} />
-        <MypageGraph />
+        <div className="w-full">
+          <EmotionGraph isListPage={false} userId={user!.id} openPopup={true} />
+        </div>
       </div>
       <MypageMenuList />
     </div>
