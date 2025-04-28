@@ -35,9 +35,9 @@ const TutorialDescription = ({
               priority
             />
 
-            <div className="flex flex-col items-center py-8">
-              <h1 className="my-4 text-3xl font-bold">{title}</h1>
-              <p className="whitespace-pre-line text-center text-sm text-[#898989]">
+            <div className="flex flex-col items-center gap-5 py-10">
+              <h1 className="my-5 text-3xl font-bold">{title}</h1>
+              <p className="mb-[230px] whitespace-pre-line text-center text-sm text-grey-5">
                 {description}
               </p>
             </div>
@@ -46,7 +46,7 @@ const TutorialDescription = ({
           <>
             <h1 className="text-3xl font-bold">{title}</h1>
 
-            <p className="whitespace-pre-line text-center text-sm text-[#898989]">
+            <p className="whitespace-pre-line text-center text-sm text-grey-5">
               {description}
             </p>
 

@@ -18,7 +18,7 @@ export const EMOTIONS_QUERY: Record<string, string> = {
   GRATEFUL: "감사한",
   CALM: "평온한",
   LONELY: "외로운",
-  ANXIOUS: "긴장되는",
+  ANXIOUS: "초조한",
   TIRED: "아픈",
   SAD: "슬픈",
   ANGRY: "화나는",

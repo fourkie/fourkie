@@ -2,6 +2,7 @@
 
 import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import { useAcceptFriendRequestMutation } from "@/hooks/mutations/use-accept-friend-request-mutation";
 import { useSendFriendRequestMutation } from "@/hooks/mutations/use-send-friend-request-mutation";
 import { checkExistFriendRequest } from "@/services/friend-request-service";
 import { getUserForClient } from "@/services/user-client-service";
@@ -14,16 +15,17 @@ import { FriendRequestPopUpProps } from "../type";
 
 const FriendrequestPopUp = ({ user, onClose }: FriendRequestPopUpProps) => {
   const [userId, setUserId] = useState<string>("");
+
   useEffect(() => {
     const fetchUserId = async () => {
       const result = await getUserForClient();
       if (result) setUserId(result.userId);
     };
-
     fetchUserId();
   }, []);
 
   const { mutate: sendRequest } = useSendFriendRequestMutation();
+  const { mutate: acceptRequest } = useAcceptFriendRequestMutation();
 
   const handleSendRequest = async () => {
     if (!userId) return;
@@ -38,6 +40,17 @@ const FriendrequestPopUp = ({ user, onClose }: FriendRequestPopUpProps) => {
       return;
     }
 
+    const alreadyReceivedRequest = await checkExistFriendRequest({
+      senderUid: user.user_uid,
+      receiverUid: userId,
+    });
+
+    if (alreadyReceivedRequest) {
+      acceptRequest(alreadyReceivedRequest.id);
+      onClose();
+      return;
+    }
+
     sendRequest({ userId, receiverUid: user.user_uid });
     onClose();
   };
@@ -49,7 +62,6 @@ const FriendrequestPopUp = ({ user, onClose }: FriendRequestPopUpProps) => {
           <X size={18} />
         </button>
         <div className="-mt-1 mb-2 flex items-center gap-2">
-          {/* 쿠키 들어갈 자리 */}
           <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
           <h1 className="text-lg font-semibold text-grey-6">
             {user.user_nickname}

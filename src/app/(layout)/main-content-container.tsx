@@ -11,7 +11,7 @@ const MainContentContainer = ({ children }: { children: ReactNode }) => {
       className={`min-w-screen flex min-h-screen justify-center ${
         pathName.startsWith("/music")
           ? ""
-          : "md:py-19 px-5 pb-36 pt-[76px] md:pb-0"
+          : "md:py-19 px-5 pb-36 pt-[76px] md:pb-12"
       } ${
         pathName.startsWith("/sign-in") ||
         pathName.startsWith("/sign-up") ||
@@ -20,7 +20,7 @@ const MainContentContainer = ({ children }: { children: ReactNode }) => {
           : "bg-white"
       }`}
     >
-      <div className="w-full min-w-[360px] max-w-[1024px]"> {children}</div>
+      <div className="w-full min-w-[320px] max-w-[984px]"> {children}</div>
     </main>
   );
 };

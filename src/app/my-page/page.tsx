@@ -15,10 +15,12 @@ const MyPage = async () => {
   }
 
   return (
-    <div className="flex w-full flex-col justify-center gap-5">
-      <div className="flex flex-col gap-5 md:mb-5 md:flex-row items-center md:gap-11">
+    <div className="mt-5 flex w-full flex-col justify-center gap-5">
+      <div className="flex flex-col items-center gap-5 md:mb-5 md:flex-row md:gap-14">
         <MypageProfile userId={user!.id} />
-        <EmotionGraph isListPage={false} userId={user!.id} openPopup={true} />
+        <div className="w-full">
+          <EmotionGraph isListPage={false} userId={user!.id} openPopup={true} />
+        </div>
       </div>
       <MypageMenuList />
     </div>
