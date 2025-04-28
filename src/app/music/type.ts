@@ -25,6 +25,7 @@ export interface EmotionSelectProps {
   emotion: keyof typeof Emotion;
   onChange: (emotion: keyof typeof Emotion) => void;
   todayEmotion?: keyof typeof Emotion | null;
+  isScrolled: boolean;
 }
 
 export interface PlaylistTabContainerProps {
