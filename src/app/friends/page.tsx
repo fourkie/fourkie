@@ -41,19 +41,18 @@ const Friends = () => {
 
   return (
     <div className="bg-white">
-      {/* 유저 검색창 */}
       <FriendsSearchInput
         searchKeyword={searchKeyword}
         setSearchKeyword={setSearchKeyword}
       />
-      {/* 요청 페이지 */}
+
       <FriendRequestButton />
-      {/* 로그인한 사용자 닉네임 */}
+
       <div className="flex items-center gap-2 px-2 text-lg font-semibold text-grey-7">
         <HeartHandshake className="h-5 w-5 text-grey-7" />
         {error ? "닉네임 없음" : (nickname ?? "유저 이름")}
       </div>
-      {/* 친구 목록 */}
+
       <FriendList
         searchUser={searchKeyword}
         setSelectedUser={setSelectedUser}

@@ -31,13 +31,13 @@ const TutorialDescription = ({
               alt={title}
               width={140}
               height={140}
-              className="object-contain"
+              className="mt-10 object-contain"
               priority
             />
 
             <div className="flex flex-col items-center gap-5 py-10">
               <h1 className="my-5 text-3xl font-bold">{title}</h1>
-              <p className="mb-[230px] whitespace-pre-line text-center text-sm text-grey-5">
+              <p className="mb-[190px] whitespace-pre-line text-center text-sm text-grey-5">
                 {description}
               </p>
             </div>
