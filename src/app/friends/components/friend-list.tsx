@@ -64,7 +64,7 @@ const FriendList = ({
     if (searchedUser && searchedUser.length > 0) {
       return (
         <div className="flex flex-col gap-3 py-3">
-          {searchedUser.map((user, index) => {
+          {searchedUser.map((user) => {
             const isFriend = friendList?.some(
               (friend) => friend.user_uid === user.user_uid,
             );
