@@ -3,11 +3,24 @@ import {
   useRemoveBookmarkMutation,
 } from "@/hooks/mutations/use-music-bookmarks-mutation";
 import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
+import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { PlaylistCardProps } from "../type";
 
 const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
+  const textRef = useRef<HTMLDivElement>(null);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+
+  useEffect(() => {
+    if (textRef.current) {
+      const isOverflow =
+        textRef.current.scrollWidth > textRef.current.clientWidth;
+      setIsOverflowing(isOverflow);
+    }
+  }, [playlist.name]);
+
   const musicPlaylistId = playlist.id || playlist.music_playlist_id;
 
   const { mutate: addBookmark } = useAddBookmarkMutation();
@@ -67,7 +80,31 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
               className="h-full w-full object-cover"
             />
           </div>
-          <strong className="flex-1 truncate text-base">{playlist.name}</strong>
+          <div className="h-6 flex-1 overflow-hidden">
+            <div className="relative" ref={textRef}>
+              {isOverflowing ? (
+                <motion.div
+                  className="absolute left-0 top-0 whitespace-nowrap"
+                  animate={{
+                    x: ["0%", "-33.333%"],
+                    transition: {
+                      ease: "linear",
+                      duration: 10,
+                      repeat: Infinity,
+                    },
+                  }}
+                >
+                  <strong className="px-10">{playlist.name}</strong>
+                  <strong className="px-10">{playlist.name}</strong>
+                  <strong className="px-10">{playlist.name}</strong>
+                </motion.div>
+              ) : (
+                <div className="absolute left-0 top-0 whitespace-nowrap">
+                  <strong>{playlist.name}</strong>
+                </div>
+              )}
+            </div>
+          </div>
           <p className="mr-7 text-xs text-grey-5">{playlist.tracks.total}곡</p>
         </a>
       </div>
