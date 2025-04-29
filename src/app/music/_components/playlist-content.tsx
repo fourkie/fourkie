@@ -38,7 +38,7 @@ const PlaylistContent = ({
       return <EmptyAlert text={TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR} />;
 
     return (
-      <ul className="grid grid-cols-1 gap-x-10 gap-y-3 bg-white px-5 pb-36 md:grid-cols-2">
+      <ul className="grid grid-cols-1 gap-x-10 gap-y-3 bg-white px-5 pb-36 md:mt-3 md:grid-cols-2">
         {playlistsData.map((playlist, index) => {
           const total = playlistsData.length;
 
@@ -82,7 +82,7 @@ const PlaylistContent = ({
       return <EmptyAlert text={TOAST_MESSAGE.MUSIC.EMPTY_BOOKMARK} />;
 
     return (
-      <ul className="grid grid-cols-1 gap-x-10 gap-y-3 bg-white px-5 pb-36 md:grid-cols-2">
+      <ul className="grid grid-cols-1 gap-x-10 gap-y-3 bg-white px-5 pb-36 md:mt-3 md:grid-cols-2">
         {bookmarkedData?.map((playlist, index) => {
           const key = playlist.id ?? `${playlist.name}-${index}`;
           const total = playlistsData.length;
