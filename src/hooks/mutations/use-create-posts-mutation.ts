@@ -3,9 +3,11 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { createPosts } from "@/services/post-service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 export const useCreatePostsMutation = () => {
+  const router = useRouter();
   const queryClient = useQueryClient();
   const year = dayjs().year();
   const month = dayjs().month() + 1;
@@ -14,6 +16,7 @@ export const useCreatePostsMutation = () => {
     mutationFn: createPosts,
 
     onSuccess: () => {
+      router.push("/music");
       toast.success(TOAST_MESSAGE.POST.POSTING.SUCCESS);
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.POSTS] });
       queryClient.invalidateQueries({
