@@ -4,6 +4,7 @@ import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-t
 import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
 import createClient from "@/services/supabase-client-service";
+import dayjs from "dayjs";
 import {
   CirclePlus,
   HeartHandshake,
@@ -75,7 +76,7 @@ const Navigation = () => {
         href="/list"
         onClick={() => {
           setSelectedTab("firstTab");
-          setSelectedDate(null);
+          setSelectedDate(dayjs().format("YYYY-MM-DD"));
         }}
       >
         <div
