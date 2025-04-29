@@ -42,6 +42,7 @@ const PostingEmotionModalButton = ({
 
       <Button
         backgroundColor="sub"
+        classname="disabled:cursor-not-allowed disabled:opacity-50"
         onClick={handleSave}
         disabled={createPostsPending || UpdatePostsPending}
         aria-label={
