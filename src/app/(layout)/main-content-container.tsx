@@ -8,10 +8,10 @@ const MainContentContainer = ({ children }: { children: ReactNode }) => {
 
   return (
     <main
-      className={`min-w-screen flex min-h-screen justify-center ${
+      className={`min-w-screen flex flex-1 justify-center ${
         pathName.startsWith("/music")
           ? ""
-          : "md:py-19 px-5 pb-36 pt-[76px] md:pb-12"
+          : "md:py-[110px] px-5 pb-36 pt-[72px] md:pb-12"
       } ${
         pathName.startsWith("/sign-in") ||
         pathName.startsWith("/sign-up") ||

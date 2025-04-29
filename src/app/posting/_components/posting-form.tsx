@@ -86,7 +86,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
         <div className="relative flex flex-col gap-2">
           <strong
             id="posting-form-title"
-            className="text-center text-xl text-grey-5"
+            className="text-center text-xl text-grey-2 md:text-2xl"
           >
             Title
           </strong>
@@ -94,7 +94,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
             {...register("inputTitle")}
             maxLength={20}
             placeholder={isTitleFocused ? "" : `${FORM_MESSAGE.POST.TITLE}`}
-            className="h-5 w-full resize-none text-center font-omyu text-lg leading-4 text-grey-8 placeholder-grey-3 focus:outline-none"
+            className="h-5 w-full resize-none text-center font-omyu text-lg leading-4 text-grey-8 placeholder-grey-3 focus:outline-none md:h-8 md:text-2xl"
             onFocus={() => setIsTitleFocused(true)}
             onBlur={() => setIsTitleFocused(false)}
             aria-label="Post title"
@@ -104,12 +104,14 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
 
         {/* Content */}
         <div className="relative flex flex-col gap-2">
-          <strong className="text-center text-xl text-grey-5">Content</strong>
+          <strong className="text-center text-xl text-grey-2 md:text-2xl">
+            Content
+          </strong>
           <textarea
             {...register("inputContent")}
             maxLength={1000}
             placeholder={isContentFocused ? "" : `${FORM_MESSAGE.POST.CONTENT}`}
-            className="h-5 w-full resize-none text-center font-omyu text-lg leading-4 text-grey-8 placeholder-grey-3 focus:outline-none"
+            className="h-5 w-full resize-none text-center font-omyu text-lg leading-4 text-grey-8 placeholder-grey-3 focus:outline-none md:text-xl"
             onFocus={() => setIsContentFocused(true)}
             onBlur={() => setIsContentFocused(false)}
             aria-label="Post content"

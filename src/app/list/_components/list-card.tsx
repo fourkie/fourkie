@@ -6,7 +6,6 @@ import { useRemovePostMutation } from "@/hooks/mutations/use-remove-post-mutatio
 import { useGetUserByIdQuery } from "@/hooks/queries/use-get-user-by-id-query";
 import { Posts } from "@/types/posts.type";
 import Alert from "@/ui/common/alert.common";
-import Button from "@/ui/common/button.common";
 import EmotionGraph from "@/ui/common/emotion-graph.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import Popup from "@/ui/common/popup-bg.common";
@@ -109,19 +108,9 @@ const ListCard = ({
         <Alert
           title={ALERT_MESSAGE.LIST.DELETE_TITLE}
           contents={ALERT_MESSAGE.LIST.DELETE_CONTENT}
-        >
-          <Button type="button" onClick={() => setOpenDeletePopup(false)}>
-            취소
-          </Button>
-
-          <Button
-            type="button"
-            backgroundColor="sub"
-            onClick={() => handleDelete()}
-          >
-            확인
-          </Button>
-        </Alert>
+          setOpenPopup={setOpenDeletePopup}
+          confirm={handleDelete}
+        />
       )}
     </div>
   );

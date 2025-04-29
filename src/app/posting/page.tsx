@@ -48,7 +48,7 @@ const Posting = async () => {
         />
       </div>
       <hr
-        className="my-2.5 w-full border-grey-0"
+        className="my-2.5 w-full border-grey-0 mb-12"
         role="presentation"
         aria-hidden="true"
       />

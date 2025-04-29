@@ -45,10 +45,12 @@ export default function RootLayout({
       <body className="font-minsans text-grey-7 antialiased">
         <Providers>
           <HeaderWithZustand />
-          <HeaderDesk />
-          <MainContentContainer>{children}</MainContentContainer>
+          <div className="flex min-h-screen flex-col">
+            <HeaderDesk />
+            <MainContentContainer>{children}</MainContentContainer>
+            <Footer />
+          </div>
           <Navigation />
-          <Footer />
         </Providers>
         <ToastContainer position="top-right" autoClose={3000} />
       </body>
