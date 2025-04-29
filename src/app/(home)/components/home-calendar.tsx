@@ -168,7 +168,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
                       }}
                       transition={{
                         duration: 0.4,
-                        delay: Math.random() * 0.3,
+                        delay: Math.random() * 0.4,
                       }}
                     >
                       <EmotionImage
