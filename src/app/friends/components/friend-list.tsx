@@ -8,7 +8,9 @@ import { useGetMyFriendsQuery } from "@/hooks/queries/use-get-my-friends-query";
 import { useGetSentRequestsQuery } from "@/hooks/queries/use-get-sent-requests-query";
 import { useSearchUserQuery } from "@/hooks/queries/use-search-user-query";
 import { getUserForClient } from "@/services/user-client-service";
+import EmotionGraph from "@/ui/common/emotion-graph.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
+import Popup from "@/ui/common/popup-bg.common";
 import { useEffect, useState } from "react";
 import { FriendListProps, SelectedUserType } from "../type";
 
@@ -23,6 +25,12 @@ const FriendList = ({
   const { mutate: deleteFriend } = useDeleteFriendMutation();
   const { mutate: cancelRequest } = useCancelFriendRequestMutation();
 
+  const [openGraphPopup, setOpenGraphPopup] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState<{
+    userId: string;
+    nickname: string;
+  } | null>(null);
+
   useEffect(() => {
     const fetchUserId = async () => {
       const result = await getUserForClient();
@@ -32,6 +40,17 @@ const FriendList = ({
   }, []);
 
   const { data: sentRequests } = useGetSentRequestsQuery(userId);
+
+  const handleFriendClick = (friend: {
+    user_uid: string;
+    user_nickname: string;
+  }) => {
+    setSelectedFriend({
+      userId: friend.user_uid,
+      nickname: friend.user_nickname,
+    });
+    setOpenGraphPopup(true);
+  };
 
   if (searchUser) {
     if (searchedUser && searchedUser.length > 0) {
@@ -67,7 +86,7 @@ const FriendList = ({
                 ) : alreadyRequested ? (
                   <button
                     onClick={() => cancelRequest(alreadyRequested.id)}
-                    className="w-20 rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
+                    className="w-20 rounded-full border border-amber-300 px-2 py-1 text-sm text-amber-400 transition-all duration-300 hover:bg-amber-300 hover:text-white"
                   >
                     요청 취소
                   </button>
@@ -94,33 +113,49 @@ const FriendList = ({
   }
 
   return (
-    <div className="flex w-full flex-col gap-3 px-3 py-3">
-      {friendList?.length === 0 ? (
-        <div className="text-sm text-grey-4">
-          {UI_TEXT.MYPAGE.EMPTY_FRIEND_LIST_ALT}
-        </div>
-      ) : (
-        friendList?.map((friend) => (
-          <div
-            key={friend.user_uid}
-            className="flex items-center justify-between py-3"
-          >
-            <div className="flex items-center gap-2 text-lg font-medium text-grey-7">
-              <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
-              {friend.user_nickname}
-            </div>
-            <button
-              onClick={() =>
-                deleteFriend({ userId, friendUid: friend.user_uid })
-              }
-              className="rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
-            >
-              친구 끊기
-            </button>
+    <>
+      <div className="flex w-full flex-col gap-3 px-3 py-3">
+        {friendList?.length === 0 ? (
+          <div className="text-sm text-grey-4">
+            {UI_TEXT.MYPAGE.EMPTY_FRIEND_LIST_ALT}
           </div>
-        ))
+        ) : (
+          friendList?.map((friend) => (
+            <div
+              key={friend.user_uid}
+              className="flex items-center justify-between py-3"
+            >
+              <div
+                onClick={() => handleFriendClick(friend)}
+                className="flex w-full cursor-pointer items-center gap-2 text-lg font-medium text-grey-7"
+              >
+                <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
+                {friend.user_nickname}
+              </div>
+              <button
+                onClick={() =>
+                  deleteFriend({ userId, friendUid: friend.user_uid })
+                }
+                className="w-20 rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
+              >
+                친구 끊기
+              </button>
+            </div>
+          ))
+        )}
+      </div>
+      {openGraphPopup && selectedFriend && (
+        <Popup>
+          <EmotionGraph
+            isListPage={true}
+            openPopup={openGraphPopup}
+            setOpenPopup={() => setOpenGraphPopup(false)}
+            userId={selectedFriend!.userId}
+            nickname={selectedFriend!.nickname}
+          />
+        </Popup>
       )}
-    </div>
+    </>
   );
 };
 export default FriendList;

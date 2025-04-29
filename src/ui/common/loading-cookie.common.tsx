@@ -22,15 +22,15 @@ const LoadingCookie = () => {
       className="flex items-center justify-center gap-2"
     >
       <motion.div
-        className="h-10 w-10 rounded-full bg-[url('/images/joy.png')] bg-cover"
+        className="h-10 w-10 bg-[url('/images/Fluffy.png')] bg-cover"
         variants={dotVariants}
       />
       <motion.div
-        className="h-10 w-10 rounded-full bg-[url('/images/joy.png')] bg-cover"
+        className="h-10 w-10 bg-[url('/images/Fluffy.png')] bg-cover"
         variants={dotVariants}
       />
       <motion.div
-        className="h-10 w-10 rounded-full bg-[url('/images/joy.png')] bg-cover"
+        className="h-10 w-10 bg-[url('/images/Fluffy.png')] bg-cover"
         variants={dotVariants}
       />
     </motion.div>
