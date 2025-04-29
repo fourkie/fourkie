@@ -9,7 +9,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { PlaylistCardProps } from "../type";
 
-const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
+const PlaylistCard = ({ playlist, userId, lastCard }: PlaylistCardProps) => {
   const textRef = useRef<HTMLDivElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
 
@@ -46,7 +46,9 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   };
 
   return (
-    <div className="h-20 border-b border-b-grey-1 last:border-0">
+    <div
+      className={`${lastCard ? "md:border-0" : "border-b border-b-grey-1"} h-20`}
+    >
       <div className="justify-arround my-3 flex items-center gap-2 md:flex-row-reverse">
         <button
           className="flex items-center justify-center"

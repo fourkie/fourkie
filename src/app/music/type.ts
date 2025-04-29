@@ -35,6 +35,7 @@ export enum PlaylistTabProps {
 export interface PlaylistCardProps {
   playlist: SpotifyPlaylistItem;
   userId: string;
+  lastCard: boolean;
 }
 
 export type BookmarkedProps = {
