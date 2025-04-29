@@ -1,4 +1,5 @@
 import Providers from "@/providers/RQProviders";
+import Footer from "@/ui/common/footer.common";
 import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 import HeaderDesk from "./(layout)/header-desk";
@@ -47,6 +48,7 @@ export default function RootLayout({
           <HeaderDesk />
           <MainContentContainer>{children}</MainContentContainer>
           <Navigation />
+          <Footer />
         </Providers>
         <ToastContainer position="top-right" autoClose={3000} />
       </body>

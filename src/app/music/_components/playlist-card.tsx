@@ -96,9 +96,9 @@ const PlaylistCard = ({ playlist, userId, lastCard }: PlaylistCardProps) => {
                     },
                   }}
                 >
-                  <strong className="px-10">{playlist.name}</strong>
-                  <strong className="px-10">{playlist.name}</strong>
-                  <strong className="px-10">{playlist.name}</strong>
+                  <strong className="px-6">{playlist.name}</strong>
+                  <strong className="px-6">{playlist.name}</strong>
+                  <strong className="px-6">{playlist.name}</strong>
                 </motion.div>
               ) : (
                 <div className="absolute left-0 top-0 whitespace-nowrap">
@@ -107,7 +107,7 @@ const PlaylistCard = ({ playlist, userId, lastCard }: PlaylistCardProps) => {
               )}
             </div>
           </div>
-          <p className="mr-7 text-xs text-grey-5">{playlist.tracks.total}곡</p>
+          <p className="mr-5 text-xs text-grey-5">{playlist.tracks.total}곡</p>
         </a>
       </div>
     </div>

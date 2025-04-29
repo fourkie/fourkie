@@ -35,12 +35,12 @@ const EmotionSelect = ({
           aria-label="감정 선택 드롭다운"
           className={`${
             whiteText ? "text-white" : "text-primary-700"
-          } ${open ? "rounded-tl-xl rounded-tr-xl" : "rounded-full"}`}
+          } ${open ? "rounded-tl-[13px] rounded-tr-[13px]" : "rounded-full"}`}
           style={{
             backgroundColor: `var(--color-${EMOTION_COLOR[emotion]})`,
           }}
         >
-          <strong className="flex h-6 w-20 items-center justify-center py-1 text-center text-sm">
+          <strong className="flex h-[26px] w-20 items-center justify-center py-1 text-center text-sm">
             <p>{EMOTIONS_QUERY[emotion]}날</p>
             <p>{open ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</p>
           </strong>
@@ -50,7 +50,7 @@ const EmotionSelect = ({
         <div
           className={`${
             open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-          } absolute top-7 z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4 transition-all duration-200 ease-in-out`}
+          } absolute top-[29px] z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4 transition-all duration-200 ease-in-out`}
           role="listbox"
           aria-label="감정 선택 목록"
         >
@@ -63,7 +63,7 @@ const EmotionSelect = ({
                 key={key}
                 onClick={() => handleSelect(key)}
                 aria-label={`${EMOTIONS_QUERY[key]} 감정 선택`}
-                className={`w-[60px] rounded-full border py-[3px] text-center text-sm ${
+                className={`h-[26px] w-[60px] rounded-full border text-center text-sm ${
                   isWhiteOption ? "text-white" : "text-primary-700"
                 }`}
                 style={{
