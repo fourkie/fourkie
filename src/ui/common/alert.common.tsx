@@ -19,7 +19,6 @@ const Alert = ({ setOpenPopup, confirm, title, contents }: AlertProps) => {
           </div>
         </div>
         <div className="flex gap-4">
-          {" "}
           <Button type="button" onClick={() => setOpenPopup(false)}>
             취소
           </Button>
