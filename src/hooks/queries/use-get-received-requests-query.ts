@@ -1,8 +1,8 @@
 import { getReceivedRequests } from "@/services/friend-request-service";
-import { useQuery } from "@tanstack/react-query";
+import usePollingQuery from "../polling/use-polling-query";
 
 export const useGetReceivedRequestQuery = (userId: string) => {
-  return useQuery({
+  return usePollingQuery({
     queryKey: ["received-request"],
     queryFn: () => getReceivedRequests(userId),
     enabled: !!userId,
