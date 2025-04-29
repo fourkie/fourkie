@@ -72,5 +72,6 @@ export const TOAST_MESSAGE = {
     FRIEND_ACCEPT_ERROR: "친구 맺기에 실패했습니다.",
     FRIEND_ACCEPT_SUCCESS: "친구 요청을 수락했습니다.",
     FRIEND_DELETE_ERROR: "친구 삭제에 실패했습니다.",
+    FRIEND_DELETE_SUCCESS: "친구 목록에서 삭제되었습니다.",
   },
 };
