@@ -59,7 +59,7 @@ const ListCard = ({
 
   return (
     <div
-      className={`mx-auto flex w-full max-w-[624px] flex-col items-center gap-3 rounded-2xl bg-white p-3 font-omyu tracking-wide ${className}`}
+      className={`mx-auto flex w-full max-w-[624px] flex-col items-center gap-3 rounded-2xl bg-white p-3 font-omyu tracking-wide md:p-4 ${className}`}
     >
       <div className="mb-[2px] flex h-6 w-full items-center justify-between">
         <strong className="w-24 text-sm">{date}</strong>
@@ -102,11 +102,9 @@ const ListCard = ({
           &nbsp; 날이시네요!
         </strong>
       )}
-      <Content
-        post_title={post_title}
-        post_content={post_content}
-        isMyPost={isMyPost}
-      />
+      {isMyPost && (
+        <Content post_title={post_title} post_content={post_content} />
+      )}
       {openDeletePopup && (
         <Alert
           title={ALERT_MESSAGE.LIST.DELETE_TITLE}
