@@ -47,35 +47,36 @@ const EmotionSelect = ({
         </button>
 
         {/* 드롭다운 목록 */}
-        {open && (
-          <div
-            className="absolute top-7 z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4"
-            role="listbox"
-            aria-label="감정 선택 목록"
-          >
-            {emotionKeys.map((key) => {
-              if (emotion === key) return null;
-              const isWhiteOption = key === "SAD" || key === "ANGRY";
+        <div
+          className={`${
+            open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          } absolute top-7 z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4 transition-all duration-200 ease-in-out`}
+          role="listbox"
+          aria-label="감정 선택 목록"
+        >
+          {emotionKeys.map((key) => {
+            if (emotion === key) return null;
+            const isWhiteOption = key === "SAD" || key === "ANGRY";
 
-              return (
-                <button
-                  key={key}
-                  onClick={() => handleSelect(key)}
-                  aria-label={`${EMOTIONS_QUERY[key]} 감정 선택`}
-                  className={`w-[60px] rounded-full border py-[3px] text-center text-sm ${
-                    isWhiteOption ? "text-white" : "text-primary-700"
-                  }`}
-                  style={{
-                    backgroundColor: `var(--color-${EMOTION_COLOR[key]})`,
-                    borderColor: `var(--color-${EMOTION_BORDER_COLOR[key]})`,
-                  }}
-                >
-                  <strong>{EMOTIONS_QUERY[key]}</strong>
-                </button>
-              );
-            })}
-          </div>
-        )}
+            return (
+              <button
+                key={key}
+                onClick={() => handleSelect(key)}
+                aria-label={`${EMOTIONS_QUERY[key]} 감정 선택`}
+                className={`w-[60px] rounded-full border py-[3px] text-center text-sm ${
+                  isWhiteOption ? "text-white" : "text-primary-700"
+                }`}
+                style={{
+                  backgroundColor: `var(--color-${EMOTION_COLOR[key]})`,
+                  borderColor: `var(--color-${EMOTION_BORDER_COLOR[key]})`,
+                }}
+              >
+                <strong>{EMOTIONS_QUERY[key]}</strong>
+              </button>
+            );
+          })}
+        </div>
+        {/* )} */}
 
         <strong className="text-2xl text-white">듣기 좋은</strong>
       </div>

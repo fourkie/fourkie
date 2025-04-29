@@ -3,6 +3,7 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import CookieAlert from "@/ui/common/cookie-alert.common";
+import { motion } from "framer-motion";
 import PlaylistCard from "./playlist-card";
 
 const PlaylistContent = ({
@@ -38,9 +39,33 @@ const PlaylistContent = ({
 
     return (
       <ul className="grid grid-cols-1 gap-x-10 gap-y-3 bg-white px-5 pb-36 md:grid-cols-2">
-        {playlistsData.map((playlist) => (
-          <PlaylistCard key={playlist.id} userId={userId} playlist={playlist} />
-        ))}
+        {playlistsData.map((playlist, index) => {
+          const total = playlistsData.length;
+
+          const isLastCard =
+            total % 2 === 0
+              ? index === total - 1 || index === total - 2
+              : index === total - 1;
+
+          return (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { delay: index * 0.03 },
+              }}
+              viewport={{ once: true }}
+              key={playlist.id}
+            >
+              <PlaylistCard
+                userId={userId}
+                playlist={playlist}
+                lastCard={isLastCard}
+              />
+            </motion.div>
+          );
+        })}
       </ul>
     );
   }
@@ -60,7 +85,31 @@ const PlaylistContent = ({
       <ul className="grid grid-cols-1 gap-x-10 gap-y-3 bg-white px-5 pb-36 md:grid-cols-2">
         {bookmarkedData?.map((playlist, index) => {
           const key = playlist.id ?? `${playlist.name}-${index}`;
-          return <PlaylistCard key={key} playlist={playlist} userId={userId} />;
+          const total = playlistsData.length;
+
+          const isLastCard =
+            total % 2 === 0
+              ? index === total - 1 || index === total - 2
+              : index === total - 1;
+
+          return (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { delay: index * 0.04 },
+              }}
+              viewport={{ once: true }}
+              key={key}
+            >
+              <PlaylistCard
+                userId={userId}
+                playlist={playlist}
+                lastCard={isLastCard}
+              />
+            </motion.div>
+          );
         })}
       </ul>
     );
