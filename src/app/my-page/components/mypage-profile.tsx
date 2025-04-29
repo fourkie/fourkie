@@ -80,12 +80,13 @@ const MypageProfile = ({ userId }: { userId: string }) => {
   if (isPending) return <div>쿠키 주문하신 분?</div>;
 
   return (
-    <div className="relative w-full rounded-2xl border border-primary-50 bg-white py-5 md:flex md:h-[330px] md:w-[600px] md:items-center md:justify-center">
+    <div className="relative w-full rounded-2xl border border-primary-50 bg-white py-5 md:flex md:h-[300px] md:w-[600px] md:items-center md:justify-center">
       <div className="flex flex-col items-center gap-2">
-        <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="s" />
+        <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.EXCITED} size="l" />
         <div className="flex h-10 items-center justify-center gap-2">
           {edit ? (
             <>
+              <div className="h-[18px] w-[18px]"></div>
               <input
                 className="flex h-9 w-20 rounded-xl bg-grey-0 text-center text-lg font-semibold outline-none focus:border-primary-300"
                 value={newNickname}
