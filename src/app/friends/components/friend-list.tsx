@@ -114,7 +114,7 @@ const FriendList = ({
 
   return (
     <>
-      <div className="flex w-full flex-col gap-3 px-3 py-3">
+      <div className="flex w-full flex-col gap-3 py-3">
         {friendList?.length === 0 ? (
           <div className="text-sm text-grey-4">
             {UI_TEXT.MYPAGE.EMPTY_FRIEND_LIST_ALT}

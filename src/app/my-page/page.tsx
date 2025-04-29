@@ -15,7 +15,7 @@ const MyPage = async () => {
   }
 
   return (
-    <div className="mt-5 flex w-full flex-col justify-center gap-5">
+    <div className="flex w-full flex-col justify-center gap-5">
       <div className="flex flex-col items-center gap-5 md:mb-5 md:flex-row md:gap-14">
         <MypageProfile userId={user!.id} />
         <div className="w-full">

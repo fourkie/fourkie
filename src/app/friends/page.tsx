@@ -48,7 +48,7 @@ const Friends = () => {
 
       <FriendRequestButton />
 
-      <div className="flex items-center gap-2 px-2 text-lg font-semibold text-grey-7">
+      <div className="flex items-center gap-2 text-lg font-semibold text-grey-7">
         <HeartHandshake className="h-5 w-5 text-grey-7" />
         {error ? "닉네임 없음" : (nickname ?? "유저 이름")}
       </div>

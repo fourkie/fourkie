@@ -78,12 +78,12 @@ const Makers = () => {
   };
 
   return (
-    <div className="flex min-h-full flex-col items-center justify-center bg-white">
+    <div className="mx-w-[1024px] flex min-w-[360px] flex-col items-center justify-center bg-white">
       {/* 상단 소개 영역 */}
-      <div className="space-y-4">
-        <div className="text-center text-xl font-semibold text-grey-7">
+      <div className="flex flex-col items-center justify-center space-y-5">
+        <strong className="text-center text-2xl text-grey-7">
           Smookie Bakers
-        </div>
+        </strong>
         <div className="text-center text-sm text-grey-5">
           우리는 기술에 감성을 더하는 팀 &nbsp;
           <span className="font-semibold text-primary-300">FOURKIE</span>
@@ -94,14 +94,12 @@ const Makers = () => {
           했습니다.
         </div>
         <div className="text-center text-sm text-grey-5">
-          <span className="text-sm font-semibold text-primary-300">
-            SMOOKIE
-          </span>
-          는 <br /> 하루의 시작과 끝에서 조용한 응원과 위로가 필요한 <br />
-          <span className="text-center font-bold text-primary-300">
-            바로 당신을 위한 서비스입니다.
-          </span>
+          <strong className="text-sm text-primary-300">SMOOKIE</strong>
+          는 <br /> 하루의 시작과 끝에서 조용한 응원과 위로가 필요한
         </div>
+        <strong className="text-center text-sm text-primary-300">
+          바로 당신을 위한 서비스입니다.
+        </strong>
 
         {/* 카드 슬라이드 영역 */}
         <div className="flex w-full flex-col items-center justify-center rounded-3xl border border-primary-100">
