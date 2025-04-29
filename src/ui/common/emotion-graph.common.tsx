@@ -1,12 +1,15 @@
 "use client";
 
+import { COOKIE_ALERT } from "@/constants/cookie-alert.constant";
 import { EMOTIONS_QUERY } from "@/constants/emotion.constant";
 import EMOTION_COOKIE_IMAGE_URL from "@/constants/emotions-url.constant";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 import emotionGraphCal from "@/utils/emotion-graph-cal.util";
 import { checkEmotion } from "@/utils/home-emotion.util";
+import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import EmotionImage from "./emotion-image.common";
+import EmptyAlert from "./empty-alert.common";
 
 const EmotionGraph = ({
   isListPage,
@@ -46,6 +49,8 @@ const EmotionGraph = ({
 
   if (!openPopup) return null;
 
+  const isEmpty = emotions.every((e) => e.percentage === "0%");
+
   return (
     <div
       className={`flex w-full ${isListPage ? "max-w-[548px]" : ""} flex-col items-center justify-center rounded-2xl bg-white ${isListPage ? "" : "border border-primary-50 px-5 md:px-10"} p-5 font-pretendard`}
@@ -62,36 +67,51 @@ const EmotionGraph = ({
       <div className="mb-2 mt-2 w-full text-right text-xs text-grey-2">
         * 최근 3개월 통계
       </div>
-      <div className="flex w-full items-end justify-between">
-        {emotions.map((e, i) => {
-          const percentageValue = parseFloat(e.percentage.replace("%", ""));
-          const barHeight = Math.max(
-            (percentageValue / maxPercentage) * 120,
-            4,
-          );
+      <div
+        className={`flex w-full ${isEmpty ? "items-center justify-center" : "items-end justify-between"}`}
+      >
+        {isEmpty ? (
+          <div className="py-10">
+            <EmptyAlert
+              isContent={true}
+              text={COOKIE_ALERT.COMPONENTS.EMPTY_GRAPH}
+            />
+          </div>
+        ) : (
+          emotions.map((e, i) => {
+            const percentageValue = parseFloat(e.percentage.replace("%", ""));
+            const barHeight = Math.max(
+              (percentageValue / maxPercentage) * 120,
+              4,
+            );
 
-          return (
-            <div
-              key={i}
-              className="flex w-[17%] flex-col items-center justify-end gap-[6px] font-medium"
-            >
+            return (
               <div
-                className="mb-[2px] rounded-t-xl border px-[50%]"
-                style={{
-                  height: `${barHeight}px`,
-                  backgroundColor: `var(--color-${color[e.emotion]})`,
-                }}
-              ></div>
-              <EmotionImage src={checkEmotion(e.emotion)} size="s" />
-              <div className="text-sm text-grey-6">
-                {EMOTIONS_QUERY[e.emotion]}
+                key={i}
+                className="flex h-[226px] w-[17%] flex-col items-center justify-end gap-[6px] font-medium"
+              >
+                <motion.div
+                  key={i}
+                  initial={{ height: 0 }}
+                  animate={{ height: `${barHeight}px` }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="mb-[2px] rounded-t-xl border px-[50%]"
+                  style={{
+                    backgroundColor: `var(--color-${color[e.emotion]})`,
+                  }}
+                />
+
+                <EmotionImage src={checkEmotion(e.emotion)} size="s" />
+                <div className="text-sm text-grey-6">
+                  {EMOTIONS_QUERY[e.emotion]}
+                </div>
+                <div className="text-xs">
+                  {Math.floor(parseInt(e.percentage))}%
+                </div>
               </div>
-              <div className="text-xs">
-                {Math.floor(parseInt(e.percentage))}%
-              </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </div>
   );
