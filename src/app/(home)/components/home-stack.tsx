@@ -5,6 +5,7 @@ import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query"
 import CookieAlert from "@/ui/common/cookie-alert.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
+import { motion } from "framer-motion";
 
 const common =
   " grid grid-cols-5 gap-3 border-2 border-dashed border-primary-200 rounded-[28px] p-4 ";
@@ -31,20 +32,38 @@ const HomeStack = ({ userId }: { userId: string }) => {
         ? posts.slice(0, 20).map((post) => {
             return (
               <div key={post.post_id}>
-                <EmotionImage
-                  src={checkEmotion(post.post_emotion)}
-                  size={"xss"}
-                />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: Math.random() * 0.3, // 0~0.3초 사이 랜덤
+                  }}
+                >
+                  <EmotionImage
+                    src={checkEmotion(post.post_emotion)}
+                    size={"xss"}
+                  />
+                </motion.div>
               </div>
             );
           })
         : posts.map((post) => {
             return (
               <div key={post.post_id}>
-                <EmotionImage
-                  src={checkEmotion(post.post_emotion)}
-                  size={"xss"}
-                />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: Math.random() * 0.3, // 0~0.3초 사이 랜덤
+                  }}
+                >
+                  <EmotionImage
+                    src={checkEmotion(post.post_emotion)}
+                    size={"xss"}
+                  />
+                </motion.div>
               </div>
             );
           })}
