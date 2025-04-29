@@ -87,7 +87,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
           {edit ? (
             <>
               <input
-                className="flex h-10 w-20 rounded-xl bg-grey-0 text-center outline-none focus:border-primary-300"
+                className="flex h-9 w-20 rounded-xl bg-grey-0 text-center text-lg font-semibold outline-none focus:border-primary-300"
                 value={newNickname}
                 onChange={handleNicknameChange}
               />
@@ -96,7 +96,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
                 disabled={isPending}
                 className="flex items-center justify-center"
               >
-                <SquareCheckBig size={20} />
+                <SquareCheckBig size={18} />
               </button>
               <button
                 onClick={handleCancelEdit}
@@ -108,6 +108,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
             </>
           ) : (
             <>
+              <div className="h-[18px] w-[18px]"></div>
               <strong className="flex items-center justify-center text-xl text-grey-7">
                 {nickname}
               </strong>
@@ -116,7 +117,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
                 disabled={isPending}
                 className="flex items-center justify-center"
               >
-                <SquarePen size={20} />
+                <SquarePen size={18} />
               </button>
             </>
           )}

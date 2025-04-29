@@ -61,7 +61,7 @@ const NoticePage = async () => {
   }
 
   const renderList = (title: string, items: NoticeItem[]) => (
-    <section className="mb-10 mt-5 w-full rounded-xl border border-primary-50 px-10 py-5">
+    <section className="mb-10 w-full rounded-xl border border-primary-50 px-10 py-5">
       <strong className="mb-5 flex w-full justify-center text-xl">
         {title}
       </strong>

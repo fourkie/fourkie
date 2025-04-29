@@ -14,7 +14,7 @@ const Request = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
 
   return (
-    <div className="min-h-screen space-y-4 px-4 pb-6">
+    <div className="min-h-screen space-y-4">
       <Tab
         firstTab="받은 요청"
         secondTab="보낸 요청"

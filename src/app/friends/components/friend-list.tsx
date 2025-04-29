@@ -67,7 +67,7 @@ const FriendList = ({
             return (
               <div
                 key={user.user_uid}
-                className="flex w-full items-center justify-between px-3 py-3"
+                className="flex w-full items-center justify-between py-3"
               >
                 <div className="flex w-full cursor-pointer items-center gap-2 text-lg font-medium text-grey-7">
                   <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
@@ -79,21 +79,21 @@ const FriendList = ({
                     onClick={() =>
                       deleteFriend({ userId, friendUid: user.user_uid })
                     }
-                    className="w-20 rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
+                    className="min-w-[75px] rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
                   >
                     친구 끊기
                   </button>
                 ) : alreadyRequested ? (
                   <button
                     onClick={() => cancelRequest(alreadyRequested.id)}
-                    className="w-20 rounded-full border border-amber-300 px-2 py-1 text-sm text-amber-400 transition-all duration-300 hover:bg-amber-300 hover:text-white"
+                    className="min-w-[75px] rounded-full border border-amber-300 px-2 py-1 text-sm text-amber-400 transition-all duration-300 hover:bg-amber-300 hover:text-white"
                   >
                     요청 취소
                   </button>
                 ) : (
                   <button
                     onClick={() => setSelectedUser(user)}
-                    className="w-20 rounded-full border border-primary-300 px-2 py-1 text-sm text-primary-300 transition-all duration-300 hover:bg-primary-300 hover:text-white"
+                    className="min-w-[75px] rounded-full border border-primary-300 px-2 py-1 text-sm text-primary-300 transition-all duration-300 hover:bg-primary-300 hover:text-white"
                   >
                     친구 요청
                   </button>
@@ -114,7 +114,7 @@ const FriendList = ({
 
   return (
     <>
-      <div className="flex w-full flex-col gap-3 px-3 py-3">
+      <div className="flex w-full flex-col gap-3 py-3">
         {friendList?.length === 0 ? (
           <div className="text-sm text-grey-4">
             {UI_TEXT.MYPAGE.EMPTY_FRIEND_LIST_ALT}
@@ -123,7 +123,7 @@ const FriendList = ({
           friendList?.map((friend) => (
             <div
               key={friend.user_uid}
-              className="flex items-center justify-between py-3"
+              className="flex w-full items-center justify-between py-3"
             >
               <div
                 onClick={() => handleFriendClick(friend)}
@@ -136,7 +136,7 @@ const FriendList = ({
                 onClick={() =>
                   deleteFriend({ userId, friendUid: friend.user_uid })
                 }
-                className="w-20 rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
+                className="min-w-[75px] rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
               >
                 친구 끊기
               </button>

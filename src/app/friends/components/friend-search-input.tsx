@@ -19,7 +19,7 @@ const FriendSearchInput = ({
   };
 
   return (
-    <div className="relative mt-5 w-full">
+    <div className="relative w-full">
       <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-grey-3" />
       <input
         type="text"

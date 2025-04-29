@@ -78,12 +78,12 @@ const Makers = () => {
   };
 
   return (
-    <div className="flex min-h-full flex-col items-center justify-center bg-white">
+    <div className="flex-col items-center justify-center">
       {/* 상단 소개 영역 */}
-      <div className="space-y-4">
-        <div className="text-center text-xl font-semibold text-grey-7">
+      <div className="flex flex-col items-center justify-center space-y-5">
+        <strong className="text-center text-2xl text-grey-7">
           Smookie Bakers
-        </div>
+        </strong>
         <div className="text-center text-sm text-grey-5">
           우리는 기술에 감성을 더하는 팀 &nbsp;
           <span className="font-semibold text-primary-300">FOURKIE</span>
@@ -94,73 +94,77 @@ const Makers = () => {
           했습니다.
         </div>
         <div className="text-center text-sm text-grey-5">
-          <span className="text-sm font-semibold text-primary-300">
-            SMOOKIE
-          </span>
-          는 <br /> 하루의 시작과 끝에서 조용한 응원과 위로가 필요한 <br />
-          <span className="text-center font-bold text-primary-300">
-            바로 당신을 위한 서비스입니다.
-          </span>
+          <strong className="text-sm text-primary-300">SMOOKIE</strong>
+          는 <br /> 하루의 시작과 끝에서 조용한 응원과 위로가 필요한
         </div>
+        <strong className="text-center text-sm text-primary-300">
+          바로 당신을 위한 서비스입니다.
+        </strong>
 
         {/* 카드 슬라이드 영역 */}
-        <div className="flex w-full flex-col items-center justify-center rounded-3xl border border-primary-100">
-          <div className="relative flex h-96 w-5/6 flex-col overflow-hidden">
-            {/* 슬라이드 전체 */}
-            <div
-              className="absolute left-0 top-0 h-full w-full transition-transform duration-500"
-              style={{ transform: `translateY(-${view * 100}%)` }}
-            >
-              {memberCards.map((card, index) => (
-                <div
-                  key={index}
-                  className="flex h-full w-full flex-col items-center justify-center"
-                >
-                  <div className="flex h-full w-full flex-col items-center justify-center gap-5 rounded-3xl p-6 lg:flex-row">
-                    {/* 이미지 영역 */}
-                    <div className="flex-shrink-0">
+        <div className="flex w-full min-w-[300px] max-w-[700px] flex-col items-center justify-center pt-2">
+          {/* 카드 박스 */}
+          <div className="mx-auto flex w-full flex-col items-center gap-4 rounded-3xl border border-primary-100 px-5">
+            {/* 슬라이드 영역 */}
+            <div className="relative mt-5 h-[360px] w-full overflow-hidden rounded-2xl">
+              <div
+                className="absolute left-0 top-0 w-full transition-transform duration-500 md:left-10"
+                style={{
+                  transform: `translateY(-${view * 360}px)`,
+                  height: `${360 * memberCards.length}px`,
+                }}
+              >
+                {memberCards.map((card, index) => (
+                  <div
+                    key={index}
+                    className="flex h-[360px] w-full items-center justify-center"
+                  >
+                    <div className="mx-auto flex w-full flex-col items-center gap-4 md:flex-row md:gap-10">
+                      {/* 이미지 */}
                       <Image
                         src={card.image}
                         alt={`${card.name} 이미지`}
-                        width={160}
-                        height={160}
-                        className="rounded-full bg-primary-50"
+                        width={170}
+                        height={170}
+                        className="mt-3 rounded-full bg-grey-0 md:h-[200px] md:w-[200px]"
                       />
-                    </div>
-
-                    {/* 텍스트 영역 */}
-                    <div className="flex w-full flex-col items-center justify-center text-center lg:mt-0 lg:items-start lg:text-left">
-                      <strong className="mb-2 text-2xl text-grey-7">
-                        {card.name}
-                      </strong>
-                      <h3 className="font-semibold text-grey-3">
-                        {card.address}
-                      </h3>
-                      <a
-                        href={card.github}
-                        className="mb-2 break-words font-semibold text-blue-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {card.github}
-                      </a>
-                      <h3 className="font-semibold text-grey-3">{card.line}</h3>
-                      <p className="text-sm font-medium text-grey-5">
-                        {card.intro}
-                      </p>
+                      {/* 텍스트 */}
+                      <div className="space-y-2 text-center text-grey-7 md:text-left">
+                        <strong className="text-2xl md:text-3xl">
+                          {card.name}
+                        </strong>
+                        <p className="text-base font-semibold text-grey-6 md:text-lg">
+                          {card.address}
+                        </p>
+                        <a
+                          href={card.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="break-all text-sm font-semibold text-blue-400 underline md:text-base"
+                        >
+                          {card.github}
+                        </a>
+                        <p className="text-base font-semibold text-grey-6 md:text-lg">
+                          {card.line}
+                        </p>
+                        <p className="text-sm font-semibold text-grey-5 md:text-base">
+                          {card.intro}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="flex transform justify-center gap-4 pb-4">
-            <button onClick={handlePrev}>
-              <ChevronUp className="text-4xl transition-all duration-300 hover:text-secondary-300" />
-            </button>
-            <button onClick={handleNext}>
-              <ChevronDown className="text-4xl transition-all duration-300 hover:text-secondary-300" />
-            </button>
+            {/* 버튼 */}
+            <div className="flex justify-center gap-4 pb-5">
+              <button onClick={handlePrev}>
+                <ChevronUp className="h-6 w-6" />
+              </button>
+              <button onClick={handleNext}>
+                <ChevronDown className="h-6 w-6" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
