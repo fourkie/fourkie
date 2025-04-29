@@ -10,12 +10,17 @@ const Button = ({
   backgroundColor,
   classname,
 }: ButtonProps) => {
+  const baseBg =
+    backgroundColor === "sub" ? "primary-200" : "primary-500 text-white";
+  const hoverBg =
+    backgroundColor === "sub" ? "hover:bg-primary-300" : "hover:bg-primary-600";
+
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`w-full cursor-pointer rounded-2xl py-[5px] text-lg md:py-2 bg-${backgroundColor === "sub" ? "primary-200" : "primary-500 text-white"} ${classname}`}
+      className={`w-full cursor-pointer rounded-2xl py-[5px] text-lg md:py-2 bg-${baseBg} ${hoverBg} ${classname}`}
     >
       <strong className="mx-auto">
         {icon && iconPosition === "left" && <>{icon}</>}
