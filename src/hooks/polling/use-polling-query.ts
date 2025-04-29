@@ -21,6 +21,7 @@ const usePollingQuery = <TQueryFnData>({
     refetchInterval,
     refetchOnWindowFocus: true,
     staleTime: 10000,
+    enabled,
     ...options,
   });
 };
