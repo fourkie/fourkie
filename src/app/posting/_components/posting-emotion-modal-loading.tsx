@@ -1,9 +1,9 @@
-import { Loader } from "lucide-react";
-import { useEffect, useState } from "react";
-import EmotionImage from "@/ui/common/emotion-image.common";
-import { checkEmotion } from "@/utils/home-emotion.util";
 import { EMOTIONS } from "@/constants/emotion.constant";
 import { useGetUserNicknameQuery } from "@/hooks/queries/use-get-user-nickname-query";
+import EmotionImage from "@/ui/common/emotion-image.common";
+import { checkEmotion } from "@/utils/home-emotion.util";
+import { Loader } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const PostingEmotionModalLoading = () => {
   const [dots, setDots] = useState("");
@@ -18,18 +18,22 @@ const PostingEmotionModalLoading = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50">
-      <div className="flex flex-col items-center justify-center gap-7 p-6  rounded-lg max-w-xs text-xl font-bold">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90">
+      <div className="flex max-w-xs flex-col items-center justify-center gap-7 rounded-lg p-6 text-xl">
         <EmotionImage src={checkEmotion(EMOTIONS.JOY)} size="l" />
 
         <div className="text-center text-grey-0">
-          <span className="text-primary-500">Smookie</span>가 {nickname}
-          님의
-          <br />
-          기분을 분석중이에요.
+          <strong>
+            <span className="text-primary-500">Smookie</span>가 {nickname}
+            님의
+            <br />
+            기분을 분석중이에요.
+          </strong>
         </div>
 
-        <div className="text-white">잠시만 기다려 주세요{dots}!</div>
+        <div className="text-white">
+          <strong>잠시만 기다려 주세요{dots}</strong>!
+        </div>
 
         <Loader size={38} className="animate-spin text-white" />
       </div>

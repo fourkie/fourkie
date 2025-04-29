@@ -41,8 +41,8 @@ const PostingEmotionModal = ({
       {emotion && isModalOpen && (
         <Popup>
           <div className="mx-5 flex w-full max-w-[380px] flex-col gap-5 rounded-2xl bg-white px-12 py-6 shadow-lg">
-            <h2 className="text-center text-xl font-bold text-grey-7">
-              {EMOTIONS_QUERY[currentEmotionKey]}
+            <h2 className="text-center text-xl text-grey-7">
+              <strong>{EMOTIONS_QUERY[currentEmotionKey]}</strong>
             </h2>
 
             <PostingEmotionModalSlide

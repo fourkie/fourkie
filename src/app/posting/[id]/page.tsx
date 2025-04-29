@@ -25,13 +25,13 @@ const Edit = async ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      <strong className="flex items-center justify-between text-grey-8">
+      <div className="flex items-center justify-between text-grey-8">
         <p className="flex gap-2">
           <span className="text-xl">{date}</span>
           <span className="text-xl">{day}</span>
         </p>
         <PostingButton className={"hidden h-7 md:block"} />
-      </strong>
+      </div>
       <hr className="my-2.5 w-full border-grey-0" />
       <PostingForm postId={postId} userId={userId} />
     </>

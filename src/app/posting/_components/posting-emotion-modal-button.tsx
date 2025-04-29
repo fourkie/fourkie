@@ -43,12 +43,12 @@ const PostingEmotionModalButton = ({
   };
 
   return (
-    <div className="flex gap-4 text-lg font-bold">
+    <div className="flex gap-4 text-lg">
       <button
         className="flex-1 rounded-2xl bg-primary-500 py-2 text-grey-0"
         onClick={onClose}
       >
-        취소
+        <strong>취소</strong>
       </button>
 
       <button
