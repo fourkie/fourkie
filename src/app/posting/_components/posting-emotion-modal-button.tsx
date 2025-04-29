@@ -35,8 +35,10 @@ const PostingEmotionModalButton = ({
       createPostsMutate({ userId, title, content, currentEmotion });
     }
 
-    if (!createPostsError || !updatePostsError) {
+    if (!createPostsError) {
       router.push("/music");
+    } else if (!updatePostsError) {
+      router.replace("/list");
     }
   };
 
