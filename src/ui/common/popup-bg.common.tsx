@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
-const Popup = ({ children }: { children: ReactNode }) => {
+const Popup = ({
+  children,
+  isPopup = true,
+}: {
+  children: ReactNode;
+  isPopup?: boolean;
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -10,7 +16,23 @@ const Popup = ({ children }: { children: ReactNode }) => {
       transition={{ duration: 0.2 }}
       className="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/70 px-5"
     >
-      {children}
+      {isPopup ? (
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{
+            duration: 0.4,
+            scale: { type: "spring", duration: 0.4, bounce: 0.35 },
+            opacity: { duration: 0.2 },
+          }}
+          className="w-full"
+        >
+          {children}
+        </motion.div>
+      ) : (
+        children
+      )}
     </motion.div>
   );
 };
