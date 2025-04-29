@@ -17,7 +17,7 @@ const PostingEmotionModalSlide = ({
   };
 
   return (
-    <div className="flex items-center justify-center gap-5">
+    <div className="flex items-center justify-center gap-[13px]">
       <ChevronLeft
         onClick={() => handleEmotionSlide(-1)}
         size={32}
