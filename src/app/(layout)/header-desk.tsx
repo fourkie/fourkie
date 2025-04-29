@@ -15,7 +15,9 @@ const myPagePaths = [
   "/friends",
 ];
 
-const styleHover = "transition-all duration-300 hover:text-secondary-400";
+const styleHover =
+  "inline-block transform transition-transform duration-300 ease-in-out hover:scale-110 hover:text-primary-700";
+
 const HeaderDesk = () => {
   const pathname = usePathname();
 
@@ -48,7 +50,7 @@ const HeaderDesk = () => {
             <Image src="/images/Fluffy.png" width={39} height={39} alt="신나" />
             <strong className="text-xl">Smookie</strong>
           </Link>
-          <div className="flex gap-4">
+          <div className="flex gap-8">
             <Link
               href="/list"
               onClick={() => {
