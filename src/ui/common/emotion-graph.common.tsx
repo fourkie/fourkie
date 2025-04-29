@@ -66,7 +66,7 @@ const EmotionGraph = ({
         {emotions.map((e, i) => {
           const percentageValue = parseFloat(e.percentage.replace("%", ""));
           const barHeight = Math.max(
-            (percentageValue / maxPercentage) * 150,
+            (percentageValue / maxPercentage) * 120,
             4,
           );
 
