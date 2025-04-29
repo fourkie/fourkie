@@ -7,6 +7,7 @@ import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-t
 import createClient from "@/services/supabase-client-service";
 import CookieAlert from "@/ui/common/cookie-alert.common";
 import Tab from "@/ui/common/tab.common";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import EmotionSelect from "./_components/emotion-select";
@@ -109,12 +110,18 @@ const Music = () => {
           style={{ backgroundImage: `url(${imageUrl})` }}
         >
           <div className="absolute inset-0 bg-black/60">
-            <EmotionSelect
-              emotion={emotion}
-              onChange={setEmotion}
-              todayEmotion={todayEmotionData?.[0]?.post_emotion}
-              scrolled={isScrolled}
-            />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <EmotionSelect
+                emotion={emotion}
+                onChange={setEmotion}
+                todayEmotion={todayEmotionData?.[0]?.post_emotion}
+                scrolled={isScrolled}
+              />
+            </motion.div>
           </div>
         </div>
       </section>

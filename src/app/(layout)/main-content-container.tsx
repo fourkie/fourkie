@@ -20,7 +20,7 @@ const MainContentContainer = ({ children }: { children: ReactNode }) => {
           : "bg-white"
       }`}
     >
-      <div className="w-full min-w-[320px] max-w-[984px]"> {children}</div>
+      <div className="w-full min-w-[320px] max-w-[984px]">{children}</div>
     </main>
   );
 };
