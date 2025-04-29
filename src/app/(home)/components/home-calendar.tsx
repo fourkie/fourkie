@@ -12,7 +12,7 @@ import { useState } from "react";
 import HomeDate from "./home-date";
 
 const changeStyle =
-  "md:max-w-2xl md:max-h-[700px] lg:max-w-[620px] lg:max-h-[720px] md:border-primary-200 md:border-2 md:border-dashed md:bg-[#F7FAF2] ";
+  "md:max-w-2xl max-h-[366px]  min-w-[250px] min-h-[300px] max-w-[353px] md:min-h-[500px] md:max-h-[700px] lg:max-w-[620px] lg:max-h-[720px] md:border-primary-200 md:border-2 md:border-dashed md:bg-[#F7FAF2] ";
 
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const [currentDate, setCurrentDate] = useState(dayjs());
@@ -40,7 +40,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   if (isPending || isError)
     return (
       <div
-        className={`mx-auto flex min-h-[25rem] w-full max-w-md items-center justify-center rounded-[20px] border border-secondary-100 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
+        className={`mx-auto flex items-center justify-center rounded-[20px] border border-secondary-100 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
       >
         <span className="text-md text-grey-3">
           {isPending ? QUERYDATA.ISPENDING : QUERYDATA.ISERROR}
@@ -69,7 +69,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
 
   return (
     <div
-      className={`mx-auto max-h-[366px] min-w-[250px] max-w-[353px] rounded-[20px] border border-secondary-100 px-1 py-2 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
+      className={`mx-auto rounded-[20px] border border-secondary-100 px-1 py-2 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
     >
       <div className="flex items-center justify-between px-3 lg:px-5">
         <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />

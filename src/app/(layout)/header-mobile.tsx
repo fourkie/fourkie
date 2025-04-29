@@ -28,7 +28,7 @@ const backIconPaths = [
 ];
 
 const baseHeaderClass =
-  "header-mobile fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-5 z-40 h-[56px] min-w-[360px]";
+  "header-mobile text-grey-8 fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-5 z-40 h-[56px] min-w-[360px]";
 
 const HeaderMobile = () => {
   const pathname = usePathname();
@@ -90,11 +90,11 @@ const HeaderMobile = () => {
       {showBackIcon ? (
         <>
           <ChevronLeft className="cursor-pointer" onClick={handleBack} />
-          <div className="mx-auto text-lg font-bold">{headerText}</div>
+          <strong className="mx-auto text-lg">{headerText}</strong>
           {pathname.startsWith("/posting") && <PostingButton />}
         </>
       ) : (
-        <div className="mx-auto text-lg font-bold">{headerText}</div>
+        <strong className="mx-auto text-lg">{headerText}</strong>
       )}
     </div>
   );
