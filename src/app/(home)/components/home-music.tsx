@@ -60,7 +60,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md md:text-[14px] lg:min-h-[102px] lg:min-w-[118px] lg:rounded-[28px]">
             <Image
               src={
-                playlists[randomIndex].images[0]?.url || "/default-image.jpg"
+                playlists[randomIndex].images[0]?.url || "/images/Fluffy.png"
               }
               alt={playlists[randomIndex].name}
               width={64}

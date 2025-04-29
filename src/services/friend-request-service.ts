@@ -87,7 +87,6 @@ export const getReceivedRequests = async (userId: string) => {
     if (error) throw new Error(TOAST_MESSAGE.MYPAGE.FRIEND_RECEIVED_ERROR);
     return data;
   } catch {
-    toast.error(TOAST_MESSAGE.MYPAGE.FRIEND_RECEIVED_ERROR);
     return [];
   }
 };

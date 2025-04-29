@@ -7,6 +7,7 @@ import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
 import CookieAlert from "@/ui/common/cookie-alert.common";
 import Tab from "@/ui/common/tab.common";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import ListCard from "./list-card";
 
@@ -46,32 +47,51 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
 
   return (
     <div className="relative flex h-full flex-col gap-4">
-      <Tab
-        firstTab="나의 기록"
-        secondTab="친구 기록"
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
-      <div className="flex flex-col gap-5">
+      <div className="fixed left-0 top-[52px] z-10 w-full bg-primary-50 pt-5">
+        <Tab
+          firstTab="나의 기록"
+          secondTab="친구 기록"
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+      </div>
+      <div className="flex flex-col gap-5 pt-11">
         {activeTab === "firstTab" ? (
-          sortedMyPosts?.map((post) => {
+          sortedMyPosts?.map((post, index) => {
             const postDate = post.post_created_at.slice(0, 10);
             const isSelected = postDate === selectedDay;
 
             return (
               <div key={post.post_id} ref={isSelected ? selectedRef : null}>
-                <ListCard post={post} isMyPost={activeTab === "firstTab"} />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { delay: index * 0.1 },
+                  }}
+                  viewport={{ once: true }}
+                >
+                  <ListCard post={post} isMyPost={activeTab === "firstTab"} />
+                </motion.div>
               </div>
             );
           })
         ) : friendPostsForToday!.length >= 1 ? (
-          friendPostsForToday?.map((post) => {
+          friendPostsForToday?.map((post, index) => {
             return (
-              <ListCard
+              <motion.div
                 key={post.post_id}
-                post={post}
-                isMyPost={activeTab === "firstTab"}
-              />
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: index * 0.1 },
+                }}
+                viewport={{ once: true }}
+              >
+                <ListCard post={post} isMyPost={activeTab === "firstTab"} />
+              </motion.div>
             );
           })
         ) : (
