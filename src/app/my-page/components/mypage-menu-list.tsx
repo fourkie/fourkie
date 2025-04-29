@@ -26,7 +26,7 @@ const MypageMenuList = () => {
         <MypageMenuItem href="/terms" label="약관정책" />
       </li>
       <li>
-        <MypageMenuItem href="/tutorial?from=my-page" label="스무키 사용법" />
+        <MypageMenuItem href="/tutorial?from=my-page" label="튜토리얼" />
       </li>
       <li>
         <MypageMenuItem href="/smookie-makers" label="스무키 베이커스" />
@@ -40,7 +40,7 @@ const MypageMenuList = () => {
                 queryClient.clear();
               })
             }
-            className="flex w-full items-center gap-2 py-3 text-left font-semibold text-secondary-300"
+            className="flex w-full items-center gap-2 px-5 py-3 text-left font-semibold text-secondary-300"
           >
             <LogOut size={18} />
             로그아웃
