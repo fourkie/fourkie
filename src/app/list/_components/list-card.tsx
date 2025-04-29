@@ -67,15 +67,15 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-[624px] flex-col items-center gap-4 rounded-2xl bg-white p-3 px-5 py-4 font-omyu tracking-wide text-black text-grey-8">
+    <div className="mx-auto flex w-full max-w-[624px] flex-col items-center gap-3 rounded-2xl bg-white p-3 font-omyu tracking-wide text-black text-grey-8">
       <div className="mb-[2px] flex h-6 w-full items-center justify-between">
         <strong className="w-24 text-sm text-grey-5">{date}</strong>
         <strong className="text-center">{EMOTIONS_QUERY[post_emotion]}</strong>
         {isMyPost ? (
           <div className="flex w-24 justify-end gap-2">
-            <Pencil size={14} className="cursor-pointer" onClick={handleEdit} />
+            <Pencil size={18} className="cursor-pointer" onClick={handleEdit} />
             <Trash2
-              size={14}
+              size={18}
               className="cursor-pointer"
               onClick={handleDeleteButton}
             />
@@ -126,7 +126,7 @@ const ListCard = ({ post, isMyPost }: { post: Posts; isMyPost: boolean }) => {
       {isMyPost && isOverflowing && (
         <div
           onClick={() => setIsExpanded(!isExpanded)}
-          className="mx-auto mt-3 w-fit cursor-pointer"
+          className="mx-auto w-fit cursor-pointer"
         >
           {isExpanded ? (
             <ChevronUp size={18} className="text-grey-6" />

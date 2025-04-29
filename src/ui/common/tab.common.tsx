@@ -17,12 +17,12 @@ const Tab = ({
   ];
 
   return (
-    <div className="relative flex justify-center gap-10 py-2">
+    <div className="flex justify-center gap-10 py-2">
       {tabs.map((tab) => (
         <button
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
-          className={`relative px-3 pb-[6px] ${tab.id === activeTab ? "text-primary-600" : "text-grey-3"}`}
+          className={`relative px-3 pb-[7px] text-sm ${tab.id === activeTab ? "text-primary-600" : "text-grey-3"}`}
           style={{
             WebkitTapHighlightColor: "transparent",
           }}

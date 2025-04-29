@@ -12,7 +12,7 @@ const Alert = ({ children, title, contents }: AlertProps) => {
       <div className="flex w-full max-w-[353px] flex-col rounded-2xl bg-white px-[30px] pb-4 pt-[38px] font-minsans">
         <div className="flex flex-col items-center justify-center">
           <strong className="text-lg text-grey-7">{title}</strong>
-          <div className="mb-[26px] mt-4 text-sm text-grey-5">{contents}</div>
+          <div className="mb-[26px] mt-4 text-sm text-grey-5 text-center">{contents}</div>
         </div>
         <div className="flex gap-4">{children}</div>
       </div>

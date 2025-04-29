@@ -15,7 +15,7 @@ const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`w-full cursor-pointer rounded-2xl py-2 text-lg md:py-3 bg-${backgroundColor === "sub" ? "primary-200" : "primary-500 text-white"} ${classname}`}
+      className={`w-full cursor-pointer rounded-2xl py-[5px] text-lg md:py-2 bg-${backgroundColor === "sub" ? "primary-200" : "primary-500 text-white"} ${classname}`}
     >
       <strong className="mx-auto">
         {icon && iconPosition === "left" && <>{icon}</>}

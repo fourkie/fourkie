@@ -46,13 +46,15 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
 
   return (
     <div className="relative flex h-full flex-col gap-4">
-      <Tab
-        firstTab="나의 기록"
-        secondTab="친구 기록"
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
-      <div className="flex flex-col gap-5">
+      <div className="fixed top-[52px] z-10 w-full left-0 bg-primary-50 pt-5">
+        <Tab
+          firstTab="나의 기록"
+          secondTab="친구 기록"
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+      </div>
+      <div className="flex flex-col gap-5 pt-11">
         {activeTab === "firstTab" ? (
           sortedMyPosts?.map((post) => {
             const postDate = post.post_created_at.slice(0, 10);
