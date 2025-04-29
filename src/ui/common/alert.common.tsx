@@ -3,7 +3,7 @@ import Popup from "./popup-bg.common";
 
 type AlertProps = {
   title: string;
-  contents: string;
+  contents: string | React.ReactNode;
   setOpenPopup: (state: boolean) => void;
   confirm: () => void;
 };

@@ -10,8 +10,7 @@ const TutorialContainer = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // 마이페이지에서 튜토리얼 켜면 마이페이지로 다시 돌아가도록 추가했습니다!
-  const isFromMypage = searchParams.get("from") === "my-page";
+  const from = searchParams.get("from");
 
   /** 클릭 시 다음 페이지로 넘어감 */
   const handleNext = () => {
@@ -23,7 +22,10 @@ const TutorialContainer = () => {
   /** 클릭 시 로그인 페이지로 넘어감 */
   const handleTutorialEnd = () => {
     document.cookie = "hasSeenTutorial=true; path=/; max-age=31536000";
-    router.push(isFromMypage ? "/my-page" : "/sign-up");
+
+    if (from === "my-page") router.push("/my-page");
+    else if (from === "footer") router.push("/");
+    else router.push("/sign-up");
   };
 
   return (
@@ -37,7 +39,7 @@ const TutorialContainer = () => {
           onClick={handleNext}
           onDotClick={setCurrentStep}
           buttonName={TUTORIAL.BUTTON.NEXT}
-          isFromMypage={isFromMypage}
+          isFromMypage={from === "my-page"}
         />
       )}
 
@@ -50,7 +52,7 @@ const TutorialContainer = () => {
           onClick={handleNext}
           onDotClick={setCurrentStep}
           buttonName={TUTORIAL.BUTTON.NEXT}
-          isFromMypage={isFromMypage}
+          isFromMypage={from === "my-page"}
         />
       )}
 
@@ -63,7 +65,7 @@ const TutorialContainer = () => {
           onClick={handleNext}
           onDotClick={setCurrentStep}
           buttonName={TUTORIAL.BUTTON.NEXT}
-          isFromMypage={isFromMypage}
+          isFromMypage={from === "my-page"}
         />
       )}
 
@@ -76,7 +78,7 @@ const TutorialContainer = () => {
           onClick={handleNext}
           onDotClick={setCurrentStep}
           buttonName={TUTORIAL.BUTTON.NEXT}
-          isFromMypage={isFromMypage}
+          isFromMypage={from === "my-page"}
         />
       )}
 
@@ -89,7 +91,11 @@ const TutorialContainer = () => {
           onClick={handleTutorialEnd}
           onDotClick={setCurrentStep}
           buttonName={
-            isFromMypage ? "마이페이지로 돌아가기" : TUTORIAL.BUTTON.SIGN_UP
+            from === "my-page"
+              ? "마이페이지로 돌아가기"
+              : from === "footer"
+                ? "돌아가기"
+                : TUTORIAL.BUTTON.SIGN_UP
           }
         />
       )}

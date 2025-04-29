@@ -46,7 +46,7 @@ const SentFriendList = () => {
           className="flex w-full items-center justify-between py-4"
         >
           <div className="flex items-center justify-start gap-2">
-            <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
+            <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.EXCITED} size="xs" />
             <p className="flex items-center gap-2 text-lg font-medium text-grey-7">
               {request.users.user_nickname}
             </p>

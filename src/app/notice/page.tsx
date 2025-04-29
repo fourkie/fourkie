@@ -61,15 +61,15 @@ const NoticePage = async () => {
   }
 
   const renderList = (title: string, items: NoticeItem[]) => (
-    <section className="mb-10 w-full rounded-xl border border-primary-50 px-10 py-5">
-      <strong className="mb-5 flex w-full justify-center text-xl">
+    <section className="mb-10 w-full rounded-xl">
+      <strong className="mb-3 inline-flex bg-primary-50 px-4 text-xl">
         {title}
       </strong>
       <div className="grid gap-4">
         {items.map((item, idx) => (
           <div
             key={idx}
-            className="cursor-pointer rounded-2xl bg-white p-4 shadow transition-all duration-300 hover:bg-primary-50"
+            className="borde-2 cursor-pointer rounded-2xl border border-primary-100 bg-white p-4 transition-all duration-300 hover:bg-primary-50"
           >
             <div className="space-y-1">
               <strong className="text-lg font-semibold">{item.title}</strong>
@@ -84,8 +84,8 @@ const NoticePage = async () => {
 
   return (
     <main className="mx-auto min-w-[360px] max-w-[1024px] text-grey-7">
-      {renderList("이벤트", events)}
       {renderList("공지사항", notices)}
+      {renderList("이벤트", events)}
     </main>
   );
 };

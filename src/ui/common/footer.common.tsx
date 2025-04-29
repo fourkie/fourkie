@@ -27,7 +27,7 @@ const Footer = () => {
               <p>약관정책</p>
             </Link>
             <Link
-              href={"/tutorial"}
+              href={"/tutorial?from=footer"}
               className="transition-all duration-300 hover:text-grey-4"
             >
               <p>튜토리얼</p>
