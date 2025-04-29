@@ -1,3 +1,4 @@
+import { X } from "lucide-react";
 import Button from "./button.common";
 import Popup from "./popup-bg.common";
 
@@ -11,14 +12,15 @@ type AlertProps = {
 const Alert = ({ setOpenPopup, confirm, title, contents }: AlertProps) => {
   return (
     <Popup>
-      <div className="flex w-full max-w-[353px] flex-col rounded-2xl bg-white px-[30px] pb-4 pt-[38px] font-minsans">
-        <div className="flex flex-col items-center justify-center">
-          <strong className="text-lg">{title}</strong>
-          <div className="mb-[26px] mt-4 text-center text-sm text-grey-5">
-            {contents}
-          </div>
+      <div className="flex w-full max-w-[353px] flex-col rounded-2xl bg-white px-5 pb-4 pt-5 font-minsans">
+        <div className="flex w-full justify-end pb-2 text-black cursor-pointer">
+          <X size={18} onClick={() => setOpenPopup(false)} />
         </div>
-        <div className="flex gap-4">
+        <div className="mx-auto flex max-w-[250px] flex-col items-center justify-center text-center">
+          <strong className="text-lg">{title}</strong>
+          <div className="mb-[26px] mt-4 text-sm text-grey-5">{contents}</div>
+        </div>
+        <div className="flex gap-4 px-[18px]">
           <Button type="button" onClick={() => setOpenPopup(false)}>
             취소
           </Button>
