@@ -35,47 +35,48 @@ const EmotionSelect = ({
           aria-label="감정 선택 드롭다운"
           className={`${
             whiteText ? "text-white" : "text-primary-700"
-          } ${open ? "rounded-tl-[15px] rounded-tr-[15px]" : "rounded-full"}`}
+          } ${open ? "rounded-tl-xl rounded-tr-xl" : "rounded-full"}`}
           style={{
             backgroundColor: `var(--color-${EMOTION_COLOR[emotion]})`,
           }}
         >
-          <strong className="flex h-[30px] max-w-72 items-center justify-center gap-1 px-2 py-1 text-center text-sm">
-            <p>{EMOTIONS_QUERY[emotion]} 날</p>
+          <strong className="flex h-6 w-20 items-center justify-center py-1 text-center text-sm">
+            <p>{EMOTIONS_QUERY[emotion]}날</p>
             <p>{open ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</p>
           </strong>
         </button>
 
         {/* 드롭다운 목록 */}
-        {open && (
-          <div
-            className="absolute top-[30px] z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4"
-            role="listbox"
-            aria-label="감정 선택 목록"
-          >
-            {emotionKeys.map((key) => {
-              if (emotion === key) return null;
-              const isWhiteOption = key === "SAD" || key === "ANGRY";
+        <div
+          className={`${
+            open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          } absolute top-7 z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4 transition-all duration-200 ease-in-out`}
+          role="listbox"
+          aria-label="감정 선택 목록"
+        >
+          {emotionKeys.map((key) => {
+            if (emotion === key) return null;
+            const isWhiteOption = key === "SAD" || key === "ANGRY";
 
-              return (
-                <button
-                  key={key}
-                  onClick={() => handleSelect(key)}
-                  aria-label={`${EMOTIONS_QUERY[key]} 감정 선택`}
-                  className={`rounded-full border px-2 py-1 text-sm ${
-                    isWhiteOption ? "text-white" : "text-primary-700"
-                  }`}
-                  style={{
-                    backgroundColor: `var(--color-${EMOTION_COLOR[key]})`,
-                    borderColor: `var(--color-${EMOTION_BORDER_COLOR[key]})`,
-                  }}
-                >
-                  <strong>{EMOTIONS_QUERY[key]}</strong>
-                </button>
-              );
-            })}
-          </div>
-        )}
+            return (
+              <button
+                key={key}
+                onClick={() => handleSelect(key)}
+                aria-label={`${EMOTIONS_QUERY[key]} 감정 선택`}
+                className={`w-[60px] rounded-full border py-[3px] text-center text-sm ${
+                  isWhiteOption ? "text-white" : "text-primary-700"
+                }`}
+                style={{
+                  backgroundColor: `var(--color-${EMOTION_COLOR[key]})`,
+                  borderColor: `var(--color-${EMOTION_BORDER_COLOR[key]})`,
+                }}
+              >
+                <strong>{EMOTIONS_QUERY[key]}</strong>
+              </button>
+            );
+          })}
+        </div>
+        {/* )} */}
 
         <strong className="text-2xl text-white">듣기 좋은</strong>
       </div>

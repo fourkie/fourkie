@@ -3,11 +3,24 @@ import {
   useRemoveBookmarkMutation,
 } from "@/hooks/mutations/use-music-bookmarks-mutation";
 import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
+import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { PlaylistCardProps } from "../type";
 
-const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
+const PlaylistCard = ({ playlist, userId, lastCard }: PlaylistCardProps) => {
+  const textRef = useRef<HTMLDivElement>(null);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+
+  useEffect(() => {
+    if (textRef.current) {
+      const isOverflow =
+        textRef.current.scrollWidth > textRef.current.clientWidth;
+      setIsOverflowing(isOverflow);
+    }
+  }, [playlist.name]);
+
   const musicPlaylistId = playlist.id || playlist.music_playlist_id;
 
   const { mutate: addBookmark } = useAddBookmarkMutation();
@@ -33,7 +46,9 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   };
 
   return (
-    <div className="h-20 border-b border-b-grey-1">
+    <div
+      className={`${lastCard ? "md:border-0" : "border-b border-b-grey-1"} h-20`}
+    >
       <div className="justify-arround my-3 flex items-center gap-2 md:flex-row-reverse">
         <button
           className="flex items-center justify-center"
@@ -55,20 +70,44 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${playlist.name} 스포티파이 링크 (새 창 열림)`}
-          className="flex w-full items-center gap-5 overflow-hidden whitespace-nowrap transition"
+          className="flex w-full items-center gap-6 overflow-hidden whitespace-nowrap transition"
         >
-          <div className="h-12 w-14 overflow-hidden rounded-lg">
+          <div className="h-[52px] w-[62px] overflow-hidden rounded-lg">
             <Image
               src={playlist.images[0].url}
               alt={playlist.name}
-              width={56}
-              height={48}
+              width={62}
+              height={52}
               priority
               className="h-full w-full object-cover"
             />
           </div>
-          <strong className="flex-1 truncate text-base">{playlist.name}</strong>
-          <p className="text-xs text-grey-5">{playlist.tracks.total}곡</p>
+          <div className="h-6 flex-1 overflow-hidden">
+            <div className="relative" ref={textRef}>
+              {isOverflowing ? (
+                <motion.div
+                  className="absolute left-0 top-0 whitespace-nowrap"
+                  animate={{
+                    x: ["0%", "-33.333%"],
+                    transition: {
+                      ease: "linear",
+                      duration: 10,
+                      repeat: Infinity,
+                    },
+                  }}
+                >
+                  <strong className="px-10">{playlist.name}</strong>
+                  <strong className="px-10">{playlist.name}</strong>
+                  <strong className="px-10">{playlist.name}</strong>
+                </motion.div>
+              ) : (
+                <div className="absolute left-0 top-0 whitespace-nowrap">
+                  <strong>{playlist.name}</strong>
+                </div>
+              )}
+            </div>
+          </div>
+          <p className="mr-7 text-xs text-grey-5">{playlist.tracks.total}곡</p>
         </a>
       </div>
     </div>

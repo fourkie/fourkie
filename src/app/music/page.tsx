@@ -5,8 +5,9 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-today-emotion-by-id-query";
 import createClient from "@/services/supabase-client-service";
+import CookieAlert from "@/ui/common/cookie-alert.common";
 import Tab from "@/ui/common/tab.common";
-import Image from "next/image";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import EmotionSelect from "./_components/emotion-select";
@@ -70,7 +71,8 @@ const Music = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 64) {
+        // 브라우저 64
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -86,8 +88,12 @@ const Music = () => {
 
   if (!userId)
     return (
-      TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING ||
-      TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR
+      <CookieAlert
+        text={
+          TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING ||
+          TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR
+        }
+      />
     );
 
   return (
@@ -99,15 +105,23 @@ const Music = () => {
           height: isScrolled ? 156 : 256, // 스크롤 전 : 256, 스크롤 후 : 156
         }}
       >
-        <div className="relative h-full min-w-[360px]">
-          <Image src={imageUrl} alt={imageUrl} fill className="object-cover" />
+        <div
+          className="relative h-full min-w-[360px] bg-white bg-cover bg-center"
+          style={{ backgroundImage: `url(${imageUrl})` }}
+        >
           <div className="absolute inset-0 bg-black/60">
-            <EmotionSelect
-              emotion={emotion}
-              onChange={setEmotion}
-              todayEmotion={todayEmotionData?.[0]?.post_emotion}
-              scrolled={isScrolled}
-            />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <EmotionSelect
+                emotion={emotion}
+                onChange={setEmotion}
+                todayEmotion={todayEmotionData?.[0]?.post_emotion}
+                scrolled={isScrolled}
+              />
+            </motion.div>
           </div>
         </div>
       </section>
