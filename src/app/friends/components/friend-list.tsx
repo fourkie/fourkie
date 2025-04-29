@@ -8,6 +8,7 @@ import { useGetMyFriendsQuery } from "@/hooks/queries/use-get-my-friends-query";
 import { useGetSentRequestsQuery } from "@/hooks/queries/use-get-sent-requests-query";
 import { useSearchUserQuery } from "@/hooks/queries/use-search-user-query";
 import { getUserForClient } from "@/services/user-client-service";
+import Alert from "@/ui/common/alert.common";
 import EmotionGraph from "@/ui/common/emotion-graph.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import Popup from "@/ui/common/popup-bg.common";
@@ -29,7 +30,13 @@ const FriendList = ({
   const [selectedFriend, setSelectedFriend] = useState<{
     userId: string;
     nickname: string;
-  } | null>(null);
+  }>({ userId: "", nickname: "" });
+
+  const [openDeleteFriendAlert, setOpenDeleteFriendAlert] = useState(false);
+  const [friendToDelete, setFriendToDelete] = useState<{
+    userId: string;
+    nickname: string;
+  }>({ userId: "", nickname: "" });
 
   useEffect(() => {
     const fetchUserId = async () => {
@@ -79,9 +86,13 @@ const FriendList = ({
 
                 {isFriend ? (
                   <button
-                    onClick={() =>
-                      deleteFriend({ userId, friendUid: user.user_uid })
-                    }
+                    onClick={() => {
+                      setFriendToDelete({
+                        userId: user.user_uid,
+                        nickname: user.user_nickname,
+                      });
+                      setOpenDeleteFriendAlert(true);
+                    }}
                     className="min-w-[75px] rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
                   >
                     친구끊기
@@ -89,7 +100,7 @@ const FriendList = ({
                 ) : alreadyRequested ? (
                   <button
                     onClick={() => cancelRequest(alreadyRequested.id)}
-                    className="rounded-full border border-amber-400 px-2 py-1 text-sm text-amber-500 transition-all duration-300 hover:bg-amber-400 hover:text-white"
+                    className="min-w-[75px] rounded-full border border-amber-400 px-2 py-1 text-sm text-amber-500 transition-all duration-300 hover:bg-amber-400 hover:text-white"
                   >
                     요청취소
                   </button>
@@ -104,6 +115,27 @@ const FriendList = ({
               </div>
             );
           })}
+
+          {openDeleteFriendAlert && friendToDelete.userId && (
+            <Alert
+              title="친구끊기"
+              contents={
+                <>
+                  정말로&nbsp;
+                  <span className="font-semibold text-primary-300">
+                    {friendToDelete.nickname}
+                  </span>
+                  &nbsp;님과
+                  <br /> 친구를 끊으시겠습니까?
+                </>
+              }
+              setOpenPopup={setOpenDeleteFriendAlert}
+              confirm={() => {
+                deleteFriend({ userId, friendUid: friendToDelete.userId });
+                setOpenDeleteFriendAlert(false);
+              }}
+            />
+          )}
         </div>
       );
     } else {
@@ -139,9 +171,13 @@ const FriendList = ({
                 {friend.user_nickname}
               </div>
               <button
-                onClick={() =>
-                  deleteFriend({ userId, friendUid: friend.user_uid })
-                }
+                onClick={() => {
+                  setFriendToDelete({
+                    userId: friend.user_uid,
+                    nickname: friend.user_nickname,
+                  });
+                  setOpenDeleteFriendAlert(true);
+                }}
                 className="min-w-[75px] rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
               >
                 친구끊기
@@ -150,6 +186,7 @@ const FriendList = ({
           ))
         )}
       </div>
+
       {openGraphPopup && selectedFriend && (
         <Popup>
           <EmotionGraph
@@ -160,6 +197,27 @@ const FriendList = ({
             nickname={selectedFriend!.nickname}
           />
         </Popup>
+      )}
+
+      {openDeleteFriendAlert && friendToDelete.userId && (
+        <Alert
+          title="친구 삭제"
+          contents={
+            <>
+              정말로&nbsp;
+              <span className="font-semibold text-primary-300">
+                {friendToDelete.nickname}
+              </span>
+              &nbsp;님과
+              <br /> 친구를 끊으시겠습니까?
+            </>
+          }
+          setOpenPopup={setOpenDeleteFriendAlert}
+          confirm={() => {
+            deleteFriend({ userId, friendUid: friendToDelete.userId });
+            setOpenDeleteFriendAlert(false);
+          }}
+        />
       )}
     </>
   );
