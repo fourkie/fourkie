@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import GithubIcon from "../svg-icon/github.icon";
 import GoogleIcon from "../svg-icon/google.icon";
@@ -6,46 +5,76 @@ import SpotifyIcon from "../svg-icon/spotify.icon";
 
 const Footer = () => {
   return (
-    <div className="bg-red-900 sm:hidden md:flex md:justify-center">
-      <div className="inline-flex w-full max-w-5xl flex-row items-center justify-between px-5 py-10">
-        <div className="flex gap-2 bg-red-500">
-          <Image
-            src="/images/Fluffy.png"
-            alt="Fluffy"
-            width={38}
-            height={38}
-            priority
-            quality={100}
-            className="h-[38px] w-[38px]"
-          />
-          <strong className="text-[28px]">Smookie</strong>
+    <div className="bg-grey-0 text-grey-3 sm:hidden md:flex md:justify-center">
+      <div className="flex w-full max-w-5xl flex-col bg-grey-0 p-5">
+        {/* 로고 이미지 / 로고 */}
+        <div className="flex w-full items-center justify-between">
+          <div className="inline-flex items-center justify-center gap-[6px]">
+            <strong className="text-[30px] text-grey-4">Smookie</strong>
+          </div>
+
+          <strong className="flex items-end justify-center gap-[45px] text-[15px]">
+            <Link
+              href={"/notice"}
+              className="transition-all duration-300 hover:text-grey-4"
+            >
+              <p>공지사항</p>
+            </Link>
+            <Link
+              href={"/terms"}
+              className="transition-all duration-300 hover:text-grey-4"
+            >
+              <p>약관정책</p>
+            </Link>
+            <Link
+              href={"/tutorial"}
+              className="transition-all duration-300 hover:text-grey-4"
+            >
+              <p>튜토리얼</p>
+            </Link>
+            <Link
+              href={"/smookie-makers"}
+              className="transition-all duration-300 hover:text-grey-4"
+            >
+              <p>베이커스</p>
+            </Link>
+          </strong>
         </div>
 
-        <div className="space-y-4 bg-yellow-400">
-          <p>버전 정보</p>
-          <p>약관 정책</p>
-          <p>개인정보 보호</p>
-          <p>공지사항</p>
-        </div>
+        {/* 서비스 소개 문구 */}
+        <p className="w-full border-b border-grey-2 pb-10 pt-2">
+          감정을 기록하고 그에 맞는 음악을 추천받는 AI 기반 감정 기록 서비스
+        </p>
 
-        <div className="flex flex-col gap-4 bg-green-500">
-          <Link href={"mailto:fourkie2504021440@gmail.com"}>
-            <GoogleIcon />
-          </Link>
-          <Link
-            href="https://github.com/fourkie/fourkie.git"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GithubIcon />
-          </Link>
-          <Link
-            href="https://open.spotify.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <SpotifyIcon />
-          </Link>
+        {/* 아이콘 */}
+        <div className="flex w-full items-center justify-between gap-4 pb-4 pt-6 text-[#BEBEBE] opacity-75">
+          <div className="flex gap-[6px]">
+            <Link
+              href={"mailto:fourkie2504021440@gmail.com"}
+              className="transition-all duration-300 hover:text-grey-4"
+            >
+              <GoogleIcon />
+            </Link>
+            <Link
+              href="https://github.com/fourkie/fourkie.git"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all duration-300 hover:text-grey-4"
+            >
+              <GithubIcon />
+            </Link>
+            <Link
+              href="https://open.spotify.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all duration-300 hover:text-grey-4"
+            >
+              <SpotifyIcon />
+            </Link>
+          </div>
+          <p className="text-[15px]">
+            ©2025 SMOOKIE. Copyright All Rights Reserved
+          </p>
         </div>
       </div>
     </div>
