@@ -33,7 +33,7 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
   };
 
   return (
-    <div className="h-20 border-b border-b-grey-1">
+    <div className="h-20 border-b border-b-grey-1 last:border-0">
       <div className="justify-arround my-3 flex items-center gap-2 md:flex-row-reverse">
         <button
           className="flex items-center justify-center"
@@ -55,20 +55,20 @@ const PlaylistCard = ({ playlist, userId }: PlaylistCardProps) => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${playlist.name} 스포티파이 링크 (새 창 열림)`}
-          className="flex w-full items-center gap-5 overflow-hidden whitespace-nowrap transition"
+          className="flex w-full items-center gap-6 overflow-hidden whitespace-nowrap transition"
         >
-          <div className="h-12 w-14 overflow-hidden rounded-lg">
+          <div className="h-[52px] w-[62px] overflow-hidden rounded-lg">
             <Image
               src={playlist.images[0].url}
               alt={playlist.name}
-              width={56}
-              height={48}
+              width={62}
+              height={52}
               priority
               className="h-full w-full object-cover"
             />
           </div>
           <strong className="flex-1 truncate text-base">{playlist.name}</strong>
-          <p className="text-xs text-grey-5">{playlist.tracks.total}곡</p>
+          <p className="mr-7 text-xs text-grey-5">{playlist.tracks.total}곡</p>
         </a>
       </div>
     </div>
