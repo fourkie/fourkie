@@ -47,7 +47,7 @@ const PlaylistCard = ({ playlist, userId, lastCard }: PlaylistCardProps) => {
 
   return (
     <div
-      className={`${lastCard ? "md:border-0" : "border-b border-b-grey-1"} h-20`}
+      className={`${lastCard ? "md:border-0" : "border-b border-b-grey-1"} h-18`}
     >
       <div className="justify-arround my-3 flex items-center gap-2 md:flex-row-reverse">
         <button
@@ -72,17 +72,16 @@ const PlaylistCard = ({ playlist, userId, lastCard }: PlaylistCardProps) => {
           aria-label={`${playlist.name} 스포티파이 링크 (새 창 열림)`}
           className="flex w-full items-center gap-6 overflow-hidden whitespace-nowrap transition"
         >
-          <div className="h-[52px] w-[62px] overflow-hidden rounded-lg">
+          <div className="relative h-[52px] w-[62px] overflow-hidden rounded-lg md:h-[84px] md:w-[100px]">
             <Image
               src={playlist.images[0].url}
               alt={playlist.name}
-              width={62}
-              height={52}
+              fill
               priority
-              className="h-full w-full object-cover"
+              className="object-cover"
             />
           </div>
-          <div className="h-6 flex-1 overflow-hidden">
+          <div className="h-6 flex-1 overflow-hidden md:text-xl">
             <div className="relative" ref={textRef}>
               {isOverflowing ? (
                 <motion.div
@@ -107,7 +106,7 @@ const PlaylistCard = ({ playlist, userId, lastCard }: PlaylistCardProps) => {
               )}
             </div>
           </div>
-          <p className="mr-5 text-xs text-grey-5">{playlist.tracks.total}곡</p>
+          <p className="mr-5 text-sm text-grey-5">{playlist.tracks.total}곡</p>
         </a>
       </div>
     </div>
