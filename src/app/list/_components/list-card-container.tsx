@@ -2,7 +2,7 @@
 
 import { COOKIE_ALERT } from "@/constants/cookie-alert.constant";
 import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-query";
-import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
+import { useInfiniteUserPostsByMonth } from "@/hooks/queries/use-infinite-user-posts-by-month-query";
 import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
 import { Posts } from "@/types/posts.type";
@@ -18,14 +18,24 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   const selectedRef = useRef<HTMLDivElement | null>(null);
 
   const { data: posts } = useGetFriendPostsQuery({ userId });
+  const selectedDate = selectedDay ? new Date(selectedDay) : new Date();
 
   //그 달의 게시물만 가져와야 함
-  const { data: myPosts } = useGetAllPostsByIdQuery({ userId });
+  const {
+    data,
+    fetchNextPage,
+    fetchPreviousPage,
+    hasNextPage,
+    hasPreviousPage,
+    isFetching,
+  } = useInfiniteUserPostsByMonth(userId, selectedDate);
+
+  const myPosts = data?.pages.flatMap((page) => page.data) ?? [];
 
   const [activeTab, setActiveTab] = useState(selectedTab);
 
   const sortedMyPosts = myPosts
-    ?.slice()
+    .slice()
     .sort(
       (a, b) =>
         new Date(b.post_created_at).getTime() -
@@ -39,7 +49,35 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
         block: "center",
       });
     }
-  }, [sortedMyPosts, selectedDay]);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = window.innerHeight;
+  
+      // 아래 끝 > 이전 달 로드
+      if (
+        scrollTop + clientHeight >= scrollHeight - 10 &&
+        hasPreviousPage &&
+        !isFetching
+      ) {
+        fetchPreviousPage();
+      }
+  
+      // 위 끝 > 다음 달 로드
+      if (scrollTop <= 10 && hasNextPage && !isFetching) {
+        fetchNextPage();
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [hasPreviousPage, hasNextPage, isFetching]);
 
   const latestPostsByFriend =
     posts?.reduce(
@@ -68,7 +106,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
     );
 
   return (
-    <div className="relative flex h-full flex-col gap-4">
+    <div className="relative flex h-full flex-col gap-4 ">
       <div className="fixed left-0 top-[52px] z-10 w-full bg-primary-50 pt-5 md:top-[70px] md:pt-10">
         <Tab
           firstTab="나의 기록"

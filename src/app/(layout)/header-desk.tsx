@@ -2,6 +2,7 @@
 
 import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
+import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -54,7 +55,7 @@ const HeaderDesk = () => {
               href="/list"
               onClick={() => {
                 setSelectedTab("firstTab");
-                setSelectedDate(null);
+                setSelectedDate(dayjs().format("YYYY-MM-DD"));
               }}
             >
               <strong
