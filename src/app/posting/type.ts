@@ -17,7 +17,6 @@ export type PostingResultModalProps = {
   userId: string;
   emotion: string;
   postId?: string;
-  isPending: boolean;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
