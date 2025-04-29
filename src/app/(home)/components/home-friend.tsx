@@ -14,6 +14,8 @@ import { useQueries } from "@tanstack/react-query";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
+import { motion } from "framer-motion";
+
 const commonTitle =
   "mx-auto flex max-w-[353px] flex-row gap-4 item-center w-full";
 const commonContext =
@@ -76,7 +78,11 @@ const HomeFriend = ({ userId }: { userId: string }) => {
           </strong>
           <ChevronRight className="ml-auto cursor-pointer" />
         </div>
-        <div className={`${commonContext} flex flex-row`}>
+        <motion.div
+          whileHover={{ scale: 1.03 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className={`${commonContext} flex flex-row`}
+        >
           <div className="m-3 flex w-full flex-row items-center gap-4">
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.SAD} size="xs" />
             <div className="flex flex-col">
@@ -86,7 +92,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Link>
     );
   }
@@ -103,7 +109,11 @@ const HomeFriend = ({ userId }: { userId: string }) => {
         </strong>
         <ChevronRight className="ml-auto cursor-pointer" />
       </div>
-      <div className={`${commonContext} flex flex-col`}>
+      <motion.div
+        whileHover={{ scale: 1.03 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        className={`${commonContext} flex flex-col`}
+      >
         {userQueries.map((query, index) => {
           const post = friendPostsForToday?.[index];
           const user = query.data;
@@ -119,7 +129,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
 
                 return (
                   <div
-                    className={`m-3 flex flex-row items-center gap-4 ${isShow}`}
+                    className={`mx-4 my-3 flex flex-row items-center gap-4 ${isShow}`}
                   >
                     <EmotionImage
                       src={checkEmotion(post.post_emotion)}
@@ -140,7 +150,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
             </div>
           );
         })}
-      </div>
+      </motion.div>
     </Link>
   );
 };

@@ -6,6 +6,8 @@ import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { motion } from "framer-motion";
+
 const common =
   "p-2 border-2 border-grey-0 md:border-2 md:border-dashed md:border-primary-200 md:rounded-[28px] md:p-3 md:bg-white w-full max-w-[353px] mx-auto";
 const commonTitle = "mx-auto flex max-w-[353px] flex-row gap-4  w-full";
@@ -50,7 +52,11 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           <ChevronRight className="ml-auto cursor-pointer" />
         </div>
       </Link>
-      <div className={`flex flex-row items-center gap-4 rounded-2xl ${common}`}>
+      <motion.div
+        whileHover={{ scale: 1.03 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        className={`flex flex-row items-center gap-4 rounded-2xl ${common}`}
+      >
         <a
           href={playlists[randomIndex].external_urls.spotify}
           target="_blank"
@@ -78,7 +84,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
             {playlists[randomIndex].tracks.total}곡
           </p>
         </a>
-      </div>
+      </motion.div>
     </div>
   );
 };
