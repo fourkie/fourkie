@@ -5,12 +5,7 @@ import EmotionImage from "@/ui/common/emotion-image.common";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
-type ErrorProps = {
-  error: Error;
-  reset: () => void;
-};
-
-const GlobalError = ({ error, reset }: ErrorProps) => {
+const GlobalError = () => {
   const router = useRouter();
 
   return (
