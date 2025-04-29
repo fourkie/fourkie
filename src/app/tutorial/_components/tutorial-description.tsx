@@ -18,11 +18,6 @@ const TutorialDescription = ({
     <div
       className={`flex min-h-screen min-w-[360px] items-center justify-center ${currentStep !== 4 ? "bg-white" : "bg-primary-50"} font-minsans`}
     >
-      {isFromMypage ? (
-        <Link href={"/my-page"}>
-          <X className="fixed top-20" />
-        </Link>
-      ) : null}
       <div className="flex w-full max-w-[360px] flex-col items-center justify-center gap-5 px-4">
         {currentStep === 4 ? (
           <div className="flex flex-col items-center">
@@ -124,6 +119,11 @@ const TutorialDescription = ({
           {buttonName}
         </button>
       </div>
+      {isFromMypage ? (
+        <Link href={"/my-page"}>
+          <X className="fixed top-20" />
+        </Link>
+      ) : null}
     </div>
   );
 };
