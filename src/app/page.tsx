@@ -21,7 +21,7 @@ const HomePage = async () => {
   return (
     <>
       <ScrollZero />
-      <HomePageShell userId={userId} />;
+      <HomePageShell userId={userId} />
     </>
   );
 };
