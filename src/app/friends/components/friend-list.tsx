@@ -70,7 +70,10 @@ const FriendList = ({
                 className="flex w-full items-center justify-between py-3"
               >
                 <div className="flex w-full cursor-pointer items-center gap-2 text-lg font-medium text-grey-7">
-                  <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
+                  <EmotionImage
+                    src={EMOTION_COOKIE_IMAGE_URL.EXCITED}
+                    size="xs"
+                  />
                   <div className="w-full flex-1">{user.user_nickname}</div>
                 </div>
 
@@ -129,7 +132,10 @@ const FriendList = ({
                 onClick={() => handleFriendClick(friend)}
                 className="flex w-full cursor-pointer items-center gap-2 text-lg font-medium text-grey-7"
               >
-                <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.JOY} size="xs" />
+                <EmotionImage
+                  src={EMOTION_COOKIE_IMAGE_URL.EXCITED}
+                  size="xs"
+                />
                 {friend.user_nickname}
               </div>
               <button
