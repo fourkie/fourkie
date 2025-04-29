@@ -57,27 +57,31 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
       </div>
       <div className="flex flex-col gap-5 pt-11">
         {activeTab === "firstTab" ? (
-          sortedMyPosts?.map((post, index) => {
-            const postDate = post.post_created_at.slice(0, 10);
-            const isSelected = postDate === selectedDay;
+          sortedMyPosts!.length > 0 ? (
+            sortedMyPosts?.map((post, index) => {
+              const postDate = post.post_created_at.slice(0, 10);
+              const isSelected = postDate === selectedDay;
 
-            return (
-              <div key={post.post_id} ref={isSelected ? selectedRef : null}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                    transition: { delay: index * 0.1 },
-                  }}
-                  viewport={{ once: true }}
-                >
-                  <ListCard post={post} isMyPost={activeTab === "firstTab"} />
-                </motion.div>
-              </div>
-            );
-          })
-        ) : friendPostsForToday!.length >= 1 ? (
+              return (
+                <div key={post.post_id} ref={isSelected ? selectedRef : null}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                      transition: { delay: index * 0.1 },
+                    }}
+                    viewport={{ once: true }}
+                  >
+                    <ListCard post={post} isMyPost={activeTab === "firstTab"} />
+                  </motion.div>
+                </div>
+              );
+            })
+          ) : (
+            <EmptyAlert text={COOKIE_ALERT.LIST.EMPTY_MY} />
+          )
+        ) : friendPostsForToday!.length > 0 ? (
           friendPostsForToday?.map((post, index) => {
             return (
               <motion.div
