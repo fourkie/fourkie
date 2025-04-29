@@ -39,10 +39,17 @@ const PostingEmotionModal = ({
   return (
     <>
       {emotion && isModalOpen && (
-        <Popup>
+        <Popup
+          aria-live="assertive"
+          aria-labelledby="emotion-modal-title"
+          aria-describedby="emotion-modal-description"
+        >
           <div className="mx-5 flex w-full max-w-[380px] flex-col gap-5 rounded-2xl bg-white px-12 py-6 shadow-lg">
-            <h2 className="text-center text-xl font-bold text-grey-7">
-              {EMOTIONS_QUERY[currentEmotionKey]}
+            <h2
+              id="emotion-modal-title"
+              className="text-center text-xl text-grey-7"
+            >
+              <strong>{EMOTIONS_QUERY[currentEmotionKey]}</strong>
             </h2>
 
             <PostingEmotionModalSlide
@@ -51,7 +58,10 @@ const PostingEmotionModal = ({
               setSlideIndex={setSlideIndex}
             />
 
-            <p className="text-center text-sm font-medium text-grey-5">
+            <p
+              id="emotion-modal-description"
+              className="text-center text-sm font-medium text-grey-5"
+            >
               선택된 감정에 어울리는
               <br />
               플레이 리스트를 추천해드릴게요!

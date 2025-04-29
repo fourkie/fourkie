@@ -3,7 +3,6 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-today-emotion-by-id-query";
 import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
-import { usePostingStore } from "@/hooks/zustand/posting-store";
 import createClient from "@/services/supabase-client-service";
 import {
   CirclePlus,
@@ -34,8 +33,6 @@ const Navigation = () => {
 
   const { setSelectedTab } = useTabStore();
   const { setSelectedDate } = usePostStore();
-  const setInputTitle = usePostingStore((state) => state.setInputTitle);
-  const setInputContent = usePostingStore((state) => state.setInputContent);
 
   const isMyPage = myPagePaths.includes(pathname);
 
@@ -94,8 +91,6 @@ const Navigation = () => {
             return;
           }
           router.push("/posting");
-          setInputTitle("");
-          setInputContent("");
         }}
         className="cursor-pointer"
       >

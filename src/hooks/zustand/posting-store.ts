@@ -6,4 +6,5 @@ export const usePostingStore = create<PostingState>((set) => ({
   inputContent: "",
   setInputTitle: (value) => set({ inputTitle: value }),
   setInputContent: (value) => set({ inputContent: value }),
+  clearInput: () => set({ inputTitle: "", inputContent: "" }),
 }));

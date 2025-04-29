@@ -2,9 +2,12 @@
 
 import PostingButton from "@/app/posting/_components/posting-button";
 import { useGetUserNicknameByIdQuery } from "@/hooks/queries/use-get-user-nickname-by-id-query";
+import { usePostingStore } from "@/hooks/zustand/posting-store";
 import { getUserIdClient } from "@/services/home-client-service";
+import Alert from "@/ui/common/alert.common";
+import Button from "@/ui/common/button.common";
 import { ChevronLeft } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const headerPaths = [
@@ -31,9 +34,12 @@ const baseHeaderClass =
   "header-mobile text-grey-8 fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-5 z-40 h-[56px] min-w-[360px]";
 
 const HeaderMobile = () => {
+  const params = useParams();
   const pathname = usePathname();
   const router = useRouter();
   const [userId, setUserId] = useState<string | undefined>(undefined);
+  const [isAlert, setIsAlert] = useState(false);
+  const clearInput = usePostingStore((state) => state.clearInput);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -52,10 +58,6 @@ const HeaderMobile = () => {
   } = useGetUserNicknameByIdQuery(userId, {
     enabled: Boolean(userId),
   });
-
-  const handleBack = () => {
-    router.back();
-  };
 
   if (
     pathname.startsWith("/sign-in") ||
@@ -85,13 +87,43 @@ const HeaderMobile = () => {
   const showBackIcon =
     nowPath && backIconPaths.some((p) => pathname.startsWith(p));
 
+  const handleBack = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    router.back();
+  };
+
   return (
     <div className={baseHeaderClass}>
       {showBackIcon ? (
         <>
-          <ChevronLeft className="cursor-pointer" onClick={handleBack} />
-          <strong className="mx-auto text-lg">{headerText}</strong>
+          <ChevronLeft
+            className="cursor-pointer"
+            onClick={() => {
+              if (pathname.startsWith("/posting")) {
+                setIsAlert(true);
+              } else {
+                handleBack();
+              }
+            }}
+          />
+          <div className="mx-auto text-lg font-bold">{headerText}</div>
           {pathname.startsWith("/posting") && <PostingButton />}
+          {isAlert && (
+            <Alert title="뒤로 가시겠습니까?" contents="">
+              <Button
+                onClick={() => {
+                  setIsAlert(false);
+                  handleBack();
+                  if (params?.id) {
+                    clearInput();
+                  }
+                }}
+              >
+                네
+              </Button>
+              <Button onClick={() => setIsAlert(false)}>아니요</Button>
+            </Alert>
+          )}
         </>
       ) : (
         <strong className="mx-auto text-lg">{headerText}</strong>

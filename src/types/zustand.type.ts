@@ -9,4 +9,5 @@ export type PostingState = {
   inputContent: string;
   setInputTitle: (value: string) => void;
   setInputContent: (value: string) => void;
+  clearInput: () => void;
 };

@@ -1,7 +1,7 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import EmotionImage from "@/ui/common/emotion-image.common";
-import { PostingEmotionModalSlideProps } from "../type";
 import { checkEmotion } from "@/utils/home-emotion.util";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { PostingEmotionModalSlideProps } from "../type";
 
 const PostingEmotionModalSlide = ({
   currentEmotionKey,
@@ -22,7 +22,8 @@ const PostingEmotionModalSlide = ({
         onClick={() => handleEmotionSlide(-1)}
         size={32}
         strokeWidth={3}
-        className="stroke-grey-6 cursor-pointer"
+        className="cursor-pointer stroke-grey-6"
+        aria-label="이전 감정으로 이동"
       />
 
       <EmotionImage src={checkEmotion(currentEmotionKey)} size="m" />
@@ -31,7 +32,8 @@ const PostingEmotionModalSlide = ({
         onClick={() => handleEmotionSlide(1)}
         size={32}
         strokeWidth={3}
-        className="stroke-grey-6 cursor-pointer"
+        className="cursor-pointer stroke-grey-6"
+        aria-label="다음 감정으로 이동"
       />
     </div>
   );
