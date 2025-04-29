@@ -13,7 +13,7 @@ import { useState } from "react";
 import HomeDate from "./home-date";
 
 const changeStyle =
-  "md:max-w-2xl max-h-[366px]  min-w-[250px] min-h-[300px] max-w-[353px] md:min-h-[500px] md:max-h-[700px] lg:max-w-[620px] lg:max-h-[720px] md:border-primary-200 md:border-2 md:border-dashed md:bg-[#F7FAF2] ";
+  "md:max-w-2xl max-h-[366px] md:rounded-[28px] min-w-[250px] min-h-[300px] max-w-[353px] md:min-h-[500px] md:max-h-[700px] lg:max-w-[620px] lg:max-h-[720px] md:border-primary-200 md:border-2 md:border-dashed md:bg-[#F7FAF2] ";
 
 const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
   const [currentDate, setCurrentDate] = useState(dayjs());

@@ -13,7 +13,7 @@ const Button = ({
   const baseBg =
     backgroundColor === "sub" ? "primary-200" : "primary-500 text-white";
   const hoverBg =
-    backgroundColor === "sub" ? "hover:bg-primary-300" : "hover:bg-primary-600";
+    backgroundColor === "sub" ? "hover:bg-primary-300" : "hover:bg-primary-550";
 
   return (
     <button

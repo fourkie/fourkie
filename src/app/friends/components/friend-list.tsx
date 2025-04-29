@@ -81,21 +81,21 @@ const FriendList = ({
                     }
                     className="min-w-[75px] rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
                   >
-                    친구 끊기
+                    친구끊기
                   </button>
                 ) : alreadyRequested ? (
                   <button
                     onClick={() => cancelRequest(alreadyRequested.id)}
-                    className="min-w-[75px] rounded-full border border-amber-300 px-2 py-1 text-sm text-amber-400 transition-all duration-300 hover:bg-amber-300 hover:text-white"
+                    className="rounded-full border border-amber-400 px-2 py-1 text-sm text-amber-500 transition-all duration-300 hover:bg-amber-400 hover:text-white"
                   >
-                    요청 취소
+                    요청취소
                   </button>
                 ) : (
                   <button
                     onClick={() => setSelectedUser(user)}
                     className="min-w-[75px] rounded-full border border-primary-300 px-2 py-1 text-sm text-primary-300 transition-all duration-300 hover:bg-primary-300 hover:text-white"
                   >
-                    친구 요청
+                    친구요청
                   </button>
                 )}
               </div>
@@ -138,7 +138,7 @@ const FriendList = ({
                 }
                 className="min-w-[75px] rounded-full border border-secondary-300 px-2 py-1 text-sm text-secondary-300 transition-all duration-300 hover:bg-secondary-300 hover:text-white"
               >
-                친구 끊기
+                친구끊기
               </button>
             </div>
           ))

@@ -5,7 +5,7 @@ import { useGetFriendPostsQuery } from "@/hooks/queries/use-get-friend-posts-que
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
 import { useTabStore } from "@/hooks/zustand/list-tab-store";
 import { usePostStore } from "@/hooks/zustand/post-date-store";
-import CookieAlert from "@/ui/common/cookie-alert.common";
+import EmptyAlert from "@/ui/common/empty-alert.common";
 import Tab from "@/ui/common/tab.common";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -95,7 +95,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
             );
           })
         ) : (
-          <CookieAlert text={COOKIE_ALERT.LIST.EMPTY_FRIEND} />
+          <EmptyAlert text={COOKIE_ALERT.LIST.EMPTY_FRIEND} />
         )}
       </div>
     </div>

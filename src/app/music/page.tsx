@@ -5,7 +5,7 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-today-emotion-by-id-query";
 import createClient from "@/services/supabase-client-service";
-import CookieAlert from "@/ui/common/cookie-alert.common";
+import CookieAlert from "@/ui/common/empty-alert.common";
 import Tab from "@/ui/common/tab.common";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
