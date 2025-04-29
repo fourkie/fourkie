@@ -3,10 +3,6 @@ import { redirect } from "next/navigation";
 import ListCardContainer from "./_components/list-card-container";
 
 const List = async () => {
-  if (1 === 1) {
-    throw new Error("랜덤 에러 발생!");
-  }
-
   const supabase = supabaseServer();
   const {
     data: { user },
