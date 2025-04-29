@@ -11,9 +11,10 @@ import EmotionGraph from "@/ui/common/emotion-graph.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import Popup from "@/ui/common/popup-bg.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
-import { ChevronDown, ChevronUp, Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import Content from "./conetent";
 
 const ListCard = ({
   post,
@@ -38,26 +39,8 @@ const ListCard = ({
     userId: user_id,
   });
   const router = useRouter();
-  const [isExpanded, setIsExpanded] = useState(false);
   const [openGraphPopup, setOpenGraphPopup] = useState(false);
   const [openDeletePopup, setOpenDeletePopup] = useState(false);
-  const [isOverflowing, setIsOverflowing] = useState(false);
-
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const contentEl = contentRef.current;
-    if (!contentEl) return;
-
-    const lineHeight = parseFloat(getComputedStyle(contentEl).lineHeight);
-    const maxHeight = lineHeight * 2;
-
-    if (contentEl.scrollHeight > maxHeight) {
-      setIsOverflowing(true);
-    } else {
-      setIsOverflowing(false);
-    }
-  }, [post_content]);
 
   const date = post_created_at.split("T")[0];
 
@@ -119,34 +102,11 @@ const ListCard = ({
           &nbsp; 날이시네요!
         </strong>
       )}
-      {isMyPost && (
-        <>
-          <strong className="text-xl text-grey-8 md:text-2xl">
-            {post_title}
-          </strong>
-          <strong
-            ref={contentRef}
-            className={`w-full max-w-96 break-all px-12 text-center leading-5 md:text-xl ${
-              isExpanded ? "line-clamp-none" : "line-clamp-2 md:line-clamp-none"
-            }`}
-          >
-            {post_content}
-          </strong>
-        </>
-      )}
-
-      {isMyPost && isOverflowing && (
-        <div
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="mx-auto w-fit cursor-pointer md:hidden"
-        >
-          {isExpanded ? (
-            <ChevronUp size={18} className="text-grey-6" />
-          ) : (
-            <ChevronDown size={18} className="text-grey-6" />
-          )}
-        </div>
-      )}
+      <Content
+        post_title={post_title}
+        post_content={post_content}
+        isMyPost={isMyPost}
+      />
       {openDeletePopup && (
         <Alert
           title={ALERT_MESSAGE.LIST.DELETE_TITLE}
