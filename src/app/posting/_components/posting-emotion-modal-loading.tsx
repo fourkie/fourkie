@@ -18,7 +18,12 @@ const PostingEmotionModalLoading = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+      role="dialog"
+      aria-live="assertive"
+      aria-labelledby="loading-modal"
+    >
       <div className="flex max-w-xs flex-col items-center justify-center gap-7 rounded-lg p-6 text-xl">
         <EmotionImage src={checkEmotion(EMOTIONS.JOY)} size="l" />
 

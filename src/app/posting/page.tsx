@@ -30,14 +30,28 @@ const Posting = async () => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <p className="flex gap-2">
-          <span className="text-xl">{date}</span>
-          <span className="text-xl">{day}</span>
+      <div className="flex items-center justify-between text-grey-8">
+        <p
+          className="flex items-center gap-2"
+          aria-label={`오늘은 ${day}요일, ${date}일입니다`}
+        >
+          <span className="text-xl md:text-2xl" style={{ lineHeight: 1 }}>
+            {date}
+          </span>
+          <span className="text-lg md:text-xl" style={{ lineHeight: 1 }}>
+            {day}
+          </span>
         </p>
-        <PostingButton className={"hidden h-7 md:block"} />
+        <PostingButton
+          className={"hidden h-7 md:block"}
+          aria-label="게시글 작성 완료"
+        />
       </div>
-      <hr className="my-2.5 w-full border-grey-0" />
+      <hr
+        className="my-2.5 w-full border-grey-0"
+        role="presentation"
+        aria-hidden="true"
+      />
       <PostingForm userId={userId} />
     </>
   );

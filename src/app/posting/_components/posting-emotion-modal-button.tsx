@@ -47,6 +47,7 @@ const PostingEmotionModalButton = ({
       <button
         className="flex-1 rounded-2xl bg-primary-500 py-2 text-grey-0"
         onClick={onClose}
+        aria-label="취소"
       >
         <strong>취소</strong>
       </button>
@@ -55,6 +56,10 @@ const PostingEmotionModalButton = ({
         className="flex-1 rounded-2xl bg-primary-200 py-2 text-primary-700 disabled:cursor-not-allowed disabled:opacity-50"
         onClick={handleSave}
         disabled={createPostsPending || UpdatePostsPending}
+        aria-label={
+          createPostsPending || UpdatePostsPending ? "저장 중..." : "확인"
+        }
+        aria-disabled={createPostsPending || UpdatePostsPending}
       >
         {createPostsPending || UpdatePostsPending ? "저장 중..." : "확인"}
       </button>

@@ -80,10 +80,16 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
         id="posting"
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full flex-col gap-10 px-12"
+        aria-labelledby="posting-form-title"
       >
         {/* Title */}
         <div className="relative flex flex-col gap-2">
-          <strong className="text-center text-xl text-grey-5">Title</strong>
+          <strong
+            id="posting-form-title"
+            className="text-center text-xl text-grey-5"
+          >
+            Title
+          </strong>
           <textarea
             {...register("inputTitle")}
             maxLength={20}
@@ -91,6 +97,8 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
             className="h-5 w-full resize-none text-center font-omyu text-lg leading-4 text-grey-8 placeholder-grey-3 focus:outline-none"
             onFocus={() => setIsTitleFocused(true)}
             onBlur={() => setIsTitleFocused(false)}
+            aria-label="Post title"
+            aria-describedby="posting-form-title"
           />
         </div>
 
@@ -104,6 +112,8 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
             className="h-5 w-full resize-none text-center font-omyu text-lg leading-4 text-grey-8 placeholder-grey-3 focus:outline-none"
             onFocus={() => setIsContentFocused(true)}
             onBlur={() => setIsContentFocused(false)}
+            aria-label="Post content"
+            aria-describedby="posting-form-content"
           />
         </div>
       </form>

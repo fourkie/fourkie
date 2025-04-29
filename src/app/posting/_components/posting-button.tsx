@@ -6,13 +6,20 @@ const PostingButton = ({ className }: { className?: string }) => {
   const inputTitle = usePostingStore((state) => state.inputTitle);
   const inputContent = usePostingStore((state) => state.inputContent);
 
+  const isDisabled = !(inputTitle && inputContent);
+
   return (
     <button
       form="posting"
       type="submit"
-      className={`${className} ${inputTitle && inputContent ? "text-primary-500" : "text-grey-3"}`}
+      className={`${className} ${!isDisabled ? "text-primary-500" : "text-grey-3"}`}
+      aria-label={
+        isDisabled ? "게시글 작성 완료 (비활성화)" : "게시글 작성 완료"
+      }
+      aria-disabled={isDisabled}
+      disabled={isDisabled}
     >
-      <strong className="h-7 p-0.5">완료</strong>
+      <strong className="p-0.5 text-base">완료</strong>
     </button>
   );
 };
