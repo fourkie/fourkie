@@ -2,8 +2,8 @@
 
 import { COOKIE_ALERT } from "@/constants/cookie-alert.constant";
 import { useGetAllPostsByIdQuery } from "@/hooks/queries/use-get-my-posts-query";
-import CookieAlert from "@/ui/common/cookie-alert.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
+import CookieAlert from "@/ui/common/empty-alert.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
 import { motion } from "framer-motion";
 

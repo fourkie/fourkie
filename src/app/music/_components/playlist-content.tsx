@@ -2,7 +2,7 @@ import { Emotion } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
-import CookieAlert from "@/ui/common/cookie-alert.common";
+import CookieAlert from "@/ui/common/empty-alert.common";
 import { motion } from "framer-motion";
 import PlaylistCard from "./playlist-card";
 
