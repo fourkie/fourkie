@@ -59,7 +59,7 @@ const Content = ({
       ) : (
         <div
           ref={contentRef}
-          className={`max-w-96 break-all px-12 text-center leading-5 md:text-xl`}
+          className={`max-w-96 break-all px-12 text-center leading-5 md:text-lg`}
         >
           <strong className="block">{post_content}</strong>
         </div>

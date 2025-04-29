@@ -61,12 +61,12 @@ const FriendrequestPopUp = ({ user, onClose }: FriendRequestPopUpProps) => {
           </h1>
         </div>
         <div className="border-t" />
-        <p className="my-5 text-center text-sm text-gray-500">
+        <p className="my-5 text-center text-sm text-grey-6">
           {alreadyReceived ? (
             <>
               <span className="font-semibold text-primary-300">
                 {user.user_nickname}
-              </span>{" "}
+              </span>
               님이 이미 요청을 보내셨어요!
               <br />
               요청을 수락할까요?
@@ -75,8 +75,8 @@ const FriendrequestPopUp = ({ user, onClose }: FriendRequestPopUpProps) => {
             <>
               <span className="font-semibold text-primary-300">
                 {user.user_nickname}
-              </span>{" "}
-              님께 친구 요청을 보낼까요?
+              </span>
+              님께 <br /> 친구 요청을 보낼까요?
             </>
           )}
         </p>

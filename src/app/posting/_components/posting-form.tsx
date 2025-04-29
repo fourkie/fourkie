@@ -94,7 +94,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
         <div className="relative flex flex-col gap-3">
           <strong
             id="posting-form-title"
-            className="text-center text-xl text-grey-5"
+            className="text-center text-xl text-grey-2 md:text-2xl"
           >
             Title
           </strong>
@@ -111,7 +111,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
         </div>
 
         {/* Content */}
-        <div className="relative flex flex-col gap-3">
+        <div className="relative flex flex-col gap-2">
           <strong className="text-center text-xl text-grey-2 md:text-2xl">
             Content
           </strong>
