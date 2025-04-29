@@ -31,7 +31,7 @@ const backIconPaths = [
 ];
 
 const baseHeaderClass =
-  "header-mobile text-grey-8 fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-5 z-40 h-[56px] min-w-[360px]";
+  "header-mobile text-grey-8 fixed top-0 flex flex-row items-center justify-between bg-primary-50 block w-full md:hidden p-5 z-40 h-[52px] min-w-[360px]";
 
 const HeaderMobile = () => {
   const params = useParams();

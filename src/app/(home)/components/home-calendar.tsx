@@ -6,6 +6,7 @@ import { usePostStore } from "@/hooks/zustand/post-date-store";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import { checkEmotion } from "@/utils/home-emotion.util";
 import dayjs from "dayjs";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -88,7 +89,19 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
         />
       </div>
 
-      <div className="grid grid-cols-7 gap-2">
+      <motion.div
+        className="grid grid-cols-7 gap-2"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.05,
+            },
+          },
+        }}
+      >
         {["S", "M", "T", "W", "T", "F", "S"].map((d, index) =>
           d === "S" ? (
             index === 0 ? (
@@ -147,12 +160,22 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
               {day && (
                 <>
                   {images[day] ? (
-                    <div onClick={handleClick}>
+                    <motion.div
+                      onClick={handleClick}
+                      variants={{
+                        hidden: { opacity: 0, scale: 0.8 },
+                        visible: { opacity: 1, scale: 1 },
+                      }}
+                      transition={{
+                        duration: 0.4,
+                        delay: Math.random() * 0.3,
+                      }}
+                    >
                       <EmotionImage
                         src={checkEmotion(images[day])}
                         size={"xxs"}
                       />
-                    </div>
+                    </motion.div>
                   ) : (
                     <span
                       className={`md:text-lg lg:text-[26px] lg:font-bold ${
@@ -171,7 +194,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
             </div>
           );
         })}
-      </div>
+      </motion.div>
     </div>
   );
 };

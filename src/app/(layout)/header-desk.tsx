@@ -6,14 +6,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const myPagePaths = [
+  "/my-page",
+  "/notice",
+  "/version",
+  "/terms",
+  "/smookie-makers",
+  "/friends",
+];
+
+const styleHover = "transition-all duration-300 hover:text-secondary-400";
 const HeaderDesk = () => {
   const pathname = usePathname();
 
-  //리스트
   const { setSelectedTab } = useTabStore();
   const { setSelectedDate } = usePostStore();
+  const isMyPage = myPagePaths.includes(pathname);
 
-  // 헤더 제외
   if (pathname === "/tutorial") return null;
 
   // 로그인/회원가입 페이지
@@ -33,7 +42,7 @@ const HeaderDesk = () => {
   // 기본 헤더
   return (
     <>
-      <div className="header-desk fixed top-0 z-40 hidden h-[56px] w-full bg-primary-50 px-5 md:block">
+      <div className="header-desk fixed top-0 z-40 hidden h-[70px] w-full bg-primary-50 px-5 md:block">
         <div className="mx-auto flex h-full w-full max-w-[1024px] items-center justify-between py-5 text-grey-8">
           <Link href="/" className="flex items-center gap-2">
             <Image src="/images/Fluffy.png" width={39} height={39} alt="신나" />
@@ -47,30 +56,29 @@ const HeaderDesk = () => {
                 setSelectedDate(null);
               }}
             >
-              {pathname === "/list" ? (
-                <strong className="text-primary-700">기록 목록</strong>
-              ) : (
-                <strong className="text-grey-4">기록 목록</strong>
-              )}
+              <strong
+                className={`${styleHover} ${
+                  pathname === "/list" ? "text-primary-700" : "text-grey-4"
+                }`}
+              >
+                기록 목록
+              </strong>
             </Link>
             <Link href="/music">
-              {pathname === "/music" ? (
-                <strong className="text-primary-700">음악 리스트</strong>
-              ) : (
-                <strong className="text-grey-4">음악 리스트</strong>
-              )}
+              <strong
+                className={`${styleHover} ${
+                  pathname === "/music" ? "text-primary-700" : "text-grey-4"
+                }`}
+              >
+                음악 리스트
+              </strong>
             </Link>
             <Link href="/my-page">
-              {pathname.startsWith("/my-page") ||
-              pathname.startsWith("/notice") ||
-              pathname.startsWith("/version") ||
-              pathname.startsWith("/term") ||
-              pathname.startsWith("/smookie-makers") ||
-              pathname.startsWith("/friends") ? (
-                <strong className="text-primary-700">마이 페이지</strong>
-              ) : (
-                <strong className="text-grey-4">마이 페이지</strong>
-              )}
+              <strong
+                className={`${styleHover} ${isMyPage ? "text-primary-700" : "text-grey-4"}`}
+              >
+                마이 페이지
+              </strong>
             </Link>
           </div>
         </div>
