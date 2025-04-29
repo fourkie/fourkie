@@ -26,7 +26,7 @@ const Popup = ({
             scale: { type: "spring", duration: 0.4, bounce: 0.35 },
             opacity: { duration: 0.2 },
           }}
-          className="w-full"
+          className="flex w-full justify-center"
         >
           {children}
         </motion.div>

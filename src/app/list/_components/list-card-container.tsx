@@ -47,7 +47,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
 
   return (
     <div className="relative flex h-full flex-col gap-4">
-      <div className="fixed left-0 top-[52px] z-10 w-full bg-primary-50 pt-5">
+      <div className="fixed left-0 top-[52px] z-10 w-full bg-primary-50 pt-5 md:top-[90px]">
         <Tab
           firstTab="나의 기록"
           secondTab="친구 기록"
@@ -55,7 +55,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
           setActiveTab={setActiveTab}
         />
       </div>
-      <div className="flex flex-col gap-5 pt-11">
+      <div className="flex flex-col gap-5 pt-12 md:pt-[60px]">
         {activeTab === "firstTab" ? (
           sortedMyPosts!.length > 0 ? (
             sortedMyPosts?.map((post, index) => {
