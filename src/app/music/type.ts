@@ -27,11 +27,6 @@ export interface EmotionSelectProps {
   scrolled: boolean;
 }
 
-export enum PlaylistTabProps {
-  RECOMMEND = "추천 플리",
-  BOOKMARK = "즐겨찾기",
-}
-
 export interface PlaylistCardProps {
   playlist: SpotifyPlaylistItem;
   userId: string;
