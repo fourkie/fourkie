@@ -12,6 +12,7 @@ import Alert from "@/ui/common/alert.common";
 import EmotionGraph from "@/ui/common/emotion-graph.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import Popup from "@/ui/common/popup-bg.common";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FriendListProps, SelectedUserType } from "../type";
 
@@ -63,7 +64,7 @@ const FriendList = ({
     if (searchedUser && searchedUser.length > 0) {
       return (
         <div className="flex flex-col gap-3 py-3">
-          {searchedUser.map((user) => {
+          {searchedUser.map((user, index) => {
             const isFriend = friendList?.some(
               (friend) => friend.user_uid === user.user_uid,
             );
@@ -155,8 +156,15 @@ const FriendList = ({
             {UI_TEXT.MYPAGE.EMPTY_FRIEND_LIST_ALT}
           </div>
         ) : (
-          friendList?.map((friend) => (
-            <div
+          friendList?.map((friend, index) => (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { delay: index * 0.06 },
+              }}
+              viewport={{ once: true }}
               key={friend.user_uid}
               className="flex w-full items-center justify-between py-3"
             >
@@ -182,7 +190,7 @@ const FriendList = ({
               >
                 친구끊기
               </button>
-            </div>
+            </motion.div>
           ))
         )}
       </div>
