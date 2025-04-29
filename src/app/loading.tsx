@@ -1,6 +1,13 @@
+"use client";
+
 import LoadingCookie from "@/ui/common/loading-cookie.common";
+import { usePathname } from "next/navigation";
 
 const Loading = () => {
+  const pathname = usePathname();
+
+  if (pathname === "/") return null;
+
   return (
     <div className="flex h-full flex-col items-center justify-center">
       <LoadingCookie />
