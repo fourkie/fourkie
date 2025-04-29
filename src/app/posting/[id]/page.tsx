@@ -43,7 +43,7 @@ const Edit = async ({ params }: { params: { id: string } }) => {
         />
       </div>
       <hr
-        className="my-2.5 w-full border-grey-0"
+        className="my-2.5 w-full border-grey-0 mb-5 md:mb-12"
         role="presentation"
         aria-hidden="true"
       />

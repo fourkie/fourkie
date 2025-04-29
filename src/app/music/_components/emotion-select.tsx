@@ -50,7 +50,7 @@ const EmotionSelect = ({
         <div
           className={`${
             open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-          } absolute top-[29px] z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-6 py-4 transition-all duration-200 ease-in-out`}
+          } absolute top-[29px] z-50 grid grid-cols-3 gap-4 rounded-bl-2xl rounded-br-2xl rounded-tr-2xl bg-[#ECF3E2E5] px-7 py-4 transition-all duration-200 ease-in-out`}
           role="listbox"
           aria-label="감정 선택 목록"
         >

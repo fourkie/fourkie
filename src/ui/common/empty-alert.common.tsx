@@ -1,6 +1,6 @@
 import { AlertType } from "@/types/cookie-alert.type";
 
-const CookieAlert = ({ text, isContent = false }: AlertType) => {
+const EmptyAlert = ({ text, isContent = false }: AlertType) => {
   let common = "flex flex-col items-center justify-center gap-6 text-grey-6 ";
 
   if (!isContent) {
@@ -14,4 +14,4 @@ const CookieAlert = ({ text, isContent = false }: AlertType) => {
   );
 };
 
-export default CookieAlert;
+export default EmptyAlert;

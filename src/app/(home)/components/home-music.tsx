@@ -70,9 +70,9 @@ const HomeMusic = ({ userId }: { userId: string }) => {
             />
           </div>
 
-          <strong className="flex-1 truncate px-1 text-sm">
+          <div className="flex-1 truncate px-1 text-sm font-bold">
             {playlists[randomIndex].name}
-          </strong>
+          </div>
 
           <p className="flex-shrink-0 text-nowrap text-sm text-grey-3">
             {playlists[randomIndex].tracks.total}곡

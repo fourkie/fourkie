@@ -5,7 +5,6 @@ import { useGetUserNicknameByIdQuery } from "@/hooks/queries/use-get-user-nickna
 import { usePostingStore } from "@/hooks/zustand/posting-store";
 import { getUserIdClient } from "@/services/home-client-service";
 import Alert from "@/ui/common/alert.common";
-import Button from "@/ui/common/button.common";
 import { ChevronLeft } from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -109,20 +108,18 @@ const HeaderMobile = () => {
           <div className="mx-auto text-lg font-bold">{headerText}</div>
           {pathname.startsWith("/posting") && <PostingButton />}
           {isAlert && (
-            <Alert title="뒤로 가시겠습니까?" contents="">
-              <Button
-                onClick={() => {
-                  setIsAlert(false);
-                  handleBack();
-                  if (params?.id) {
-                    clearInput();
-                  }
-                }}
-              >
-                네
-              </Button>
-              <Button onClick={() => setIsAlert(false)}>아니요</Button>
-            </Alert>
+            <Alert
+              title="뒤로 가시겠습니까?"
+              contents=""
+              confirm={() => {
+                setIsAlert(false);
+                handleBack();
+                if (params?.id) {
+                  clearInput();
+                }
+              }}
+              setOpenPopup={setIsAlert}
+            />
           )}
         </>
       ) : (

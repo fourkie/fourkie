@@ -15,7 +15,8 @@ const myPagePaths = [
   "/friends",
 ];
 
-const styleHover = "transition-all duration-300 hover:text-secondary-400";
+const styleHover =
+  "transition-all duration-300 hover:scale-110 transition-transform";
 const HeaderDesk = () => {
   const pathname = usePathname();
 
@@ -28,8 +29,8 @@ const HeaderDesk = () => {
   // 로그인/회원가입 페이지
   if (pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up")) {
     return (
-      <div className="fixed top-0 hidden h-[56px] w-full bg-primary-50 px-5 md:flex">
-        <div className="mx-auto flex h-full w-full max-w-[1024px] items-center justify-between py-5 text-grey-6">
+      <div className="fixed top-0 hidden h-[56px] w-full bg-primary-50 md:flex">
+        <div className="mx-auto flex h-full w-full max-w-[1024px] items-center justify-between px-5 py-5 text-grey-6">
           <div className="flex items-center gap-2">
             <Image src="/images/Fluffy.png" width={39} height={39} alt="신나" />
             <strong className="text-xl">Smookie</strong>
@@ -42,8 +43,8 @@ const HeaderDesk = () => {
   // 기본 헤더
   return (
     <>
-      <div className="header-desk fixed top-0 z-40 hidden h-[70px] w-full bg-primary-50 px-5 md:block">
-        <div className="mx-auto flex h-full w-full max-w-[1024px] items-center justify-between py-5 text-grey-8">
+      <div className="header-desk fixed top-0 z-40 hidden h-[70px] w-full bg-primary-50 md:block">
+        <div className="mx-auto flex h-full w-full max-w-[1024px] items-center justify-between px-5 py-5 text-grey-8">
           <Link href="/" className="flex items-center gap-2">
             <Image src="/images/Fluffy.png" width={39} height={39} alt="신나" />
             <strong className="text-xl">Smookie</strong>
