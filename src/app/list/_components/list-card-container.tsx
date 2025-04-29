@@ -81,6 +81,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
           friendPostsForToday?.map((post, index) => {
             return (
               <motion.div
+                key={post.post_id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{
                   opacity: 1,
@@ -89,11 +90,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
                 }}
                 viewport={{ once: true }}
               >
-                <ListCard
-                  key={post.post_id}
-                  post={post}
-                  isMyPost={activeTab === "firstTab"}
-                />
+                <ListCard post={post} isMyPost={activeTab === "firstTab"} />
               </motion.div>
             );
           })
