@@ -6,7 +6,7 @@ export const useInfiniteUserPostsByMonth = (
   selectedDate: Date,
 ) => {
   return useInfiniteQuery({
-    queryKey: ["userPostsInfinite", userId, selectedDate],
+    queryKey: ["userPostsInfinite", selectedDate],
     initialPageParam: {
       year: selectedDate.getFullYear(),
       month: selectedDate.getMonth() + 1,

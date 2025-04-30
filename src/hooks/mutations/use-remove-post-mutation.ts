@@ -15,6 +15,8 @@ export const useRemovePostMutation = ({
   const year = dayjs().year();
   const month = dayjs().month() + 1;
 
+  const selectedDate = new Date();
+
   return useMutation({
     mutationFn: () => removePost(postId),
 
@@ -31,6 +33,9 @@ export const useRemovePostMutation = ({
       });
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.SPOTIFY_PLAYLISTS],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["userPostsInfinite", selectedDate],
       });
 
       queryClient.setQueryData([QUERY_KEY.POSTID, postId], null);
