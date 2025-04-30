@@ -16,7 +16,7 @@ export const useSignupMutation = () => {
   );
 
   return useMutation({
-    mutationFn: (data: FieldValues) => signUp(data), // 명확한 타입 지정
+    mutationFn: (data: FieldValues) => signUp(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.USER] });
       toast.success(TOAST_MESSAGE.SIGNUP.SUCCESS);

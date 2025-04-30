@@ -15,10 +15,10 @@ const GlobalError = () => {
           rotate: [0, -15, 20, -25, 10, 0],
         }}
         transition={{
-          duration: 2, // 애니메이션 지속 시간
-          repeat: Infinity, // 무한 반복
-          repeatType: "loop", // 반복 설정
-          ease: "easeInOut", // 부드럽게 들어갔다 나오는 느낌
+          duration: 2,
+          repeat: Infinity,
+          repeatType: "loop",
+          ease: "easeInOut",
         }}
       >
         <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.SAD} size="l" />

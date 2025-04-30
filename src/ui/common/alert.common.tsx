@@ -12,9 +12,18 @@ type AlertProps = {
 const Alert = ({ setOpenPopup, confirm, title, contents }: AlertProps) => {
   return (
     <Popup>
-      <div className="flex w-full max-w-[353px] flex-col rounded-2xl bg-white px-5 pb-4 pt-5 font-minsans">
-        <div className="flex w-full justify-end pb-2 text-black cursor-pointer">
-          <X size={18} onClick={() => setOpenPopup(false)} />
+      <div
+        role="alertdialog"
+        aria-labelledby={title}
+        className="flex w-full max-w-[353px] flex-col rounded-2xl bg-white px-5 pb-4 pt-5 font-minsans"
+      >
+        <div className="flex w-full cursor-pointer justify-end pb-2 text-black">
+          <X
+            size={18}
+            onClick={() => setOpenPopup(false)}
+            role="button"
+            aria-label="팝업 닫기"
+          />
         </div>
         <div className="mx-auto flex max-w-[250px] flex-col items-center justify-center text-center">
           <strong className="text-lg">{title}</strong>

@@ -24,7 +24,6 @@ declare module "@mui/material/styles" {
   }
 }
 
-//직접 지정
 let customTheme = createTheme({
   breakpoints: {
     values: {

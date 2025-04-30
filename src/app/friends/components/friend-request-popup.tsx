@@ -50,7 +50,10 @@ const FriendrequestPopUp = ({ user, onClose }: FriendRequestPopUpProps) => {
 
   return (
     <Popup>
-      <div className="relative w-80 rounded-2xl border bg-white p-6">
+      <div
+        className="relative w-80 rounded-2xl border bg-white p-6"
+        aria-label="친구 수락 및 요청"
+      >
         <button onClick={onClose} className="absolute right-4 top-4 p-2">
           <X size={18} />
         </button>

@@ -37,9 +37,9 @@ const Content = ({
       {isMobile ? (
         <AnimatePresence initial={false}>
           <motion.div
-            initial={false} // ★ 키포인트: 최초 진입시에만 초기값 무시
+            initial={false}
             animate={{
-              maxHeight: isExpanded ? 1000 : 40, // ★ 넉넉히 (두 줄 기준)
+              maxHeight: isExpanded ? 1000 : 40,
               transition: { duration: 0.7, ease: "easeInOut" },
             }}
             exit={{
@@ -67,6 +67,7 @@ const Content = ({
 
       {isOverflowing && isMobile && (
         <div
+          aria-label="작성 글 더보기 "
           onClick={() => setIsExpanded(!isExpanded)}
           className="mx-auto w-fit cursor-pointer"
         >

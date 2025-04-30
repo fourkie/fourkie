@@ -19,7 +19,6 @@ const PostingEmotionModal = ({
   const emotionKeys = Object.keys(EMOTIONS_QUERY);
   const currentEmotionKey = emotionKeys[slideIndex];
 
-  // 감정 데이터가 변경될 때 슬라이드 인덱스를 업데이트
   useEffect(() => {
     if (emotion) {
       const converted = convertEmotions(emotion);

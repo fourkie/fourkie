@@ -70,14 +70,23 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
 
   return (
     <div
+      role="region"
+      aria-label="감정 캘린더"
       className={`mx-auto rounded-[20px] border border-secondary-100 px-1 py-2 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
     >
       <div className="flex items-center justify-between px-3 lg:px-5">
-        <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
+        <ChevronLeft
+          onClick={handlePrevMonth}
+          className="cursor-pointer"
+          role="button"
+          aria-label="이전 달 보기"
+        />
         <div className="flex flex-1 justify-center overflow-hidden pb-1 md:justify-center">
           <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
         </div>
         <ChevronRight
+          role="button"
+          aria-label="다음 달 보기"
           onClick={() => {
             if (!isNextMonthFuture) handleNextMonth();
           }}
@@ -150,6 +159,7 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
 
           return (
             <div
+              aria-label="날짜"
               key={idx}
               className={`relative flex h-[2.3rem] items-center justify-center rounded-md md:h-[5rem] lg:h-[5.8rem] ${
                 isFuture || day === null

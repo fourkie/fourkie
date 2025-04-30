@@ -8,7 +8,6 @@ const PostingEmotionModalSlide = ({
   emotionKeys,
   setSlideIndex,
 }: PostingEmotionModalSlideProps) => {
-  // 슬라이드 이동 핸들러
   const handleEmotionSlide = (n: number) => {
     setSlideIndex((prev) => {
       const nextIndex = (prev + n + emotionKeys.length) % emotionKeys.length;

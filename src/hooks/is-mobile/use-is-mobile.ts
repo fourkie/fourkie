@@ -8,7 +8,7 @@ const useIsMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    checkWidth(); // 초기 체크
+    checkWidth();
     window.addEventListener("resize", checkWidth);
 
     return () => {

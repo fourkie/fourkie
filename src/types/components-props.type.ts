@@ -5,10 +5,10 @@ export interface ButtonProps {
   disabled?: boolean;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
-  icon?: ReactNode; // 아이콘
-  iconPosition?: "left" | "right"; // 아이콘 위치
+  icon?: ReactNode;
+  iconPosition?: "left" | "right";
   classname?: string;
-  backgroundColor?: string; // 배경색
+  backgroundColor?: string;
 }
 
 export interface InputProps {

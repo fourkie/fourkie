@@ -83,6 +83,7 @@ const SignUpForm = () => {
             transition: { delay: 0.2 },
           }}
           viewport={{ once: true }}
+          aria-label="이메일 입력"
         >
           <Input
             {...register("email", EMAIL_VALIDATION)}
@@ -99,6 +100,7 @@ const SignUpForm = () => {
             transition: { delay: 0.3 },
           }}
           viewport={{ once: true }}
+          aria-label="닉네임 입력"
         >
           <Input
             {...register("nickname", NICKNAME_VALIDATION)}
@@ -115,6 +117,7 @@ const SignUpForm = () => {
             transition: { delay: 0.42 },
           }}
           viewport={{ once: true }}
+          aria-label="비밀번호 입력"
         >
           <Input
             {...register("password", PASSWORD_VALIDATION)}
@@ -131,6 +134,7 @@ const SignUpForm = () => {
             transition: { delay: 0.56 },
           }}
           viewport={{ once: true }}
+          aria-label="비밀번호 확인"
         >
           <Input
             {...register(
@@ -150,6 +154,7 @@ const SignUpForm = () => {
             transition: { delay: 0.72 },
           }}
           viewport={{ once: true }}
+          aria-label="회원가입 버튼"
         >
           <SignButton type="submit" disabled={!isValid}>
             회원가입
@@ -167,7 +172,11 @@ const SignUpForm = () => {
         className="flex w-full items-center gap-3 text-grey-3"
       >
         <div className="flex-grow border-b border-grey-3" />
-        <Link href="/sign-in" className="whitespace-nowrap text-sm">
+        <Link
+          href="/sign-in"
+          className="whitespace-nowrap text-sm"
+          aria-label="로그인으로 이동"
+        >
           이미 계정이 있으신가요?
         </Link>
         <div className="flex-grow border-b border-grey-3" />

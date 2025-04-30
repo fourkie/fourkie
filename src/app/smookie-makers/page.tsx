@@ -79,7 +79,6 @@ const Makers = () => {
 
   return (
     <div className="flex-col items-center justify-center">
-      {/* 상단 소개 영역 */}
       <div className="flex flex-col items-center justify-center space-y-5">
         <strong className="text-center text-2xl text-grey-7">
           Smookie Bakers
@@ -101,11 +100,8 @@ const Makers = () => {
           바로 당신을 위한 서비스입니다.
         </strong>
 
-        {/* 카드 슬라이드 영역 */}
         <div className="flex w-full min-w-[300px] max-w-[700px] flex-col items-center justify-center pt-2">
-          {/* 카드 박스 */}
           <div className="mx-auto flex w-full flex-col items-center gap-4 rounded-3xl border border-primary-100 px-5">
-            {/* 슬라이드 영역 */}
             <div className="relative mt-5 h-[360px] w-full overflow-hidden rounded-2xl">
               <div
                 className="absolute left-0 top-0 w-full transition-transform duration-500 md:left-10"
@@ -120,7 +116,6 @@ const Makers = () => {
                     className="flex h-[360px] w-full items-center justify-center"
                   >
                     <div className="mx-auto flex w-full flex-col items-center gap-4 md:flex-row md:gap-10">
-                      {/* 이미지 */}
                       <Image
                         src={card.image}
                         alt={`${card.name} 이미지`}
@@ -128,7 +123,7 @@ const Makers = () => {
                         height={170}
                         className="mt-3 rounded-full bg-grey-0 md:h-[200px] md:w-[200px]"
                       />
-                      {/* 텍스트 */}
+
                       <div className="space-y-2 text-center text-grey-7 md:text-left">
                         <strong className="text-2xl md:text-3xl">
                           {card.name}
@@ -156,13 +151,13 @@ const Makers = () => {
                 ))}
               </div>
             </div>
-            {/* 버튼 */}
+
             <div className="flex justify-center gap-4 pb-5">
               <button onClick={handlePrev}>
-                <ChevronUp className="h-6 w-6" />
+                <ChevronUp className="h-6 w-6" aria-label="이전 카드 보기" />
               </button>
               <button onClick={handleNext}>
-                <ChevronDown className="h-6 w-6" />
+                <ChevronDown className="h-6 w-6" aria-label="이후 카드 보기" />
               </button>
             </div>
           </div>

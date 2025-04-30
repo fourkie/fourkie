@@ -37,10 +37,8 @@ const PlaylistCard = ({ playlist, userId, lastCard }: PlaylistCardProps) => {
 
   const handleBookmarkToggle = () => {
     if (isBookmarked == false) {
-      // 북마크 추가
       addBookmark({ ...playlist, userId });
     } else if (isBookmarked == true) {
-      // 북마크 삭제
       removeBookmark({ musicPlaylistId, userId });
     }
   };

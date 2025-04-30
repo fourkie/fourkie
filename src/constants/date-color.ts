@@ -1,5 +1,3 @@
-// src/styles/colors.ts
-
 export const colors = {
   background: "#ffffff",
   foreground: "#171717",

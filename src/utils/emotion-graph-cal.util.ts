@@ -15,13 +15,11 @@ const emotionGraphCal = (posts: Posts[]) => {
     ANGRY: 0,
   };
 
-  // 받은 posts 배열 최근 3개월로 필터링
   const filteredPosts = posts.filter((post) => {
     const threeMonthsAgo = dayjs().subtract(3, "month");
     return dayjs(post.post_created_at).isAfter(threeMonthsAgo);
   });
 
-  // 받은 posts 배열의 감정 수 세기
   filteredPosts.forEach((post) => {
     const emotion = post.post_emotion;
     if (emotionCounts.hasOwnProperty(emotion)) {
@@ -29,13 +27,11 @@ const emotionGraphCal = (posts: Posts[]) => {
     }
   });
 
-  // 전체 감정 개수 합
   const total = Object.values(emotionCounts).reduce(
     (acc, count) => acc + count,
     0,
   );
 
-  // 개수 많은 순으로 정렬 후 상위 다섯개 뽑기 > 백분율로 변환
   const sortedEmotions = Object.entries(emotionCounts)
     .sort(([, a], [, b]) => b - a)
     .slice(0, 5)

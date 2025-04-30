@@ -23,16 +23,13 @@ const commonContext =
 const HomeFriend = ({ userId }: { userId: string }) => {
   const { setSelectedTab } = useTabStore();
 
-  //친구 포스트 값 받아오기
   const { data: posts, isPending } = useGetFriendPostsQuery({ userId });
 
-  //친구의 포스트 오늘 날짜 기준으로 자르고 그 중 최대 4개만
   const today = new Date().toISOString().slice(0, 10);
   const friendPostsForToday = posts
     ?.filter((post) => post.post_created_at.includes(today))
     .slice(0, 4);
 
-  //useQueries로 한번에
   const userQueries = useQueries({
     queries:
       friendPostsForToday?.map((post) => ({
@@ -64,13 +61,14 @@ const HomeFriend = ({ userId }: { userId: string }) => {
     );
   }
 
-  //친구가 없는 or 친구가 글을 안 써서 친구 포스트가 없는 경우
   if (!friendPostsForToday || friendPostsForToday.length === 0) {
     return (
       <Link
         href={"/friends"}
         onClick={onClickHandler}
         className="flex flex-col gap-2"
+        role="region"
+        aria-label="친구가 없어 감정 데이터를 표시할 수 없음"
       >
         <div className={`${commonTitle}`}>
           <strong className="whitespace-nowrap lg:text-[20px]">
@@ -102,6 +100,8 @@ const HomeFriend = ({ userId }: { userId: string }) => {
       href={"/list"}
       onClick={onClickHandler}
       className="flex flex-col gap-2"
+      role="region"
+      aria-label="친구들의 감정을 보여주는 링크"
     >
       <div className={`${commonTitle}`}>
         <strong className="whitespace-nowrap lg:text-[20px]">

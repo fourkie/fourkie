@@ -2,7 +2,6 @@ import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { toast } from "react-toastify";
 import createClient from "./supabase-client-service";
 
-// 친구 요청 supabase 에 저장
 export const sendFriendRequest = async ({
   userId,
   receiverUid,
@@ -29,7 +28,6 @@ export const sendFriendRequest = async ({
   }
 };
 
-// 친구 요청 중복 여부 확인
 export const checkExistFriendRequest = async ({
   senderUid,
   receiverUid,
@@ -56,7 +54,6 @@ export const checkExistFriendRequest = async ({
   }
 };
 
-// 보낸 요청 취소하기
 export const cancelFriendRequest = async (requestId: number) => {
   const supabaseClient = createClient();
 
@@ -73,7 +70,6 @@ export const cancelFriendRequest = async (requestId: number) => {
   }
 };
 
-// 받은 친구 요청 목록 조회
 export const getReceivedRequests = async (userId: string) => {
   const supabaseClient = createClient();
 
@@ -91,7 +87,6 @@ export const getReceivedRequests = async (userId: string) => {
   }
 };
 
-// 보낸 친구 요청 목록 조회
 export const getSentRequests = async (userId: string) => {
   const supabaseClient = createClient();
 
@@ -110,7 +105,6 @@ export const getSentRequests = async (userId: string) => {
   }
 };
 
-// 친구 요청 수락하기
 export const acceptFriendRequest = async (requestId: number) => {
   const supabaseClient = createClient();
 
@@ -128,7 +122,6 @@ export const acceptFriendRequest = async (requestId: number) => {
   }
 };
 
-// 손절하기
 export const deleteFriend = async ({
   userId,
   friendUid,

@@ -30,7 +30,6 @@ export const getUserNickname = async () => {
   }
 };
 
-// 닉네임 수정하기
 export const upDateMyNickname = async (newNickname: string) => {
   const supabaseClient = createClient();
 
@@ -57,7 +56,6 @@ export const upDateMyNickname = async (newNickname: string) => {
   }
 };
 
-// 닉네임 중복 확인하기
 export const checkNicknameDuplicate = async (nickname: string) => {
   const supabaseClient = createClient();
 

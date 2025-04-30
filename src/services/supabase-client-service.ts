@@ -1,6 +1,5 @@
 import { createBrowserClient } from "@supabase/ssr";
 
-// 클라이언트 전용 supabase
 const createClient = () => {
   return createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

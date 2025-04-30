@@ -20,7 +20,6 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
   const { data: posts } = useGetFriendPostsQuery({ userId });
   const selectedDate = selectedDay ? new Date(selectedDay) : new Date();
 
-  //그 달의 게시물만 가져와야 함
   const {
     data,
     fetchNextPage,
@@ -56,8 +55,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
       const scrollTop = window.scrollY;
       const scrollHeight = document.documentElement.scrollHeight;
       const clientHeight = window.innerHeight;
-  
-      // 아래 끝 > 이전 달 로드
+
       if (
         scrollTop + clientHeight >= scrollHeight - 10 &&
         hasPreviousPage &&
@@ -65,15 +63,14 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
       ) {
         fetchPreviousPage();
       }
-  
-      // 위 끝 > 다음 달 로드
+
       if (scrollTop <= 10 && hasNextPage && !isFetching) {
         fetchNextPage();
       }
     };
-  
+
     window.addEventListener("scroll", handleScroll);
-  
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -106,7 +103,7 @@ const ListCardContainer = ({ userId }: { userId: string }) => {
     );
 
   return (
-    <div className="relative flex h-full flex-col gap-4 ">
+    <div className="relative flex h-full flex-col gap-4">
       <div className="fixed left-0 top-[52px] z-10 w-full bg-primary-50 pt-5 md:top-[70px] md:pt-10">
         <Tab
           firstTab="나의 기록"

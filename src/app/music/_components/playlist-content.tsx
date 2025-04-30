@@ -16,17 +16,14 @@ const PlaylistContent = ({
   activeTab: string;
   emotion: keyof typeof Emotion;
 }) => {
-  // 추천 플리
   const { playlists: playlistsData, isPending: playlistsIsPending } =
     useGetAllPlaylistsByQueryQuery(emotion ? Emotion[emotion] : "JOY");
 
   const isMobile = useIsMobile();
 
-  // 즐겨찾기
   const { data: bookmarkedData, isPending: bookmarkedIsPending } =
     useGetAllBookmarkedPlaylistsByIdQuery(userId);
 
-  // 추천 플리 탭
   if (activeTab === "firstTab") {
     if (playlistsIsPending)
       return (
@@ -70,7 +67,6 @@ const PlaylistContent = ({
     );
   }
 
-  // 즐겨찾기 탭
   if (activeTab === "secondTab") {
     if (bookmarkedIsPending) return <>{TOAST_MESSAGE.MUSIC.BOOKMARK_PENDING}</>;
 

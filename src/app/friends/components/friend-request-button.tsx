@@ -23,6 +23,7 @@ const FriendRequestButton = () => {
 
   return (
     <Link
+      aria-label="친구 요청 목록으로 이동"
       href="/friends/request"
       className="my-5 flex w-full items-center justify-end gap-1 text-sm text-grey-5"
     >

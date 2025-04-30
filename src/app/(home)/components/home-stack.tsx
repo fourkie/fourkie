@@ -37,7 +37,7 @@ const HomeStack = ({ userId }: { userId: string }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{
                     duration: 0.4,
-                    delay: Math.random() * 0.3, // 0~0.3초 사이 랜덤
+                    delay: Math.random() * 0.3,
                   }}
                 >
                   <EmotionImage
@@ -56,7 +56,7 @@ const HomeStack = ({ userId }: { userId: string }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{
                     duration: 0.4,
-                    delay: Math.random() * 0.3, // 0~0.3초 사이 랜덤
+                    delay: Math.random() * 0.3,
                   }}
                 >
                   <EmotionImage
