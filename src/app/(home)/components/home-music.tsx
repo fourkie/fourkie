@@ -10,7 +10,8 @@ import { motion } from "framer-motion";
 
 const common =
   "p-2 border-2 border-grey-0 md:border-2 md:border-dashed md:border-primary-200 md:rounded-[28px] md:p-3 md:bg-white w-full max-w-[353px] mx-auto";
-const commonTitle = "mx-auto flex max-w-[353px] flex-row gap-4  w-full";
+const commonTitle =
+  "mx-auto items-center flex max-w-[353px] flex-row gap-4  w-full";
 const HomeMusic = ({ userId }: { userId: string }) => {
   const { data } = useGetPostTodayEmotionByIdQuery(userId);
 
@@ -61,9 +62,9 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           href={playlists[randomIndex].external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center gap-2"
+          className="flex w-full items-center justify-between"
         >
-          <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-[10px] md:text-[14px] lg:min-h-[102px] lg:min-w-[118px]">
+          <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-[10px]">
             <Image
               src={
                 playlists[randomIndex].images[0]?.url || "/images/Fluffy.png"
@@ -71,13 +72,33 @@ const HomeMusic = ({ userId }: { userId: string }) => {
               alt={playlists[randomIndex].name}
               width={64}
               height={64}
-              priority
               className="h-full w-full object-cover"
             />
           </div>
 
-          <div className="flex-1 truncate px-1 text-sm font-bold">
-            {playlists[randomIndex].name}
+          <div className="mx-2 flex-1 overflow-hidden">
+            {playlists[randomIndex].name.length >= 15 ? (
+              <motion.div className="relative w-full overflow-hidden">
+                <motion.div
+                  className="flex gap-8 whitespace-nowrap text-sm font-bold"
+                  animate={{
+                    x: ["0%", "-50%"],
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 10,
+                    ease: "linear",
+                  }}
+                >
+                  <span>{playlists[randomIndex].name}</span>
+                  <span>{playlists[randomIndex].name}</span>
+                </motion.div>
+              </motion.div>
+            ) : (
+              <div className="truncate text-sm font-bold">
+                {playlists[randomIndex].name}
+              </div>
+            )}
           </div>
 
           <p className="flex-shrink-0 text-nowrap text-sm text-grey-3">
