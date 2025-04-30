@@ -99,10 +99,9 @@ const ListCard = ({
       <EmotionImage src={checkEmotion(post_emotion)} size="l" />
       {!isMyPost && (
         <strong className="text-center leading-5">
-          오늘 &nbsp;
           <span className="text-secondary-500">{user?.user_nickname}</span>
-          &nbsp; 님! <br /> {EMOTIONS_QUERY[post_emotion]}
-          &nbsp; 날이시네요!
+          &nbsp; 님은 최근 <br /> {EMOTIONS_QUERY[post_emotion]}
+          &nbsp; 하루를 보냈어요!
         </strong>
       )}
       {isMyPost && (
