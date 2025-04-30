@@ -103,6 +103,7 @@ const Music = () => {
           setActiveTab={setIsSelectedTab}
           isPink={true}
         />
+        <div className="absolute left-0 top-[61px] -z-10 w-full border-b border-b-grey-0 sm:hidden md:block" />
       </div>
       {/* 스크롤 되는 PlaylistContent */}
       <div className="pt-[334px] md:pt-[443px]">
