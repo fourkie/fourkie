@@ -8,9 +8,10 @@ import {
   PASSWORD_VALIDATION,
 } from "@/constants/validations.constant";
 import { useSignInMutation } from "@/hooks/mutations/auth-mutation";
-import Button from "@/ui/common/button.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
 import Input from "@/ui/common/input.common";
+import SignButton from "@/ui/common/sign-button.common";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 
@@ -28,44 +29,108 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="mx-auto flex max-w-[360px] flex-col items-center justify-center gap-14 px-5">
+    <div className="mx-auto flex h-full max-w-[360px] flex-col items-center justify-center gap-7 px-5">
       <div className="flex flex-col items-center">
-        <div className="mb-4 flex items-center justify-center rounded-full">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            transition: { delay: 0 },
+          }}
+          viewport={{ once: true }}
+          className="mb-5 flex items-center justify-center rounded-full"
+        >
           <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.EXCITED} size="l" />
-        </div>
-        <strong className="mb-1 text-xl text-grey-8">Smookie</strong>
-        <p className="text-center text-sm text-grey-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            transition: { delay: 0.06 },
+          }}
+          viewport={{ once: true }}
+          className="mb-3 text-xl text-grey-6"
+        >
+          <strong>Smookie</strong>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            transition: { delay: 0.12 },
+          }}
+          viewport={{ once: true }}
+          className="text-center text-xs text-grey-6"
+        >
           하루의 끝, 마음을 조용히 들여다보고 싶을 때
-        </p>
+        </motion.div>
       </div>
-
       <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-        <Input
-          {...register("email", EMAIL_VALIDATION)}
-          type="email"
-          placeholder={FORM_MESSAGE.EMAIL}
-          error={errors.email?.message}
-        />
-
-        <Input
-          {...register("password", PASSWORD_VALIDATION)}
-          type="password"
-          placeholder={FORM_MESSAGE.PASSWORD}
-          error={errors.password?.message}
-        />
-
-        <Button type="submit" disabled={!isValid} classname="mt-8">
-          로그인
-        </Button>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            transition: { delay: 0.2 },
+          }}
+          viewport={{ once: true }}
+        >
+          <Input
+            {...register("email", EMAIL_VALIDATION)}
+            type="email"
+            placeholder={FORM_MESSAGE.EMAIL}
+            error={errors.email?.message}
+          />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            transition: { delay: 0.3 },
+          }}
+          viewport={{ once: true }}
+        >
+          <Input
+            {...register("password", PASSWORD_VALIDATION)}
+            type="password"
+            placeholder={FORM_MESSAGE.PASSWORD}
+            error={errors.password?.message}
+          />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            transition: { delay: 0.42 },
+          }}
+          viewport={{ once: true }}
+        >
+          <SignButton type="submit" disabled={!isValid}>
+            로그인
+          </SignButton>
+        </motion.div>
       </form>
-
-      <div className="flex w-full items-center gap-3 text-grey-3">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 0.56 },
+        }}
+        viewport={{ once: true }}
+        className="flex w-full items-center gap-3 text-grey-3"
+      >
         <div className="flex-grow border-b border-grey-3" />
         <Link href="/sign-up" className="whitespace-nowrap text-sm">
           회원가입하기
         </Link>
         <div className="flex-grow border-b border-grey-3" />
-      </div>
+      </motion.div>
     </div>
   );
 };

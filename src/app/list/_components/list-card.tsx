@@ -74,7 +74,7 @@ const ListCard = ({
           </div>
         ) : (
           <div
-            className="w-24 cursor-pointer text-right font-pretendard text-sm text-primary-600"
+            className="w-24 cursor-pointer text-right font-minsans text-sm text-primary-600"
             onClick={() => setOpenGraphPopup(!openGraphPopup)}
           >
             프로필 보러가기

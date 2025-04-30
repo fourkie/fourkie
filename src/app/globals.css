@@ -13,7 +13,7 @@
   --color-primary-300: #a6c874;
   --color-primary-400: #8eba50;
   --color-primary-500: #73993d;
-  --color-primary-550: #6A8C38;
+  --color-primary-550: #6a8c38;
   --color-primary-600: #3f5421;
   --color-primary-700: #212c11;
   --color-primary-800: #050703;
@@ -56,6 +56,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Pretendard", sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 @layer utilities {

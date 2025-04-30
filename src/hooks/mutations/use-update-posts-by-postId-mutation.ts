@@ -15,6 +15,8 @@ export const useUpdatePostsByPostIdMutation = ({
   const queryClient = useQueryClient();
   const year = dayjs().year();
   const month = dayjs().month() + 1;
+  const selectedDate = new Date();
+
   return useMutation({
     mutationFn: updatePostsByPostId,
 
@@ -30,6 +32,9 @@ export const useUpdatePostsByPostIdMutation = ({
       });
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.BY_USER_AND_TODAY],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["userPostsInfinite", selectedDate],
       });
     },
 

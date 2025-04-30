@@ -17,9 +17,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const commonTitle =
-  "mx-auto flex max-w-[353px] flex-row gap-4 item-center w-full";
+  "mx-auto flex max-w-[353px] flex-row gap-4 items-center w-full";
 const commonContext =
-  "mx-auto min-w-[250px] min-h-[70px] w-full max-w-[353px] item-center rounded-2xl md:rounded-[28px] border-2 border-grey-0 md:border-primary-200 md:border-dashed";
+  "mx-auto min-w-[250px] min-h-[70px] w-full max-w-[353px]  rounded-2xl md:rounded-[28px] border-2 border-grey-0 md:border-primary-200 md:border-dashed";
 const HomeFriend = ({ userId }: { userId: string }) => {
   const { setSelectedTab } = useTabStore();
 
