@@ -47,6 +47,14 @@ const memberCards = [
     line: "INTRODUCTION",
     intro: "제가 이 조의 막내일걸요?",
   },
+  {
+    name: "HeeWon",
+    image: "/images/face-hw.png",
+    address: "포키 바구니",
+    github: "https://github.com/fourkie/fourkie",
+    line: "INTRODUCTION",
+    intro: "최강 디자이너",
+  },
 ];
 
 const Makers = () => {

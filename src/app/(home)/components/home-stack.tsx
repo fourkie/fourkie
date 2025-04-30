@@ -29,7 +29,7 @@ const HomeStack = ({ userId }: { userId: string }) => {
   return (
     <div className={`${common}`}>
       {posts?.length > 20
-        ? posts.slice(0, 20).map((post) => {
+        ? posts.slice(posts.length - 20, posts.length).map((post) => {
             return (
               <div key={post.post_id}>
                 <motion.div
