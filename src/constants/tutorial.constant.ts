@@ -17,13 +17,13 @@ export const TUTORIAL = {
   IMAGE: {
     HOME: "/images/home-tutorial.png",
     LIST: "/images/list-tutorial.png",
+    MUSIC: "/images/music-tutorial.png",
+    FRIEND: "/images/friend-tutorial.png",
+    SMOOKIE: "/images/smookie-tutorial.png",
     LIST2: "/images/list-tutorial2.png",
     LIST3: "/images/list-tutorial3.png",
-    MUSIC: "/images/music-tutorial.png",
     MUSIC2: "/images/music-tutorial2.png",
-    FRIEND: "/images/friend-tutorial.png",
     FRIEND2: "/images/friend-tutorial2.png",
-    SMOOKIE: "/images/smookie-tutorial.png",
   },
   BUTTON: {
     NEXT: "다음",
