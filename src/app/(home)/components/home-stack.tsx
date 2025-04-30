@@ -8,7 +8,7 @@ import { checkEmotion } from "@/utils/home-emotion.util";
 import { motion } from "framer-motion";
 
 const common =
-  " grid grid-cols-5 gap-3 border-2 border-dashed border-primary-200 rounded-[28px] p-4 ";
+  " grid grid-cols-5 gap-3 border-2 border-dashed border-primary-200 rounded-[28px] p-4";
 
 const HomeStack = ({ userId }: { userId: string }) => {
   const { data: myPosts, isPending } = useGetAllPostsByIdQuery({ userId });

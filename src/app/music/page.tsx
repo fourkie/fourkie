@@ -15,7 +15,6 @@ const Music = () => {
   const [userId, setUserId] = useState<string>("");
   const [emotion, setEmotion] = useState<keyof typeof Emotion>("JOY");
   const [isSelectedTab, setIsSelectedTab] = useState("firstTab");
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const { data: todayEmotionData } = useGetPostTodayEmotionByIdQuery(userId);
 
@@ -52,23 +51,6 @@ const Music = () => {
     }
   }, [todayEmotionData]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 64) {
-        // 브라우저 64
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <div className="relative mx-auto min-w-[360px]">
       {/* 플레이리스트 이미지 영역 */}
@@ -87,7 +69,6 @@ const Music = () => {
                 emotion={emotion}
                 onChange={setEmotion}
                 todayEmotion={todayEmotionData?.[0]?.post_emotion}
-                scrolled={isScrolled}
               />
             </motion.div>
           </div>

@@ -71,9 +71,15 @@ const Content = ({
           className="mx-auto w-fit cursor-pointer"
         >
           {isExpanded ? (
-            <ChevronUp size={18} className="text-grey-6" />
+            <ChevronUp
+              size={18}
+              className="transform text-grey-6 transition-all hover:scale-110"
+            />
           ) : (
-            <ChevronDown size={18} className="text-grey-6" />
+            <ChevronDown
+              size={18}
+              className="transform text-grey-6 transition-all hover:scale-110"
+            />
           )}
         </div>
       )}

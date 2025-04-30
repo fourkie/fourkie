@@ -17,7 +17,7 @@ const myPagePaths = [
 ];
 
 const styleHover =
-  "inline-block transform transition-transform duration-300 ease-in-out hover:scale-110 hover:text-primary-700";
+  "inline-block transform transition-transform duration-300 ease-in-out hover:scale-105 hover:text-grey-5";
 
 const HeaderDesk = () => {
   const pathname = usePathname();

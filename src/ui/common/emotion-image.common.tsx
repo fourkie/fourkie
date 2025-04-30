@@ -1,7 +1,7 @@
 import { Img } from "@/types/img-component.type";
 import Image from "next/image";
 
-const EmotionImage = ({ src, size }: Img) => {
+const EmotionImage = ({ src, size, className }: Img) => {
   const sizeClasses: Record<
     "xxs" | "xs" | "xss" | "s" | "m" | "l" | "xl",
     number
@@ -21,7 +21,9 @@ const EmotionImage = ({ src, size }: Img) => {
   if (size === "xxs") {
     return (
       //부모 컴포넌트에 따라 커지게 relative 적용, 정사각형 유지 사이즈 별로 크기 지정
-      <div className="relative aspect-square w-[30px] md:w-[50px] lg:w-[60px]">
+      <div
+        className={`relative aspect-square w-[30px] md:w-[50px] lg:w-[60px] ${className}`}
+      >
         <Image
           src={src}
           alt="Emotion"

@@ -61,7 +61,7 @@ const EmotionGraph = ({
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.EXCITED} size="xs" />
             <strong className="text-xl">{nickname}</strong>
           </div>
-          <X className="cursor-pointer" onClick={setOpenPopup} />
+          <X className="cursor-pointer hover:text-grey-5" onClick={setOpenPopup} />
         </div>
       )}
       <div className="mb-2 mt-2 w-full text-right text-xs text-grey-2">

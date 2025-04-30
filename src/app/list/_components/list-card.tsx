@@ -65,16 +65,20 @@ const ListCard = ({
         <strong className="text-center">{EMOTIONS_QUERY[post_emotion]}</strong>
         {isMyPost ? (
           <div className="flex w-24 justify-end gap-2">
-            <Pencil size={18} className="cursor-pointer" onClick={handleEdit} />
+            <Pencil
+              size={18}
+              className="transform cursor-pointer transition-all duration-300 hover:text-grey-5"
+              onClick={handleEdit}
+            />
             <Trash2
               size={18}
-              className="cursor-pointer"
+              className="transform cursor-pointer transition-all duration-300 hover:text-grey-5"
               onClick={handleDeleteButton}
             />
           </div>
         ) : (
           <div
-            className="w-24 cursor-pointer text-right font-minsans text-sm text-primary-600"
+            className="w-24 cursor-pointer text-right font-minsans text-sm text-primary-600 hover:text-primary-550"
             onClick={() => setOpenGraphPopup(!openGraphPopup)}
           >
             프로필 보러가기

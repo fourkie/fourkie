@@ -97,14 +97,14 @@ const MypageProfile = ({ userId }: { userId: string }) => {
                 disabled={isPending}
                 className="flex items-center justify-center"
               >
-                <SquareCheckBig size={18} />
+                <SquareCheckBig size={18} className="hover:text-grey-5" />
               </button>
               <button
                 onClick={handleCancelEdit}
                 disabled={isPending}
                 className="absolute right-4 top-4 z-10"
               >
-                <X size={20} />
+                <X size={20} className="hover:text-grey-5" />
               </button>
             </>
           ) : (
@@ -118,7 +118,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
                 disabled={isPending}
                 className="flex items-center justify-center"
               >
-                <SquarePen size={18} />
+                <SquarePen size={18} className="hover:text-grey-5" />
               </button>
             </>
           )}
