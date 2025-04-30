@@ -43,6 +43,23 @@ const TutorialContainer = () => {
     }
   };
 
+  /** 원 클릭 시 해당 페이지로 넘어감 */
+  const handleDotClick = (index: number) => {
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(index);
+    }
+  };
+
+  /** 버튼 이름 설정 */
+  const LastButtonName = (stepKey: TutorialKeys, from: string | null) => {
+    if (stepKey === "SMOOKIE") {
+      if (from === "my-page") return "마이페이지로 돌아가기";
+      if (from === "footer") return "돌아가기";
+      return TUTORIAL.BUTTON.SIGN_UP;
+    }
+    return TUTORIAL.BUTTON.NEXT;
+  };
+
   return (
     <Swiper
       spaceBetween={50}
@@ -60,16 +77,8 @@ const TutorialContainer = () => {
             image={TUTORIAL.IMAGE[step.key]}
             currentStep={currentStep}
             onClick={handleNext}
-            onDotClick={setCurrentStep}
-            buttonName={
-              step.key === "SMOOKIE"
-                ? from === "my-page"
-                  ? "마이페이지로 돌아가기"
-                  : from === "footer"
-                    ? "돌아가기"
-                    : TUTORIAL.BUTTON.SIGN_UP
-                : TUTORIAL.BUTTON.NEXT
-            }
+            onDotClick={handleDotClick}
+            buttonName={LastButtonName(step.key, from)}
             isFromMypage={from === "my-page"}
           />
         </SwiperSlide>

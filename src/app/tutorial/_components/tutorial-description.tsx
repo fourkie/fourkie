@@ -91,8 +91,8 @@ const TutorialDescription = ({
                 <Image
                   src={TUTORIAL.IMAGE.FRIEND2}
                   alt="FRIEND2"
-                  width={353}
-                  height={231}
+                  width={230}
+                  height={149}
                   className="absolute left-1/3 top-1/4 -translate-x-16 -translate-y-10 animate-friend2 object-contain drop-shadow-md"
                   priority
                 />
