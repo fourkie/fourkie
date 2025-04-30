@@ -26,21 +26,6 @@ const Music = () => {
   const supabaseClient = createClient();
   const router = useRouter();
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   useEffect(() => {
     const fetchUser = async () => {
       const {
@@ -84,16 +69,6 @@ const Music = () => {
     };
   }, []);
 
-  // if (!userId)
-  //   return (
-  //     <EmptyAlert
-  //       text={
-  //         TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING ||
-  //         TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR
-  //       }
-  //     />
-  //   );
-
   return (
     <div className="relative mx-auto min-w-[360px]">
       {/* 플레이리스트 이미지 영역 */}
@@ -120,12 +95,13 @@ const Music = () => {
       </section>
 
       {/* isScrolled 값에 따라 top 값 조정 필수 !! */}
-      <div className="flex-start fixed top-[256px] z-20 mx-auto flex w-full max-w-[984px] pt-5 md:pb-5 bg-white px-5 md:top-[357px]">
+      <div className="flex-start fixed top-[256px] z-20 mx-auto flex w-full max-w-[984px] bg-white px-5 pb-3 pt-5 md:top-[357px] md:pb-5">
         <Tab
           firstTab="추천 플리"
           secondTab="즐겨찾기"
           activeTab={isSelectedTab}
           setActiveTab={setIsSelectedTab}
+          isPink={true}
         />
       </div>
       {/* 스크롤 되는 PlaylistContent */}
