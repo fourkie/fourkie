@@ -13,7 +13,8 @@ const memberCards = [
     address: "GitHub",
     github: "https://github.com/ijooha16",
     line: "INTRODUCTION",
-    intro: "제가 이 조의 팀장입니다.",
+    intro:
+      "너~무 재밌는 팀플이었어요 ! 좋은 경험 하게 해주셔서 감사하고 모두 수고 많으셨습니다, 포키 최고~🫶 우리의 연락은 setInterval()로 계속됩니다ㅋㅋ",
   },
   {
     name: "Doni",
@@ -21,7 +22,8 @@ const memberCards = [
     address: "GitHub",
     github: "https://github.com/woodie2933",
     line: "INTRODUCTION",
-    intro: "제가 이 조의 부리또입니다.",
+    intro:
+      " 팀플은 끝났지만, 내 마음은 아직도 여러분한테 그대로 useState로 남아있어요. React9기 4조는... 언제나 내 render에 있겠지, 그치? 💛",
   },
   {
     name: "SunTea",
@@ -29,7 +31,8 @@ const memberCards = [
     address: "GitHub",
     github: "https://github.com/usuny0317",
     line: "INTRODUCTION",
-    intro: "제가 이 조의 와기톡기입니다.",
+    intro:
+      "버그보다 웃음이 많았던 팀플, 매일이 커밋하고 싶은 하루였어요! 함께한 시간이 진짜 배움이자 선물이었습니다. 제 마음은 이미 여러분한테 useRouter로 리다이렉트된 걸요.",
   },
   {
     name: "JJANGSIK",
@@ -37,7 +40,8 @@ const memberCards = [
     address: "GitHub",
     github: "https://github.com/sharet9446",
     line: "INTRODUCTION",
-    intro: "제가 이 조의 짱식입니다.",
+    intro:
+      "좋은 사람 만나 좋은 인연 맺은 것도 큰 수확🍀 이젠 각자 꿈의 종착지로 향하는 직행열차 탑승하셨길 바랍니다.",
   },
   {
     name: "WooYoung",
@@ -45,7 +49,8 @@ const memberCards = [
     address: "GitHub",
     github: "https://github.com/Koi-0",
     line: "INTRODUCTION",
-    intro: "제가 이 조의 막내일걸요?",
+    intro:
+      "스무키 프로젝트, 혼자였으면 스무스하게 망할 뻔했죠. 여러분 덕분에 스무~스하게, 완성도는 뿜뿜하게 마무리할 수 있었습니다! 우리의 협업은 끝났지만… Git처럼, 언젠가 다시 Merge되기를 바라며 😉",
   },
   {
     name: "HeeWon",
@@ -53,7 +58,16 @@ const memberCards = [
     address: "포키 바구니",
     github: "https://github.com/fourkie/fourkie",
     line: "INTRODUCTION",
-    intro: "최강 디자이너",
+    intro:
+      "개발에 대한 지식이 많지 않아 소통에 있어 조심스러운 부분도 있었지만, 이 시간을 통해 소통하는 방법을 배우고, 디자인 측면에서도 많은 성장을 할 수 있어 행복하고 감사한 시간이었습니다.",
+  },
+  {
+    name: "Jake",
+    image: "/images/face-jk.png",
+    address: "GitHub",
+    github: "https://github.com/sharet9446",
+    line: "INTRODUCTION",
+    intro: "스무키~! 즈에요~",
   },
 ];
 
@@ -112,7 +126,7 @@ const Makers = () => {
           <div className="mx-auto flex w-full flex-col items-center gap-4 rounded-3xl border border-primary-100 px-5">
             <div className="relative mt-5 h-[360px] w-full overflow-hidden rounded-2xl">
               <div
-                className="absolute left-0 top-0 w-full transition-transform duration-500 md:left-10"
+                className="absolute left-0 top-0 w-full transition-transform duration-500 md:left-5 md:px-8"
                 style={{
                   transform: `translateY(-${view * 360}px)`,
                   height: `${360 * memberCards.length}px`,
