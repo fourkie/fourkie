@@ -1,11 +1,9 @@
 "use client";
 
 import { Emotion } from "@/constants/spotify.constant";
-import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import { useGetPostTodayEmotionByIdQuery } from "@/hooks/queries/use-get-posts-today-emotion-by-id-query";
 import createClient from "@/services/supabase-client-service";
-import CookieAlert from "@/ui/common/empty-alert.common";
 import Tab from "@/ui/common/tab.common";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -86,15 +84,15 @@ const Music = () => {
     };
   }, []);
 
-  if (!userId)
-    return (
-      <CookieAlert
-        text={
-          TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING ||
-          TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR
-        }
-      />
-    );
+  // if (!userId)
+  //   return (
+  //     <EmptyAlert
+  //       text={
+  //         TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING ||
+  //         TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR
+  //       }
+  //     />
+  //   );
 
   return (
     <div className="relative mx-auto min-w-[360px] max-w-5xl">
