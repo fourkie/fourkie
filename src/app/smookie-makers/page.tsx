@@ -32,7 +32,7 @@ const memberCards = [
     github: "https://github.com/usuny0317",
     line: "INTRODUCTION",
     intro:
-      "버그보다 웃음이 많았던 팀플, 매일이 커밋하고 싶은 하루였어요! 함께한 시간이 진짜 배움이자 선물이었습니다. 제 마음은 이미 여러분한테 useRouter로 리다이렉트된 걸요.",
+      "버그보다 웃음이 많았던 팀플, 매일이 커밋하고 싶은 하루였어요! 함께한 시간이 진짜 배움이자 선물이었습니다. 제 마음은 여러분한테 useRouter로 리다이렉트된 걸요.",
   },
   {
     name: "JJANGSIK",
@@ -67,7 +67,8 @@ const memberCards = [
     address: "GitHub",
     github: "https://github.com/sharet9446",
     line: "INTRODUCTION",
-    intro: "스무키~! 즈에요~",
+    intro:
+      "최종 프로젝트에서 4조 여러분을 담당하게 되어 즐겁고 보람찬 시간이었습니다. 여러분이 보여준 열정과 노력들이 수료 이후에 꼭 좋은 결실로 이어지길 바랍니다. 레전드 4조 발생!!",
   },
 ];
 
