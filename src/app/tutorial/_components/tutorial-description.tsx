@@ -1,7 +1,5 @@
 import { TUTORIAL } from "@/constants/tutorial.constant";
-import { X } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { DescriptionProps } from "../type";
 
 const TutorialDescription = ({
@@ -12,7 +10,6 @@ const TutorialDescription = ({
   onClick,
   onDotClick,
   buttonName,
-  isFromMypage,
 }: DescriptionProps) => {
   return (
     <div
@@ -91,8 +88,8 @@ const TutorialDescription = ({
                 <Image
                   src={TUTORIAL.IMAGE.FRIEND2}
                   alt="FRIEND2"
-                  width={353}
-                  height={231}
+                  width={230}
+                  height={149}
                   className="absolute left-1/3 top-1/4 -translate-x-16 -translate-y-10 animate-friend2 object-contain drop-shadow-md"
                   priority
                 />
@@ -119,11 +116,6 @@ const TutorialDescription = ({
           {buttonName}
         </button>
       </div>
-      {isFromMypage ? (
-        <Link href={"/my-page"} aria-label="마이페이지로 돌아가기">
-          <X className="fixed top-20" />
-        </Link>
-      ) : null}
     </div>
   );
 };
