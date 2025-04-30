@@ -7,6 +7,7 @@ import { useAcceptFriendRequestMutation } from "@/hooks/mutations/use-accept-fri
 import { useGetReceivedRequestQuery } from "@/hooks/queries/use-get-received-requests-query";
 import { getUserForClient } from "@/services/user-client-service";
 import EmotionImage from "@/ui/common/emotion-image.common";
+import EmptyAlert from "@/ui/common/empty-alert.common";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -30,11 +31,7 @@ const ReceivedFriendList = () => {
   }, [error]);
 
   if (!data || data.length === 0)
-    return (
-      <div className="flex items-center justify-center px-4 text-base text-grey-3">
-        {UI_TEXT.MYPAGE.EMPTY_FRIEND_RECEIVED_ALT}
-      </div>
-    );
+    return <EmptyAlert text={UI_TEXT.MYPAGE.EMPTY_FRIEND_RECEIVED_ALT} />;
 
   return (
     <div className="flex w-full flex-col">

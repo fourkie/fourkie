@@ -23,6 +23,7 @@ const Alert = ({ setOpenPopup, confirm, title, contents }: AlertProps) => {
             onClick={() => setOpenPopup(false)}
             role="button"
             aria-label="팝업 닫기"
+            className="hover:text-grey-5"
           />
         </div>
         <div className="mx-auto flex max-w-[250px] flex-col items-center justify-center text-center">

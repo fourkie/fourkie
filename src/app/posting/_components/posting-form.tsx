@@ -113,7 +113,7 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
             {...register("inputContent")}
             maxLength={512}
             placeholder={isContentFocused ? "" : `${FORM_MESSAGE.POST.CONTENT}`}
-            className="h-[17px] w-full resize-none overflow-hidden text-center font-omyu text-base font-normal leading-5 tracking-wide text-grey-7 placeholder-grey-3 focus:outline-none md:h-[22px] placeholder:md:text-xl"
+            className="h-[17px] w-full resize-none overflow-hidden text-center font-omyu text-base font-normal leading-5 tracking-wide text-grey-7 placeholder-grey-3 focus:outline-none md:h-[22px] md:text-xl placeholder:md:text-xl"
             onFocus={() => setIsContentFocused(true)}
             onBlur={() => setIsContentFocused(false)}
             aria-label="Post content"

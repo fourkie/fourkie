@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 const common =
   "p-2 border-2 border-grey-0 md:border-2 md:border-dashed md:border-primary-200 md:rounded-[28px] md:p-3 md:bg-white w-full max-w-[353px] mx-auto";
 const commonTitle =
-  "mx-auto items-center flex max-w-[353px] flex-row gap-4  w-full";
+  "mx-auto flex max-w-[353px] pl-3 flex-row gap-4 items-center justify-between w-full transition-all duration-300  pr-1 hover:pr-0";
 const HomeMusic = ({ userId }: { userId: string }) => {
   const { data } = useGetPostTodayEmotionByIdQuery(userId);
 
@@ -27,7 +27,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
             <strong className="whitespace-nowrap lg:text-[20px]">
               오늘 추천 음악
             </strong>
-            <ChevronRight className="ml-auto cursor-pointer" />
+            <ChevronRight className="ml-auto md:h-7 md:w-7 cursor-pointer" />
           </div>
         </Link>
         <div
@@ -54,11 +54,11 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           <strong className="whitespace-nowrap lg:text-[20px]">
             {EMOTIONS_QUERY[emotion]} 날 추천하는 노래
           </strong>
-          <ChevronRight className="ml-auto cursor-pointer" />
+          <ChevronRight className="ml-auto md:h-7 md:w-7 cursor-pointer" />
         </div>
       </Link>
       <motion.div
-        whileHover={{ scale: 1.03 }}
+        whileHover={{ scale: 1.02 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         className={`flex flex-row items-center gap-4 rounded-2xl ${common}`}
       >

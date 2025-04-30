@@ -11,6 +11,7 @@ import { getUserForClient } from "@/services/user-client-service";
 import Alert from "@/ui/common/alert.common";
 import EmotionGraph from "@/ui/common/emotion-graph.common";
 import EmotionImage from "@/ui/common/emotion-image.common";
+import EmptyAlert from "@/ui/common/empty-alert.common";
 import Popup from "@/ui/common/popup-bg.common";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -144,9 +145,7 @@ const FriendList = ({
       );
     } else {
       return (
-        <div className="flex items-center justify-center py-6 text-sm text-grey-4">
-          해당 닉네임 혹은 이메일을 가진 유저가 없습니다.
-        </div>
+        <EmptyAlert text="해당 닉네임 혹은 이메일을 가진 유저가 없습니다." />
       );
     }
   }
@@ -155,9 +154,7 @@ const FriendList = ({
     <>
       <div className="flex w-full flex-col gap-3 py-3">
         {friendList?.length === 0 ? (
-          <div className="text-sm text-grey-4">
-            {UI_TEXT.MYPAGE.EMPTY_FRIEND_LIST_ALT}
-          </div>
+          <EmptyAlert text={UI_TEXT.MYPAGE.EMPTY_FRIEND_LIST_ALT} />
         ) : (
           friendList?.map((friend, index) => (
             <motion.div

@@ -34,7 +34,7 @@ const Tab = ({
               ? isPink && secondTab === tab.label
                 ? "text-secondary-200"
                 : "text-primary-600"
-              : "text-grey-3"
+              : "text-grey-3 hover:text-grey-4"
           }`}
           style={{
             WebkitTapHighlightColor: "transparent",
@@ -50,7 +50,7 @@ const Tab = ({
                   ? isPink && secondTab === tab.label
                     ? "bg-secondary-200"
                     : "bg-primary-600"
-                  : "bg-grey-3"
+                  : "bg-grey-3 hover:text-grey-4"
               }`}
             />
           </strong>

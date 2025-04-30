@@ -63,8 +63,9 @@ const EmotionGraph = ({
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.EXCITED} size="xs" />
             <strong className="text-xl">{nickname}</strong>
           </div>
+
           <X
-            className="cursor-pointer"
+            className="cursor-pointer hover:text-grey-5"
             onClick={setOpenPopup}
             role="button"
             aria-label="그래프 닫기"

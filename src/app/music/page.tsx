@@ -15,7 +15,6 @@ const Music = () => {
   const [userId, setUserId] = useState<string>("");
   const [emotion, setEmotion] = useState<keyof typeof Emotion>("JOY");
   const [isSelectedTab, setIsSelectedTab] = useState("firstTab");
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const { data: todayEmotionData } = useGetPostTodayEmotionByIdQuery(userId);
 
@@ -52,22 +51,6 @@ const Music = () => {
     }
   }, [todayEmotionData]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 64) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <div className="relative mx-auto min-w-[360px]">
       <section className="fixed top-0 z-30 h-[256px] w-full max-w-[984px] transition-all duration-300 md:top-[70px] md:mx-auto md:h-[287px]">
@@ -85,7 +68,6 @@ const Music = () => {
                 emotion={emotion}
                 onChange={setEmotion}
                 todayEmotion={todayEmotionData?.[0]?.post_emotion}
-                scrolled={isScrolled}
               />
             </motion.div>
           </div>

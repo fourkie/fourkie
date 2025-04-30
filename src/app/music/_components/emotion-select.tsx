@@ -12,7 +12,6 @@ const EmotionSelect = ({
   emotion,
   onChange,
   todayEmotion,
-  scrolled,
 }: EmotionSelectProps) => {
   const [open, setOpen] = useState(false);
 
@@ -35,7 +34,7 @@ const EmotionSelect = ({
           aria-label="감정 선택 드롭다운"
           className={`${
             whiteText ? "text-white" : "text-primary-700"
-          } ${open ? "rounded-tl-[13px] rounded-tr-[13px]" : "rounded-full"}`}
+          } ${open ? "rounded-tl-[13px] rounded-tr-[13px]" : "rounded-full"} transform transition-all hover:scale-105`}
           style={{
             backgroundColor: `var(--color-${EMOTION_COLOR[emotion]})`,
           }}
@@ -65,7 +64,7 @@ const EmotionSelect = ({
                 aria-label={`${EMOTIONS_QUERY[key]} 감정 선택`}
                 className={`h-[26px] w-[60px] rounded-full border text-center text-sm ${
                   isWhiteOption ? "text-white" : "text-primary-700"
-                }`}
+                } transform transition-all duration-300 hover:scale-105`}
                 style={{
                   backgroundColor: `var(--color-${EMOTION_COLOR[key]})`,
                   borderColor: `var(--color-${EMOTION_BORDER_COLOR[key]})`,
@@ -85,10 +84,6 @@ const EmotionSelect = ({
       </strong>
       <p
         className={`mt-6 overflow-hidden text-grey-2 transition-all duration-300`}
-        style={{
-          opacity: scrolled ? 0 : 1,
-          height: scrolled ? 0 : "auto",
-        }}
       >
         {!todayEmotion && (
           <span>

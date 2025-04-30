@@ -1,7 +1,7 @@
 import { Img } from "@/types/img-component.type";
 import Image from "next/image";
 
-const EmotionImage = ({ src, size }: Img) => {
+const EmotionImage = ({ src, size, className }: Img) => {
   const sizeClasses: Record<
     "xxs" | "xs" | "xss" | "s" | "m" | "l" | "xl",
     number
@@ -20,7 +20,9 @@ const EmotionImage = ({ src, size }: Img) => {
 
   if (size === "xxs") {
     return (
-      <div className="relative aspect-square w-[30px] md:w-[50px] lg:w-[60px]">
+      <div
+        className={`relative aspect-square w-[30px] md:w-[50px] lg:w-[60px] ${className}`}
+      >
         <Image
           src={src}
           alt="Emotion"

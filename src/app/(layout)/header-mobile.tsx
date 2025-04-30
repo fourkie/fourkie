@@ -110,8 +110,8 @@ const HeaderMobile = () => {
           {pathname.startsWith("/posting") && <PostingButton />}
           {isAlert && (
             <Alert
-              title="뒤로 가시겠습니까?"
-              contents=""
+              title="게시글 수정을 취소하시겠습니까?"
+              contents="변경 사항이 저장되지 않습니다."
               confirm={() => {
                 setIsAlert(false);
                 handleBack();

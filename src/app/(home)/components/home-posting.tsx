@@ -11,9 +11,9 @@ const HomePosting = ({ userId }: { userId: string }) => {
   const route = useRouter();
   return (
     <div
-      className="mx-auto mb-2 flex max-w-[353px] cursor-pointer flex-row justify-end gap-4 py-2 md:max-w-[1024px]"
       role="button"
       aria-label="오늘 감정 기록 작성 페이지로 이동"
+      className="mx-auto mb-2 flex max-w-[353px] cursor-pointer flex-row items-center justify-end gap-2 transition-all duration-300 hover:gap-3 md:max-w-[1024px]"
       onClick={() => {
         if (today && today.length > 0) {
           toast.warning(TOAST_MESSAGE.POST.TODAY.EXISTS);
@@ -23,7 +23,7 @@ const HomePosting = ({ userId }: { userId: string }) => {
       }}
     >
       <CirclePlus className="h-1.5rem w-1.5rem text-secondary-400" />
-      <strong className="my-auto text-primary-600 transition-all duration-300 hover:text-secondary-400">
+      <strong className="my-auto py-2 pr-3 text-primary-600 transition-all duration-300 ease-in-out hover:scale-105 hover:text-secondary-300 md:text-lg">
         오늘 기록 남기러 가기
       </strong>
     </div>
