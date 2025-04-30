@@ -2,22 +2,28 @@
 
 import { TUTORIAL } from "@/constants/tutorial.constant";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import type { Swiper as SwiperType } from "swiper";
+import "swiper/css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { TutorialKeys } from "../type";
 import TutorialDescription from "./tutorial-description";
 
 const TutorialContainer = () => {
+  const swiperRef = useRef<SwiperType | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const from = searchParams.get("from");
 
-  /** 클릭 시 다음 페이지로 넘어감 */
-  const handleNext = () => {
-    if (currentStep < 4) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
+  /** 튜토리얼 데이터 배열 구성 */
+  const tutorialSteps = [
+    { key: "HOME" as TutorialKeys },
+    { key: "LIST" as TutorialKeys },
+    { key: "MUSIC" as TutorialKeys },
+    { key: "FRIEND" as TutorialKeys },
+    { key: "SMOOKIE" as TutorialKeys },
+  ];
 
   /** 클릭 시 로그인 페이지로 넘어감 */
   const handleTutorialEnd = () => {
@@ -28,78 +34,47 @@ const TutorialContainer = () => {
     else router.push("/sign-up");
   };
 
+  /** 클릭 시 다음 페이지로 넘어감 */
+  const handleNext = () => {
+    if (currentStep < tutorialSteps.length - 1 && swiperRef.current) {
+      swiperRef.current.slideNext();
+    } else {
+      handleTutorialEnd();
+    }
+  };
+
   return (
-    <div>
-      {currentStep === 0 && (
-        <TutorialDescription
-          title={TUTORIAL.TITLE.HOME}
-          description={TUTORIAL.DESCRIPTION.HOME}
-          image={TUTORIAL.IMAGE.HOME}
-          currentStep={currentStep}
-          onClick={handleNext}
-          onDotClick={setCurrentStep}
-          buttonName={TUTORIAL.BUTTON.NEXT}
-          isFromMypage={from === "my-page"}
-        />
-      )}
-
-      {currentStep === 1 && (
-        <TutorialDescription
-          title={TUTORIAL.TITLE.LIST}
-          description={TUTORIAL.DESCRIPTION.LIST}
-          image={TUTORIAL.IMAGE.LIST}
-          currentStep={currentStep}
-          onClick={handleNext}
-          onDotClick={setCurrentStep}
-          buttonName={TUTORIAL.BUTTON.NEXT}
-          isFromMypage={from === "my-page"}
-        />
-      )}
-
-      {currentStep === 2 && (
-        <TutorialDescription
-          title={TUTORIAL.TITLE.MUSIC}
-          description={TUTORIAL.DESCRIPTION.MUSIC}
-          image={TUTORIAL.IMAGE.MUSIC}
-          currentStep={currentStep}
-          onClick={handleNext}
-          onDotClick={setCurrentStep}
-          buttonName={TUTORIAL.BUTTON.NEXT}
-          isFromMypage={from === "my-page"}
-        />
-      )}
-
-      {currentStep === 3 && (
-        <TutorialDescription
-          title={TUTORIAL.TITLE.FRIEND}
-          description={TUTORIAL.DESCRIPTION.FRIEND}
-          image={TUTORIAL.IMAGE.FRIEND}
-          currentStep={currentStep}
-          onClick={handleNext}
-          onDotClick={setCurrentStep}
-          buttonName={TUTORIAL.BUTTON.NEXT}
-          isFromMypage={from === "my-page"}
-        />
-      )}
-
-      {currentStep === 4 && (
-        <TutorialDescription
-          title={TUTORIAL.TITLE.SMOOKIE}
-          description={TUTORIAL.DESCRIPTION.SMOOKIE}
-          image={TUTORIAL.IMAGE.SMOOKIE}
-          currentStep={currentStep}
-          onClick={handleTutorialEnd}
-          onDotClick={setCurrentStep}
-          buttonName={
-            from === "my-page"
-              ? "마이페이지로 돌아가기"
-              : from === "footer"
-                ? "돌아가기"
-                : TUTORIAL.BUTTON.SIGN_UP
-          }
-        />
-      )}
-    </div>
+    <Swiper
+      spaceBetween={50}
+      slidesPerView={1}
+      onSlideChange={(swiper) => setCurrentStep(swiper.activeIndex)}
+      onSwiper={(swiper) => {
+        swiperRef.current = swiper;
+      }}
+    >
+      {tutorialSteps.map((step) => (
+        <SwiperSlide key={step.key}>
+          <TutorialDescription
+            title={TUTORIAL.TITLE[step.key]}
+            description={TUTORIAL.DESCRIPTION[step.key]}
+            image={TUTORIAL.IMAGE[step.key]}
+            currentStep={currentStep}
+            onClick={handleNext}
+            onDotClick={setCurrentStep}
+            buttonName={
+              step.key === "SMOOKIE"
+                ? from === "my-page"
+                  ? "마이페이지로 돌아가기"
+                  : from === "footer"
+                    ? "돌아가기"
+                    : TUTORIAL.BUTTON.SIGN_UP
+                : TUTORIAL.BUTTON.NEXT
+            }
+            isFromMypage={from === "my-page"}
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };
 
