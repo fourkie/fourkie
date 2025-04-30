@@ -95,14 +95,9 @@ const Music = () => {
   //   );
 
   return (
-    <div className="relative mx-auto min-w-[360px] max-w-5xl">
+    <div className="relative mx-auto min-w-[360px]">
       {/* 플레이리스트 이미지 영역 */}
-      <section
-        className="sticky top-0 z-30 w-full max-w-5xl transition-all duration-300 md:top-14"
-        style={{
-          height: isScrolled ? 156 : 256, // 스크롤 전 : 256, 스크롤 후 : 156
-        }}
-      >
+      <section className="fixed top-0 z-30 h-[256px] w-full max-w-[984px] transition-all duration-300 md:top-[70px] md:mx-auto md:h-[287px]">
         <div
           className="relative h-full min-w-[360px] bg-white bg-cover bg-center"
           style={{ backgroundImage: `url(${imageUrl})` }}
@@ -125,12 +120,7 @@ const Music = () => {
       </section>
 
       {/* isScrolled 값에 따라 top 값 조정 필수 !! */}
-      <div
-        className="sticky top-[156px] z-20 w-full bg-white px-5 md:top-[212px]"
-        style={{
-          top: isScrolled ? (isMobile ? 156 : 212) : isMobile ? 256 : 312,
-        }}
-      >
+      <div className="flex-start fixed top-[256px] z-20 mx-auto flex w-full max-w-[984px] pt-5 md:pb-5 bg-white px-5 md:top-[357px]">
         <Tab
           firstTab="추천 플리"
           secondTab="즐겨찾기"
@@ -138,17 +128,14 @@ const Music = () => {
           setActiveTab={setIsSelectedTab}
         />
       </div>
-      <div
-        style={{
-          height: isScrolled ? (isMobile ? 0 : 48) : isMobile ? 0 : 48,
-        }}
-      />
       {/* 스크롤 되는 PlaylistContent */}
-      <PlaylistContent
-        userId={userId}
-        activeTab={isSelectedTab}
-        emotion={emotion}
-      />
+      <div className="pt-[334px] md:pt-[443px]">
+        <PlaylistContent
+          userId={userId}
+          activeTab={isSelectedTab}
+          emotion={emotion}
+        />
+      </div>
     </div>
   );
 };
