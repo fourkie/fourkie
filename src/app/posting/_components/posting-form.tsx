@@ -38,7 +38,6 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
       },
     });
 
-  // react-hook-form을 사용하여 폼 상태 관리
   useEffect(() => {
     const subscription = watch((value) => {
       setInputTitle(value.inputTitle || "");
@@ -48,13 +47,11 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  /** 제목과 내용이 비어있지 않은 경우 감정 분석 API를 호출 */
   const onSubmit = ({ inputTitle, inputContent }: PostingFormValues) => {
     if (!inputTitle.trim() || !inputContent.trim()) return;
     emotionMutate(inputContent);
   };
 
-  // 게시글 수정 시 내가 작성한 게시글인지 확인하고 폼 초기화
   useEffect(() => {
     if (!postId || !postData || !postData[0]) return;
 
@@ -67,7 +64,6 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
     }
   }, [postData, userId, setValue, router]);
 
-  // textarea 높이 자동 조절 함수
   useEffect(() => {
     const textarea = document.querySelector(
       "textarea[name='inputContent']",
@@ -90,7 +86,6 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
         className="mx-auto flex w-1/2 flex-col md:gap-5 md:pt-9"
         aria-labelledby="posting-form-title"
       >
-        {/* Title */}
         <div className="relative flex flex-col gap-3">
           <strong
             id="posting-form-title"
@@ -110,7 +105,6 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
           />
         </div>
 
-        {/* Content */}
         <div className="relative flex flex-col gap-2">
           <strong className="text-center text-xl text-grey-2 md:text-2xl">
             Content
@@ -128,7 +122,6 @@ const PostingForm = ({ postId, userId }: UserDateProps) => {
         </div>
       </form>
 
-      {/* 감정 분석 모달 */}
       <PostingEmotionModal
         userId={userId}
         emotion={emotion}

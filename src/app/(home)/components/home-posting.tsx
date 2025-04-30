@@ -11,6 +11,8 @@ const HomePosting = ({ userId }: { userId: string }) => {
   const route = useRouter();
   return (
     <div
+      role="button"
+      aria-label="오늘 감정 기록 작성 페이지로 이동"
       className="mx-auto mb-2 flex max-w-[353px] cursor-pointer flex-row items-center justify-end gap-2 transition-all duration-300 hover:gap-3 md:max-w-[1024px]"
       onClick={() => {
         if (today && today.length > 0) {

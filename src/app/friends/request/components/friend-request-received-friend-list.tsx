@@ -15,7 +15,7 @@ const ReceivedFriendList = () => {
   const [userId, setUserId] = useState<string>("");
   useEffect(() => {
     const fetchUserId = async () => {
-      const result = await getUserForClient(); // 이 함수가 Promise<{ userId: string }>
+      const result = await getUserForClient();
       if (result) setUserId(result.userId);
     };
 
@@ -47,6 +47,7 @@ const ReceivedFriendList = () => {
             </p>
           </div>
           <button
+            aria-label="친구 수락 버튼"
             onClick={() => acceptRequest(request.id)}
             className="rounded-full border border-primary-300 px-2 py-1 text-sm text-primary-400 transition-all duration-300 hover:bg-primary-300 hover:text-white"
           >

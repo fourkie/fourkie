@@ -3,18 +3,16 @@ import createClient from "./supabase-client-service";
 export const getFriendIds = async ({ userId }: { userId: string }) => {
   const supabaseClient = createClient();
   try {
-    // 친구 목록 가져오기 (sender_uid / receiver_uid가 userId와 일치하고, accepted가 true)
     const { data: friends, error: friendsError } = await supabaseClient
       .from("friends")
       .select("*")
-      .or(`sender_uid.eq.${userId},receiver_uid.eq.${userId}`) // 여기 수정됨
+      .or(`sender_uid.eq.${userId},receiver_uid.eq.${userId}`)
       .eq("accepted", true);
 
     if (friendsError) throw friendsError;
 
-    if (!friends || friends.length === 0) return []; // 친구가 없으면 빈 배열 반환
+    if (!friends || friends.length === 0) return [];
 
-    // 친구들의 userId
     const friendIds = friends.map((friend) =>
       friend.sender_uid === userId ? friend.receiver_uid : friend.sender_uid,
     );
@@ -30,16 +28,14 @@ export const getFriendsPosts = async ({ userId }: { userId: string }) => {
   try {
     const friendIds = await getFriendIds({ userId });
 
-    // 만약 friendIds가 undefined이거나 빈 배열이면 바로 빈 배열 반환
     if (!friendIds || friendIds.length === 0) {
       return [];
     }
 
-    // 게시물 가져오기
     const { data: posts, error: postsError } = await supabaseClient
       .from("posts")
       .select("*")
-      .in("user_id", friendIds); // user_id가 friendIds 배열에 포함된 게시물만 가져옴
+      .in("user_id", friendIds);
 
     if (postsError) throw postsError;
 

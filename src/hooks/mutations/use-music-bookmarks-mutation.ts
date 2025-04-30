@@ -6,7 +6,6 @@ import {
 } from "@/services/music-bookmark-service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-// 북마크 추가
 export const useAddBookmarkMutation = () => {
   const queryClient = useQueryClient();
 
@@ -21,7 +20,6 @@ export const useAddBookmarkMutation = () => {
   });
 };
 
-// 북마크 삭제
 export const useRemoveBookmarkMutation = ({
   musicPlaylistId,
   userId,

@@ -93,6 +93,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
                 onChange={handleNicknameChange}
               />
               <button
+                aria-label="닉네임 업데이트 버튼"
                 onClick={handleUpdateNickname}
                 disabled={isPending}
                 className="flex items-center justify-center"
@@ -100,6 +101,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
                 <SquareCheckBig size={18} className="hover:text-grey-5" />
               </button>
               <button
+                aria-label="닉네임 수정 취소 버튼"
                 onClick={handleCancelEdit}
                 disabled={isPending}
                 className="absolute right-4 top-4 z-10"
@@ -114,6 +116,7 @@ const MypageProfile = ({ userId }: { userId: string }) => {
                 {nickname}
               </strong>
               <button
+                aria-label="닉네임 수정하기 버튼"
                 onClick={handleEditToggle}
                 disabled={isPending}
                 className="flex items-center justify-center"

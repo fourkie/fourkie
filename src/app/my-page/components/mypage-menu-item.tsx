@@ -7,6 +7,7 @@ import { MypageMenuItemProps } from "../type";
 const MypageMenuItem = ({ href, label, icon }: MypageMenuItemProps) => {
   return (
     <Link
+      aria-label={`마이페이지 ${label}로 이동`}
       href={href}
       className="flex items-center justify-between px-5 py-4 pr-1 hover:pr-0  transition-all duration-300 hover:text-secondary-300"
     >

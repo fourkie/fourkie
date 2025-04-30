@@ -1,6 +1,5 @@
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
 
-// route에 요청을 보내는 함수
 export const getAnalyzedPostEmotion = async (inputText: string) => {
   try {
     const response = await fetch("/api/posting", {

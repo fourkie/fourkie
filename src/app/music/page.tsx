@@ -53,7 +53,6 @@ const Music = () => {
 
   return (
     <div className="relative mx-auto min-w-[360px]">
-      {/* 플레이리스트 이미지 영역 */}
       <section className="fixed top-0 z-30 h-[256px] w-full max-w-[984px] transition-all duration-300 md:top-[70px] md:mx-auto md:h-[287px]">
         <div
           className="relative h-full min-w-[360px] bg-white bg-cover bg-center"
@@ -75,7 +74,6 @@ const Music = () => {
         </div>
       </section>
 
-      {/* isScrolled 값에 따라 top 값 조정 필수 !! */}
       <div className="flex-start fixed top-[256px] z-20 mx-auto flex w-full max-w-[984px] bg-white px-5 pb-3 pt-5 md:top-[357px] md:pb-5">
         <Tab
           firstTab="추천 플리"
@@ -86,7 +84,6 @@ const Music = () => {
         />
         <div className="absolute left-0 top-[61px] -z-10 w-full border-b border-b-grey-0 sm:hidden md:block" />
       </div>
-      {/* 스크롤 되는 PlaylistContent */}
       <div className="pt-[334px] md:pt-[443px]">
         <PlaylistContent
           userId={userId}

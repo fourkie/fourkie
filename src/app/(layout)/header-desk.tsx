@@ -28,7 +28,6 @@ const HeaderDesk = () => {
 
   if (pathname === "/tutorial") return null;
 
-  // 로그인/회원가입 페이지
   if (pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up")) {
     return (
       <div className="fixed top-0 hidden h-[56px] w-full bg-primary-50 md:flex">
@@ -42,17 +41,21 @@ const HeaderDesk = () => {
     );
   }
 
-  // 기본 헤더
   return (
     <>
       <div className="header-desk fixed top-0 z-40 hidden h-[70px] w-full bg-primary-50 md:block">
         <div className="mx-auto flex h-full w-full max-w-[1024px] items-center justify-between px-5 py-5 text-grey-8">
-          <Link href="/" className="flex items-center gap-2">
+          <Link
+            href="/"
+            className="flex items-center gap-2"
+            aria-label="홈 페이지로 이동"
+          >
             <Image src="/images/Fluffy.png" width={39} height={39} alt="신나" />
             <strong className="text-xl">Smookie</strong>
           </Link>
           <div className="flex gap-8">
             <Link
+              aria-label="게시글 목록으로 이동"
               href="/list"
               onClick={() => {
                 setSelectedTab("firstTab");
@@ -67,7 +70,7 @@ const HeaderDesk = () => {
                 기록 목록
               </strong>
             </Link>
-            <Link href="/music">
+            <Link href="/music" aria-label="음악 페이지로 이동동">
               <strong
                 className={`${styleHover} ${
                   pathname === "/music" ? "text-primary-700" : "text-grey-4"
@@ -76,7 +79,7 @@ const HeaderDesk = () => {
                 음악 리스트
               </strong>
             </Link>
-            <Link href="/my-page">
+            <Link href="/my-page" aria-label="마이 페이지로 이동">
               <strong
                 className={`${styleHover} ${isMyPage ? "text-primary-700" : "text-grey-4"}`}
               >

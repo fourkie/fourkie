@@ -1,7 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-// 서버 전용 supabase
 const createClient = () => {
   const cookieStore = cookies();
 

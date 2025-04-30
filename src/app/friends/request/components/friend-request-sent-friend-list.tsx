@@ -49,6 +49,7 @@ const SentFriendList = () => {
             </p>
           </div>
           <button
+            aria-label="친구 요청 취소 버튼"
             onClick={() => cancelRequest(request.id)}
             className="rounded-full border border-amber-400 px-2 py-1 text-sm text-amber-500 transition-all duration-300 hover:bg-amber-400 hover:text-white"
           >

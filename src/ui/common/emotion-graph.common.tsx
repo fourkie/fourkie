@@ -53,6 +53,8 @@ const EmotionGraph = ({
 
   return (
     <div
+      aria-label="감정 통계 그래프"
+      role="region"
       className={`flex w-full ${isListPage ? "max-w-[548px]" : ""} flex-col items-center justify-center rounded-2xl bg-white ${isListPage ? "" : "border border-primary-50 px-5 md:px-10"} p-5 font-pretendard`}
     >
       {isListPage && (
@@ -61,7 +63,13 @@ const EmotionGraph = ({
             <EmotionImage src={EMOTION_COOKIE_IMAGE_URL.EXCITED} size="xs" />
             <strong className="text-xl">{nickname}</strong>
           </div>
-          <X className="cursor-pointer hover:text-grey-5" onClick={setOpenPopup} />
+
+          <X
+            className="cursor-pointer hover:text-grey-5"
+            onClick={setOpenPopup}
+            role="button"
+            aria-label="그래프 닫기"
+          />
         </div>
       )}
       <div className="mb-2 mt-2 w-full text-right text-xs text-grey-2">
@@ -69,6 +77,8 @@ const EmotionGraph = ({
       </div>
       <div
         className={`flex w-full ${isEmpty ? "items-center justify-center" : "items-end justify-between"}`}
+        role="list"
+        aria-label="감정별 비율 막대 그래프"
       >
         {isEmpty ? (
           <div className="py-10">
@@ -89,6 +99,10 @@ const EmotionGraph = ({
               <div
                 key={i}
                 className="flex h-[226px] w-[17%] flex-col items-center justify-end gap-[6px] font-medium"
+                role="listitem"
+                aria-label={`${EMOTIONS_QUERY[e.emotion]}: ${Math.floor(
+                  percentageValue,
+                )}%`}
               >
                 <motion.div
                   key={i}

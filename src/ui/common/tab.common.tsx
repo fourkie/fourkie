@@ -17,10 +17,17 @@ const Tab = ({
   ];
 
   return (
-    <div className="relative flex justify-center gap-10 py-2 text-sm md:text-lg">
+    <div
+      className="relative flex justify-center gap-10 py-2 text-sm md:text-lg"
+      role="tablist"
+    >
       {tabs.map((tab) => (
         <button
           key={tab.id}
+          role="tab"
+          aria-selected={tab.id === activeTab}
+          aria-controls={`${tab.id}-panel`}
+          id={tab.id}
           onClick={() => setActiveTab(tab.id)}
           className={`relative px-3 pb-[6px] ${
             tab.id === activeTab

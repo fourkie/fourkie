@@ -18,15 +18,13 @@ export const useInfiniteUserPostsByMonth = (
     },
     enabled: !!userId && !!selectedDate,
     getNextPageParam: (lastPage) => {
-      // 다음 달 계산
-      const nextDate = new Date(lastPage.year, lastPage.month); // 자동으로 넘어감
+      const nextDate = new Date(lastPage.year, lastPage.month);
       return {
         year: nextDate.getFullYear(),
         month: nextDate.getMonth() + 1,
       };
     },
     getPreviousPageParam: (firstPage) => {
-      // 이전 달 계산
       const prevDate = new Date(firstPage.year, firstPage.month - 2);
       return {
         year: prevDate.getFullYear(),

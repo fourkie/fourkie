@@ -6,7 +6,6 @@ const PostingEmotionModalLoading = () => {
   const [dots, setDots] = useState("");
   const { data: nickname } = useGetUserNicknameQuery();
 
-  // 일정 시간마다 loadingText를 변경
   useEffect(() => {
     const interval = setInterval(() => {
       setDots((prev) => (prev.length >= 3 ? "" : prev + "."));

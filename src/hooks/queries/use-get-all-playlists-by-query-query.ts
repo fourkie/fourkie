@@ -6,7 +6,6 @@ import {
 } from "@/services/music-service";
 import { useQuery } from "@tanstack/react-query";
 
-// 유저의 감정 기반 플레이리스트 조회
 export const useGetAllPlaylistsByQueryQuery = (emotionQuery: string) => {
   const { data, error, isPending } = useQuery({
     queryKey: [QUERY_KEY.SPOTIFY_PLAYLISTS, emotionQuery],

@@ -26,7 +26,6 @@ const EmotionSelect = ({
   return (
     <div className="absolute left-5 top-14 z-40 min-w-[360px]">
       <div className="mb-3 flex items-center gap-2">
-        {/* 드롭다운 버튼 */}
         <button
           onClick={() => setOpen((prev) => !prev)}
           aria-haspopup="listbox"
@@ -45,7 +44,6 @@ const EmotionSelect = ({
           </strong>
         </button>
 
-        {/* 드롭다운 목록 */}
         <div
           className={`${
             open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
@@ -75,7 +73,6 @@ const EmotionSelect = ({
             );
           })}
         </div>
-        {/* )} */}
 
         <strong className="text-2xl text-white">듣기 좋은</strong>
       </div>

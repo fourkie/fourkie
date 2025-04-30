@@ -96,6 +96,7 @@ const HeaderMobile = () => {
       {showBackIcon ? (
         <>
           <ChevronLeft
+            aria-label="이전 페이지로 이동"
             className="cursor-pointer"
             onClick={() => {
               if (pathname.startsWith("/posting")) {

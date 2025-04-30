@@ -67,17 +67,20 @@ const ListCard = ({
           <div className="flex w-24 justify-end gap-2">
             <Pencil
               size={18}
+              aria-label="작성 글 수정하기"
               className="transform cursor-pointer transition-all duration-300 hover:text-grey-5"
               onClick={handleEdit}
             />
             <Trash2
               size={18}
+              aria-label="작성 글 삭제하기"
               className="transform cursor-pointer transition-all duration-300 hover:text-grey-5"
               onClick={handleDeleteButton}
             />
           </div>
         ) : (
           <div
+            aria-label="친구 프로필 보러가기"
             className="w-24 cursor-pointer text-right font-minsans text-sm text-primary-600 hover:text-primary-550"
             onClick={() => setOpenGraphPopup(!openGraphPopup)}
           >

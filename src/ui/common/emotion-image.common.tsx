@@ -6,13 +6,13 @@ const EmotionImage = ({ src, size, className }: Img) => {
     "xxs" | "xs" | "xss" | "s" | "m" | "l" | "xl",
     number
   > = {
-    xxs: 30, // 아주 작은 사이즈
+    xxs: 30,
     xs: 40,
     xss: 44,
-    s: 50, // 작은 사이즈
-    m: 60, // 보통 사이즈
-    l: 100, // 큰 사이즈
-    xl: 200, // 아주 큰 사이즈
+    s: 50,
+    m: 60,
+    l: 100,
+    xl: 200,
   };
 
   const imageSize =
@@ -20,7 +20,6 @@ const EmotionImage = ({ src, size, className }: Img) => {
 
   if (size === "xxs") {
     return (
-      //부모 컴포넌트에 따라 커지게 relative 적용, 정사각형 유지 사이즈 별로 크기 지정
       <div
         className={`relative aspect-square w-[30px] md:w-[50px] lg:w-[60px] ${className}`}
       >

@@ -64,7 +64,7 @@ const Navigation = () => {
 
   return (
     <div className="fixed bottom-0 z-40 grid h-[72px] w-full min-w-[360px] grid-cols-5 items-center justify-evenly rounded-t-[28px] border border-grey-1 bg-white text-xs text-grey-7 md:hidden">
-      <Link href="/">
+      <Link href="/" aria-label="홈 페이지로 이동">
         <div
           className={`${commonStyle} ${pathname === "/" ? "" : "text-grey-3"}`}
         >
@@ -73,6 +73,7 @@ const Navigation = () => {
         </div>
       </Link>
       <Link
+        aria-label="목록 페이지로 이동"
         href="/list"
         onClick={() => {
           setSelectedTab("firstTab");
@@ -95,17 +96,18 @@ const Navigation = () => {
           router.push("/posting");
         }}
         className="cursor-pointer"
+        aria-label="작성 페이지로 이동"
       >
         <CirclePlus className="mx-auto h-11 w-11 text-primary-400 hover:text-secondary-300" />
       </div>
-      <Link href="/music">
+      <Link href="/music" aria-label="뮤직 페이지로 이동">
         <div
           className={`${commonStyle} ${pathname === "/music" ? "" : "text-grey-3"}`}
         >
           <Music4 className="h-6 w-6" /> 음악
         </div>
       </Link>
-      <Link href="/my-page">
+      <Link href="/my-page" aria-label="마이 페이지로 이동">
         <div className={`${commonStyle} ${isMyPage ? "" : "text-grey-3"}`}>
           <UserRound className="h-6 w-6" />
           마이

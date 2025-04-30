@@ -51,7 +51,7 @@ const events: NoticeItem[] = [
   },
 ];
 
-const NoticeContainer = async () => {
+const NoticeContainer = () => {
   const renderList = (title: string, items: NoticeItem[]) => (
     <section className="mb-10 w-full rounded-xl">
       <strong className="mb-3 inline-flex bg-primary-50 px-4 text-xl">

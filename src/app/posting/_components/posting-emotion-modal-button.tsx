@@ -16,13 +16,11 @@ const PostingEmotionModalButton = ({
   const title = usePostingStore((state) => state.inputTitle);
   const content = usePostingStore((state) => state.inputContent);
 
-  // mutation 함수
   const { mutate: createPostsMutate, isPending: createPostsPending } =
     useCreatePostsMutation();
   const { mutate: updatePostMutate, isPending: UpdatePostsPending } =
     useUpdatePostsByPostIdMutation({ postId });
 
-  // 버튼 클릭 시 게시글 저장
   const handleSave = () => {
     if (isSave.current) return;
     isSave.current = true;

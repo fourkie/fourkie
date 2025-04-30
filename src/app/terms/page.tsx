@@ -12,7 +12,7 @@ const TermsPage = async () => {
   }
 
   return (
-    <main className="mb-5 flex w-full flex-col pb-10">
+    <main className="mb-5 flex w-full flex-col pb-10" aria-label="약관 정책">
       <strong className="mb-10 mt-3 flex justify-center text-2xl font-bold">
         서비스 이용약관
       </strong>

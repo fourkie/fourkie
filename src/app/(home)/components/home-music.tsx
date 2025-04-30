@@ -44,7 +44,11 @@ const HomeMusic = ({ userId }: { userId: string }) => {
   const randomIndex = playNum > 0 ? Math.floor(Math.random() * playNum) : 1;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div
+      className="flex flex-col gap-2"
+      role="region"
+      aria-label="오늘의 감정 기반 추천 음악"
+    >
       <Link href={"/music"}>
         <div className={`${commonTitle}`}>
           <strong className="whitespace-nowrap lg:text-[20px]">
@@ -62,6 +66,7 @@ const HomeMusic = ({ userId }: { userId: string }) => {
           href={playlists[randomIndex].external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`스포티파이에서 플레이리스트 열기`}
           className="flex w-full items-center justify-between"
         >
           <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-[10px]">

@@ -109,6 +109,7 @@ const TutorialDescription = ({
         </div>
 
         <button
+          aria-label="다음 설명으로 넘어가는 버튼"
           onClick={onClick}
           className={`w-full rounded-2xl py-4 text-lg font-bold ${currentStep === 4 ? "bg-primary-300" : "bg-primary-100"} "text-primary-800"`}
         >

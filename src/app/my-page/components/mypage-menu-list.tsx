@@ -53,6 +53,7 @@ const MypageMenuList = () => {
         >
           <div className="transition-all duration-300 hover:pl-1">
             <button
+              aria-label="로그아웃"
               onClick={() =>
                 handleLogout(() => {
                   router.push("/sign-in");
