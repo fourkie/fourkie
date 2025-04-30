@@ -1,5 +1,6 @@
 import { Emotion } from "@/constants/spotify.constant";
 import { TOAST_MESSAGE } from "@/constants/toast-message.constant";
+import useIsMobile from "@/hooks/is-mobile/use-is-mobile";
 import { useGetAllBookmarkedPlaylistsByIdQuery } from "@/hooks/queries/use-get-all-bookmarked-playlists-by-id-query";
 import { useGetAllPlaylistsByQueryQuery } from "@/hooks/queries/use-get-all-playlists-by-query-query";
 import EmptyAlert from "@/ui/common/empty-alert.common";
@@ -16,35 +17,34 @@ const PlaylistContent = ({
   emotion: keyof typeof Emotion;
 }) => {
   // 추천 플리
-  const {
-    playlists: playlistsData,
-    isPending: playlistsIsPending,
-    error: playlistsError,
-  } = useGetAllPlaylistsByQueryQuery(emotion ? Emotion[emotion] : "JOY");
+  const { playlists: playlistsData, isPending: playlistsIsPending } =
+    useGetAllPlaylistsByQueryQuery(emotion ? Emotion[emotion] : "JOY");
+
+  const isMobile = useIsMobile();
 
   // 즐겨찾기
-  const {
-    data: bookmarkedData,
-    isPending: bookmarkedIsPending,
-    error: bookmarkedError,
-  } = useGetAllBookmarkedPlaylistsByIdQuery(userId);
+  const { data: bookmarkedData, isPending: bookmarkedIsPending } =
+    useGetAllBookmarkedPlaylistsByIdQuery(userId);
 
   // 추천 플리 탭
   if (activeTab === "firstTab") {
     if (playlistsIsPending)
-      return <EmptyAlert text={TOAST_MESSAGE.MUSIC.PLAYLISTS_PENDING} />;
-
-    if (playlistsError)
-      return <EmptyAlert text={TOAST_MESSAGE.MUSIC.PLAYLISTS_ERROR} />;
+      return (
+        <div className="flex h-full flex-col items-center justify-center gap-2 px-5 py-24 text-center">
+          추천 플레이리스트를 불러오는 중입니다. <br />
+          <br /> 잠시만 기다려주세요.
+        </div>
+      );
 
     return (
       <ul className="grid grid-cols-1 gap-x-10 gap-y-3 bg-white px-5 pb-36 md:mt-3 md:grid-cols-2">
         {playlistsData.map((playlist, index) => {
           const total = playlistsData.length;
 
-          const isLastCard =
-            total % 2 === 0
-              ? index === total - 1 || index === total - 2
+          const isLastCard = isMobile
+            ? index === total - 1
+            : total % 2 === 0
+              ? index >= total - 2
               : index === total - 1;
 
           return (
@@ -72,11 +72,7 @@ const PlaylistContent = ({
 
   // 즐겨찾기 탭
   if (activeTab === "secondTab") {
-    if (bookmarkedIsPending)
-      return <EmptyAlert text={TOAST_MESSAGE.MUSIC.BOOKMARK_PENDING} />;
-
-    if (bookmarkedError)
-      return <EmptyAlert text={TOAST_MESSAGE.MUSIC.BOOKMARK_ERROR} />;
+    if (bookmarkedIsPending) return <>{TOAST_MESSAGE.MUSIC.BOOKMARK_PENDING}</>;
 
     if (bookmarkedData && bookmarkedData.length === 0)
       return <EmptyAlert text={TOAST_MESSAGE.MUSIC.EMPTY_BOOKMARK} />;
@@ -85,11 +81,12 @@ const PlaylistContent = ({
       <ul className="grid grid-cols-1 gap-x-10 gap-y-3 bg-white px-5 pb-36 md:mt-3 md:grid-cols-2">
         {bookmarkedData?.map((playlist, index) => {
           const key = playlist.id ?? `${playlist.name}-${index}`;
-          const total = playlistsData.length;
+          const total = bookmarkedData.length;
 
-          const isLastCard =
-            total % 2 === 0
-              ? index === total - 1 || index === total - 2
+          const isLastCard = isMobile
+            ? index === total - 1
+            : total % 2 === 0
+              ? index >= total - 2
               : index === total - 1;
 
           return (

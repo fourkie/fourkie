@@ -3,11 +3,13 @@ const Tab = ({
   secondTab,
   activeTab,
   setActiveTab,
+  isPink = false,
 }: {
   firstTab: string;
   secondTab: string;
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  isPink?: boolean;
 }) => {
   const tabs = [
     { id: "firstTab", label: firstTab },
@@ -15,13 +17,17 @@ const Tab = ({
   ];
 
   return (
-    <div className="relative flex justify-center gap-10 py-2">
+    <div className="relative flex justify-center gap-10 py-2 text-sm md:text-lg">
       {tabs.map((tab) => (
         <button
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
           className={`relative px-3 pb-[6px] ${
-            tab.id === activeTab ? "text-primary-600" : "text-grey-3"
+            tab.id === activeTab
+              ? isPink && secondTab === tab.label
+                ? "text-secondary-200"
+                : "text-primary-600"
+              : "text-grey-3"
           }`}
           style={{
             WebkitTapHighlightColor: "transparent",
@@ -30,8 +36,14 @@ const Tab = ({
           <strong>
             {tab.label}
             <span
-              className={`absolute bottom-0 left-0 right-0 h-[2px] bg-primary-600 transition-all duration-300 ease-in-out ${
+              className={`absolute bottom-0 left-0 right-0 h-[2px] transition-all duration-300 ease-in-out ${
                 tab.id === activeTab ? "scale-x-100" : "scale-x-0"
+              } ${
+                tab.id === activeTab
+                  ? isPink && secondTab === tab.label
+                    ? "bg-secondary-200"
+                    : "bg-primary-600"
+                  : "bg-grey-3"
               }`}
             />
           </strong>
