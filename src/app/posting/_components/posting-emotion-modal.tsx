@@ -6,14 +6,12 @@ import { convertEmotions } from "@/utils/emotion-convert";
 import { useEffect, useState } from "react";
 import { PostingResultModalProps } from "../type";
 import PostingEmotionModalButton from "./posting-emotion-modal-button";
-import PostingEmotionModalLoading from "./posting-emotion-modal-loading";
 import PostingEmotionModalSlide from "./posting-emotion-modal-slice";
 
 const PostingEmotionModal = ({
   userId,
   emotion,
   postId,
-  isPending,
   isModalOpen,
   setIsModalOpen,
 }: PostingResultModalProps) => {
@@ -32,10 +30,6 @@ const PostingEmotionModal = ({
     }
   }, [emotion]);
 
-  if (isPending && !emotion) {
-    return <PostingEmotionModalLoading />;
-  }
-
   return (
     <>
       {emotion && isModalOpen && (
@@ -44,7 +38,7 @@ const PostingEmotionModal = ({
           aria-labelledby="emotion-modal-title"
           aria-describedby="emotion-modal-description"
         >
-          <div className="mx-5 flex w-full max-w-[380px] flex-col gap-5 rounded-2xl bg-white px-12 py-6 shadow-lg">
+          <div className="flex w-full max-w-[380px] flex-col gap-[18px] rounded-2xl bg-white px-12 py-5 shadow-lg">
             <h2
               id="emotion-modal-title"
               className="text-center text-xl text-grey-7"

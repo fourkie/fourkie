@@ -12,7 +12,7 @@ const PostingButton = ({ className }: { className?: string }) => {
     <button
       form="posting"
       type="submit"
-      className={`${className} ${!isDisabled ? "text-primary-500" : "text-grey-3"}`}
+      className={`${className} ${!isDisabled ? "text-primary-600" : "text-grey-4"}`}
       aria-label={
         isDisabled ? "게시글 작성 완료 (비활성화)" : "게시글 작성 완료"
       }

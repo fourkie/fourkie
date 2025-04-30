@@ -11,7 +11,9 @@ const Button = ({
   classname,
 }: ButtonProps) => {
   const baseBg =
-    backgroundColor === "sub" ? "primary-200" : "primary-500 text-white";
+    backgroundColor === "sub"
+      ? "primary-200 text-primary-700"
+      : "primary-500 text-grey-0";
   const hoverBg =
     backgroundColor === "sub" ? "hover:bg-primary-300" : "hover:bg-primary-550";
 

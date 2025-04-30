@@ -1,8 +1,5 @@
-import { EMOTIONS } from "@/constants/emotion.constant";
 import { useGetUserNicknameQuery } from "@/hooks/queries/use-get-user-nickname-query";
-import EmotionImage from "@/ui/common/emotion-image.common";
-import { checkEmotion } from "@/utils/home-emotion.util";
-import { Loader } from "lucide-react";
+import LoadingCookie from "@/ui/common/loading-cookie.common";
 import { useEffect, useState } from "react";
 
 const PostingEmotionModalLoading = () => {
@@ -19,15 +16,15 @@ const PostingEmotionModalLoading = () => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white"
       role="dialog"
       aria-live="assertive"
       aria-labelledby="loading-modal"
     >
-      <div className="flex max-w-xs flex-col items-center justify-center gap-7 rounded-lg p-6 text-xl">
-        <EmotionImage src={checkEmotion(EMOTIONS.JOY)} size="l" />
+      <div className="flex max-w-xs flex-col items-center justify-center gap-[29px] rounded-lg text-xl">
+        <LoadingCookie />
 
-        <div className="text-center text-grey-0">
+        <div className="text-grey-900 text-center">
           <strong>
             <span className="text-primary-500">Smookie</span>가 {nickname}
             님의
@@ -36,11 +33,9 @@ const PostingEmotionModalLoading = () => {
           </strong>
         </div>
 
-        <div className="text-white">
+        <div className="text-grey-900">
           <strong>잠시만 기다려 주세요{dots}</strong>!
         </div>
-
-        <Loader size={38} className="animate-spin text-white" />
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ const Popup = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/70 px-5"
+      className="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/80 px-5"
     >
       {isPopup ? (
         <motion.div

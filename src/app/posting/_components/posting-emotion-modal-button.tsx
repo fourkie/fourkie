@@ -1,7 +1,8 @@
 import { useCreatePostsMutation } from "@/hooks/mutations/use-create-posts-mutation";
 import { useUpdatePostsByPostIdMutation } from "@/hooks/mutations/use-update-posts-by-postId-mutation";
 import { usePostingStore } from "@/hooks/zustand/posting-store";
-import { useRouter } from "next/navigation";
+import Button from "@/ui/common/button.common";
+import { useRef } from "react";
 import { PostingEmotionModalButtonProps } from "../type";
 
 const PostingEmotionModalButton = ({
@@ -10,50 +11,38 @@ const PostingEmotionModalButton = ({
   postId,
   onClose,
 }: PostingEmotionModalButtonProps) => {
+  const isSave = useRef(false);
+
   const title = usePostingStore((state) => state.inputTitle);
   const content = usePostingStore((state) => state.inputContent);
 
   // mutation 함수
-  const {
-    mutate: createPostsMutate,
-    isPending: createPostsPending,
-    isError: createPostsError,
-  } = useCreatePostsMutation();
-  const {
-    mutate: updatePostMutate,
-    isPending: UpdatePostsPending,
-    isError: updatePostsError,
-  } = useUpdatePostsByPostIdMutation({ postId });
-
-  const router = useRouter();
+  const { mutate: createPostsMutate, isPending: createPostsPending } =
+    useCreatePostsMutation();
+  const { mutate: updatePostMutate, isPending: UpdatePostsPending } =
+    useUpdatePostsByPostIdMutation({ postId });
 
   // 버튼 클릭 시 게시글 저장
   const handleSave = () => {
+    if (isSave.current) return;
+    isSave.current = true;
+
     if (postId) {
       updatePostMutate({ postId, title, content, currentEmotion });
     } else {
       createPostsMutate({ userId, title, content, currentEmotion });
     }
-
-    if (!createPostsError) {
-      router.push("/music");
-    } else if (!updatePostsError) {
-      router.replace("/list");
-    }
   };
 
   return (
-    <div className="flex gap-4 text-lg">
-      <button
-        className="flex-1 rounded-2xl bg-primary-500 py-2 text-grey-0"
-        onClick={onClose}
-        aria-label="취소"
-      >
+    <div className="flex gap-[15px] text-lg">
+      <Button onClick={onClose} aria-label="취소">
         <strong>취소</strong>
-      </button>
+      </Button>
 
-      <button
-        className="flex-1 rounded-2xl bg-primary-200 py-2 text-primary-700 disabled:cursor-not-allowed disabled:opacity-50"
+      <Button
+        backgroundColor="sub"
+        classname="disabled:cursor-not-allowed disabled:opacity-50"
         onClick={handleSave}
         disabled={createPostsPending || UpdatePostsPending}
         aria-label={
@@ -62,7 +51,7 @@ const PostingEmotionModalButton = ({
         aria-disabled={createPostsPending || UpdatePostsPending}
       >
         {createPostsPending || UpdatePostsPending ? "저장 중..." : "확인"}
-      </button>
+      </Button>
     </div>
   );
 };
