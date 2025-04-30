@@ -8,7 +8,7 @@ import { checkEmotion } from "@/utils/home-emotion.util";
 import { motion } from "framer-motion";
 
 const common =
-  " grid grid-cols-5 gap-3 border-2 border-dashed border-primary-200 rounded-[28px] p-4 ";
+  " grid grid-cols-5 gap-3 border-2 border-dashed border-primary-200 rounded-[28px] p-4";
 
 const HomeStack = ({ userId }: { userId: string }) => {
   const { data: myPosts, isPending } = useGetAllPostsByIdQuery({ userId });
@@ -18,7 +18,7 @@ const HomeStack = ({ userId }: { userId: string }) => {
 
   if (myPosts.length === 0) {
     return (
-      <div className="flex h-[200px] items-center justify-center rounded-xl border-2 border-dashed border-primary-200">
+      <div className="flex h-[200px] items-center justify-center rounded-[28px] border-2 border-dashed border-primary-200">
         <EmptyAlert text={COOKIE_ALERT.LIST.EMPTY_MY} isContent={true} />
       </div>
     );

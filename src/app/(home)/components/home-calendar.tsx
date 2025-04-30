@@ -73,7 +73,10 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
       className={`mx-auto rounded-[20px] border border-secondary-100 px-1 py-2 shadow-[0_0_6px_0_rgba(0,0,0,0.10)] ${changeStyle}`}
     >
       <div className="flex items-center justify-between px-3 lg:px-5">
-        <ChevronLeft onClick={handlePrevMonth} className="cursor-pointer" />
+        <ChevronLeft
+          onClick={handlePrevMonth}
+          className="cursor-pointer text-grey-7 transition-all duration-300 ease-in-out hover:scale-110 hover:text-grey-5 md:h-8 md:w-8"
+        />
         <div className="flex flex-1 justify-center overflow-hidden pb-1 md:justify-center">
           <HomeDate currentDate={currentDate} setCurrentDate={setCurrentDate} />
         </div>
@@ -83,8 +86,8 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
           }}
           className={` ${
             isNextMonthFuture
-              ? "cursor-not-allowed text-grey-2"
-              : "hover:text-primary cursor-pointer transition"
+              ? "cursor-not-allowed text-grey-2 md:h-8 md:w-8"
+              : "cursor-pointer text-grey-7 transition-all duration-300 ease-in-out hover:scale-110 hover:text-grey-5 md:h-8 md:w-8"
           }`}
         />
       </div>
@@ -173,7 +176,8 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
                     >
                       <EmotionImage
                         src={checkEmotion(images[day])}
-                        size={"xxs"}
+                        size="xxs"
+                        className="transition-transform duration-300 ease-in-out hover:scale-110"
                       />
                     </motion.div>
                   ) : (

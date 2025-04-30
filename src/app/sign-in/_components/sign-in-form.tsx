@@ -29,7 +29,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="mx-auto flex h-full max-w-[360px] flex-col items-center justify-center gap-7 px-5">
+    <div className="mx-auto flex h-full max-w-[360px] flex-col items-center justify-center gap-7 px-5 pt-10">
       <div className="flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -11,7 +11,7 @@ const MainContentContainer = ({ children }: { children: ReactNode }) => {
       className={`min-w-screen flex flex-1 justify-center ${
         pathName.startsWith("/music")
           ? ""
-          : "md:py-[110px] px-5 pb-36 pt-[72px] md:pb-12"
+          : "md:py-[110px] px-5 pb-36 pt-[72px] md:pb-32 md:min-h-screen"
       } ${
         pathName.startsWith("/sign-in") ||
         pathName.startsWith("/sign-up") ||

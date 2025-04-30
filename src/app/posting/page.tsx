@@ -31,7 +31,7 @@ const Posting = async () => {
   return (
     <>
       <div className="flex items-center justify-between text-grey-7">
-        <p
+        <strong
           className="flex items-center gap-2"
           aria-label={`오늘은 ${day}요일, ${date}일입니다`}
         >
@@ -41,7 +41,7 @@ const Posting = async () => {
           <span className="text-lg md:text-xl" style={{ lineHeight: 1 }}>
             {day}
           </span>
-        </p>
+        </strong>
         <PostingButton
           className={"hidden h-7 md:block"}
           aria-label="게시글 작성 완료"

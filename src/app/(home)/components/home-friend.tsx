@@ -17,7 +17,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const commonTitle =
-  "mx-auto flex max-w-[353px] flex-row gap-4 items-center w-full";
+  "mx-auto flex max-w-[353px] pl-3 flex-row items-center justify-between w-full transition-all duration-300  pr-1 hover:pr-0";
 const commonContext =
   "mx-auto min-w-[250px] min-h-[70px] w-full max-w-[353px]  rounded-2xl md:rounded-[28px] border-2 border-grey-0 md:border-primary-200 md:border-dashed";
 const HomeFriend = ({ userId }: { userId: string }) => {
@@ -53,7 +53,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
           <strong className="whitespace-nowrap lg:text-[20px]">
             오늘 친구들 기분을 살펴볼까요?
           </strong>
-          <ChevronRight className="ml-auto cursor-pointer" />
+          <ChevronRight className="cursor-pointer md:h-7 md:w-7" />
         </div>
         <div
           className={`${commonContext} item-center w-full text-xs text-grey-3`}
@@ -76,7 +76,7 @@ const HomeFriend = ({ userId }: { userId: string }) => {
           <strong className="whitespace-nowrap lg:text-[20px]">
             오늘 친구들 기분을 살펴볼까요?
           </strong>
-          <ChevronRight className="ml-auto cursor-pointer" />
+          <ChevronRight className="cursor-pointer md:h-7 md:w-7" />
         </div>
         <motion.div
           whileHover={{ scale: 1.03 }}
@@ -107,10 +107,10 @@ const HomeFriend = ({ userId }: { userId: string }) => {
         <strong className="whitespace-nowrap lg:text-[20px]">
           오늘 친구들 기분을 살펴볼까요?
         </strong>
-        <ChevronRight className="ml-auto cursor-pointer" />
+        <ChevronRight className="cursor-pointer md:h-7 md:w-7" />
       </div>
       <motion.div
-        whileHover={{ scale: 1.03 }}
+        whileHover={{ scale: 1.02 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         className={`${commonContext} flex flex-col`}
       >
