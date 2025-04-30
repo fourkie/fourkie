@@ -79,7 +79,6 @@ const TutorialContainer = () => {
             onClick={handleNext}
             onDotClick={handleDotClick}
             buttonName={LastButtonName(step.key, from)}
-            isFromMypage={from === "my-page"}
           />
         </SwiperSlide>
       ))}

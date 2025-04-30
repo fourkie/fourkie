@@ -1,7 +1,5 @@
 import { TUTORIAL } from "@/constants/tutorial.constant";
-import { X } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { DescriptionProps } from "../type";
 
 const TutorialDescription = ({
@@ -12,7 +10,6 @@ const TutorialDescription = ({
   onClick,
   onDotClick,
   buttonName,
-  isFromMypage,
 }: DescriptionProps) => {
   return (
     <div
@@ -118,11 +115,6 @@ const TutorialDescription = ({
           {buttonName}
         </button>
       </div>
-      {isFromMypage ? (
-        <Link href={"/my-page"}>
-          <X className="fixed top-20" />
-        </Link>
-      ) : null}
     </div>
   );
 };
