@@ -190,11 +190,13 @@ const HomeCalendar = ({ userId }: { userId: string | undefined }) => {
                   ) : (
                     <span
                       className={`md:text-lg lg:text-[26px] lg:font-bold ${
-                        idx % 7 === 6
-                          ? "text-primary-500"
-                          : idx % 7 === 0
-                            ? "text-secondary-400"
-                            : ""
+                        isFuture
+                          ? ""
+                          : idx % 7 === 6
+                            ? "text-primary-500"
+                            : idx % 7 === 0
+                              ? "text-secondary-400"
+                              : ""
                       }`}
                     >
                       {day}

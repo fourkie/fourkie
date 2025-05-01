@@ -118,7 +118,7 @@ const HomeDate = ({ currentDate, setCurrentDate }: HomeDateProps) => {
                     borderRadius: "12px",
                     width: {
                       xs: "130px",
-                      md: "150px",
+                      md: "170px",
                     },
                   },
                   "& .MuiInputBase-input": {

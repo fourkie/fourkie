@@ -61,28 +61,56 @@ const TutorialContainer = () => {
   };
 
   return (
-    <Swiper
-      spaceBetween={50}
-      slidesPerView={1}
-      onSlideChange={(swiper) => setCurrentStep(swiper.activeIndex)}
-      onSwiper={(swiper) => {
-        swiperRef.current = swiper;
-      }}
+    <div
+      className={`mx-auto flex h-screen flex-col items-center justify-center ${
+        currentStep !== 4 ? "bg-white" : "bg-primary-50"
+      } font-minsans`}
     >
-      {tutorialSteps.map((step) => (
-        <SwiperSlide key={step.key}>
-          <TutorialDescription
-            title={TUTORIAL.TITLE[step.key]}
-            description={TUTORIAL.DESCRIPTION[step.key]}
-            image={TUTORIAL.IMAGE[step.key]}
-            currentStep={currentStep}
-            onClick={handleNext}
-            onDotClick={handleDotClick}
-            buttonName={LastButtonName(step.key, from)}
+      {/* 슬라이드 영역 */}
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={1}
+        onSlideChange={(swiper) => setCurrentStep(swiper.activeIndex)}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        className="w-full"
+      >
+        {tutorialSteps.map((step) => (
+          <SwiperSlide key={step.key}>
+            <TutorialDescription
+              title={TUTORIAL.TITLE[step.key]}
+              description={TUTORIAL.DESCRIPTION[step.key]}
+              image={TUTORIAL.IMAGE[step.key]}
+              currentStep={currentStep}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* 하단 점 */}
+      <div className="flex justify-center gap-2">
+        {[0, 1, 2, 3, 4].map((step) => (
+          <div
+            key={step}
+            onClick={() => handleDotClick(step)}
+            className={`h-2 w-2 cursor-pointer rounded-full ${
+              currentStep === step ? "bg-primary-700" : "bg-grey-1"
+            }`}
           />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+        ))}
+      </div>
+
+      {/* 버튼 */}
+      <button
+        onClick={handleNext}
+        className={`mx-5 mt-5 w-full max-w-[360px] rounded-2xl py-5 text-lg font-bold ${
+          currentStep === 4 ? "bg-primary-300" : "bg-primary-100"
+        } text-primary-800`}
+      >
+        {LastButtonName(tutorialSteps[currentStep].key, from)}
+      </button>
+    </div>
   );
 };
 

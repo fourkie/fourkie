@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { usePostingStore } from "../zustand/posting-store";
 
 export const useUpdatePostsByPostIdMutation = ({
   postId,
@@ -16,6 +17,7 @@ export const useUpdatePostsByPostIdMutation = ({
   const year = dayjs().year();
   const month = dayjs().month() + 1;
   const selectedDate = new Date();
+  const clearInput = usePostingStore.getState().clearInput;
 
   return useMutation({
     mutationFn: updatePostsByPostId,
@@ -23,6 +25,7 @@ export const useUpdatePostsByPostIdMutation = ({
     onSuccess: () => {
       router.replace("/list");
       toast.success(TOAST_MESSAGE.POST.EDIT.SUCCESS);
+      clearInput();
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.USER, year, month],
       });

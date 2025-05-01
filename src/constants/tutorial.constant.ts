@@ -12,7 +12,7 @@ export const TUTORIAL = {
     MUSIC: "오늘의 감정 기록을 통해\nAI에게 음악을 추천 받아보세요 !",
     FRIEND: "마이페이지 > 내 친구 탭에서\n친구를 검색하고 추가할 수 있어요 !",
     SMOOKIE:
-      "기록을 통해 나의 마음을 들여다 보아요\n하루의 끝, Smookie와 함께 마무리 해볼까요 ?",
+      "기록을 통해 나의 마음을 들여다 보아요\n\n하루의 끝, Smookie와 함께 마무리 해볼까요 ?",
   },
   IMAGE: {
     HOME: "/images/home-tutorial.png",
