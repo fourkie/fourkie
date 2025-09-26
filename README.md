@@ -29,8 +29,8 @@
 
 | 이름 |역할|
 | :--: | -------- |
-| 🧸 윤주하 | 👑팀장👑 배포, 팀원 관리, 유저관리, 공통 컴포넌트, ListPage, Polling, 통계 모달   |
-| 🪫 김도현 | 문서 관리, 유저 관리, Mypage, 친구 관리, 사이트 정보 |
+| 🧸 윤주하 | 👑팀장👑 SignIn/SignUp, 배포, 팀원 관리, 유저관리, 공통 컴포넌트, ListPage, Polling, 통계 모달   |
+| 🪫 김도현 | 👑부팀장👑 SignIn/SignUp, 문서 관리, 유저 관리, Mypage, 친구 기능 관리, 사이트 정보, Tutorial |
 | 🐰 유선영 | 유저관리, DatePicker API, 달력, Homepage, Home 위젯(음악, 친구), Header, NavBar, 공통 컴포넌트 |
 | ‍🐤 전우영 | Spotify API 관리, Musicpage, OAuth2.0 인증/인가, Footer  |
 | 🐋 정현식 | 유저관리, 일기 작성/수정, Posting(Edit)page, AI 분석, Tutorial  |
